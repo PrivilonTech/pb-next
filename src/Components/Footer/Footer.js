@@ -162,7 +162,6 @@ function Footer() {
         <Box
           sx={{
             height: "20%",
-
             display: "flex",
             flexDirection: { xs: "column", md: "raw" },
           }}

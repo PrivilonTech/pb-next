@@ -25,7 +25,7 @@ function Header() {
           <MenuIcon sx={{ fontSize: 34 }} />
         </Box>
         <Box sx={{ margin: "auto" }}>
-          <img src={"./Header/logo.svg"} alt="Logo"></img>
+          <img src={"/Header/logo.svg"} alt="Logo"></img>
         </Box>
       </Box>
       <Box sx={{ margin: "auto", marginRight: "5vw" }}>

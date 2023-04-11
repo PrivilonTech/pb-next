@@ -17,7 +17,7 @@ function HomePage() {
           sx={{
             width: { xs: "100%", md: "40%" },
             height: { xs: "60%", md: "100%" },
-            border: "2px solid #000",
+
             display: "flex",
             alignItems: "center",
           }}
@@ -26,7 +26,7 @@ function HomePage() {
             sx={{
               height: "70%",
               width: "70%",
-              border: "2px solid #000",
+
               margin: "auto",
             }}
           >
@@ -59,7 +59,7 @@ function HomePage() {
           sx={{
             width: { xs: "100%", md: "60%" },
             height: { xs: "40%", md: "100%" },
-            border: "2px solid #000",
+
             display: "flex",
           }}
         >
