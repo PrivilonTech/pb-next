@@ -2,9 +2,13 @@ import { Box, Link, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
 
 function Pane({ path }) {
   const router = useRouter();
+  const theme = useTheme();
+
+  const udMd = theme.breakpoints.up("md");
 
   const [active, setActive] = useState("");
 
@@ -64,46 +68,50 @@ function Pane({ path }) {
   ];
   return (
     <>
-      <Box
-        sx={{
-          margin: "auto",
-          width: "90vw",
-          height: "15vh",
-          display: { xs: "none", md: "flex" },
-          justifyContent: "space-around",
-        }}
-      >
-        {list.map((res, id) => {
-          return (
-            <Link
-              href={res.link}
-              sx={{
-                textDecoration: "none",
-                color: "#000",
-                height: "90%",
-                width: "10%",
-                border:
-                  active === res.link ? "1px solid red" : "1px solid #141414",
-                margin: "auto",
-                borderRadius: "20px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Box
+      {udMd ? (
+        <Box
+          sx={{
+            margin: "auto",
+            width: "90vw",
+            height: "15vh",
+            display: { xs: "none", md: "flex" },
+            justifyContent: "space-around",
+          }}
+        >
+          {list.map((res, id) => {
+            return (
+              <Link
+                href={res.link}
                 sx={{
+                  textDecoration: "none",
+                  color: "#000",
+                  height: "90%",
+                  width: "10%",
+                  border:
+                    active === res.link ? "1px solid red" : "1px solid #141414",
                   margin: "auto",
+                  borderRadius: "20px",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                <Image height={45} width={45} src={res.icon} alt={res.txt} />
-              </Box>
-              <Typography sx={{ margin: "auto", textAlign: "center" }}>
-                {res.txt}
-              </Typography>
-            </Link>
-          );
-        })}
-      </Box>
+                <Box
+                  sx={{
+                    margin: "auto",
+                  }}
+                >
+                  <Image height={45} width={45} src={res.icon} alt={res.txt} />
+                </Box>
+                <Typography sx={{ margin: "auto", textAlign: "center" }}>
+                  {res.txt}
+                </Typography>
+              </Link>
+            );
+          })}
+        </Box>
+      ) : (
+        <Box></Box>
+      )}
     </>
   );
 }

@@ -1,10 +1,13 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 
 function Header() {
+  const theme = useTheme();
+
+  const udMd = theme.breakpoints.up("md");
   return (
     <Box
       sx={{

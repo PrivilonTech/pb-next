@@ -76,7 +76,7 @@ function HomePage() {
           </Box>
         </Box>
       </Box>
-      <Pane />
+      {/* <Pane /> */}
     </>
   );
 }
