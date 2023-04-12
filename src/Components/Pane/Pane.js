@@ -1,15 +1,16 @@
 import { Box, Link, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 
-function Pane({ path }) {
+function Pane({ path, show }) {
   const router = useRouter();
   const theme = useTheme();
+  const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const udMd = theme.breakpoints.up("md");
-
+  const [showpane, setShowpane] = useState(false);
   const [active, setActive] = useState("");
 
   useEffect(() => {
@@ -68,13 +69,13 @@ function Pane({ path }) {
   ];
   return (
     <>
-      {udMd ? (
+      {upMd ? (
         <Box
           sx={{
             margin: "auto",
             width: "90vw",
             height: "15vh",
-            display: { xs: "none", md: "flex" },
+            display: "flex",
             justifyContent: "space-around",
           }}
         >
@@ -93,6 +94,8 @@ function Pane({ path }) {
                   borderRadius: "20px",
                   display: "flex",
                   flexDirection: "column",
+                  boxShadow:
+                    " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
                 }}
               >
                 <Box
@@ -110,7 +113,51 @@ function Pane({ path }) {
           })}
         </Box>
       ) : (
-        <Box></Box>
+        <Box
+          sx={{
+            margin: "auto",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-around",
+            flexWrap: "wrap",
+          }}
+        >
+          {list.map((res, id) => {
+            return (
+              <Link
+                href={res.link}
+                sx={{
+                  textDecoration: "none",
+                  color: "#000",
+                  height: "20%",
+                  width: "35%",
+                  border:
+                    active === res.link ? "1px solid red" : "1px solid #141414",
+                  margin: "10px",
+                  borderRadius: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  boxShadow:
+                    " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+                  // boxShadow:
+                  //   "-6px -6px 12px rgba(255, 255, 255, 0.51), 6px 6px 12px rgba(0, 0, 0, 0.08)",
+                }}
+              >
+                <Box
+                  sx={{
+                    margin: "auto",
+                  }}
+                >
+                  <Image height={45} width={45} src={res.icon} alt={res.txt} />
+                </Box>
+                <Typography sx={{ margin: "auto", textAlign: "center" }}>
+                  {res.txt}
+                </Typography>
+              </Link>
+            );
+          })}
+        </Box>
       )}
     </>
   );
