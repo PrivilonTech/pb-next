@@ -1,15 +1,22 @@
 import React from "react";
-import Pane from "@/Components/Pane/Pane";
-import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
+import { Box, Typography } from "@mui/material";
+
+import Pane from "@/Components/Pane/Pane";
 import Graphbar from "@/Components/Graphbar/Graphbar";
 
+import { naptha } from "@/data";
+import crudeList from "../../../sidebarLists/crudeList";
+
 function index() {
-  const router = useRouter();
-  const path = router.query.crude;
   return (
     <>
-      <Graphbar />
+      <Graphbar
+        path="naptha"
+        data={naptha}
+        sideBarList={crudeList}
+        category="crude"
+      />
     </>
   );
 }
