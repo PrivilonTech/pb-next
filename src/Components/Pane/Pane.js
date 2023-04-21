@@ -82,6 +82,7 @@ function Pane({ path, show }) {
           {list.map((res, id) => {
             return (
               <Link
+                key={id}
                 href={res.link}
                 sx={{
                   textDecoration: "none",
@@ -105,7 +106,15 @@ function Pane({ path, show }) {
                 >
                   <Image height={45} width={45} src={res.icon} alt={res.txt} />
                 </Box>
-                <Typography sx={{ margin: "auto", textAlign: "center" }}>
+                <Typography
+                  sx={{
+                    margin: "auto",
+                    textAlign: "center",
+                    fontSize: ".9rem",
+                    fontWeight: 500,
+                    color: "#121212",
+                  }}
+                >
                   {res.txt}
                 </Typography>
               </Link>
@@ -126,6 +135,7 @@ function Pane({ path, show }) {
           {list.map((res, id) => {
             return (
               <Link
+                key={id}
                 href={res.link}
                 sx={{
                   textDecoration: "none",
