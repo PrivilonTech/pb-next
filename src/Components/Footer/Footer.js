@@ -114,12 +114,11 @@ function Footer() {
         >
           {headList.map((res, id) => {
             return (
-              <>
+              <React.Fragment key={id}>
                 <Box
                   sx={{
                     height: { xs: "50%", md: "90%" },
                     width: { xs: "40%", md: "20%" },
-
                     margin: "auto",
                   }}
                 >
@@ -151,11 +150,15 @@ function Footer() {
                     }}
                   >
                     {res.list.map((ans) => {
-                      return <Typography sx={{}}>{ans.name}</Typography>;
+                      return (
+                        <Typography sx={{}} id={ans.id}>
+                          {ans.name}
+                        </Typography>
+                      );
                     })}
                   </Box>
                 </Box>
-              </>
+              </React.Fragment>
             );
           })}
         </Box>
@@ -166,14 +169,21 @@ function Footer() {
             flexDirection: { xs: "column", md: "raw" },
           }}
         >
-          <Box sx={{ width: { xs: "100%", md: "60%" } }}>
-            <Typography sx={{ marginTop: "20px" }}>
+          <Box sx={{ width: { xs: "100%", md: "61%" } }}>
+            <Typography
+              sx={{
+                marginTop: "20px",
+                marginLeft: { xs: "4vw", md: "0vw" },
+                fontSize: ".9rem",
+                color: "#575757",
+              }}
+            >
               Please refer Terms & Conditions : M/S SAMYAK ENTERPRISE,
               Ahmedabad, Gujarat, India. +91 93 745 24 365 All Copyright ©2007 -
               2021 reserved.
             </Typography>
           </Box>
-          <Box sx={{ width: { xs: "100%", md: "4   0%" } }}></Box>
+          <Box sx={{ width: { xs: "100%", md: "40%" } }}></Box>
         </Box>
       </Box>
     </>
