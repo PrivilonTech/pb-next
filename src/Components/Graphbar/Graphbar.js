@@ -1,11 +1,10 @@
 import React from "react";
-import Pane from "@/Components/Pane/Pane";
-import { Box, Typography } from "@mui/material";
-import { useRouter } from "next/router";
-import Sidebar from "./Sidebar";
 import Chart from "chart.js/auto";
+import { Box, Typography } from "@mui/material";
 
-function Graphbar({ path, data }) {
+import Sidebar from "./Sidebar";
+
+function Graphbar({ path, data, sideBarList, category }) {
   const chartRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -30,7 +29,7 @@ function Graphbar({ path, data }) {
     <>
       <Box
         sx={{
-          height: { xs: "50vh", md: "80vh" },
+          height: { md: "80vh" },
           p: "5%",
           display: "flex",
           flexDirection: "column",
@@ -41,6 +40,7 @@ function Graphbar({ path, data }) {
             width: "100%",
             height: { xs: "10%", md: "6%" },
             borderRadius: "20px",
+
             background: "#D9232A",
             marginBottom: "10px",
           }}
@@ -48,8 +48,7 @@ function Graphbar({ path, data }) {
           <Typography
             sx={{
               color: "#fff",
-
-              padding: "10px",
+              padding: "5px 15px",
             }}
           >
             Crude Oil Scenario
@@ -65,21 +64,22 @@ function Graphbar({ path, data }) {
           <Box
             sx={{
               width: { md: "15%" },
-              height: { xs: "20%", md: "100%" },
 
               overflowX: { xs: "scroll", md: "hidden" },
-              marginRight: "10px",
             }}
           >
-            <Sidebar path={path} />
+            <Sidebar path={path} list={sideBarList} category={category} />
           </Box>
           <Box
             sx={{
-              width: { sm: "100%", md: "85%" },
-              height: { xs: "70%", md: "100%" },
+              marginLeft: { lg: "1em" },
+              height: { xs: "100%", md: "100%" },
+              width: { xs: "100%", md: "85%" },
+              display: "flex",
+              justifyContent: "center",
             }}
           >
-            <canvas style={{ marginTop: "10vh" }} ref={chartRef} />
+            <canvas style={{ marginTop: "2vh" }} ref={chartRef} />
           </Box>
         </Box>
       </Box>
