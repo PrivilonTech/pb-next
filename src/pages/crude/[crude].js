@@ -1,16 +1,24 @@
-import Graphbar from "@/Components/Graphbar/Graphbar";
-import Pane from "@/Components/Pane/Pane";
-import { Box } from "@mui/material";
-import { useRouter } from "next/router";
 import React from "react";
-import { naptha, propylene, ethylene, pta, vcm, steryne } from "@/data";
+import { Box } from "@mui/material";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-function Crude() {
+import Pane from "@/Components/Pane/Pane";
+import Graphbar from "@/Components/Graphbar/Graphbar";
+
+import { naptha, propylene, ethylene, pta, vcm, steryne } from "@/data";
+import crudeList from "../../../sidebarLists/crudeList";
+
+function Crude(response) {
   const router = useRouter();
   const path = router.query.crude;
+  console.log(response);
 
-  let data = naptha;
+  let data = {};
 
+  if (path === "naptha") {
+    data = naptha;
+  }
   if (path === "propylene") {
     data = propylene;
   }
@@ -29,9 +37,27 @@ function Crude() {
 
   return (
     <>
-      <Graphbar path={path} data={data} />
+      <Graphbar
+        path={path}
+        data={data}
+        sideBarList={crudeList}
+        category="crude"
+      />
     </>
   );
 }
 
 export default Crude;
+
+export const getServerSideProps = async ({ query }) => {
+  console.log(query);
+  const res = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/feedstock/${query.crude}`
+  );
+  console.log(res.data);
+  return {
+    props: {
+      response: res.data,
+    },
+  };
+};
