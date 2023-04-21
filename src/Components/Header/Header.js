@@ -1,17 +1,43 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import PersonIcon from "@mui/icons-material/Person";
 import CloseIcon from "@mui/icons-material/Close";
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+
 import Pane from "../Pane/Pane";
+import { ModalContext } from "../ModalProvider/ModalProvider";
+import firebaseApp from "@/firebase/clientApp";
 
 function Header() {
+  const auth = getAuth(firebaseApp);
+
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState(null);
+  const { setIsAuthModalOpen, setIsUserProfileModalOpen } =
+    useContext(ModalContext);
+
+  useEffect(() => {
+    // Subscribe to Firebase authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, set user state
+        setUser(user);
+      } else {
+        // User is signed out, clear user state
+        setUser(null);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <>
@@ -27,7 +53,6 @@ function Header() {
           <Box
             sx={{
               display: "flex",
-
               width: "40%",
             }}
           >
@@ -39,20 +64,45 @@ function Header() {
             </Box>
           </Box>
           <Box sx={{ margin: "auto", marginRight: "5vw" }}>
-            <Box
-              sx={{
-                margin: "auto",
-                display: "flex",
-                background: "#D7342D",
-                color: "white",
-                padding: "10px",
-                borderRadius: "20px",
-              }}
-            >
-              {" "}
-              <PersonIcon />
-              <Typography sx={{}}>SignIn / Register</Typography>
-            </Box>
+            {user ? (
+              <Box onClick={() => setIsUserProfileModalOpen((value) => !value)}>
+                <img
+                  src={
+                    user.photoURL
+                      ? user.photoURL
+                      : "/header/placeholderUser.png"
+                  }
+                  style={{
+                    borderRadius: "50px",
+                    height: "40px",
+                    width: "40px",
+                    cursor: "pointer",
+                  }}
+                  alt="user-image"
+                  onClick={() => {}}
+                />
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  margin: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                  background: "#D7342D",
+                  color: "white",
+                  padding: "10px",
+                  borderRadius: "20px",
+                  cursor: "pointer",
+                }}
+                onClick={() => setIsAuthModalOpen(true)}
+              >
+                {" "}
+                <PersonOutlineOutlinedIcon sx={{ fontSize: "1.25em" }} />
+                <Typography sx={{}}>Sign in / </Typography>
+                <CreateOutlinedIcon sx={{ fontSize: "1.2em" }} />
+                <Typography sx={{}}> Register</Typography>
+              </Box>
+            )}
           </Box>
         </Box>
       ) : !show ? (
