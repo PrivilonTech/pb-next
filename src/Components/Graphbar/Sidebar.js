@@ -1,88 +1,51 @@
-import { Box, Link, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Box, Link, Typography } from "@mui/material";
 
-function Sidebar({ path }) {
-  console.log(path);
+function Sidebar({ path, list, category }) {
   const [active, setActive] = useState("");
 
   useEffect(() => {
     setActive(path);
   }, [path]);
 
-  const list = [
-    {
-      id: 1,
-      section: "Naptha",
-      slug: "naptha",
-    },
-    {
-      id: 2,
-      section: "Propylene",
-      slug: "propylene",
-    },
-    {
-      id: 3,
-      section: "Ethylene",
-      slug: "ethylene",
-    },
-    {
-      id: 4,
-      section: "VCM & EDC",
-      slug: "vcm&edc",
-    },
-    {
-      id: 5,
-      section: "Steryne",
-      slug: "steryne",
-    },
-    {
-      id: 6,
-      section: "PTA",
-      slug: "pta",
-    },
-    {
-      id: 7,
-      section: "Flow Chart",
-      slug: "flow-chart",
-    },
-  ];
   return (
     <>
       <Box
         sx={{
-          height: "100%",
-          width: { xs: "200vw", md: "100%" },
           display: "flex",
+          flexWrap: "wrap",
           flexDirection: { xs: "row", md: "column" },
-          justifyContent: "space-around",
+          justifyContent: { lg: "space-around" },
         }}
       >
         {list.map((res, id) => {
           return (
             <Link
-              href={`/crude/${res.slug}`}
+              href={`/${category}/${res.slug}`}
               key={id}
               sx={{
                 textDecoration: "none",
-                color: active === res.slug ? "#fff" : "#000",
-                width: { md: "100%" },
-                height: { xs: "60%", md: "6%" },
+                color: active === res.slug ? "#fff" : "#575757",
+                width: { md: "90%" },
                 background: active === res.slug ? "#D9232A" : "",
-                border:
-                  active === res.slug ? "2px solid #D9232A" : "2px solid #000",
                 display: "flex",
                 margin: { xs: "10px" },
 
-                borderRadius: { xs: "20px" },
-                borderTopLeftRadius: "20px",
-                borderBottomLeftRadius: "20px",
+                border:
+                  active === res.slug ? "2px solid #D9232A" : "2px solid #000",
+                borderRadius: { xs: "20px", md: "0px" },
+                borderTopLeftRadius: { md: "20px" },
+                borderBottomLeftRadius: { md: "20px" },
               }}
             >
               <Typography
                 sx={{
                   margin: "auto",
                   textAlign: "center",
+                  padding: "5px 0",
                   px: { xs: "15px", md: "" },
+                  fontSize: { xs: ".9rem", md: "1rem" },
+                  fontWeight: "600",
                 }}
               >
                 {res.section}
