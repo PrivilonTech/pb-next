@@ -12,6 +12,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import Pane from "../Pane/Pane";
 import { ModalContext } from "../ModalProvider/ModalProvider";
 import firebaseApp from "@/firebase/clientApp";
+import Link from "next/link";
 
 function Header() {
   const auth = getAuth(firebaseApp);
@@ -21,8 +22,7 @@ function Header() {
 
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
-  const { setIsAuthModalOpen, setIsUserProfileModalOpen } =
-    useContext(ModalContext);
+  const { setIsUserProfileModalOpen } = useContext(ModalContext);
 
   useEffect(() => {
     // Subscribe to Firebase authentication state changes
@@ -65,43 +65,42 @@ function Header() {
           </Box>
           <Box sx={{ margin: "auto", marginRight: "5vw" }}>
             {user ? (
-              <Box onClick={() => setIsUserProfileModalOpen((value) => !value)}>
-                <img
-                  src={
-                    user.photoURL
-                      ? user.photoURL
-                      : "/header/placeholderUser.png"
-                  }
-                  style={{
-                    borderRadius: "50px",
-                    height: "40px",
-                    width: "40px",
-                    cursor: "pointer",
-                  }}
-                  alt="user-image"
-                  onClick={() => {}}
-                />
-              </Box>
-            ) : (
               <Box
+                onClick={() => setIsUserProfileModalOpen((value) => !value)}
                 sx={{
-                  margin: "auto",
-                  display: "flex",
-                  alignItems: "center",
-                  background: "#D7342D",
-                  color: "white",
-                  padding: "10px",
-                  borderRadius: "20px",
+                  border: "1px solid #2d333a",
+                  padding: ".5em 1.25em",
+                  borderRadius: "10px",
                   cursor: "pointer",
                 }}
-                onClick={() => setIsAuthModalOpen(true)}
               >
-                {" "}
-                <PersonOutlineOutlinedIcon sx={{ fontSize: "1.25em" }} />
-                <Typography sx={{}}>Sign in / </Typography>
-                <CreateOutlinedIcon sx={{ fontSize: "1.2em" }} />
-                <Typography sx={{}}> Register</Typography>
+                <Typography sx={{ color: "#2d333a" }}>
+                  Hello{" "}
+                  {user.displayName ? user.displayName.split(" ")[0] : "user"}{" "}
+                  👋
+                </Typography>
               </Box>
+            ) : (
+              <Link href="/auth" sx={{}}>
+                <Box
+                  sx={{
+                    margin: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    background: "#D7342D",
+                    color: "white",
+                    padding: "10px",
+                    borderRadius: "20px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {" "}
+                  <PersonOutlineOutlinedIcon sx={{ fontSize: "1.25em" }} />
+                  <Typography sx={{}}>Sign in / </Typography>
+                  <CreateOutlinedIcon sx={{ fontSize: "1.2em" }} />
+                  <Typography sx={{}}> Register</Typography>
+                </Box>
+              </Link>
             )}
           </Box>
         </Box>
@@ -109,7 +108,6 @@ function Header() {
         <Box
           sx={{
             height: "10vh",
-
             display: "flex",
             justifyContent: "space-between",
           }}
