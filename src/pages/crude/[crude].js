@@ -7,7 +7,7 @@ import Pane from "@/Components/Pane/Pane";
 import Graphbar from "@/Components/Graphbar/Graphbar";
 
 import { naptha, propylene, ethylene, pta, vcm, steryne } from "@/data";
-import crudeList from "../../../sidebarLists/crudeList";
+import crudeList from "../../../menuLists/crudeList";
 
 function Crude(response) {
   const router = useRouter();
@@ -50,11 +50,9 @@ function Crude(response) {
 export default Crude;
 
 export const getServerSideProps = async ({ query }) => {
-  console.log(query);
   const res = await axios.get(
     `https://polymerbazar-be.onrender.com/api/feedstock/${query.crude}`
   );
-  console.log(res.data);
   return {
     props: {
       response: res.data,

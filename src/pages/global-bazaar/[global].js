@@ -16,7 +16,7 @@ import {
   africaEgypt,
   africaCfrWest,
 } from "@/globalBazaarData";
-import globalBazaarList from "../../../sidebarLists/globalBazaarList";
+import globalBazaarList from "../../../menuLists/globalBazaarList";
 
 function Global() {
   const router = useRouter();

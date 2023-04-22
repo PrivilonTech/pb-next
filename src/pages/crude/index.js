@@ -6,7 +6,7 @@ import Pane from "@/Components/Pane/Pane";
 import Graphbar from "@/Components/Graphbar/Graphbar";
 
 import { naptha } from "@/data";
-import crudeList from "../../../sidebarLists/crudeList";
+import crudeList from "../../../menuLists/crudeList";
 
 function index() {
   return (
