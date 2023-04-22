@@ -7,20 +7,14 @@ import firebaseApp from "@/firebase/clientApp";
 export default function AuthGuard({ children }) {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Subscribe to Firebase authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, set user state
-        setUser(user);
-      } else {
-        // User is signed out, clear user state
-        setUser(null);
+      if (!user) {
         if (router.pathname !== "/") {
           // Redirect to login page if not on home page
-          router.push("/auth");
+          router.push("/register");
         }
       }
     });
