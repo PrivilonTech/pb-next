@@ -81,7 +81,7 @@ function Header() {
                 </Typography>
               </Box>
             ) : (
-              <Link href="/auth" sx={{}}>
+              <Link href="/register" sx={{}}>
                 <Box
                   sx={{
                     margin: "auto",
