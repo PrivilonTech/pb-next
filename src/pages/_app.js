@@ -40,6 +40,6 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
       {!isAuthPage && <Footer />}
     </ModalProvider>
-    //  </AuthGuard>
+    // </AuthGuard>
   );
 }
