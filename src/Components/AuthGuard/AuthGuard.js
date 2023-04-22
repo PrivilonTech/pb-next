@@ -28,10 +28,5 @@ export default function AuthGuard({ children }) {
     return unsubscribe;
   }, [auth, router]);
 
-  if (!user && router.pathname !== "/") {
-    router.push("/auth");
-    return null;
-  }
-
   return <>{children}</>;
 }

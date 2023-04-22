@@ -20,26 +20,26 @@ export default function App({ Component, pageProps }) {
   const isAuthPage = router.pathname === "/auth";
 
   return (
-    // <AuthGuard>
-    <ModalProvider>
-      <ProfileMenu />
-      {!isAuthPage && <Header />}
-      {upMd
-        ? !isAuthPage && <Pane path={firstString} />
-        : !isAuthPage && (
-            <Box
-              sx={{
-                height: { xs: "80vh", md: "" },
-                width: { xs: "100vw", md: "" },
-              }}
-            >
-              <Pane path={firstString} />
-            </Box>
-          )}
+    <AuthGuard>
+      <ModalProvider>
+        <ProfileMenu />
+        {!isAuthPage && <Header />}
+        {upMd
+          ? !isAuthPage && <Pane path={firstString} />
+          : !isAuthPage && (
+              <Box
+                sx={{
+                  height: { xs: "80vh", md: "" },
+                  width: { xs: "100vw", md: "" },
+                }}
+              >
+                <Pane path={firstString} />
+              </Box>
+            )}
 
-      <Component {...pageProps} />
-      {!isAuthPage && <Footer />}
-    </ModalProvider>
-    // </AuthGuard>
+        <Component {...pageProps} />
+        {!isAuthPage && <Footer />}
+      </ModalProvider>
+    </AuthGuard>
   );
 }

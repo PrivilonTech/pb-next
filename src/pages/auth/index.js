@@ -87,39 +87,38 @@ export default function Auth() {
       });
   };
 
+  const [localCaptcha, setLocalCaptcha] = useState(null);
+
   //captcha verification
-  // const onCaptchaVerify = async () => {
-  //   if (!window.recaptchaVerifier) {
-  //     window.recaptchaVerifier = new RecaptchaVerifier(
-  //       "recaptcha-container",
-  //       {
-  //         size: "invisible",
-  //         callback: () => {
-  //           console.log("success");
-  //           setShowOTP(true);
-  //           handleSendCode();
-  //         },
-  //         "expired-callback": () => {},
-  //       },
-  //       auth
-  //     );
-  //   }
-  // };
+  const onCaptchaVerify = async () => {
+    const localVerifierCaptcha = new RecaptchaVerifier(
+      "recaptcha-container",
+      {
+        size: "invisible",
+        callback: () => {
+          console.log("success");
+          setShowOTP(true);
+          handleSendCode();
+        },
+        "expired-callback": () => {},
+      },
+      auth
+    );
+    setLocalCaptcha(localVerifierCaptcha);
+  };
 
   //to send code to phone number
   const handleSendCode = () => {
-    console.log("FIX SEND OTP");
-    // onCaptchaVerify();
-    // const formatPhoneNumber = "+" + phoneNumber;
-    // const appVerifier = window.recaptchaVerifier;
-    // signInWithPhoneNumber(auth, formatPhoneNumber, appVerifier)
-    //   .then((confirmationResult) => {
-    //     window.confirmationResult = confirmationResult;
-    //     console.log("success");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    onCaptchaVerify();
+    const formatPhoneNumber = "+" + phoneNumber;
+    const appVerifier = localCaptcha;
+    signInWithPhoneNumber(auth, formatPhoneNumber, appVerifier)
+      .then(() => {
+        console.log("success");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
 
   //authentication
