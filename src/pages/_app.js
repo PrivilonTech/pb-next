@@ -10,6 +10,7 @@ import Pane from "@/Components/Pane/Pane";
 import { ModalProvider } from "@/Components/ModalProvider/ModalProvider";
 import ProfileMenu from "@/Components/ProfileMenu/ProfileMenu";
 import AuthGuard from "@/Components/AuthGuard/AuthGuard";
+import Loading from "@/Components/Loading/Loading";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -17,28 +18,30 @@ export default function App({ Component, pageProps }) {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const isAuthPage = router.pathname === "/auth";
+  const isAuthPage = router.pathname === "/register";
 
   return (
     <AuthGuard>
       <ModalProvider>
-        <ProfileMenu />
-        {!isAuthPage && <Header />}
-        {upMd
-          ? !isAuthPage && <Pane path={firstString} />
-          : !isAuthPage && (
-              <Box
-                sx={{
-                  height: { xs: "80vh", md: "" },
-                  width: { xs: "100vw", md: "" },
-                }}
-              >
-                <Pane path={firstString} />
-              </Box>
-            )}
+        <Loading>
+          <ProfileMenu />
+          {!isAuthPage && <Header />}
+          {upMd
+            ? !isAuthPage && <Pane path={firstString} />
+            : !isAuthPage && (
+                <Box
+                  sx={{
+                    height: { xs: "80vh", md: "" },
+                    width: { xs: "100vw", md: "" },
+                  }}
+                >
+                  <Pane path={firstString} />
+                </Box>
+              )}
 
-        <Component {...pageProps} />
-        {!isAuthPage && <Footer />}
+          <Component {...pageProps} />
+          {!isAuthPage && <Footer />}
+        </Loading>
       </ModalProvider>
     </AuthGuard>
   );
