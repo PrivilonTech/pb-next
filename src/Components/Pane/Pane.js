@@ -1,12 +1,12 @@
+import React, { useState, useEffect } from "react";
 import { Box, Link, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useMediaQuery } from "@mui/material";
-import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 
+import list from "../../../menuLists/paneList";
+
 function Pane({ path, show }) {
-  const router = useRouter();
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -17,62 +17,12 @@ function Pane({ path, show }) {
     setActive(path);
   }, [path]);
 
-  const list = [
-    {
-      id: 1,
-      icon: "/Pane/home.svg",
-      txt: "Home",
-      link: "/",
-    },
-    {
-      id: 2,
-      icon: "/Pane/news.svg",
-      txt: "News",
-      link: "/news",
-    },
-    {
-      id: 3,
-      icon: "/Pane/crude.svg",
-      txt: "Crude & Feedstock",
-      link: "/crude",
-    },
-    {
-      id: 4,
-      icon: "/Pane/global.svg",
-      txt: "Global Bazaar",
-      link: "/global-bazaar",
-    },
-    {
-      id: 5,
-      icon: "/Pane/indian.svg",
-      txt: "Indian Bazaar",
-      link: "/indian-bazaar",
-    },
-    {
-      id: 6,
-      icon: "/Pane/graph.svg",
-      txt: "Graph",
-      link: "/graph",
-    },
-    {
-      id: 7,
-      icon: "/Pane/future.svg",
-      txt: "Future Trend",
-      link: "/future-trend",
-    },
-    {
-      id: 8,
-      icon: "/Pane/services.svg",
-      txt: "Services",
-      link: "/services",
-    },
-  ];
   return (
     <>
       {upMd ? (
         <Box
           sx={{
-            margin: "auto",
+            margin: "1em auto",
             width: "90vw",
             height: "15vh",
             display: "flex",
@@ -112,7 +62,7 @@ function Pane({ path, show }) {
                   sx={{
                     margin: "auto",
                     textAlign: "center",
-                    fontSize: ".9rem",
+                    fontSize: { md: ".8em", lg: ".9rem" },
                     fontWeight: 500,
                     color: "#121212",
                   }}
