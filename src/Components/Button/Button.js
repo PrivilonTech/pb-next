@@ -1,7 +1,8 @@
 import React from "react";
 import { Typography } from "@mui/material";
+import { ClipLoader } from "react-spinners";
 
-export default function Button({ onClick, label }) {
+export default function Button({ onClick, label, isLoading }) {
   return (
     <button
       onClick={onClick}
@@ -14,9 +15,16 @@ export default function Button({ onClick, label }) {
         padding: ".75em .5em",
         width: "100%",
         cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <Typography sx={{ fontWeight: 500 }}>{label}</Typography>
+      {isLoading ? (
+        <ClipLoader color="white" size={20} />
+      ) : (
+        <Typography sx={{ fontWeight: 500 }}>{label}</Typography>
+      )}
     </button>
   );
 }
