@@ -27,10 +27,11 @@ export default function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [phoneNumber, setPhoneNumber] = useState("");
-
   const [verificationOTP, setVerificationOTP] = useState("");
+
   const [confirmationResult, setConfirmationResult] = useState(null);
   const [localVerifierCaptchaState, setLocalVerifierCaptchaState] =
     useState(null);
@@ -56,6 +57,7 @@ export default function Register() {
 
   // Sign up a new user
   const createAccount = (email, password) => {
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         // Signed up successfully
@@ -63,11 +65,15 @@ export default function Register() {
       })
       .catch((error) => {
         console.error("Error creating user: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   // Sign in an existing user
   const signIn = (email, password) => {
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         // Signed in successfully
@@ -76,6 +82,9 @@ export default function Register() {
       .catch((error) => {
         setIsError(true);
         console.error("Error signing in: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -93,16 +102,12 @@ export default function Register() {
       auth
     );
     setLocalVerifierCaptchaState(localVerifierCaptcha);
-
-    return () => {
-      localVerifierCaptcha.clear();
-    };
   }, []);
 
   //to send code to phone number
   const handleSendCode = async () => {
     const localVerifierCaptcha = localVerifierCaptchaState;
-    console.log(localVerifierCaptcha);
+    setIsLoading(true);
 
     const formatPhoneNumber = "+" + phoneNumber;
 
@@ -116,25 +121,32 @@ export default function Register() {
       .catch((error) => {
         console.log(error);
         setIsMobileError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   //verify otp
   const verifyOTP = () => {
+    setIsLoading(true);
     confirmationResult
       .confirm(verificationOTP)
-      .then(async (res) => {
-        console.log("success", res);
+      .then(async () => {
         router.push("/");
       })
       .catch((error) => {
         console.log("error", error);
         setIsMobileError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   //resend OTP
   const handleResendCode = () => {
+    console.log("WIP");
     const localCaptchaVerifier = localVerifierCaptchaState;
     console.log(localCaptchaVerifier);
 
@@ -258,6 +270,7 @@ export default function Register() {
           }}
         >
           <Button
+            isLoading={isLoading}
             onClick={handleUserAuthentication}
             label={
               showOTP
@@ -273,7 +286,7 @@ export default function Register() {
             onClick={handleResendCode}
             sx={{ textAlign: "center", color: "#6F6C90", cursor: "pointer" }}
           >
-            {isMobilePage && "Resend the code"}
+            {showOTP && "Resend the code"}
           </Typography>
           <Typography sx={{ textAlign: "center", color: "#6F6C90" }}>
             or
