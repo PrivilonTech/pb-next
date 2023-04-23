@@ -1,36 +1,41 @@
 const indianBazaarList = [
   {
     id: 1,
+    section: "Rate Revision",
+    slug: "rateRevision",
+  },
+  {
+    id: 2,
     section: "Rate Prediction",
     slug: "ratePrediction",
   },
   {
-    id: 2,
+    id: 3,
     section: "City Wise-Metro",
     slug: "cityWiseMetro",
   },
   {
-    id: 3,
+    id: 4,
     section: "Historical Data - PP",
     slug: "historicalDataPP",
   },
   {
-    id: 4,
+    id: 5,
     section: "Historical Data - LLD",
     slug: "historicalDataLLD",
   },
   {
-    id: 5,
+    id: 6,
     section: "Historical Data - HD",
     slug: "historicalDataHD",
   },
   {
-    id: 6,
+    id: 7,
     section: "Historical Data PVC",
     slug: "historicalDataPVC",
   },
   {
-    id: 7,
+    id: 8,
     section: "Import Calculation",
     slug: "importCalculation",
   },
