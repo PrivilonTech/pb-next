@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import { Box, Typography } from "@mui/material";
@@ -10,26 +10,26 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 import Pane from "../Pane/Pane";
-import { ModalContext } from "../ModalProvider/ModalProvider";
 import firebaseApp from "@/firebase/clientApp";
 import Link from "next/link";
+import ProfileMenu from "../ProfileMenu/ProfileMenu";
 
 function Header() {
+  const auth = getAuth(firebaseApp);
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const auth = getAuth(firebaseApp);
+  const targetRef = useRef(null);
+  const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
+
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
-  const { setIsUserProfileModalOpen } = useContext(ModalContext);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, set user state
         setUser(user);
       } else {
-        // User is signed out, clear user state
         setUser(null);
       }
     });
@@ -44,8 +44,12 @@ function Header() {
     return unsubscribe;
   }, []);
 
+  const handleToggleProfileMenu = () => {
+    setIsUserProfileModalOpen((prev) => !prev);
+  };
+
   return (
-    <>
+    <Box sx={{ position: "relative" }}>
       {upMd ? (
         <Box
           sx={{
@@ -71,7 +75,7 @@ function Header() {
           <Box sx={{ margin: "auto", marginRight: "5vw" }}>
             {user ? (
               <Box
-                onClick={() => setIsUserProfileModalOpen((value) => !value)}
+                onClick={handleToggleProfileMenu}
                 sx={{
                   border: "1px solid #2d333a",
                   padding: ".5em 1.25em",
@@ -101,9 +105,9 @@ function Header() {
                 >
                   {" "}
                   <PersonOutlineOutlinedIcon sx={{ fontSize: "1.25em" }} />
-                  <Typography sx={{}}>Sign in / </Typography>
+                  <Typography>Sign in / </Typography>
                   <CreateOutlinedIcon sx={{ fontSize: "1.2em" }} />
-                  <Typography sx={{}}> Register</Typography>
+                  <Typography> Register</Typography>
                 </Box>
               </Link>
             )}
@@ -163,8 +167,8 @@ function Header() {
               <img src={"/Header/logo.svg"} alt="Logo"></img>
             </Box>
             <Box sx={{ height: "20%", width: "100%" }}>
-              <Box sx={{}}></Box>
-              <Box sx={{}}></Box>
+              <Box></Box>
+              <Box></Box>
             </Box>
             <Box sx={{ height: "80%", width: "100%" }}>
               <Pane show={show} />
@@ -173,23 +177,14 @@ function Header() {
           <CloseIcon sx={{ fontSize: 34 }} onClick={() => setShow(!show)} />
         </Box>
       )}
-    </>
+      {isUserProfileModalOpen && (
+        <ProfileMenu
+          setIsUserProfileModalOpen={setIsUserProfileModalOpen}
+          targetRef={targetRef}
+        />
+      )}
+    </Box>
   );
 }
 
 export default Header;
-
-// export async function getServerSideProps() {
-//   const user = await new Promise((resolve) => {
-//     const unsubscribe = onAuthStateChanged(auth, (user) => {
-//       unsubscribe(); // Unsubscribe after the first call to onAuthStateChanged
-//       resolve(user); // Resolve the user data
-//     });
-//   });
-
-//   return {
-//     props: {
-//       user: user || null, // Pass the user data as props
-//     },
-//   };
-// }
