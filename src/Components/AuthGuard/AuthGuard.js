@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -20,7 +20,7 @@ export default function AuthGuard({ children }) {
     });
 
     return unsubscribe;
-  }, [auth, router]);
+  }, [auth]);
 
   return <>{children}</>;
 }
