@@ -15,7 +15,7 @@ import {
   turkey,
   africaEgypt,
   africaCfrWest,
-} from "@/globalBazaarData";
+} from "@/dummyData/globalBazaarData";
 import globalBazaarList from "../../../menuLists/globalBazaarList";
 
 function Global() {
@@ -64,7 +64,7 @@ function Global() {
         path={path}
         data={data}
         sideBarList={globalBazaarList}
-        category="global-bazaar"
+        page="global-bazaar"
       />
     </>
   );
