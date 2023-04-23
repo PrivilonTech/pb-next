@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useEffect } from "react";
 
 export default function DropDownItem({
   data,
@@ -11,6 +12,15 @@ export default function DropDownItem({
     setSelectedOption(option);
     setIsDropDownOpen(false);
   };
+
+  useEffect(() => {
+    //close user profile menu
+    window.addEventListener("keydown", (event) => {
+      if (event.code === "Escape") {
+        setIsDropDownOpen(false);
+      }
+    });
+  }, []);
 
   return (
     <Box

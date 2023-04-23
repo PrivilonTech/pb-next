@@ -207,7 +207,9 @@ export default function Register() {
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1em" }}>
           <HeaderTitle
             title={
-              isLoginPage || isMobilePage
+              isMobilePage
+                ? "OTP Verification"
+                : isLoginPage || isMobilePage
                 ? "Welcome Back"
                 : "Create your account"
             }

@@ -1,50 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { Box, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import firebaseApp from "@/firebase/clientApp";
-import { ModalContext } from "../ModalProvider/ModalProvider";
 
-export default function ProfileMenu() {
+export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
-  const [user, setUser] = useState(null);
-
-  const { isUserProfileModalOpen, setIsUserProfileModalOpen } =
-    useContext(ModalContext);
 
   const handleLogout = async () => {
     try {
+      router.push("/");
       await auth.signOut();
       setIsUserProfileModalOpen(false);
-      router.push("/");
     } catch (error) {
       console.error("Error logging out user", error);
     }
   };
 
-  useEffect(() => {
-    // Subscribe to Firebase authentication state changes
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return unsubscribe;
-  }, []);
-
   return (
     <Box
+      ref={targetRef}
       sx={{
         width: { xs: "102%", md: "100%" },
         position: "absolute",
-        display: isUserProfileModalOpen ? "flex" : "none",
+        display: "flex",
         justifyContent: "flex-end",
         top: "10vh",
         right: "10vh",
