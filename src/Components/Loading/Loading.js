@@ -3,10 +3,9 @@ import { Box } from "@mui/material";
 import { ClipLoader } from "react-spinners";
 
 export default function Loading({ children }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
