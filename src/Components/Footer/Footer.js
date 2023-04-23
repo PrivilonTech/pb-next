@@ -1,101 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import headList from "../../../menuLists/footerList";
 
-function Footer() {
-  const headList = [
-    {
-      id: 1,
-      txt: "Company",
-      list: [
-        {
-          id: 1,
-          name: "Blog",
-        },
-        {
-          id: 2,
-          name: "About Us",
-        },
-        {
-          id: 3,
-          name: "Job Openings",
-        },
-        {
-          id: 4,
-          name: "Privacy Policy",
-        },
-      ],
-    },
-    {
-      id: 2,
-      txt: "Community",
-      list: [
-        {
-          id: 1,
-          name: "Another ",
-        },
-        {
-          id: 2,
-          name: "About Us",
-        },
-        {
-          id: 3,
-          name: "Job Openings",
-        },
-        {
-          id: 4,
-          name: "Privacy Policy",
-        },
-      ],
-    },
-    {
-      id: 3,
-      txt: "Categories",
-      list: [
-        {
-          id: 1,
-          name: "Blog",
-        },
-        {
-          id: 2,
-          name: "About Us",
-        },
-        {
-          id: 3,
-          name: "Job Openings",
-        },
-        {
-          id: 4,
-          name: "Privacy Policy",
-        },
-      ],
-    },
-    {
-      id: 4,
-      txt: "Contact Us",
-      list: [
-        {
-          id: 1,
-          name: "Blog",
-        },
-        {
-          id: 2,
-          name: "About Us",
-        },
-        {
-          id: 3,
-          name: "Job Openings",
-        },
-        {
-          id: 4,
-          name: "Privacy Policy",
-        },
-      ],
-    },
-  ];
-
+export default function Footer() {
   return (
     <>
-      <Box></Box>
       <Box
         sx={{
           height: { xs: "100vh", md: "50vh" },
@@ -125,7 +34,6 @@ function Footer() {
                   <Box
                     sx={{
                       height: "20%",
-                      display: "flex",
                     }}
                   >
                     <Typography
@@ -135,7 +43,6 @@ function Footer() {
                         fontSize: { xs: "5vmin", md: "3vmin" },
                         color: "#657786",
                         fontWeight: "bold",
-                        textDecoration: "underline",
                       }}
                     >
                       {res.txt}
@@ -190,5 +97,3 @@ function Footer() {
     </>
   );
 }
-
-export default Footer;
