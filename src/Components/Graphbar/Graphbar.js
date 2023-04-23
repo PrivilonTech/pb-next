@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 import Sidebar from "./Sidebar";
 
-function Graphbar({ path, data, sideBarList, category }) {
+function Graphbar({ path, data, sideBarList, page }) {
   const chartRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -68,11 +68,11 @@ function Graphbar({ path, data, sideBarList, category }) {
               overflowX: { xs: "scroll", md: "hidden" },
             }}
           >
-            <Sidebar path={path} list={sideBarList} category={category} />
+            <Sidebar path={path} list={sideBarList} page={page} />
           </Box>
           <Box
             sx={{
-              marginLeft: { lg: "1em" },
+              marginLeft: { md: "1em" },
               height: { xs: "100%", md: "100%" },
               width: { xs: "100%", md: "85%" },
               display: "flex",

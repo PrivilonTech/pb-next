@@ -2,7 +2,7 @@ import React from "react";
 
 import Graphbar from "@/Components/Graphbar/Graphbar";
 
-import { usa } from "../../globalBazaarData";
+import { usa } from "../../dummyData/globalBazaarData";
 import globalBazaarList from "../../../menuLists/globalBazaarList";
 
 function index() {
@@ -13,7 +13,7 @@ function index() {
           path="usa"
           data={usa}
           sideBarList={globalBazaarList}
-          category="global-bazaar"
+          page="global-bazaar"
         />
       }
     </>

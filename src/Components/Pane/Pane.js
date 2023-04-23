@@ -46,7 +46,7 @@ function Pane({ path, show }) {
       id: 5,
       icon: "/Pane/indian.svg",
       txt: "Indian Bazaar",
-      link: "/indian-bazaar ",
+      link: "/indian-bazaar",
     },
     {
       id: 6,
@@ -90,7 +90,9 @@ function Pane({ path, show }) {
                   height: "90%",
                   width: "10%",
                   border:
-                    active === res.link ? "1px solid red" : "1px solid #141414",
+                    active === res.link
+                      ? "2px solid #C31815"
+                      : "1px solid #1e1e1e",
                   margin: "auto",
                   borderRadius: "20px",
                   display: "flex",

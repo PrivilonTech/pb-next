@@ -2,12 +2,12 @@ const crudeList = [
   {
     id: 1,
     section: "Naptha",
-    slug: "Naphtha",
+    slug: "naptha",
   },
   {
     id: 2,
     section: "Propylene",
-    slug: "Propylene",
+    slug: "propylene",
   },
   {
     id: 3,

@@ -1,18 +1,22 @@
 import React from "react";
-import { Box } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-import Pane from "@/Components/Pane/Pane";
 import Graphbar from "@/Components/Graphbar/Graphbar";
 
-import { naptha, propylene, ethylene, pta, vcm, steryne } from "@/data";
+import {
+  naptha,
+  propylene,
+  ethylene,
+  pta,
+  vcm,
+  steryne,
+} from "@/dummyData/data";
 import crudeList from "../../../menuLists/crudeList";
 
 function Crude(response) {
   const router = useRouter();
   const path = router.query.crude;
-  console.log(response);
 
   let data = {};
 
@@ -37,12 +41,7 @@ function Crude(response) {
 
   return (
     <>
-      <Graphbar
-        path={path}
-        data={data}
-        sideBarList={crudeList}
-        category="crude"
-      />
+      <Graphbar path={path} data={data} sideBarList={crudeList} page="crude" />
     </>
   );
 }

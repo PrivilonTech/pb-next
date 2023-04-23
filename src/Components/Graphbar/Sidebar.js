@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Link, Typography } from "@mui/material";
 
-function Sidebar({ path, list, category }) {
+function Sidebar({ path, list, page }) {
   const [active, setActive] = useState("");
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function Sidebar({ path, list, category }) {
         {list.map((res, id) => {
           return (
             <Link
-              href={`/${category}/${res.slug}`}
+              href={`/${page}/${res.slug}`}
               key={id}
               sx={{
                 textDecoration: "none",
@@ -38,6 +38,7 @@ function Sidebar({ path, list, category }) {
                 borderBottomLeftRadius: { md: "20px" },
               }}
             >
+              {(active, res.slug, active === res.slug)}
               <Typography
                 sx={{
                   margin: "auto",

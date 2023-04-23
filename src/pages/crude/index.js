@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 import Pane from "@/Components/Pane/Pane";
 import Graphbar from "@/Components/Graphbar/Graphbar";
 
-import { naptha } from "@/data";
+import { naptha } from "@/dummyData/data";
 import crudeList from "../../../menuLists/crudeList";
 
 function index() {
@@ -15,7 +15,7 @@ function index() {
         path="naptha"
         data={naptha}
         sideBarList={crudeList}
-        category="crude"
+        page="crude"
       />
     </>
   );
