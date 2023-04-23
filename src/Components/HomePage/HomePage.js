@@ -7,9 +7,9 @@ function HomePage() {
     <>
       <Box
         sx={{
-          height: "70vh",
-
+          marginTop: ".75em",
           display: "flex",
+          alignItems: "center",
           flexDirection: { xs: "column-reverse", md: "row" },
         }}
       >
@@ -26,28 +26,21 @@ function HomePage() {
             sx={{
               height: "70%",
               width: "70%",
-
               margin: "auto",
             }}
           >
             <Typography
               sx={{
+                marginBottom: ".25em",
                 fontSize: { xs: "10vmin", md: "8vmin" },
                 fontWeight: "bold",
               }}
             >
-              Price
-              <br />
-              Prediction
-              <br />
-              Profit
-              <br />
+              Price Prediction Profit
             </Typography>
             <Typography
               sx={{
                 margin: "auto",
-                //fontSize: { xs: "10vmin", md: "8vmin" },
-
                 fontWeight: "bold",
               }}
             >

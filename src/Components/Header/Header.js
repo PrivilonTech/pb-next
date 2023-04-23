@@ -15,17 +15,15 @@ import firebaseApp from "@/firebase/clientApp";
 import Link from "next/link";
 
 function Header() {
-  const auth = getAuth(firebaseApp);
-
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
+  const auth = getAuth(firebaseApp);
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
   const { setIsUserProfileModalOpen } = useContext(ModalContext);
 
   useEffect(() => {
-    // Subscribe to Firebase authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, set user state
@@ -33,6 +31,13 @@ function Header() {
       } else {
         // User is signed out, clear user state
         setUser(null);
+      }
+    });
+
+    //close user profile menu
+    window.addEventListener("keydown", (event) => {
+      if (event.code === "Escape") {
+        setIsUserProfileModalOpen(false);
       }
     });
 
@@ -173,3 +178,18 @@ function Header() {
 }
 
 export default Header;
+
+// export async function getServerSideProps() {
+//   const user = await new Promise((resolve) => {
+//     const unsubscribe = onAuthStateChanged(auth, (user) => {
+//       unsubscribe(); // Unsubscribe after the first call to onAuthStateChanged
+//       resolve(user); // Resolve the user data
+//     });
+//   });
+
+//   return {
+//     props: {
+//       user: user || null, // Pass the user data as props
+//     },
+//   };
+// }

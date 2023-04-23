@@ -98,7 +98,7 @@ function Footer() {
       <Box></Box>
       <Box
         sx={{
-          height: { xs: "100vh", md: "60vh" },
+          height: { xs: "100vh", md: "50vh" },
           width: { xs: "100%", md: "80%" },
           margin: "auto",
         }}
@@ -143,15 +143,16 @@ function Footer() {
                   </Box>
                   <Box
                     sx={{
-                      height: "80%",
+                      height: "70%",
                       display: "flex",
+                      marginTop: ".5em",
                       flexDirection: "column",
                       justifyContent: "space-around",
                     }}
                   >
-                    {res.list.map((ans) => {
+                    {res.list.map((ans, id) => {
                       return (
-                        <Typography sx={{}} id={ans.id}>
+                        <Typography key={id} id={ans.id}>
                           {ans.name}
                         </Typography>
                       );
