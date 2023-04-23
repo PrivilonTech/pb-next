@@ -29,7 +29,7 @@ function Sidebar({ path, list, page }) {
                 width: { md: "90%" },
                 background: active === res.slug ? "#D9232A" : "",
                 display: "flex",
-                margin: { xs: "10px" },
+                margin: { xs: "10px", md: "10px 0" },
 
                 border:
                   active === res.slug ? "2px solid #D9232A" : "2px solid #000",
@@ -38,7 +38,6 @@ function Sidebar({ path, list, page }) {
                 borderBottomLeftRadius: { md: "20px" },
               }}
             >
-              {(active, res.slug, active === res.slug)}
               <Typography
                 sx={{
                   margin: "auto",
