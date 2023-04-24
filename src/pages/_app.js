@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
+import { Toaster } from "react-hot-toast";
 import { Roboto } from "next/font/google";
 
 import "@/styles/globals.css";
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }) {
   return (
     <main className={roboto.className}>
       <AuthGuard>
+        <Toaster />
         <Loading>
           {!isAuthPage && <Header />}
           {upMd && !isAuthPage && <Pane path={firstString} />}

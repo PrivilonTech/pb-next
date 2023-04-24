@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 import "react-phone-input-2/lib/style.css";
 import { MuiOtpInput } from "mui-one-time-password-input";
+import { toast } from "react-hot-toast";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -121,6 +122,7 @@ export default function Register() {
 
         setShowOTP(true);
         setIsMobileError(false);
+        toast.success("One time password sent");
       })
       .catch((error) => {
         console.log(error);
@@ -145,27 +147,6 @@ export default function Register() {
       })
       .finally(() => {
         setIsLoading(false);
-      });
-  };
-
-  //resend OTP
-  const handleResendCode = () => {
-    console.log("WIP");
-    const localCaptchaVerifier = localVerifierCaptchaState;
-
-    localCaptchaVerifier
-      .verify()
-      .then(() => {
-        return firebase
-          .auth()
-          .signInWithPhoneNumber(phoneNumber, localCaptchaVerifier);
-      })
-      .then((confirmationResult) => {
-        setConfirmationResult(confirmationResult);
-        console.log("New confirmation result:", confirmationResult);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   };
 
@@ -196,8 +177,8 @@ export default function Register() {
       <Box id="recaptcha-container"></Box>
       <Box
         sx={{
-          height: { xs: "100%", md: "auto" },
-          width: { xs: "100%", md: "400px" },
+          height: { xs: "100%", sm: "auto" },
+          width: { xs: "100%", sm: "400px" },
           background: "#FFFFFF",
           padding: "2em",
 
@@ -287,12 +268,27 @@ export default function Register() {
                 : "Signup"
             }
           />
-          <Typography
-            onClick={handleResendCode}
-            sx={{ textAlign: "center", color: "#6F6C90", cursor: "pointer" }}
-          >
-            {showOTP && "Resend the code"}
-          </Typography>
+          {showOTP && (
+            <Box
+              sx={{ display: "flex", gap: ".25em", justifyContent: "center" }}
+            >
+              <Typography
+                sx={{
+                  textAlign: "center",
+                  color: "#6F6C90",
+                  fontSize: ".9rem",
+                }}
+              >
+                Didn't receive OTP code?
+              </Typography>
+              <Typography
+                onClick={() => handleSendCode()}
+                sx={{ color: "#c31815", fontSize: ".9rem", cursor: "pointer" }}
+              >
+                Resend
+              </Typography>
+            </Box>
+          )}
           <Typography sx={{ textAlign: "center", color: "#6F6C90" }}>
             or
           </Typography>
