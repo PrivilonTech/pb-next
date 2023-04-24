@@ -12,7 +12,7 @@ import {
   vcm,
   steryne,
 } from "@/dummyData/data";
-import crudeList from "../../../menuLists/crudeList";
+import crudeList from "../../menuLists/crudeList";
 
 function Crude(response) {
   const router = useRouter();

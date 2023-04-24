@@ -3,7 +3,7 @@ import React from "react";
 import Graphbar from "@/Components/Graphbar/Graphbar";
 
 import { usa } from "../../dummyData/globalBazaarData";
-import globalBazaarList from "../../../menuLists/globalBazaarList";
+import globalBazaarList from "../../menuLists/globalBazaarList";
 
 function index() {
   return (

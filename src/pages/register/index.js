@@ -106,6 +106,10 @@ export default function Register() {
 
   //to send code to phone number
   const handleSendCode = async () => {
+    if (!phoneNumber) {
+      return;
+    }
+
     const localVerifierCaptcha = localVerifierCaptchaState;
     setIsLoading(true);
 

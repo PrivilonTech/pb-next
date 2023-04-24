@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
-import indianBazaarList from "../../../menuLists/indianBazaarList";
+import indianBazaarList from "../../menuLists/indianBazaarList";
 import DropDown from "../DropDown/DropDown";
 import Sidebar from "../Graphbar/Sidebar";
 import DataContainer from "../DataContainer/DataContainer";
