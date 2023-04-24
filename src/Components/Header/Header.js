@@ -5,25 +5,32 @@ import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 import Pane from "../Pane/Pane";
 import firebaseApp from "@/firebase/clientApp";
 import Link from "next/link";
-import ProfileMenu from "../ProfileMenu/ProfileMenu";
+import ProfileMenu from "./ProfileMenu";
+import HamburgMenu from "./HamburgMenu";
 
 function Header() {
   const auth = getAuth(firebaseApp);
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
+  const upSm = useMediaQuery(theme.breakpoints.up("sm"));
 
   const targetRef = useRef(null);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
 
-  const [show, setShow] = useState(false);
+  const [showHamburg, setShowHamburg] = useState(false);
   const [user, setUser] = useState(null);
+
+  //if someone resizes disable hamburg menu on large screens
+  useEffect(() => {
+    setShowHamburg(false);
+  }, [upMd]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -49,12 +56,16 @@ function Header() {
   };
 
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box
+      sx={{
+        position: "relative",
+        padding: ".5em 3em",
+      }}
+    >
       {upMd ? (
         <Box
           sx={{
             height: "10vh",
-            transition: "transform 0.3s ease",
             display: "flex",
             justifyContent: "space-between",
           }}
@@ -65,14 +76,11 @@ function Header() {
               width: "40%",
             }}
           >
-            <Box sx={{ margin: "auto" }}>
-              <MenuIcon sx={{ fontSize: 34 }} />
-            </Box>
-            <Box sx={{ margin: "auto" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
               <img src={"/Header/logo.svg"} alt="Logo"></img>
             </Box>
           </Box>
-          <Box sx={{ margin: "auto", marginRight: "5vw" }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             {user ? (
               <Box
                 onClick={handleToggleProfileMenu}
@@ -90,7 +98,7 @@ function Header() {
                 </Typography>
               </Box>
             ) : (
-              <Link href="/register" sx={{}}>
+              <Link href="/register">
                 <Box
                   sx={{
                     margin: "auto",
@@ -113,7 +121,7 @@ function Header() {
             )}
           </Box>
         </Box>
-      ) : !show ? (
+      ) : (
         <Box
           sx={{
             height: "10vh",
@@ -129,7 +137,7 @@ function Header() {
           >
             <Box
               sx={{ margin: "auto", width: "100%" }}
-              onClick={() => setShow(!show)}
+              onClick={() => setShowHamburg(true)}
             >
               <MenuIcon sx={{ fontSize: 34 }} />
             </Box>
@@ -138,45 +146,13 @@ function Header() {
             </Box>
           </Box>
         </Box>
-      ) : (
-        <Box
-          sx={{
-            height: "100vh",
-            display: "flex",
-            position: "absolute",
-            background: "#fff",
-            width: "100%",
-            justifyContent: "space-around",
-            zIndex: "99999",
-            alignItems: "center",
-            flexDirection: "column",
-            transition: "transform 0.3s ease",
-            background: "#EDF1FF",
-          }}
-        >
-          <Box
-            sx={{
-              height: "90%",
-
-              width: "90%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Box sx={{ margin: "auto" }}>
-              <img src={"/Header/logo.svg"} alt="Logo"></img>
-            </Box>
-            <Box sx={{ height: "20%", width: "100%" }}>
-              <Box></Box>
-              <Box></Box>
-            </Box>
-            <Box sx={{ height: "80%", width: "100%" }}>
-              <Pane show={show} />
-            </Box>
-          </Box>
-          <CloseIcon sx={{ fontSize: 34 }} onClick={() => setShow(!show)} />
-        </Box>
       )}
+      {
+        <HamburgMenu
+          setShowHamburg={setShowHamburg}
+          showHamburg={showHamburg}
+        />
+      }
       {isUserProfileModalOpen && (
         <ProfileMenu
           setIsUserProfileModalOpen={setIsUserProfileModalOpen}
