@@ -30,18 +30,7 @@ export default function App({ Component, pageProps }) {
       <AuthGuard>
         <Loading>
           {!isAuthPage && <Header />}
-          {upMd
-            ? !isAuthPage && <Pane path={firstString} />
-            : !isAuthPage && (
-                <Box
-                  sx={{
-                    height: { xs: "80vh", md: "" },
-                    width: { xs: "100vw", md: "" },
-                  }}
-                >
-                  <Pane path={firstString} />
-                </Box>
-              )}
+          {upMd && !isAuthPage && <Pane path={firstString} />}
 
           <Component {...pageProps} />
           {/* {!isAuthPage && <Footer />} */}

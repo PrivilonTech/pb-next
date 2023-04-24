@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import list from "../../../menuLists/paneList";
+import list from "../../menuLists/paneList";
 
 function Pane({ path, show }) {
   const theme = useTheme();
@@ -27,6 +27,7 @@ function Pane({ path, show }) {
             height: "15vh",
             display: "flex",
             justifyContent: "space-around",
+            padding: "1em",
           }}
         >
           {list.map((res, id) => {
@@ -47,6 +48,7 @@ function Pane({ path, show }) {
                   borderRadius: "20px",
                   display: "flex",
                   flexDirection: "column",
+                  padding: ".25em",
                   boxShadow:
                     " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
                 }}
@@ -102,8 +104,6 @@ function Pane({ path, show }) {
                   flexDirection: "column",
                   boxShadow:
                     " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-                  // boxShadow:
-                  //   "-6px -6px 12px rgba(255, 255, 255, 0.51), 6px 6px 12px rgba(0, 0, 0, 0.08)",
                 }}
               >
                 <Box
