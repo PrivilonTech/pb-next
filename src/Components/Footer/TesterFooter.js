@@ -1,17 +1,18 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import footerList from "../../../menuLists/footerList";
+import footerList from "../../menuLists/footerList";
 
 export default function TesterFooter() {
   return (
-    <Box>
+    <Box sx={{ margin: "0 2em" }}>
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
-          gap: "10em",
-          margin: "4em 0",
+          justifyContent: { xs: "center", md: "flex-start", lg: "center" },
+          gap: { xs: "3em 6em", md: "2em 7em", lg: "2em 10em" },
+          flexWrap: "wrap",
+          margin: { xs: "4em 2em", md: "4em 8em" },
         }}
       >
         {footerList.map((footerColumn) => (
@@ -53,10 +54,13 @@ export default function TesterFooter() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          margin: "2em 0",
+          color: "#1e1e1e",
+          margin: { xs: "1em", sm: "2em 6em" },
+          borderTop: "1px solid gray",
+          paddingTop: "1em",
         }}
       >
-        <Typography sx={{ fontSize: ".9rem" }}>
+        <Typography sx={{ fontSize: { xs: ".75em", lg: ".9rem" } }}>
           Please refer Terms & Conditions : M/S SAMYAK ENTERPRISE, Ahmedabad,
           Gujarat, India. +91 93 745 24 365 All Copyright ©2007 - 2021 reserved.
         </Typography>

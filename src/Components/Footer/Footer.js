@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import headList from "../../../menuLists/footerList";
+import headList from "../../menuLists/footerList";
 
 export default function Footer() {
   return (
@@ -9,13 +9,13 @@ export default function Footer() {
         sx={{
           height: { xs: "100vh", md: "50vh" },
           width: { xs: "100%", md: "80%" },
-          margin: "auto",
+          margin: { md: "auto" },
         }}
       >
         <Box
           sx={{
             height: "80%",
-            borderBottom: "2px solid #000",
+            borderBottom: "1px solid gray",
             display: "flex",
             justifyContent: "space-around",
             flexWrap: "wrap",
@@ -59,7 +59,11 @@ export default function Footer() {
                   >
                     {res.list.map((ans, id) => {
                       return (
-                        <Typography key={id} id={ans.id}>
+                        <Typography
+                          key={id}
+                          id={ans.id}
+                          sx={{ color: "#878997" }}
+                        >
                           {ans.name}
                         </Typography>
                       );
