@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Toaster } from "react-hot-toast";
-import { Roboto } from "next/font/google";
 
 import "@/styles/globals.css";
 import Footer from "@/Components/Footer/Footer";
@@ -13,22 +11,35 @@ import Pane from "@/Components/Pane/Pane";
 import AuthGuard from "@/Components/AuthGuard/AuthGuard";
 import Loading from "@/Components/Loading/Loading";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: "400",
-});
-
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const theme = useTheme();
+
+  const fontTheme = createTheme({
+    typography: {
+      fontFamily: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        '"Segoe UI"',
+        "Roboto",
+        '"Helvetica Neue"',
+        "Arial",
+        "sans-serif",
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(","),
+    },
+  });
+
   const firstString = "/" + router.pathname.split("/")[1];
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const isAuthPage = router.pathname === "/register";
 
   return (
-    <main className={roboto.className}>
-      <AuthGuard>
+    <AuthGuard>
+      <ThemeProvider theme={fontTheme}>
         <Toaster />
         <Loading>
           {!isAuthPage && <Header />}
@@ -38,7 +49,7 @@ export default function App({ Component, pageProps }) {
           {/* {!isAuthPage && <Footer />} */}
           {!isAuthPage && <TesterFooter />}
         </Loading>
-      </AuthGuard>
-    </main>
+      </ThemeProvider>
+    </AuthGuard>
   );
 }

@@ -9,11 +9,9 @@ export default function AuthGuard({ children }) {
   const auth = getAuth(firebaseApp);
 
   useEffect(() => {
-    // Subscribe to Firebase authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        if (router.pathname !== "/") {
-          // Redirect to login page if not on home page
+        if (router.pathname !== "/" && router.pathname !== "/register") {
           router.push("/register");
         }
       }
