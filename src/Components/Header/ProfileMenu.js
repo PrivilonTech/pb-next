@@ -31,6 +31,7 @@ export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
         justifyContent: "flex-end",
         top: "11vh",
         right: "50px",
+        zIndex: 9999,
       }}
     >
       <Box
@@ -40,7 +41,6 @@ export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
           borderRadius: "10px",
           background: "#FFFFFF",
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-around",
@@ -48,19 +48,39 @@ export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
       >
         <Box
           sx={{
-            padding: "1.5em",
             display: "flex",
             flexDirection: "column",
-            gap: "1.5em",
+            overflow: "hidden",
           }}
         >
-          <Box sx={{ display: "flex", gap: "1em", cursor: "pointer" }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "1em",
+              cursor: "pointer",
+              padding: "1em",
+              borderRadius: "10px 10px 0 0",
+              "&:hover": {
+                background: "#faf5f5",
+              },
+              transition: "background 150ms ease-in",
+            }}
+          >
             <AccountCircleIcon sx={{ color: "#474646" }} />
             <Typography sx={{ color: "#474646" }}>Profile</Typography>
           </Box>
           <Box
             onClick={handleLogout}
-            sx={{ display: "flex", gap: "1em", cursor: "pointer" }}
+            sx={{
+              display: "flex",
+              gap: "1em",
+              cursor: "pointer",
+              padding: "1em",
+              borderRadius: "0 0 10px 10px",
+              "&:hover": {
+                background: "#faf5f5",
+              },
+            }}
           >
             <LogoutIcon sx={{ color: "#474646" }} />
             <Typography sx={{ color: "#474646" }}>Logout</Typography>

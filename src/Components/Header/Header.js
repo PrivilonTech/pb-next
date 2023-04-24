@@ -5,11 +5,9 @@ import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
-import Pane from "../Pane/Pane";
 import firebaseApp from "@/firebase/clientApp";
 import Link from "next/link";
 import ProfileMenu from "./ProfileMenu";
@@ -19,7 +17,6 @@ function Header() {
   const auth = getAuth(firebaseApp);
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
-  const upSm = useMediaQuery(theme.breakpoints.up("sm"));
 
   const targetRef = useRef(null);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
@@ -59,7 +56,7 @@ function Header() {
     <Box
       sx={{
         position: "relative",
-        padding: ".5em 3em",
+        padding: { xs: ".5em 1em", md: ".5em 3em" },
       }}
     >
       {upMd ? (
@@ -85,16 +82,20 @@ function Header() {
               <Box
                 onClick={handleToggleProfileMenu}
                 sx={{
-                  border: "1px solid #2d333a",
+                  background: "#d9232a",
                   padding: ".5em 1.25em",
                   borderRadius: "10px",
                   cursor: "pointer",
+                  boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                  "&:hover": {
+                    background: "#c7161d",
+                  },
+                  transition: "background 150ms ease-in",
                 }}
               >
-                <Typography sx={{ color: "#2d333a" }}>
+                <Typography sx={{ color: "white" }}>
                   Hello{" "}
-                  {user.displayName ? user.displayName.split(" ")[0] : "user"}{" "}
-                  👋
+                  {user.displayName ? user.displayName.split(" ")[0] : "User"}{" "}
                 </Typography>
               </Box>
             ) : (
@@ -104,11 +105,16 @@ function Header() {
                     margin: "auto",
                     display: "flex",
                     alignItems: "center",
-                    background: "#D7342D",
+                    background: "#d9232a",
                     color: "white",
                     padding: "10px",
-                    borderRadius: "20px",
+                    borderRadius: "10px",
                     cursor: "pointer",
+                    boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                    "&:hover": {
+                      background: "#c7161d",
+                    },
+                    transition: "background 150ms ease-in",
                   }}
                 >
                   {" "}
@@ -142,7 +148,7 @@ function Header() {
               <MenuIcon sx={{ fontSize: 34 }} />
             </Box>
             <Box sx={{ margin: "auto" }}>
-              <img src={"/Header/logo.svg"} alt="Logo"></img>
+              <img src={"/Header/logo.svg"} alt="Logo" height={25}></img>
             </Box>
           </Box>
         </Box>

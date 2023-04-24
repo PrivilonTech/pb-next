@@ -9,6 +9,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg }) {
     <Box
       sx={{
         height: "102vh",
+        width: "102%",
         display: "flex",
         position: "absolute",
         top: "-10px",
@@ -20,7 +21,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg }) {
         flexDirection: "column",
         transform: showHamburg ? "translateY(0)" : "translateY(-110%)",
         transition: "transform 0.3s ease",
-        background: "#EDF1FF",
+        background: "#fae0e4",
         borderRadius: "10px",
         boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px",
       }}

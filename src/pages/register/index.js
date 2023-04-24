@@ -152,7 +152,6 @@ export default function Register() {
   const handleResendCode = () => {
     console.log("WIP");
     const localCaptchaVerifier = localVerifierCaptchaState;
-    console.log(localCaptchaVerifier);
 
     localCaptchaVerifier
       .verify()

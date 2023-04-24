@@ -40,13 +40,16 @@ export default function SocialLogin({
           border: "2px solid #d7dbd8",
           padding: ".5em",
           cursor: "pointer",
+          transition: "background-color 0.2s ease",
+          "&:hover": {
+            background: "#faf5f5",
+          },
         }}
         onClick={handleUserGoogleLogin} //google authentication
       >
         <img src={"/googleIcon.png"} alt="google-icon" height={20} />
         <Typography>Continue with Google</Typography>
       </Box>
-      {/* Number */}
       <Box
         sx={{
           display: "flex",
@@ -57,6 +60,10 @@ export default function SocialLogin({
           border: "2px solid #d7dbd8",
           padding: ".5em",
           cursor: "pointer",
+          transition: "background-color 0.2s ease",
+          "&:hover": {
+            background: "#faf5f5",
+          },
         }}
         onClick={() => {
           setIsMobilePage(true);
