@@ -11,13 +11,13 @@ function HomePage() {
           display: "flex",
           alignItems: "center",
           flexDirection: { xs: "column-reverse", md: "row" },
+          margin: ".75em 2em",
         }}
       >
         <Box
           sx={{
             width: { xs: "100%", md: "40%" },
-            height: { xs: "60%", md: "100%" },
-
+            height: { xs: "50vh", md: "100%" },
             display: "flex",
             alignItems: "center",
           }}
@@ -42,6 +42,7 @@ function HomePage() {
               sx={{
                 margin: "auto",
                 fontWeight: "bold",
+                color: "#575757",
               }}
             >
               The single platform for polymer news and business
@@ -52,7 +53,6 @@ function HomePage() {
           sx={{
             width: { xs: "100%", md: "60%" },
             height: { xs: "40%", md: "100%" },
-
             display: "flex",
           }}
         >
@@ -64,12 +64,11 @@ function HomePage() {
             <img
               style={{ width: "100%" }}
               src={"./Homepage/welcome.svg"}
-              alt=""
+              alt="welcome"
             />
           </Box>
         </Box>
       </Box>
-      {/* <Pane /> */}
     </>
   );
 }
