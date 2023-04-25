@@ -8,7 +8,7 @@ export default function Loading({ children }) {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
