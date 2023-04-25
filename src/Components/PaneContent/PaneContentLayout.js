@@ -1,15 +1,19 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { useRouter } from "next/router";
 
-import indianBazaarList from "../../menuLists/indianBazaarList";
+import Sidebar from "./Sidebar";
 import DropDown from "../DropDown/DropDown";
-import Sidebar from "../Graphbar/Sidebar";
-import DataContainer from "../DataContainer/DataContainer";
 
-export default function IndianBazaarContent({ indianBazdataaarData, path }) {
-  const router = useRouter();
-
+export default function PaneContentLayout({
+  title,
+  list,
+  page,
+  path,
+  mainContent,
+  dropdownData,
+  indexData,
+  setIndexData,
+}) {
   return (
     <Box
       sx={{
@@ -38,9 +42,15 @@ export default function IndianBazaarContent({ indianBazdataaarData, path }) {
             borderRight: "1px solid #D9232A",
           }}
         >
-          Indian Bazaar
+          {title}
         </Typography>
-        <DropDown data={indianBazdataaarData.subCategory} />
+        {dropdownData && dropdownData.length >= 1 && (
+          <DropDown
+            data={dropdownData}
+            indexData={indexData}
+            setIndexData={setIndexData}
+          />
+        )}
       </Box>
       <Box
         sx={{
@@ -55,7 +65,7 @@ export default function IndianBazaarContent({ indianBazdataaarData, path }) {
             overflowX: { xs: "scroll", md: "hidden" },
           }}
         >
-          <Sidebar list={indianBazaarList} page="indian-bazaar" path={path} />
+          <Sidebar list={list} page={page} path={path} />
         </Box>
         <Box
           sx={{
@@ -70,13 +80,7 @@ export default function IndianBazaarContent({ indianBazdataaarData, path }) {
           }}
         >
           {/* CONTENT HERE */}
-          {indianBazdataaarData.data.map((data) => (
-            <DataContainer
-              key={data.id}
-              title={data.title}
-              listItem={data.listItem}
-            />
-          ))}
+          {mainContent}
         </Box>
       </Box>
     </Box>

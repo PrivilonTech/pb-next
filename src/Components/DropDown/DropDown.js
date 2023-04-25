@@ -4,9 +4,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import DropDownItem from "./DropDownItem";
 
-export default function DropDown({ data }) {
+export default function DropDown({ data, indexData, setIndexData }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(data[0]);
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -21,7 +20,7 @@ export default function DropDown({ data }) {
         }}
         onClick={() => setIsDropDownOpen((prev) => !prev)}
       >
-        <Typography sx={{ fontWeight: "600" }}>{selectedOption}</Typography>
+        <Typography sx={{ fontWeight: "600" }}>{data[indexData]}</Typography>
         <KeyboardArrowDownIcon
           sx={{
             transform: `rotate(${isDropDownOpen ? 180 : 0}deg)`,
@@ -32,9 +31,9 @@ export default function DropDown({ data }) {
       {isDropDownOpen && (
         <DropDownItem
           data={data}
-          selectedOption={selectedOption}
+          selectedOption={indexData}
+          setSelectedOption={setIndexData}
           setIsDropDownOpen={setIsDropDownOpen}
-          setSelectedOption={setSelectedOption}
         />
       )}
     </Box>

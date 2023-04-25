@@ -2,7 +2,7 @@ import React from "react";
 import Chart from "chart.js/auto";
 import { Box, Typography } from "@mui/material";
 
-import Sidebar from "./Sidebar";
+import Sidebar from "../PaneContent/Sidebar";
 
 function Graphbar({ path, data, sideBarList, page }) {
   const chartRef = React.useRef(null);
