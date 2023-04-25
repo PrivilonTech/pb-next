@@ -1,7 +1,18 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useRouter } from "next/router";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
+
+import firebaseApp from "@/firebase/clientApp";
 
 export default function SocialLogin({
   auth,
@@ -9,15 +20,50 @@ export default function SocialLogin({
   setIsMobilePage,
   setIsLoginPage,
 }) {
-  const googleProvider = new GoogleAuthProvider();
   const router = useRouter();
 
-  //google authentication
+  const googleProvider = new GoogleAuthProvider();
+  const firebaseDatabase = getFirestore(firebaseApp);
+
+  // Create a new document in the 'users' collection
+  const createNewUser = async (user) => {
+    try {
+      const userCollectionRef = collection(firebaseDatabase, "users");
+
+      // Set the document data to the user's display name and email address
+      addDoc(userCollectionRef, {
+        uid: user.uid,
+        email: user.email,
+        name: user.displayName,
+        role: "user",
+        subscribed: false,
+        createdAt: serverTimestamp(),
+      })
+        .then(() => {
+          router.push("/");
+        })
+        .catch((error) => {
+          console.log("Error creating user document", error);
+        });
+
+      console.log("New user created successfully!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //google login
   const handleUserGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
 
-      router.push("/");
+      console.log(docSnap);
+      // const queryRef = query(usersCollection, where("email", "==", userEmail));
+
+      await createNewUser(user);
+
+      // router.push("/");
     } catch (error) {
       console.error(error);
     }

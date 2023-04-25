@@ -5,6 +5,12 @@ import "react-phone-input-2/lib/style.css";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { toast } from "react-hot-toast";
 import {
+  addDoc,
+  collection,
+  getFirestore,
+  serverTimestamp,
+} from "firebase/firestore";
+import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -25,6 +31,7 @@ import TogglePassword from "@/Components/Register/TogglePassword";
 export default function Register() {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
+  const firebaseDatabase = getFirestore(firebaseApp);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,16 +67,39 @@ export default function Register() {
   const createAccount = (email, password) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        // Signed up successfully
-        router.push("/");
+      .then((userCredential) => {
+        const user = userCredential.user;
+        addUserToFirestore(user)
+          .then(() => {
+            router.push("/");
+          })
+          .catch((error) => {
+            console.log("Error creating user document", error);
+          });
       })
       .catch((error) => {
-        console.error("Error creating user: ", error);
+        if (error.code === "auth/email-already-in-use") {
+          toast.error("Email already in use");
+        } else if (error.code === "auth/weak-password") {
+          toast.error("Password should be atleast 6 characters");
+        }
       })
       .finally(() => {
         setIsLoading(false);
       });
+  };
+
+  //adding user to database
+  const addUserToFirestore = (user) => {
+    const userCollectionRef = collection(firebaseDatabase, "users");
+
+    return addDoc(userCollectionRef, {
+      uid: user.uid,
+      email: user.email,
+      role: "user",
+      subscribed: false,
+      createdAt: serverTimestamp(),
+    });
   };
 
   // Sign in an existing user
@@ -82,7 +112,9 @@ export default function Register() {
       })
       .catch((error) => {
         setIsError(true);
-        console.error("Error signing in: ", error);
+        if (error.code === "auth/user-not-found") {
+          toast.error("Account doesn't exist");
+        }
       })
       .finally(() => {
         setIsLoading(false);
