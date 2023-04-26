@@ -27,6 +27,7 @@ import Input from "@/Components/Register/Input";
 import Button from "@/Components/Button/Button";
 import MobilePage from "@/Components/Register/MobilePage";
 import TogglePassword from "@/Components/Register/TogglePassword";
+import { createNewUser } from "@/utils/utilsUser";
 
 export default function Register() {
   const router = useRouter();
@@ -66,16 +67,19 @@ export default function Register() {
   // Sign up a new user
   const createAccount = (email, password) => {
     setIsLoading(true);
+
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        addUserToFirestore(user)
-          .then(() => {
-            router.push("/");
-          })
-          .catch((error) => {
-            console.log("Error creating user document", error);
-          });
+      .then(async (userCredential) => {
+        //create new user in the database
+        await createNewUser({
+          uid: userCredential.user.uid,
+          email: userCredential.user.email,
+          role: "user",
+          subscribed: false,
+          createdAt: serverTimestamp(),
+        });
+
+        router.push("/");
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
@@ -87,19 +91,6 @@ export default function Register() {
       .finally(() => {
         setIsLoading(false);
       });
-  };
-
-  //adding user to database
-  const addUserToFirestore = (user) => {
-    const userCollectionRef = collection(firebaseDatabase, "users");
-
-    return addDoc(userCollectionRef, {
-      uid: user.uid,
-      email: user.email,
-      role: "user",
-      subscribed: false,
-      createdAt: serverTimestamp(),
-    });
   };
 
   // Sign in an existing user
@@ -171,6 +162,14 @@ export default function Register() {
     confirmationResult
       .confirm(verificationOTP)
       .then(async () => {
+        await createNewUser({
+          // uid: something here,
+          phone: `+${phoneNumber}`,
+          role: "user",
+          subscribed: false,
+          createdAt: serverTimestamp(),
+        });
+
         router.push("/");
       })
       .catch((error) => {

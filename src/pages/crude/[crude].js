@@ -14,7 +14,7 @@ function Crude(response) {
 
   const [selectedOption, setSelectedOption] = useState("Monthly");
 
-  const data = {
+  const [data, setData] = useState({
     labels: response.response.data.key,
     datasets: [
       {
@@ -25,7 +25,7 @@ function Crude(response) {
         borderWidth: 2,
       },
     ],
-  };
+  });
 
   React.useEffect(() => {
     router.push(`/crude/${path}?type=${selectedOption}`);
@@ -35,6 +35,7 @@ function Crude(response) {
       type: "line",
       data: data,
       options: {
+        tension: "0.2",
         scales: {
           y: {
             beginAtZero: true,
