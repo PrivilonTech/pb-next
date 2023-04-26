@@ -6,11 +6,10 @@ import { useTheme } from "@mui/material/styles";
 
 import list from "../../menuLists/paneList";
 
-function Pane({ path, show }) {
+function Pane({ path }) {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const [showpane, setShowpane] = useState(false);
   const [active, setActive] = useState("");
 
   useEffect(() => {
@@ -42,13 +41,13 @@ function Pane({ path, show }) {
                   width: "10%",
                   border:
                     active === res.link
-                      ? "2px solid #C31815"
-                      : "1px solid #1e1e1e",
+                      ? "3px solid #d6232b"
+                      : "1px solid #d5d9eb",
                   margin: "auto",
                   borderRadius: "20px",
                   display: "flex",
                   flexDirection: "column",
-                  padding: ".25em",
+                  padding: ".5em",
                   boxShadow:
                     "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
                   "&:hover": {
@@ -89,7 +88,7 @@ function Pane({ path, show }) {
             width: "100%",
             height: "100%",
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "center",
             flexWrap: "wrap",
           }}
         >
@@ -103,8 +102,9 @@ function Pane({ path, show }) {
                   color: "#000",
                   height: "20%",
                   width: "35%",
+                  padding: ".25em",
                   border:
-                    active === res.link ? "1px solid red" : "1px solid #141414",
+                    active === res.link ? "1px solid red" : "2px solid #d5d9eb",
                   margin: "10px",
                   borderRadius: "20px",
                   display: "flex",

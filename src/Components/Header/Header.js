@@ -157,6 +157,8 @@ function Header() {
         <HamburgMenu
           setShowHamburg={setShowHamburg}
           showHamburg={showHamburg}
+          user={user}
+          auth={auth}
         />
       }
       {isUserProfileModalOpen && (
