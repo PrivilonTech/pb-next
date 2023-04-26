@@ -4,12 +4,7 @@ import { Box, Typography } from "@mui/material";
 import "react-phone-input-2/lib/style.css";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { toast } from "react-hot-toast";
-import {
-  addDoc,
-  collection,
-  getFirestore,
-  serverTimestamp,
-} from "firebase/firestore";
+import { getFirestore, serverTimestamp } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -163,7 +158,7 @@ export default function Register() {
       .confirm(verificationOTP)
       .then(async () => {
         await createNewUser({
-          // uid: something here,
+          uid: 1,
           phone: `+${phoneNumber}`,
           role: "user",
           subscribed: false,

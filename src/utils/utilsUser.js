@@ -1,4 +1,10 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 import axios from "axios";
 
 import firebaseApp from "@/firebase/clientApp";
@@ -8,6 +14,7 @@ export const createNewUser = async (userData) => {
 
   try {
     const existingUser = await getUserById(userData.uid);
+    // const phoneQuery = query(userCollectionref, where("phone", "==", phone));
 
     if (!existingUser) {
       const userCollectionRef = collection(db, "users");
