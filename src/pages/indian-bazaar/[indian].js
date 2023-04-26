@@ -8,18 +8,29 @@ import indianBazaarList from "@/menuLists/indianBazaarList";
 import DataContainer from "@/Components/PaneContent/DataContainer";
 import combineData from "@/utils/combineData";
 import categorizeData from "@/utils/categorizeCities";
+import { getIndianData } from "@/utils/apiCalls";
 
 export default function Indian({ response, city }) {
   const router = useRouter();
   const path = router.query.indian;
 
-  const data = combineData(response.data); //combining data with same polymerType
-  const cityNames = categorizeData(city.data); //creating a array of unique city names
-
+  const [data, setData] = useState({});
   const [cityCategory, setCityCategory] = useState(cityNames[0]);
+  const [cityNames, setCityNames] = useState([]);
 
   useEffect(() => {
-    router.push(`/indian-bazaar/${path}?city=${cityCategory}`);
+    const cityData = getIndianData(cityCategory);
+    setData(cityData);
+
+    setCityNames(categorizeData(cityData.data));
+  }, []);
+
+  // const cityNames = categorizeData(city.data); //creating a array of unique city names
+
+  useEffect(() => {
+    // router.push(`/indian-bazaar/${path}?city=${cityCategory}`);
+    cityData = getIndianData(cityCategory);
+    setData(cityData);
   }, [cityCategory]);
 
   const BodyContent = (

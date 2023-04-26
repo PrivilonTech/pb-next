@@ -1,62 +1,35 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Chart from "chart.js/auto";
-import { Box } from "@mui/material";
 
 import crudeList from "../../menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
+import Graph from "@/Components/PaneContent/Graph";
+import { getCrudeData } from "@/utils/apiCalls";
 
-function index(response) {
-  const chartRef = React.useRef(null);
-  const router = useRouter();
+function index({ response }) {
   const [selectedOption, setSelectedOption] = useState("Monthly");
-
-  const data = {
-    labels: response.response.data.key,
+  const [data, setData] = useState({
+    labels: response.data.key,
     datasets: [
       {
-        label: "Naptha",
-        data: response.response.data.value,
+        label: "naptha",
+        data: response.data.value,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],
         borderWidth: 2,
       },
     ],
-  };
+  });
 
-  React.useEffect(() => {
-    router.push(`/crude/naptha?type=${selectedOption}`);
-
-    const chart = new Chart(chartRef.current, {
-      type: "line",
-      data: data,
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
-
-    return () => {
-      chart.destroy();
-    };
-  }, []);
+  //on state change
+  useEffect(() => {
+    getCrudeData("naptha", "China", selectedOption, setData);
+  }, [selectedOption]);
 
   const BodyContent = (
-    <Box
-      sx={{
-        marginLeft: { md: "1em" },
-        height: { xs: "100%", md: "100%" },
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <canvas style={{ marginTop: "2vh" }} ref={chartRef} />
-    </Box>
+    <>
+      <Graph data={data} />;
+    </>
   );
 
   return (
