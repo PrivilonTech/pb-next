@@ -23,6 +23,7 @@ export const naptha = {
     },
   ],
 };
+
 export const propylene = {
   categories: ["China", "Korea"],
   data: [

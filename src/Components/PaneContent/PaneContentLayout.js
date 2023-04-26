@@ -11,8 +11,10 @@ export default function PaneContentLayout({
   path,
   mainContent,
   dropdownData,
-  indexData,
-  setIndexData,
+  selectedOption,
+  setSelectedOption,
+  city,
+  setCity,
 }) {
   return (
     <Box
@@ -44,13 +46,23 @@ export default function PaneContentLayout({
         >
           {title}
         </Typography>
-        {dropdownData && dropdownData.length >= 1 && (
-          <DropDown
-            data={dropdownData}
-            indexData={indexData}
-            setIndexData={setIndexData}
-          />
-        )}
+
+        <Box sx={{ display: "flex", gap: "2em" }}>
+          {dropdownData && (
+            <DropDown
+              data={dropdownData}
+              selectedOption={city}
+              setSelectedOption={setCity}
+            />
+          )}
+          {selectedOption && (
+            <DropDown
+              data={["Monthly", "Yearly"]}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+          )}
+        </Box>
       </Box>
       <Box
         sx={{

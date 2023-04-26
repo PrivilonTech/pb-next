@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-export default function DataContainer({ title, listItem }) {
+export default function DataContainer({ title, polymerSubType, polymerValue }) {
   return (
     <Box
       sx={{
@@ -27,20 +27,25 @@ export default function DataContainer({ title, listItem }) {
       >
         {title}
       </Typography>
-      <ul
+      <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          margin: "1em 3em",
         }}
       >
-        {listItem.map((text, index) => (
-          <li key={index}>
-            <Typography sx={{ color: "#575757", fontSize: ".9rem" }}>
-              {text}
-            </Typography>
-          </li>
-        ))}
-      </ul>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: ".25em" }}>
+          {polymerSubType.map((text, index) => (
+            <Typography key={index}>{text}</Typography>
+          ))}
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: ".25em" }}>
+          {polymerValue.map((text, index) => (
+            <Typography key={index}>{text}</Typography>
+          ))}
+        </Box>
+      </Box>
     </Box>
   );
 }

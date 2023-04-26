@@ -4,14 +4,6 @@ import { useRouter } from "next/router";
 import Chart from "chart.js/auto";
 import { Box } from "@mui/material";
 
-import {
-  naptha,
-  propylene,
-  ethylene,
-  pta,
-  vcm,
-  steryne,
-} from "@/dummyData/data";
 import crudeList from "@/menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 
@@ -20,34 +12,28 @@ function Crude(response) {
   const chartRef = React.useRef(null);
   const path = router.query.crude;
 
-  let data = {};
+  const [selectedOption, setSelectedOption] = useState("Monthly");
 
-  //   OMIT THIS AFTER FETCHING DATA FROM API
-  if (path === "naptha") {
-    data = naptha;
-  }
-  if (path === "propylene") {
-    data = propylene.data;
-  }
-  if (path === "ethylene") {
-    data = ethylene.data;
-  }
-  if (path === "vcm&edc") {
-    data = vcm;
-  }
-  if (path === "steryne") {
-    data = steryne.data;
-  }
-  if (path === "pta") {
-    data = pta;
-  }
-
-  const [indexData, setIndexData] = useState(0);
+  const data = {
+    labels: response.response.data.key,
+    datasets: [
+      {
+        label: path,
+        data: response.response.data.value,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderWidth: 2,
+      },
+    ],
+  };
 
   React.useEffect(() => {
+    router.push(`/crude/${path}?type=${selectedOption}`);
+
+    // check if component is mounted
     const chart = new Chart(chartRef.current, {
       type: "line",
-      data: data[indexData], //pass final result.data[indexData]
+      data: data,
       options: {
         scales: {
           y: {
@@ -60,7 +46,7 @@ function Crude(response) {
     return () => {
       chart.destroy();
     };
-  }, [indexData]);
+  }, [selectedOption]);
 
   const BodyContent = (
     <Box
@@ -84,9 +70,8 @@ function Crude(response) {
         page="crude"
         path={path}
         mainContent={BodyContent}
-        dropdownData={propylene.categories} // pass final result.categories
-        indexData={indexData}
-        setIndexData={setIndexData}
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
       />
     </>
   );
@@ -95,9 +80,12 @@ function Crude(response) {
 export default Crude;
 
 export const getServerSideProps = async ({ query }) => {
+  const type = query.type || "Monthly";
+
   const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/feedstock/${query.crude}`
+    `https://polymerbazar-be.onrender.com/api/feedstock?name=${query.crude}&country=China&type=${type}`
   );
+
   return {
     props: {
       response: res.data,

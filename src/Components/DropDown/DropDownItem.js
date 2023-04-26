@@ -8,8 +8,8 @@ export default function DropDownItem({
   setIsDropDownOpen,
   setSelectedOption,
 }) {
-  const handleSelectionOption = (index) => {
-    setSelectedOption(index);
+  const handleSelectionOption = (option) => {
+    setSelectedOption(option);
     setIsDropDownOpen(false);
   };
 
@@ -40,14 +40,14 @@ export default function DropDownItem({
             padding: ".5em 1em",
             overflow: "hidden",
             borderBottom: "1px solid gray",
-            background: data[selectedOption] === option ? "#c31815" : "#dfdfdf",
+            background: selectedOption === option ? "#c31815" : "#dfdfdf",
             cursor: "pointer",
           }}
-          onClick={() => handleSelectionOption(index)}
+          onClick={() => handleSelectionOption(option)}
         >
           <Typography
             sx={{
-              color: data[selectedOption] === option ? "white" : "#575757",
+              color: selectedOption === option ? "white" : "#575757",
             }}
           >
             {option}

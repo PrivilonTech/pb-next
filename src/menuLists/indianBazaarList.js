@@ -12,7 +12,7 @@ const indianBazaarList = [
   {
     id: 3,
     section: "City Wise-Metro",
-    slug: "cityWiseMetro",
+    slug: "citywise",
   },
   {
     id: 4,

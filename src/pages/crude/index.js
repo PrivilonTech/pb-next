@@ -1,20 +1,36 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 import Chart from "chart.js/auto";
+import { Box } from "@mui/material";
 
-import { naptha } from "@/dummyData/data";
 import crudeList from "../../menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import axios from "axios";
 
 function index(response) {
-  console.log(response);
   const chartRef = React.useRef(null);
+  const router = useRouter();
+  const [selectedOption, setSelectedOption] = useState("Monthly");
+
+  const data = {
+    labels: response.response.data.key,
+    datasets: [
+      {
+        label: "Naptha",
+        data: response.response.data.value,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderWidth: 2,
+      },
+    ],
+  };
 
   React.useEffect(() => {
+    router.push(`/crude/naptha?type=${selectedOption}`);
+
     const chart = new Chart(chartRef.current, {
       type: "line",
-      data: naptha,
+      data: data,
       options: {
         scales: {
           y: {
@@ -51,9 +67,22 @@ function index(response) {
         page="crude"
         path="naptha"
         mainContent={BodyContent}
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
       />
     </>
   );
 }
 
 export default index;
+
+export const getServerSideProps = async () => {
+  const res = await axios.get(
+    "https://polymerbazar-be.onrender.com/api/feedstock?name=Naphtha&country=China&type=Monthly"
+  );
+  return {
+    props: {
+      response: res.data,
+    },
+  };
+};
