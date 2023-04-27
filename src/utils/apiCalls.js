@@ -19,3 +19,19 @@ export const getCrudeData = async (name, country, selectedOption, setData) => {
     ],
   });
 };
+
+export const getIndianData = async (city, setData) => {
+  const response = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/citywise/${city}`
+  );
+
+  setData(combineData(response.data.data));
+};
+
+export const getGlobalData = async (country, month, year, setData) => {
+  const response = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${country}&month=${month}&year=${year}`
+  );
+
+  setData(response.data.data);
+};

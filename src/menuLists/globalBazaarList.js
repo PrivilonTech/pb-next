@@ -2,52 +2,52 @@ const globalBazaarList = [
   {
     id: 1,
     section: "U.S.A",
-    slug: "usa",
+    slug: "USA",
   },
   {
     id: 2,
     section: "Asia - China",
-    slug: "asiaChina",
+    slug: "China",
   },
   {
     id: 3,
     section: "Asia - India",
-    slug: "asiaIndia",
+    slug: "India",
   },
   {
     id: 4,
     section: "Asia - Pakistan",
-    slug: "asiaPakistan",
+    slug: "Pakistan",
   },
   {
     id: 5,
     section: "Other Asian Nation",
-    slug: "otherAsianNation",
+    slug: "AsianNation",
   },
   {
     id: 6,
     section: "Saudi Arabia",
-    slug: "saudiArabia",
+    slug: "SaudiArabia",
   },
   {
     id: 7,
     section: "Middle East",
-    slug: "middleEast",
+    slug: "MiddleEast",
   },
   {
     id: 8,
     section: "Turkey",
-    slug: "turkey",
+    slug: "Turkey",
   },
   {
     id: 9,
     section: "European",
-    slug: "european",
+    slug: "European",
   },
   {
     id: 10,
     section: "Africa - Egypt",
-    slug: "africaEgypt",
+    slug: "Egypt",
   },
   {
     id: 11,

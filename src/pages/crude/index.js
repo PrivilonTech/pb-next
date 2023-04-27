@@ -40,6 +40,8 @@ function index({ response }) {
         page="crude"
         path="naptha"
         mainContent={BodyContent}
+        secondaryDropdown
+        secondaryDropdownData={["Monthly", "Yearly"]}
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />

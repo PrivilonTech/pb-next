@@ -13,8 +13,11 @@ export default function PaneContentLayout({
   dropdownData,
   selectedOption,
   setSelectedOption,
-  city,
-  setCity,
+
+  secondaryDropdownData,
+  secondaryDropdown,
+  secondarySelectedOption,
+  setSecondarySelectedOption,
 }) {
   return (
     <Box
@@ -47,19 +50,19 @@ export default function PaneContentLayout({
           {title}
         </Typography>
 
-        <Box sx={{ display: "flex", gap: "2em" }}>
+        <Box sx={{ display: "flex", gap: ".5em" }}>
           {dropdownData && (
             <DropDown
               data={dropdownData}
-              selectedOption={city}
-              setSelectedOption={setCity}
-            />
-          )}
-          {selectedOption && (
-            <DropDown
-              data={["Monthly", "Yearly"]}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
+            />
+          )}
+          {secondaryDropdown && (
+            <DropDown
+              data={secondaryDropdownData}
+              selectedOption={secondarySelectedOption}
+              setSelectedOption={setSecondarySelectedOption}
             />
           )}
         </Box>

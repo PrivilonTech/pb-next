@@ -1,97 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
-import Chart from "chart.js/auto";
-
-import {
-  usa,
-  asiaChina,
-  asiaIndia,
-  asiaPakistan,
-  otherAsianNation,
-  saudiArabia,
-  middleEast,
-  european,
-  turkey,
-  africaEgypt,
-  africaCfrWest,
-} from "@/dummyData/globalBazaarData";
-import globalBazaarList from "../../menuLists/globalBazaarList";
-import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import { Box } from "@mui/material";
 
-function Global() {
+import globalBazaarList from "../../menuLists/globalBazaarList";
+import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
+import { monthsArray, yearArray } from "@/utils/dateArray";
+import { getGlobalData } from "@/utils/apiCalls";
+
+function Global({ response }) {
   const router = useRouter();
   const path = router.query.global;
-  const chartRef = React.useRef(null);
 
-  // OMIT THIS AFTER DATA FETCHED FROM API
-  let data = {};
+  const currentDate = new Date();
 
-  if (path === "usa") {
-    data = usa;
-  }
-  if (path === "asiaChina") {
-    data = asiaChina;
-  }
-  if (path === "asiaIndia") {
-    data = asiaIndia;
-  }
-  if (path === "asiaPakistan") {
-    data = asiaPakistan;
-  }
-  if (path === "otherAsianNation") {
-    data = otherAsianNation;
-  }
-  if (path === "saudiArabia") {
-    data = saudiArabia;
-  }
-  if (path === "middleEast") {
-    data = middleEast;
-  }
-  if (path === "turkey") {
-    data = turkey;
-  }
-  if (path === "european") {
-    data = european;
-  }
-  if (path === "africaEgypt") {
-    data = africaEgypt;
-  }
-  if (path === "africaCfrWest") {
-    data = africaCfrWest;
-  }
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
 
-  React.useEffect(() => {
-    const chart = new Chart(chartRef.current, {
-      type: "line",
-      data: data,
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
+  const [month, setMonth] = useState("October"); //pass current month here
+  const monthIndex = monthsArray.indexOf(month) + 1; //store month in numbers
+  const [year, setYear] = useState(2022); // pass currentYear here
 
-    return () => {
-      chart.destroy();
-    };
-  }, [data]);
+  const [data, setData] = useState(response.data.data);
 
-  const BodyContent = (
-    <Box
-      sx={{
-        marginLeft: { md: "1em" },
-        height: { xs: "100%", md: "100%" },
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <canvas style={{ marginTop: "2vh" }} ref={chartRef} />
-    </Box>
-  );
+  const getYearArray = yearArray();
+
+  useEffect(() => {
+    getGlobalData(path, monthIndex, year, setData);
+  }, [month, year]);
+
+  const BodyContent = <Box>{console.log(data)}</Box>;
 
   return (
     <>
@@ -101,9 +39,35 @@ function Global() {
         page="global-bazaar"
         path={path}
         mainContent={BodyContent}
+        dropdownData={monthsArray}
+        selectedOption={month}
+        setSelectedOption={setMonth}
+        secondaryDropdown
+        secondaryDropdownData={getYearArray}
+        secondarySelectedOption={year}
+        setSecondarySelectedOption={setYear}
       />
     </>
   );
 }
 
 export default Global;
+
+export const getServerSideProps = async ({ query }) => {
+  const currentDate = new Date();
+
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  //use this api call - https://polymerbazar-be.onrender.com/api/internationaloffers?country=${query.global}&month=${currentMonth]&year=${currentYear}
+
+  const res = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${query.global}&month=10&year=2022`
+  );
+
+  return {
+    props: {
+      response: res.data,
+    },
+  };
+};

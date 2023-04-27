@@ -14,23 +14,13 @@ export default function Indian({ response, city }) {
   const router = useRouter();
   const path = router.query.indian;
 
-  const [data, setData] = useState({});
-  const [cityCategory, setCityCategory] = useState(cityNames[0]);
-  const [cityNames, setCityNames] = useState([]);
+  const [data, setData] = useState(combineData(response.data));
+
+  const [cityCategory, setCityCategory] = useState(city.data[0].city);
+  const cityNames = categorizeData(city.data); //array of city names
 
   useEffect(() => {
-    const cityData = getIndianData(cityCategory);
-    setData(cityData);
-
-    setCityNames(categorizeData(cityData.data));
-  }, []);
-
-  // const cityNames = categorizeData(city.data); //creating a array of unique city names
-
-  useEffect(() => {
-    // router.push(`/indian-bazaar/${path}?city=${cityCategory}`);
-    cityData = getIndianData(cityCategory);
-    setData(cityData);
+    getIndianData(cityCategory, setData);
   }, [cityCategory]);
 
   const BodyContent = (
@@ -63,22 +53,20 @@ export default function Indian({ response, city }) {
         path={path}
         mainContent={BodyContent}
         dropdownData={cityNames}
-        city={cityCategory}
-        setCity={setCityCategory}
+        selectedOption={cityCategory}
+        setSelectedOption={setCityCategory}
       />
     </>
   );
 }
 
 export const getServerSideProps = async ({ query }) => {
-  const city = query.city || "Ahmedabad";
-
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/citywise/${city}`
+  const cityWise = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/${query.indian}`
   );
 
-  const cityWise = await axios.get(
-    "https://polymerbazar-be.onrender.com/api/citywise"
+  const res = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/${query.indian}/${cityWise.data.data[0].city}`
   );
 
   return {

@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { Box } from "@mui/material";
 
-import { RateRevision } from "@/dummyData/indianBazaarData";
 import indianBazaarList from "@/menuLists/indianBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import DataContainer from "@/Components/PaneContent/DataContainer";
-import { Box } from "@mui/material";
 import combineData from "@/utils/combineData";
 
 export default function IndianBazaar({ response }) {
-  //combining data with same polymerType
-  const data = combineData(response.data);
+  const [data, setData] = useState(combineData(response.data));
 
   const BodyContent = (
     <Box
