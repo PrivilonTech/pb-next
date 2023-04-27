@@ -1,11 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { getAuth } from "firebase/auth";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
+import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import firebaseApp from "@/firebase/clientApp";
+import ProfileItem from "./ProfileItem";
 
 export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
   const router = useRouter();
@@ -53,38 +55,17 @@ export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
             overflow: "hidden",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              gap: "1em",
-              cursor: "pointer",
-              padding: "1em",
-              borderRadius: "10px 10px 0 0",
-              "&:hover": {
-                background: "#faf5f5",
-              },
-              transition: "background 150ms ease-in",
-            }}
-          >
-            <AccountCircleIcon sx={{ color: "#474646" }} />
-            <Typography sx={{ color: "#474646" }}>Profile</Typography>
-          </Box>
-          <Box
-            onClick={handleLogout}
-            sx={{
-              display: "flex",
-              gap: "1em",
-              cursor: "pointer",
-              padding: "1em",
-              borderRadius: "0 0 10px 10px",
-              "&:hover": {
-                background: "#faf5f5",
-              },
-            }}
-          >
-            <LogoutIcon sx={{ color: "#474646" }} />
-            <Typography sx={{ color: "#474646" }}>Logout</Typography>
-          </Box>
+          <ProfileItem
+            text="Profile"
+            icon={AccountCircleIcon}
+            onClick={() => router.push("/profile")}
+          />
+          <ProfileItem
+            text="Subscription"
+            icon={CardMembershipIcon}
+            onClick={() => router.push("/subscription")}
+          />
+          <ProfileItem text="Logout" icon={LogoutIcon} onClick={handleLogout} />
         </Box>
       </Box>
     </Box>

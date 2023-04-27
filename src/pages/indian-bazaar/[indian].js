@@ -8,16 +8,32 @@ import indianBazaarList from "@/menuLists/indianBazaarList";
 import DataContainer from "@/Components/PaneContent/DataContainer";
 import combineData from "@/utils/combineData";
 import categorizeData from "@/utils/categorizeCities";
-import { getIndianData } from "@/utils/apiCalls";
+import {
+  getCityData,
+  getHistoricalData,
+  getIndianData,
+} from "@/utils/apiCalls";
 
-export default function Indian({ response, city }) {
+export default function Indian() {
   const router = useRouter();
   const path = router.query.indian;
 
-  const [data, setData] = useState(combineData(response.data));
+  const [data, setData] = useState({}); //stores data of a particular city
+  const [city, setCity] = useState(); //stores data of all cities
 
-  const [cityCategory, setCityCategory] = useState(city.data[0].city);
-  const cityNames = categorizeData(city.data); //array of city names
+  const [cityCategory, setCityCategory] = useState(city?.data[0]?.city);
+  const cityNames = categorizeData(city?.data); //array of city names
+
+  useEffect(() => {
+    if (path === "historicaldata") {
+      getHistoricalData(polymerType, year, setData);
+    } else {
+      // getCityData(setCity);
+      // getIndianData(cityCategory, setData);
+    }
+  }, [path]);
+
+  console.log(data);
 
   useEffect(() => {
     getIndianData(cityCategory, setData);
@@ -33,14 +49,14 @@ export default function Indian({ response, city }) {
         flexWrap: "wrap",
       }}
     >
-      {data.map((dataItem) => (
+      {/* {data.map((dataItem) => (
         <DataContainer
           key={dataItem.id}
           title={dataItem.polymerType}
           polymerSubType={dataItem.polymerSubType}
           polymerValue={dataItem.value}
         />
-      ))}
+      ))} */}
     </Box>
   );
 
@@ -59,20 +75,3 @@ export default function Indian({ response, city }) {
     </>
   );
 }
-
-export const getServerSideProps = async ({ query }) => {
-  const cityWise = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/${query.indian}`
-  );
-
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/${query.indian}/${cityWise.data.data[0].city}`
-  );
-
-  return {
-    props: {
-      response: res.data,
-      city: cityWise.data,
-    },
-  };
-};

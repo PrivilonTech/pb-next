@@ -1,7 +1,12 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-export default function DataContainer({ title, polymerSubType, polymerValue }) {
+export default function DataContainer({
+  title,
+  polymerSubType,
+  polymerValue,
+  date,
+}) {
   return (
     <Box
       sx={{
@@ -16,17 +21,35 @@ export default function DataContainer({ title, polymerSubType, polymerValue }) {
         flexGrow: "1",
       }}
     >
-      <Typography
+      <Box
         sx={{
-          textAlign: "center",
+          display: "flex",
+          justifyContent: "space-evenly",
           background: "#d9232a",
-          color: "#D9D9D9",
-          padding: "5px 0",
-          fontWeight: "bold",
         }}
       >
-        {title}
-      </Typography>
+        <Typography
+          sx={{
+            textAlign: "center",
+            color: "#D9D9D9",
+            padding: "5px 0",
+            fontWeight: "bold",
+          }}
+        >
+          {title}
+        </Typography>
+        <Typography
+          sx={{
+            textAlign: "center",
+            background: "#d9232a",
+            color: "#D9D9D9",
+            padding: "5px 0",
+            fontWeight: "bold",
+          }}
+        >
+          {date}
+        </Typography>
+      </Box>
       <Box
         sx={{
           display: "flex",
@@ -35,12 +58,12 @@ export default function DataContainer({ title, polymerSubType, polymerValue }) {
           margin: "1em 3em",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "row", gap: ".25em" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: ".25em" }}>
           {polymerSubType.map((text, index) => (
             <Typography key={index}>{text}</Typography>
           ))}
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: ".25em" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: ".25em" }}>
           {polymerValue.map((text, index) => (
             <Typography key={index}>{text}</Typography>
           ))}

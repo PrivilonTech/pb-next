@@ -8,7 +8,7 @@ import DataContainer from "@/Components/PaneContent/DataContainer";
 import combineData from "@/utils/combineData";
 
 export default function IndianBazaar({ response }) {
-  const [data, setData] = useState(combineData(response.data));
+  // const [data, setData] = useState(combineData(response.data));
 
   const BodyContent = (
     <Box

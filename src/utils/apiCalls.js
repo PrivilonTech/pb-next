@@ -1,6 +1,7 @@
 import axios from "axios";
 import combineData from "./combineData";
 
+//crude
 export const getCrudeData = async (name, country, selectedOption, setData) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/feedstock?name=${name}&country=${country}&type=${selectedOption}`
@@ -20,6 +21,7 @@ export const getCrudeData = async (name, country, selectedOption, setData) => {
   });
 };
 
+//citywise/city
 export const getIndianData = async (city, setData) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/citywise/${city}`
@@ -28,14 +30,25 @@ export const getIndianData = async (city, setData) => {
   setData(combineData(response.data.data));
 };
 
+//citywise
+export const getCityData = async (setCity) => {
+  const response = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/citywise`
+  );
+
+  setCity(response.data.data);
+};
+
+//global
 export const getGlobalData = async (country, month, year, setData) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${country}&month=${month}&year=${year}`
   );
 
-  setData(response.data.data);
+  setData(response.data.data.data);
 };
 
+//crude/historicaldata
 export const getHistoricalData = async (
   polymer,
   year,

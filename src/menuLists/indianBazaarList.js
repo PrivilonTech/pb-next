@@ -17,22 +17,22 @@ const indianBazaarList = [
   {
     id: 4,
     section: "Historical Data - PP",
-    slug: "historicalDataPP",
+    slug: "historicaldata",
   },
   {
     id: 5,
     section: "Historical Data - LLD",
-    slug: "historicalDataLLD",
+    slug: "historicaldataLLD",
   },
   {
     id: 6,
     section: "Historical Data - HD",
-    slug: "historicalDataHD",
+    slug: "historicaldataHD",
   },
   {
     id: 7,
     section: "Historical Data PVC",
-    slug: "historicalDataPVC",
+    slug: "historicaldataPVC",
   },
   {
     id: 8,

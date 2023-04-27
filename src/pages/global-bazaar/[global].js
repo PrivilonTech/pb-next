@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import { monthsArray, yearArray } from "@/utils/dateArray";
 import { getGlobalData } from "@/utils/apiCalls";
+import DataContainer from "@/Components/PaneContent/DataContainer";
+import structureData from "@/utils/structureData";
 
 function Global({ response }) {
   const router = useRouter();
   const path = router.query.global;
 
-  const currentDate = new Date();
+  const [data, setData] = useState(response.data.data);
 
+  const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  const [month, setMonth] = useState("October"); //pass current month here
-  const monthIndex = monthsArray.indexOf(month) + 1; //store month in numbers
-  const [year, setYear] = useState(2022); // pass currentYear here
-
-  const [data, setData] = useState(response.data.data);
+  const [year, setYear] = useState(currentYear);
+  const [month, setMonth] = useState(monthsArray[currentMonth]);
+  const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
 
   const getYearArray = yearArray();
 
@@ -29,7 +30,41 @@ function Global({ response }) {
     getGlobalData(path, monthIndex, year, setData);
   }, [month, year]);
 
-  const BodyContent = <Box>{console.log(data)}</Box>;
+  const modifiedData = structureData(data);
+
+  const BodyContent = (
+    <Box
+      sx={{
+        margin: { xs: "2em auto", md: "0 auto" },
+        display: "flex",
+        justifyContent: "center",
+        gap: "2em 5em",
+        flexWrap: "wrap",
+      }}
+    >
+      {modifiedData.length > 0 ? (
+        modifiedData.map((eachData, index) => (
+          <>
+            {eachData.dataKeys.map((dataItem, id) => (
+              <DataContainer
+                key={id}
+                date={data[index].date}
+                title={dataItem}
+                polymerSubType={eachData.subKeys[dataItem]}
+                polymerValue={eachData.subValues[dataItem]}
+              />
+            ))}
+          </>
+        ))
+      ) : (
+        <Typography
+          sx={{ marginTop: "1em", color: "#575757", fontSize: "1.5rem" }}
+        >
+          No Data yet
+        </Typography>
+      )}
+    </Box>
+  );
 
   return (
     <>
@@ -45,7 +80,7 @@ function Global({ response }) {
         secondaryDropdown
         secondaryDropdownData={getYearArray}
         secondarySelectedOption={year}
-        setSecondarySelectedOption={setYear}
+        secondarySetSelectedOption={setYear}
       />
     </>
   );
@@ -62,7 +97,7 @@ export const getServerSideProps = async ({ query }) => {
   //use this api call - https://polymerbazar-be.onrender.com/api/internationaloffers?country=${query.global}&month=${currentMonth]&year=${currentYear}
 
   const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${query.global}&month=10&year=2022`
+    `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${query.global}&month=${currentMonth}&year=${currentYear}`
   );
 
   return {
