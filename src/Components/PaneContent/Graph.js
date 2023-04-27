@@ -36,8 +36,8 @@ export default function Graph({ data }) {
         justifyContent: "center",
       }}
     >
-      {/* <canvas style={{ marginTop: "2vh" }} ref={chartRef} /> */}
-      <Plot
+      <canvas style={{ marginTop: "2vh" }} ref={chartRef} />
+      {/* <Plot
         data={[
           {
             x: [
@@ -61,7 +61,7 @@ export default function Graph({ data }) {
           },
         ]}
         layout={{ width: 1000, height: 500, title: "A Fancy Plot" }}
-      />
+      /> */}
     </Box>
   );
 }

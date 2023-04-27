@@ -28,7 +28,7 @@ function index({ response }) {
 
   const BodyContent = (
     <>
-      <Graph data={data} />;
+      <Graph data={data} />
     </>
   );
 
