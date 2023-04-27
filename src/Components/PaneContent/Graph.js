@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 
 export default function Graph({ data }) {
   const chartRef = useRef(null);
-  // const Plot = require("react-plotly.js").default;
+  const Plot = require("react-plotly.js").default;
 
   useEffect(() => {
     const chart = new Chart(chartRef.current, {
@@ -36,8 +36,8 @@ export default function Graph({ data }) {
         justifyContent: "center",
       }}
     >
-      <canvas style={{ marginTop: "2vh" }} ref={chartRef} />
-      {/* <Plot
+      {/* <canvas style={{ marginTop: "2vh" }} ref={chartRef} /> */}
+      <Plot
         data={[
           {
             x: [
@@ -60,8 +60,8 @@ export default function Graph({ data }) {
             marker: { color: "red" },
           },
         ]}
-        layout={{ width: 100, height: 500, title: "A Fancy Plot" }}
-      /> */}
+        layout={{ width: 1000, height: 500, title: "A Fancy Plot" }}
+      />
     </Box>
   );
 }

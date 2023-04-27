@@ -1,5 +1,6 @@
 import axios from "axios";
 import combineData from "./combineData";
+import categorizeData from "./categorizeCities";
 
 //crude
 export const getCrudeData = async (name, country, selectedOption, setData) => {
@@ -27,15 +28,17 @@ export const getIndianData = async (city, setData) => {
     `https://polymerbazar-be.onrender.com/api/citywise/${city}`
   );
 
-  setData(combineData(response.data.data));
+  setData(response.data.data);
 };
 
 //citywise
-export const getCityData = async (setCity) => {
+export const getCityData = async (setCity, setCityCategory, setCityNames) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/citywise`
   );
 
+  setCityCategory(response.data.data[0].city);
+  setCityNames(categorizeData(response.data.data));
   setCity(response.data.data);
 };
 

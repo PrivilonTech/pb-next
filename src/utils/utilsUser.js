@@ -15,7 +15,7 @@ export const createNewUser = async (userData) => {
   try {
     const existingUser = await getUserById(userData.uid);
     // const phoneQuery = query(userCollectionref, where("phone", "==", phone));
-
+    console.log(existingUser);
     if (!existingUser) {
       const userCollectionRef = collection(db, "users");
 

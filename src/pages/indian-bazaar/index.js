@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Box } from "@mui/material";
 
 import indianBazaarList from "@/menuLists/indianBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import DataContainer from "@/Components/PaneContent/DataContainer";
-import combineData from "@/utils/combineData";
+import { structureDataIndian } from "@/utils/structureData";
 
 export default function IndianBazaar({ response }) {
-  // const [data, setData] = useState(combineData(response.data));
+  const { dataKeys, subKeys, subValues } = structureDataIndian(response.data);
 
   const BodyContent = (
     <Box
@@ -20,12 +20,12 @@ export default function IndianBazaar({ response }) {
         flexWrap: "wrap",
       }}
     >
-      {data.map((dataItem) => (
+      {dataKeys.map((dataItem, index) => (
         <DataContainer
-          key={dataItem.id}
-          title={dataItem.polymerType}
-          polymerSubType={dataItem.polymerSubType}
-          polymerValue={dataItem.value}
+          key={index}
+          title={dataItem}
+          polymerSubType={subKeys[dataItem]}
+          polymerValue={subValues[dataItem]}
         />
       ))}
     </Box>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({ type, placeholder, setState }) {
+export default function Input({ type, placeholder, setState, largeHeight }) {
   return (
     <input
       type={type}
@@ -13,6 +13,7 @@ export default function Input({ type, placeholder, setState }) {
         borderRadius: "7px",
         fontSize: "1rem",
         width: "90%",
+        height: largeHeight ? "200px" : "100%",
       }}
       onChange={(e) => setState(e.target.value)}
     />

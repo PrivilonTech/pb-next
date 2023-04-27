@@ -12,7 +12,7 @@ import { monthsArray, yearArray } from "@/utils/dateArray";
 import { useEffect } from "react";
 import { getGlobalData } from "@/utils/apiCalls";
 import DataContainer from "@/Components/PaneContent/DataContainer";
-import structureData from "@/utils/structureData";
+import { structureDataGlobal } from "@/utils/structureData";
 
 function index({ response }) {
   const currentDate = new Date();
@@ -31,7 +31,8 @@ function index({ response }) {
     getGlobalData("USA", monthIndex, year, setData);
   }, [month, year]);
 
-  const modifiedData = structureData(data);
+  const modifiedData = structureDataGlobal(data);
+
   const BodyContent = (
     <Box
       sx={{

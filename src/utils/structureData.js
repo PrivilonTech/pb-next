@@ -1,4 +1,4 @@
-const structureData = (data) => {
+export const structureDataGlobal = (data) => {
   const newData = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -20,4 +20,15 @@ const structureData = (data) => {
   return newData;
 };
 
-export default structureData;
+export const structureDataIndian = (data) => {
+  const dataKeys = Object.keys(data);
+  const subKeys = {};
+  const subValues = {};
+
+  dataKeys.forEach((key) => {
+    subKeys[key] = Object.keys(data[key]);
+    subValues[key] = Object.values(data[key]);
+  });
+
+  return { dataKeys, subKeys, subValues };
+};

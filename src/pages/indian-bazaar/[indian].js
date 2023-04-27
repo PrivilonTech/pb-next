@@ -13,27 +13,29 @@ import {
   getHistoricalData,
   getIndianData,
 } from "@/utils/apiCalls";
+import { structureDataIndian } from "@/utils/structureData";
 
 export default function Indian() {
   const router = useRouter();
   const path = router.query.indian;
 
   const [data, setData] = useState({}); //stores data of a particular city
-  const [city, setCity] = useState(); //stores data of all cities
+  const [city, setCity] = useState({}); //stores data of all cities
+  const [cityNames, setCityNames] = useState([]);
 
-  const [cityCategory, setCityCategory] = useState(city?.data[0]?.city);
-  const cityNames = categorizeData(city?.data); //array of city names
+  const [cityCategory, setCityCategory] = useState("");
+  // const cityNames = categorizeData(city?.data); //array of city names
 
   useEffect(() => {
     if (path === "historicaldata") {
       getHistoricalData(polymerType, year, setData);
     } else {
-      // getCityData(setCity);
-      // getIndianData(cityCategory, setData);
+      getCityData(setCity, setCityCategory, setCityNames);
+      getIndianData("Mumbai", setData);
     }
-  }, [path]);
+  }, []);
 
-  console.log(data);
+  const modifiedData = structureDataIndian(data);
 
   useEffect(() => {
     getIndianData(cityCategory, setData);
@@ -49,14 +51,14 @@ export default function Indian() {
         flexWrap: "wrap",
       }}
     >
-      {/* {data.map((dataItem) => (
+      {modifiedData.dataKeys.map((dataItem, index) => (
         <DataContainer
-          key={dataItem.id}
-          title={dataItem.polymerType}
-          polymerSubType={dataItem.polymerSubType}
-          polymerValue={dataItem.value}
+          key={index}
+          title={dataItem}
+          polymerSubType={modifiedData.subKeys[dataItem]}
+          polymerValue={modifiedData.subValues[dataItem]}
         />
-      ))} */}
+      ))}
     </Box>
   );
 

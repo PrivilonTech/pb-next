@@ -60,7 +60,7 @@ export default function Register() {
   };
 
   // Sign up a new user
-  const createAccount = (email, password) => {
+  const createAccount = async (email, password) => {
     setIsLoading(true);
 
     createUserWithEmailAndPassword(auth, email, password)
@@ -73,7 +73,6 @@ export default function Register() {
           subscribed: false,
           createdAt: serverTimestamp(),
         });
-
         router.push("/");
       })
       .catch((error) => {
