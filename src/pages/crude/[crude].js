@@ -48,8 +48,8 @@ function Crude({ response }) {
         mainContent={BodyContent}
         secondaryDropdown
         secondaryDropdownData={["Monthly", "Yearly"]}
-        selectedOption={selectedOption}
-        setSelectedOption={setSelectedOption}
+        secondarySelectedOption={selectedOption}
+        secondarySetSelectedOption={setSelectedOption}
       />
     </>
   );

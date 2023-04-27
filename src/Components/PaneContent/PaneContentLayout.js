@@ -17,7 +17,7 @@ export default function PaneContentLayout({
   secondaryDropdownData,
   secondaryDropdown,
   secondarySelectedOption,
-  setSecondarySelectedOption,
+  secondarySetSelectedOption,
 }) {
   return (
     <Box
@@ -62,7 +62,7 @@ export default function PaneContentLayout({
             <DropDown
               data={secondaryDropdownData}
               selectedOption={secondarySelectedOption}
-              setSelectedOption={setSecondarySelectedOption}
+              setSelectedOption={secondarySetSelectedOption}
             />
           )}
         </Box>
