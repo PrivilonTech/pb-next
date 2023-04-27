@@ -35,3 +35,27 @@ export const getGlobalData = async (country, month, year, setData) => {
 
   setData(response.data.data);
 };
+
+export const getHistoricalData = async (
+  polymer,
+  year,
+  setData,
+  selectedOption
+) => {
+  const response = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=${polymer}&year=${year}`
+  );
+
+  setData({
+    labels: response.data[selectedOption].date,
+    datasets: [
+      {
+        label: selectedOption,
+        data: response.data[selectedOption].value,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderWidth: 2,
+      },
+    ],
+  });
+};
