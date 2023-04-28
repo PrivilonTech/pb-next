@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { useRouter } from "next/router";
 
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -18,6 +19,7 @@ function Header() {
   const auth = getAuth(firebaseApp);
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
+  const router = useRouter();
 
   const targetRef = useRef(null);
   const currentUser = useCurrentUser();
@@ -64,7 +66,10 @@ function Header() {
               width: "40%",
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              onClick={() => router.push("/")}
+              sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+            >
               <img src={"/Header/logo.svg"} alt="Logo"></img>
             </Box>
           </Box>

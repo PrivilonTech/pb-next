@@ -35,19 +35,20 @@ export default function App({ Component, pageProps }) {
   const firstString = "/" + router.pathname.split("/")[1];
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const isAuthPage = router.pathname === "/register";
+  const showLayout =
+    router.pathname === "/register" || router.pathname === "/subscription";
 
   return (
     <AuthGuard>
       <ThemeProvider theme={fontTheme}>
         <Toaster />
         <Loading>
-          {!isAuthPage && <Header />}
-          {upMd && !isAuthPage && <Pane path={firstString} />}
+          {!showLayout && <Header />}
+          {upMd && !showLayout && <Pane path={firstString} />}
 
           <Component {...pageProps} />
-          {/* {!isAuthPage && <Footer />} */}
-          {!isAuthPage && <TesterFooter />}
+          {/* {!showLayout && <Footer />} */}
+          {!showLayout && <TesterFooter />}
         </Loading>
       </ThemeProvider>
     </AuthGuard>

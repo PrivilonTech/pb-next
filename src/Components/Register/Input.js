@@ -6,7 +6,6 @@ export default function Input({ type, placeholder, setState, largeHeight }) {
       type={type}
       placeholder={placeholder}
       style={{
-        // padding: largeHeight ? "" : ".75em",
         padding: ".75em",
         outline: "none",
         border: "2px solid #d7dbd8",
