@@ -34,7 +34,14 @@ function Global({ response }) {
   const modifiedData = structureDataGlobal(data);
 
   const BodyContent = (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "2em",
+        width: "100%",
+      }}
+    >
       <AdminTextUpload />
       <Box
         sx={{
@@ -67,7 +74,7 @@ function Global({ response }) {
           </Typography>
         )}
       </Box>
-    </>
+    </Box>
   );
 
   return (

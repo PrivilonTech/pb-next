@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import Chart from "chart.js/auto";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Box, Typography } from "@mui/material";
 
-import Graphbar from "@/Components/Graphbar/Graphbar";
-
-import { usa } from "../../dummyData/globalBazaarData";
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import { Box, Typography } from "@mui/material";
-import axios from "axios";
-import { monthsArray, yearArray } from "@/utils/dateArray";
-import { useEffect } from "react";
-import { getGlobalData } from "@/utils/apiCalls";
 import DataContainer from "@/Components/PaneContent/DataContainer";
+import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
+
+import { monthsArray, yearArray } from "@/utils/dateArray";
+import { getGlobalData } from "@/utils/apiCalls";
 import { structureDataGlobal } from "@/utils/structureData";
 
 function index({ response }) {
@@ -36,34 +33,44 @@ function index({ response }) {
   const BodyContent = (
     <Box
       sx={{
-        margin: { xs: "2em auto", md: "0 auto" },
         display: "flex",
-        justifyContent: "center",
-        gap: "2em 5em",
-        flexWrap: "wrap",
+        flexDirection: "column",
+        gap: "2em",
+        width: "100%",
       }}
     >
-      {modifiedData.length > 0 ? (
-        modifiedData.map((eachData, index) => (
-          <>
-            {eachData.dataKeys.map((dataItem, id) => (
-              <DataContainer
-                key={id}
-                date={data[index].date}
-                title={dataItem}
-                polymerSubType={eachData.subKeys[dataItem]}
-                polymerValue={eachData.subValues[dataItem]}
-              />
-            ))}
-          </>
-        ))
-      ) : (
-        <Typography
-          sx={{ marginTop: "1em", color: "#575757", fontSize: "1.5rem" }}
-        >
-          No Data yet
-        </Typography>
-      )}
+      <AdminTextUpload />
+      <Box
+        sx={{
+          margin: { xs: "2em auto", md: "0 auto" },
+          display: "flex",
+          justifyContent: "center",
+          gap: "2em 5em",
+          flexWrap: "wrap",
+        }}
+      >
+        {modifiedData.length > 0 ? (
+          modifiedData.map((eachData, index) => (
+            <>
+              {eachData.dataKeys.map((dataItem, id) => (
+                <DataContainer
+                  key={id}
+                  date={data[index].date}
+                  title={dataItem}
+                  polymerSubType={eachData.subKeys[dataItem]}
+                  polymerValue={eachData.subValues[dataItem]}
+                />
+              ))}
+            </>
+          ))
+        ) : (
+          <Typography
+            sx={{ marginTop: "1em", color: "#575757", fontSize: "1.5rem" }}
+          >
+            No Data yet
+          </Typography>
+        )}
+      </Box>
     </Box>
   );
 
@@ -94,8 +101,6 @@ export const getServerSideProps = async () => {
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
-
-  //use this api call - https://polymerbazar-be.onrender.com/api/internationaloffers?country=USA&month=${currentMonth}&year=${currentYear}
 
   const res = await axios.get(
     `https://polymerbazar-be.onrender.com/api/internationaloffers?country=USA&month=${currentMonth}&year=${currentYear}`

@@ -12,11 +12,7 @@ import firebaseApp from "@/firebase/clientApp";
 import Link from "next/link";
 import ProfileMenu from "./ProfileMenu";
 import HamburgMenu from "./HamburgMenu";
-import {
-  getUserByUID,
-  isAdminCheck,
-  trialExpirationCheck,
-} from "@/utils/utilsUser";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 function Header() {
   const auth = getAuth(firebaseApp);
@@ -24,10 +20,10 @@ function Header() {
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const targetRef = useRef(null);
+  const currentUser = useCurrentUser();
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
 
   const [showHamburg, setShowHamburg] = useState(false);
-  const [user, setUser] = useState(null);
 
   //if someone resizes disable hamburg menu on large screens
   useEffect(() => {
@@ -35,22 +31,12 @@ function Header() {
   }, [upMd]);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-
     //close user profile menu
     window.addEventListener("keydown", (event) => {
       if (event.code === "Escape") {
         setIsUserProfileModalOpen(false);
       }
     });
-
-    return unsubscribe;
   }, []);
 
   const handleToggleProfileMenu = () => {
@@ -83,7 +69,7 @@ function Header() {
             </Box>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            {user ? (
+            {currentUser ? (
               <Box
                 onClick={handleToggleProfileMenu}
                 sx={{
@@ -100,7 +86,9 @@ function Header() {
               >
                 <Typography sx={{ color: "white" }}>
                   Hello{" "}
-                  {user.displayName ? user.displayName.split(" ")[0] : "User"}{" "}
+                  {currentUser.displayName
+                    ? currentUser.displayName.split(" ")[0]
+                    : "User"}{" "}
                 </Typography>
               </Box>
             ) : (
@@ -162,7 +150,7 @@ function Header() {
         <HamburgMenu
           setShowHamburg={setShowHamburg}
           showHamburg={showHamburg}
-          user={user}
+          user={currentUser}
           auth={auth}
         />
       }

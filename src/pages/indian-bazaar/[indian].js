@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import indianBazaarList from "@/menuLists/indianBazaarList";
 import DataContainer from "@/Components/PaneContent/DataContainer";
-import combineData from "@/utils/combineData";
-import categorizeData from "@/utils/categorizeCities";
 import {
   getCityData,
   getHistoricalData,

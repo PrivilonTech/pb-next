@@ -14,6 +14,12 @@ import {
 } from "firebase/auth";
 
 import firebaseApp from "../../firebase/clientApp";
+import {
+  createNewUser,
+  getUserByEmail,
+  getUserByPhone,
+} from "@/utils/utilsUser";
+
 import HeaderTitle from "@/Components/Register/HeaderTitle";
 import ErrorText from "@/Components/Register/ErrorText";
 import SocialLogin from "@/Components/Register/SocialLogin";
@@ -22,11 +28,6 @@ import Input from "@/Components/Register/Input";
 import Button from "@/Components/Button/Button";
 import MobilePage from "@/Components/Register/MobilePage";
 import TogglePassword from "@/Components/Register/TogglePassword";
-import {
-  createNewUser,
-  getUserByEmail,
-  getUserByPhone,
-} from "@/utils/utilsUser";
 
 export default function Register() {
   const router = useRouter();

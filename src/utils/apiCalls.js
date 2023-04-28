@@ -1,6 +1,5 @@
 import axios from "axios";
-import combineData from "./combineData";
-import categorizeData from "./categorizeCities";
+import { categorizeData } from "./structureData";
 
 //crude
 export const getCrudeData = async (name, country, selectedOption, setData) => {

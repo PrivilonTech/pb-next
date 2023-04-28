@@ -6,6 +6,7 @@ export default function Input({ type, placeholder, setState, largeHeight }) {
       type={type}
       placeholder={placeholder}
       style={{
+        // padding: largeHeight ? "" : ".75em",
         padding: ".75em",
         outline: "none",
         border: "2px solid #d7dbd8",
@@ -13,7 +14,7 @@ export default function Input({ type, placeholder, setState, largeHeight }) {
         borderRadius: "7px",
         fontSize: "1rem",
         width: "90%",
-        height: largeHeight ? "200px" : "100%",
+        height: largeHeight ? "100px" : "100%",
       }}
       onChange={(e) => setState(e.target.value)}
     />
