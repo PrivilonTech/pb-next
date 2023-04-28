@@ -2,10 +2,9 @@ import React from "react";
 import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { collection, getFirestore, serverTimestamp } from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
 
-import firebaseApp from "@/firebase/clientApp";
-import { createNewUser } from "@/utils/utilsUser";
+import { createNewUser, getUserByEmail } from "@/utils/utilsUser";
 
 export default function SocialLogin({
   auth,
@@ -14,22 +13,26 @@ export default function SocialLogin({
   setIsLoginPage,
 }) {
   const router = useRouter();
-
   const googleProvider = new GoogleAuthProvider();
 
   //google login
   const handleUserGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      console.log("finished");
+      const existingUser = await getUserByEmail(result.user.email);
+      console.log(existingUser);
 
-      await createNewUser({
-        uid: result.user.uid,
-        email: result.user.email,
-        name: result.user.displayName,
-        role: "user",
-        subscribed: "false",
-        createdAt: serverTimestamp(),
-      });
+      if (!existingUser) {
+        await createNewUser({
+          uid: result.user.uid,
+          email: result.user.email,
+          name: result.user.displayName,
+          role: "user",
+          subscribed: "false",
+          createdAt: serverTimestamp(),
+        });
+      }
 
       router.push("/");
     } catch (error) {

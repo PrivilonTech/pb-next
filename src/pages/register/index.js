@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 import "react-phone-input-2/lib/style.css";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { toast } from "react-hot-toast";
-import { getFirestore, serverTimestamp } from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -22,12 +22,15 @@ import Input from "@/Components/Register/Input";
 import Button from "@/Components/Button/Button";
 import MobilePage from "@/Components/Register/MobilePage";
 import TogglePassword from "@/Components/Register/TogglePassword";
-import { createNewUser } from "@/utils/utilsUser";
+import {
+  createNewUser,
+  getUserByEmail,
+  getUserByPhone,
+} from "@/utils/utilsUser";
 
 export default function Register() {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
-  const firebaseDatabase = getFirestore(firebaseApp);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,6 +65,14 @@ export default function Register() {
   // Sign up a new user
   const createAccount = async (email, password) => {
     setIsLoading(true);
+
+    const existingUser = await getUserByEmail(email);
+
+    if (existingUser) {
+      toast.error("Email already in use");
+      setIsLoading(false);
+      return;
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
@@ -156,13 +167,17 @@ export default function Register() {
     confirmationResult
       .confirm(verificationOTP)
       .then(async () => {
-        await createNewUser({
-          uid: 1,
-          phone: `+${phoneNumber}`,
-          role: "user",
-          subscribed: false,
-          createdAt: serverTimestamp(),
-        });
+        const existingUser = await getUserByPhone("+" + phoneNumber);
+
+        if (!existingUser) {
+          await createNewUser({
+            uid: 1,
+            phone: `+${phoneNumber}`,
+            role: "user",
+            subscribed: false,
+            createdAt: serverTimestamp(),
+          });
+        }
 
         router.push("/");
       })
