@@ -19,9 +19,7 @@ export default function SocialLogin({
   const handleUserGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      console.log("finished");
       const existingUser = await getUserByEmail(result.user.email);
-      console.log(existingUser);
 
       if (!existingUser) {
         await createNewUser({

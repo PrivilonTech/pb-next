@@ -171,7 +171,7 @@ export default function Register() {
 
         if (!existingUser) {
           await createNewUser({
-            uid: 1,
+            uid: auth.currentUser.uid,
             phone: `+${phoneNumber}`,
             role: "user",
             subscribed: false,

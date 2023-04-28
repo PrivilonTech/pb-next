@@ -14,6 +14,7 @@ export const createNewUser = async (userData) => {
   try {
     const db = getFirestore(firebaseApp);
     const userCollectionRef = collection(db, "users");
+    console.log(userCollectionRef);
 
     // Set the document data to the user's display name and email address
     addDoc(userCollectionRef, userData)
@@ -78,15 +79,15 @@ export const getUserByPhone = async (phone) => {
   }
 };
 
-export const getUserByRole = async (role) => {
-  if (!role) {
+export const getUserByUID = async (uid) => {
+  if (!uid) {
     return;
   }
 
   const firebaseDatabase = getFirestore(firebaseApp);
   const colRef = collection(firebaseDatabase, "users");
 
-  const queries = query(colRef, where("role", "==", role));
+  const queries = query(colRef, where("uid", "==", uid));
   const querySnapshot = await getDocs(queries);
 
   if (querySnapshot.size > 0) {
@@ -96,15 +97,27 @@ export const getUserByRole = async (role) => {
   }
 };
 
-export const getUserById = async (id) => {
-  const docRef = doc(firebaseDatabase, "users", id);
-  const docSnap = await getDoc(docRef);
+export const isAdminCheck = async (userLoggedIn) => {
+  const existingUser = await getUserByUID(userLoggedIn?.uid);
 
-  if (docSnap.exists()) {
-    const data = docSnap.data();
-
-    return data;
-  } else {
-    return false;
+  if (existingUser.role === "admin") {
+    return true;
   }
+
+  return false;
+};
+
+export const trialExpirationCheck = (userCreationTime) => {
+  const createdAt = userCreationTime.toDate();
+  const currentTime = new Date();
+
+  const timeDiff = currentTime.getTime() - createdAt.getTime(); // Calculate the difference between the two times
+  const twoDaysInMs = 2 * 24 * 60 * 60 * 1000; // Calculate two days in milliseconds
+
+  // The user was created more than 2 days ago
+  if (timeDiff > twoDaysInMs) {
+    return true;
+  }
+
+  return false;
 };

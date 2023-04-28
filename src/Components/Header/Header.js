@@ -12,6 +12,11 @@ import firebaseApp from "@/firebase/clientApp";
 import Link from "next/link";
 import ProfileMenu from "./ProfileMenu";
 import HamburgMenu from "./HamburgMenu";
+import {
+  getUserByUID,
+  isAdminCheck,
+  trialExpirationCheck,
+} from "@/utils/utilsUser";
 
 function Header() {
   const auth = getAuth(firebaseApp);
