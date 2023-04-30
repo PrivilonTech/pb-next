@@ -13,6 +13,8 @@ export default function Graph({ data }) {
       type: "line",
       data: data,
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         tension: "0.2",
         scales: {
           y: {
@@ -30,7 +32,7 @@ export default function Graph({ data }) {
     <Box
       sx={{
         marginLeft: { md: "1em" },
-        height: { xs: "100%", md: "100%" },
+        height: { xs: "60vh", md: "100%" },
         width: "100%",
         display: "flex",
         justifyContent: "center",

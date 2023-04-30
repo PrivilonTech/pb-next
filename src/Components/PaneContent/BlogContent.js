@@ -10,7 +10,7 @@ export default function BlogContent({ data }) {
         display: "flex",
         gap: "3em 1em",
         flexWrap: "wrap",
-        justifyContent: "space-around",
+        justifyContent: { xs: "flex-start", md: "space-around" },
       }}
     >
       {data.map((dataItem) => (

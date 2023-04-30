@@ -98,6 +98,7 @@ function Global({ response }) {
         page="global-bazaar"
         path={path}
         mainContent={BodyContent}
+        dropdown
         dropdownData={monthsArray}
         selectedOption={month}
         setSelectedOption={setMonth}

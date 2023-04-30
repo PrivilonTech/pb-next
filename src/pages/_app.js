@@ -31,14 +31,14 @@ export default function App({ Component, pageProps }) {
     <AuthGuard>
       <ThemeProvider theme={fontTheme}>
         <Toaster />
-        <Loading>
-          {!showLayout && <Header />}
-          {upMd && !showLayout && <Pane path={firstString} />}
+        {/* <Loading> */}
+        {!showLayout && <Header />}
+        {upMd && !showLayout && <Pane path={firstString} />}
 
-          <Component {...pageProps} />
-          {/* {!showLayout && <Footer />} */}
-          {!showLayout && <TesterFooter />}
-        </Loading>
+        <Component {...pageProps} />
+        {/* {!showLayout && <Footer />} */}
+        {!showLayout && <TesterFooter />}
+        {/* </Loading> */}
       </ThemeProvider>
     </AuthGuard>
   );

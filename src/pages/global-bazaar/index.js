@@ -81,6 +81,7 @@ function index({ response }) {
         page="global-bazaar"
         path="USA"
         mainContent={BodyContent}
+        dropdown
         dropdownData={monthsArray}
         selectedOption={month}
         setSelectedOption={setMonth}

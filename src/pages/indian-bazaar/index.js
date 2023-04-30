@@ -53,6 +53,7 @@ export default function IndianBazaar({ response }) {
         page="indian-bazaar"
         path="rateRevision"
         mainContent={BodyContent}
+        dropdown
         dropdownData={monthsArray}
         selectedOption={month}
         setSelectedOption={setMonth}

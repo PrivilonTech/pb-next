@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import graphList from "@/menuLists/graphList";
+import { graphList, graphData } from "@/menuLists/graphList";
 import { getHistoricalData } from "@/utils/apiCalls";
 import Graph from "@/Components/PaneContent/Graph";
 import { yearArray } from "@/utils/dateArray";
@@ -11,20 +11,21 @@ import { Box, Typography } from "@mui/material";
 function index({ response }) {
   const currentDate = new Date();
 
-  const [cityNames, setCityNames] = useState(Object.keys(response.data));
-  const [cityCategory, setCityCategory] = useState(cityNames[0]);
-
   const currentYear = currentDate.getFullYear();
   const [year, setYear] = useState(currentYear);
 
+  const [category, setCategory] = useState(graphData["PP"][0]);
+  const [cities, setCities] = useState(Object.keys(response.data));
+  // const [selectedCity, setSelectedCity] = useState(cities[0]);
+
   const getYearArray = yearArray();
 
-  const graphStructure = {
-    labels: response.data[cityCategory]?.date,
+  const graphStructureOne = {
+    labels: response.data[cities[0]]?.date,
     datasets: [
       {
-        label: cityCategory,
-        data: response.data[cityCategory]?.value,
+        label: cities[0],
+        data: response.data[cities[0]]?.value,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],
         borderWidth: 2,
@@ -32,24 +33,51 @@ function index({ response }) {
     ],
   };
 
-  const [data, setData] = useState(graphStructure);
-  console.log(data);
+  const graphStructureTwo = {
+    labels: response.data[cities[1]]?.date,
+    datasets: [
+      {
+        label: cities[1],
+        data: response.data[cities[1]]?.value,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderWidth: 2,
+      },
+    ],
+  };
 
-  useEffect(() => {
-    setData(graphStructure);
-  }, [cityCategory]);
+  const [data, setData] = useState(graphStructureOne);
+  const [secondaryData, setSecondaryData] = useState(graphStructureTwo);
 
-  //year change
+  // console.log(data, secondaryData);
+
+  // useEffect(() => {
+  //   setData(graphStructureOne);
+  // }, [selectedCity]);
+
+  //year and category change
   useEffect(() => {
-    // getHistoricalData("Lami", 2012, cityCategory, setData);
-  }, [year]);
+    getHistoricalData("Lami", year, setData, setSecondaryData);
+  }, [year, category]);
 
   const BodyContent = (
     <>
       {data.labels ? (
-        <Graph data={data} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "2em",
+            maxWidth: "100%",
+          }}
+        >
+          <Graph data={data} />
+          <Graph data={secondaryData} />
+        </Box>
       ) : (
-        <Typography sx={{ textAlign: "center" }}>No Data</Typography>
+        <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+          <Typography>No Data</Typography>
+        </Box>
       )}
     </>
   );
@@ -62,13 +90,18 @@ function index({ response }) {
         page="graph"
         path="PP"
         mainContent={BodyContent}
-        dropdownData={cityNames}
-        selectedOption={cityCategory}
-        setSelectedOption={setCityCategory}
+        dropdown
+        dropdownData={graphData["PP"]}
+        selectedOption={category}
+        setSelectedOption={setCategory}
         secondaryDropdown
         secondaryDropdownData={getYearArray}
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
+        // thirdDropdown={cities.length > 0}
+        // thirdDropdownData={cities}
+        // thirdSelectedOption={selectedCity}
+        // thirdSetSelectionOption={setSelectedCity}
       />
     </>
   );

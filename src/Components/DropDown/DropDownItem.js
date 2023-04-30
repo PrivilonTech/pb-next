@@ -25,7 +25,7 @@ export default function DropDownItem({
   return (
     <Box
       sx={{
-        width: "200px",
+        width: { xs: "100px", md: "200px" },
         position: "absolute",
         left: { sm: "0", md: "30px" },
         marginTop: "5px",

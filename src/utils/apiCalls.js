@@ -52,21 +52,36 @@ export const getGlobalData = async (country, month, year, setData) => {
 
 //crude/historicaldata
 export const getHistoricalData = async (
-  polymer,
+  category,
   year,
-  selectedOption,
-  setData
+  setData,
+  setSecondaryData
 ) => {
   const response = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=${polymer}&year=${year}`
+    `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=${category}&year=${year}`
   );
 
+  const cities = Object.keys(response.data.data);
+
   setData({
-    labels: response.data.data[selectedOption].date,
+    labels: response.data.data[cities[0]]?.date,
     datasets: [
       {
-        label: selectedOption,
-        data: response.data.data[selectedOption].value,
+        label: cities[0],
+        data: response.data.data[cities[0]]?.value,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderWidth: 2,
+      },
+    ],
+  });
+
+  setSecondaryData({
+    labels: response.data.data[cities[1]]?.date,
+    datasets: [
+      {
+        label: cities[1],
+        data: response.data.data[cities[1]]?.value,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],
         borderWidth: 2,
