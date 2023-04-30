@@ -8,23 +8,14 @@ import { getCrudeData } from "@/utils/apiCalls";
 
 function index({ response }) {
   const [selectedOption, setSelectedOption] = useState("Monthly");
-  const [data, setData] = useState({
-    labels: response.data.key,
-    datasets: [
-      {
-        label: "naptha",
-        data: response.data.value,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
-        borderWidth: 2,
-      },
-    ],
-  });
+  const [data, setData] = useState({});
 
   //on state change
   useEffect(() => {
     getCrudeData("Naphtha", "China", selectedOption, setData);
   }, [selectedOption]);
+
+  console.log(data);
 
   const BodyContent = (
     <>

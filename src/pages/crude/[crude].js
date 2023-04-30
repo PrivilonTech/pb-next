@@ -13,18 +13,7 @@ function Crude({ response }) {
 
   const [selectedOption, setSelectedOption] = useState("Monthly");
 
-  const [data, setData] = useState({
-    labels: response.data.key,
-    datasets: [
-      {
-        label: path,
-        data: response.data.value,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
-        borderWidth: 2,
-      },
-    ],
-  });
+  const [data, setData] = useState({});
 
   //on state change
   useEffect(() => {

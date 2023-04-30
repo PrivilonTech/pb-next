@@ -40,7 +40,7 @@ export default function Indian() {
       // rate revision and rate prediction call
       getTextData(path, monthIndex, year, setData);
     }
-  }, []);
+  }, [path]);
 
   const modifiedData = structureDataIndian(data);
 
