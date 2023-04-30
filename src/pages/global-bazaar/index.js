@@ -14,6 +14,8 @@ import { structureDataGlobal } from "@/utils/structureData";
 function index({ response }) {
   const currentDate = new Date();
 
+  console.log(response.data);
+
   const getYearArray = yearArray();
   const [data, setData] = useState(response.data.data);
 

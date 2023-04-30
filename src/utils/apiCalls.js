@@ -47,7 +47,7 @@ export const getGlobalData = async (country, month, year, setData) => {
     `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${country}&month=${month}&year=${year}`
   );
 
-  setData(structureDataGlobal(response.data.data.data));
+  setData(response.data.data.data);
 };
 
 //crude/historicaldata

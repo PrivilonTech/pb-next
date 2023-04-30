@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 
 export default function Graph({ data }) {
   const chartRef = useRef(null);
-  const Plot = require("react-plotly.js").default;
+  // const Plot = require("react-plotly.js").default;
 
   useEffect(() => {
     const chart = new Chart(chartRef.current, {
