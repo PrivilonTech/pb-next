@@ -6,7 +6,6 @@ export default function DataContainer({
   polymerSubType,
   polymerValue,
   date,
-  individualData,
 }) {
   return (
     <Box

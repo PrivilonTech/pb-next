@@ -12,7 +12,6 @@ function Crude({ response }) {
   const path = router.query.crude;
 
   const [selectedOption, setSelectedOption] = useState("Monthly");
-  // const [city, setCity] = useState("China");
 
   const [data, setData] = useState({
     labels: response.data.key,

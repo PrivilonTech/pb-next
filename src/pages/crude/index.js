@@ -23,7 +23,7 @@ function index({ response }) {
 
   //on state change
   useEffect(() => {
-    getCrudeData("naptha", "China", selectedOption, setData);
+    getCrudeData("Naphtha", "China", selectedOption, setData);
   }, [selectedOption]);
 
   const BodyContent = (
@@ -38,7 +38,7 @@ function index({ response }) {
         title="Crude"
         list={crudeList}
         page="crude"
-        path="naptha"
+        path="Naphtha"
         mainContent={BodyContent}
         secondaryDropdown
         secondaryDropdownData={["Monthly", "Yearly"]}

@@ -39,7 +39,6 @@ function index({ response }) {
         width: "100%",
       }}
     >
-      <AdminTextUpload />
       <Box
         sx={{
           margin: { xs: "2em auto", md: "0 auto" },

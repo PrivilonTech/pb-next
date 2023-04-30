@@ -6,10 +6,10 @@ import { Box, Typography } from "@mui/material";
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import { monthsArray, yearArray } from "@/utils/dateArray";
-import { getGlobalData } from "@/utils/apiCalls";
+import { getGlobalData, getTextData } from "@/utils/apiCalls";
 import DataContainer from "@/Components/PaneContent/DataContainer";
-import { structureDataGlobal } from "@/utils/structureData";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
+import BlogContent from "@/Components/PaneContent/BlogContent";
 
 function Global({ response }) {
   const router = useRouter();
@@ -20,18 +20,25 @@ function Global({ response }) {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
+  const getYearArray = yearArray();
 
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(monthsArray[currentMonth]);
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
 
-  const getYearArray = yearArray();
+  const [dataChange, setDataChange] = useState(false);
 
   useEffect(() => {
-    getGlobalData(path, monthIndex, year, setData);
+    if (path !== "china") {
+      getGlobalData(path, monthIndex, year, setData);
+    }
   }, [month, year]);
 
-  const modifiedData = structureDataGlobal(data);
+  useEffect(() => {
+    if (path === "china") {
+      getTextData(path, monthIndex, year, setData);
+    }
+  }, [dataChange, month, year]);
 
   const BodyContent = (
     <Box
@@ -42,38 +49,44 @@ function Global({ response }) {
         width: "100%",
       }}
     >
-      <AdminTextUpload />
-      <Box
-        sx={{
-          margin: { xs: "2em auto", md: "0 auto" },
-          display: "flex",
-          justifyContent: "center",
-          gap: "2em 5em",
-          flexWrap: "wrap",
-        }}
-      >
-        {modifiedData.length > 0 ? (
-          modifiedData.map((eachData, index) => (
-            <>
-              {eachData.dataKeys.map((dataItem, id) => (
-                <DataContainer
-                  key={id}
-                  date={data[index].date}
-                  title={dataItem}
-                  polymerSubType={eachData.subKeys[dataItem]}
-                  polymerValue={eachData.subValues[dataItem]}
-                />
-              ))}
-            </>
-          ))
-        ) : (
-          <Typography
-            sx={{ marginTop: ".5em", color: "#575757", fontSize: "1.5rem" }}
-          >
-            No Data yet
-          </Typography>
-        )}
-      </Box>
+      {path !== "china" ? (
+        <Box
+          sx={{
+            margin: { xs: "2em auto", md: "0 auto" },
+            display: "flex",
+            justifyContent: "center",
+            gap: "2em 5em",
+            flexWrap: "wrap",
+          }}
+        >
+          {data.length > 0 ? (
+            data.map((eachData, index) => (
+              <>
+                {eachData.dataKeys.map((dataItem, id) => (
+                  <DataContainer
+                    key={id}
+                    date={data[index].date}
+                    title={dataItem}
+                    polymerSubType={eachData.subKeys[dataItem]}
+                    polymerValue={eachData.subValues[dataItem]}
+                  />
+                ))}
+              </>
+            ))
+          ) : (
+            <Typography
+              sx={{ marginTop: ".5em", color: "#575757", fontSize: "1.5rem" }}
+            >
+              No Data yet
+            </Typography>
+          )}
+        </Box>
+      ) : (
+        <>
+          <AdminTextUpload path={path} setDataChange={setDataChange} />
+          <BlogContent data={data} />
+        </>
+      )}
     </Box>
   );
 

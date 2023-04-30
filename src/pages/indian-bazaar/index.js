@@ -1,33 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import indianBazaarList from "@/menuLists/indianBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import DataContainer from "@/Components/PaneContent/DataContainer";
-import { structureDataIndian } from "@/utils/structureData";
+import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
+import BlogContent from "@/Components/PaneContent/BlogContent";
+
+import { monthsArray, yearArray } from "@/utils/dateArray";
+import { getTextData } from "@/utils/apiCalls";
 
 export default function IndianBazaar({ response }) {
-  const { dataKeys, subKeys, subValues } = structureDataIndian(response.data);
+  const [data, setData] = useState(response.data);
+  const [dataChange, setDataChange] = useState(false);
+
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  const getYearArray = yearArray();
+
+  const [year, setYear] = useState(currentYear);
+  const [month, setMonth] = useState(monthsArray[currentMonth]);
+  const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
+
+  useEffect(() => {
+    getTextData("rateRevision", monthIndex, year, setData);
+  }, [dataChange, month, year]);
 
   const BodyContent = (
     <Box
       sx={{
-        margin: { xs: "2em auto", md: "0 auto" },
         display: "flex",
-        justifyContent: "center",
-        gap: "2em 5em",
-        flexWrap: "wrap",
+        flexDirection: "column",
+        gap: "2em",
+        width: "100%",
       }}
     >
-      {dataKeys.map((dataItem, index) => (
-        <DataContainer
-          key={index}
-          title={dataItem}
-          polymerSubType={subKeys[dataItem]}
-          polymerValue={subValues[dataItem]}
-        />
-      ))}
+      <AdminTextUpload path="rateRevision" setDataChange={setDataChange} />
+      {data.length > 0 ? (
+        <BlogContent data={data} />
+      ) : (
+        <Typography sx={{ textAlign: "center" }}>No data yet</Typography>
+      )}
     </Box>
   );
 
@@ -39,14 +53,25 @@ export default function IndianBazaar({ response }) {
         page="indian-bazaar"
         path="rateRevision"
         mainContent={BodyContent}
+        dropdownData={monthsArray}
+        selectedOption={month}
+        setSelectedOption={setMonth}
+        secondaryDropdown
+        secondaryDropdownData={getYearArray}
+        secondarySelectedOption={year}
+        secondarySetSelectedOption={setYear}
       />
     </>
   );
 }
 
 export const getServerSideProps = async () => {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
   const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/citywise/Ahmedabad`
+    `https://polymerbazar-be.onrender.com/api/blogs?type=rateRevision&year=${currentYear}&month=${currentMonth}`
   );
 
   return {

@@ -10,14 +10,20 @@ export default function PaneContentLayout({
   page,
   path,
   mainContent,
+  dropdown,
   dropdownData,
   selectedOption,
   setSelectedOption,
 
-  secondaryDropdownData,
   secondaryDropdown,
+  secondaryDropdownData,
   secondarySelectedOption,
   secondarySetSelectedOption,
+
+  thirdDropdown,
+  thirdDropdownData,
+  thirdSelectedOption,
+  thirdSetSelectionOption,
 }) {
   return (
     <Box
@@ -51,7 +57,7 @@ export default function PaneContentLayout({
         </Typography>
 
         <Box sx={{ display: "flex", gap: ".5em" }}>
-          {dropdownData && (
+          {dropdown && (
             <DropDown
               data={dropdownData}
               selectedOption={selectedOption}
@@ -63,6 +69,13 @@ export default function PaneContentLayout({
               data={secondaryDropdownData}
               selectedOption={secondarySelectedOption}
               setSelectedOption={secondarySetSelectedOption}
+            />
+          )}
+          {thirdDropdown && (
+            <DropDown
+              data={thirdDropdownData}
+              selectedOption={thirdSelectedOption}
+              setSelectedOption={thirdSetSelectionOption}
             />
           )}
         </Box>

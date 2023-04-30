@@ -7,7 +7,7 @@ const globalBazaarList = [
   {
     id: 2,
     section: "Asia - China",
-    slug: "China",
+    slug: "china",
   },
   {
     id: 3,
