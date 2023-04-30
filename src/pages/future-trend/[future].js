@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 import axios from "axios";
 
 import { monthsArray, yearArray } from "@/utils/dateArray";
-import { getTextData } from "@/utils/apiCalls";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import futureTrendList from "@/menuLists/futureTrendList";
+import { getTextData } from "@/utils/apiCalls";
 
-function index({ response }) {
+export default function FuturePage({ response }) {
+  const router = useRouter();
+  const path = router.query.future;
+
   const [data, setData] = useState(response.data);
   const [dataChange, setDataChange] = useState(false);
 
@@ -23,7 +27,7 @@ function index({ response }) {
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
 
   useEffect(() => {
-    getTextData("PP", monthIndex, year, setData);
+    getTextData(path, monthIndex, year, setData);
   }, [dataChange, month, year]);
 
   const BodyContent = (
@@ -35,7 +39,7 @@ function index({ response }) {
         width: "100%",
       }}
     >
-      <AdminTextUpload path="PP" setDataChange={setDataChange} />
+      <AdminTextUpload path={path} setDataChange={setDataChange} />
       {data.length > 0 ? (
         <BlogContent data={data} />
       ) : (
@@ -50,7 +54,7 @@ function index({ response }) {
         title="Future Trend"
         list={futureTrendList}
         page="future-trend"
-        path="PP"
+        path={path}
         mainContent={BodyContent}
         dropdown
         dropdownData={monthsArray}
@@ -65,15 +69,13 @@ function index({ response }) {
   );
 }
 
-export default index;
-
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ query }) => {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
   const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/blogs?type=PP&year=${currentYear}&month=${currentMonth}`
+    `https://polymerbazar-be.onrender.com/api/blogs?type=${query.future}&year=${currentYear}&month=${currentMonth}`
   );
 
   return {
