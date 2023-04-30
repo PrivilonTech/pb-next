@@ -86,10 +86,13 @@ function Pane({ path }) {
           sx={{
             margin: "auto",
             width: "100%",
-            height: "100%",
+            height: { xs: "75%", sm: "80%" },
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "flex-start",
             gap: 0,
+            background: "#e9ebf2",
+            paddingTop: "5vh",
+            paddingLeft: "10px",
             flexWrap: "wrap",
           }}
         >
@@ -103,7 +106,8 @@ function Pane({ path }) {
                   color: "#000",
                   height: "20%",
                   width: { xs: "20%", sm: "25%" },
-                  padding: ".25em",
+                  padding: ".5em",
+                  lineHeight: "1px",
                   border:
                     active === res.link ? "1px solid red" : "2px solid #d5d9eb",
                   margin: "10px",

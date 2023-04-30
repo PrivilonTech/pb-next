@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import { getUserByUID } from "@/utils/utilsUser";
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
-export default function UserInfo() {
+export default function UserInfo({ user }) {
   const router = useRouter();
   const currentUser = useCurrentUser();
-  const [fetchedUser, setFetchedUser] = useState(null);
-
-  useEffect(() => {
-    const getUserInfo = async () => {
-      const fetchedUser = await getUserByUID(currentUser?.uid);
-      setFetchedUser(fetchedUser);
-    };
-
-    getUserInfo();
-  }, [currentUser]);
-
-  console.log(fetchedUser?.displayName);
 
   return (
     <Box
@@ -30,30 +17,19 @@ export default function UserInfo() {
     >
       <Box
         sx={{
-          margin: ".5em 3em",
+          margin: ".5em 20px",
           display: "flex",
           flexDirection: "column",
         }}
       >
-        <Typography>{fetchedUser?.displayName}</Typography>
-        {fetchedUser?.subscribed ? (
-          <Typography
-            sx={{ fontSize: { xs: ".7rem", sm: ".85rem" }, color: "gray" }}
-          >
-            You are now a member
-          </Typography>
-        ) : (
-          <Typography
-            sx={{ fontSize: { xs: ".7rem", sm: ".85rem" }, color: "gray" }}
-            onClick={() => router.push("/subscription")}
-          >
-            View subscription plans
-          </Typography>
-        )}
+        <Typography sx={{ fontSize: "1.2rem" }}>Hello,</Typography>
+        <Typography sx={{ fontSize: { xs: "1.3rem" }, color: "gray" }}>
+          {user?.displayName}
+        </Typography>
       </Box>
       <Box
         sx={{
-          margin: ".5em 3em",
+          margin: ".5em 30px",
         }}
       >
         <img

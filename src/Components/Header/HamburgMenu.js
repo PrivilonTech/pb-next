@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 import Pane from "../Pane/Pane";
 import { useRouter } from "next/router";
@@ -31,8 +31,8 @@ export default function HamburgMenu({
   return (
     <Box
       sx={{
-        height: "100svh",
-        width: "105vw",
+        height: "100vh",
+        width: "100%",
         display: "flex",
         position: "absolute",
         top: "-10px",
@@ -42,10 +42,12 @@ export default function HamburgMenu({
         zIndex: "99999",
         alignItems: "center",
         flexDirection: "column",
-        transform: showHamburg ? "translateY(0)" : "translateY(-110%)",
+        transform: showHamburg ? "translateX(0)" : "translateX(-110%)",
         transition: "transform 0.3s ease",
         borderRadius: "10px",
         boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px",
+        overflow: "hidden",
+        // paddingLeft: "30px",
       }}
     >
       <Box
@@ -57,7 +59,7 @@ export default function HamburgMenu({
           position: "relative",
         }}
       >
-        <KeyboardArrowUpIcon
+        <ChevronLeftIcon
           sx={{
             position: "absolute",
             right: "25px",
@@ -75,25 +77,51 @@ export default function HamburgMenu({
           }}
         >
           <Box>
-            <UserInfo />
+            <UserInfo user={user} />
           </Box>
           <Pane />
         </Box>
-      </Box>
-      <Box
-        onClick={handleUser}
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          margin: "2em 0",
-          padding: ".5em 3em",
-          border: "2px solid #d5d9eb",
-          boxShadow:
-            " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-          borderRadius: "10px",
-        }}
-      >
-        <Typography>{user ? "Logout" : "Login"}</Typography>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            width: "100%",
+          }}
+        >
+          <Box
+            onClick={handleUser}
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              margin: "2em 0",
+              padding: ".5em 2em",
+              border: "2px solid #d5d9eb",
+              boxShadow:
+                " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              borderRadius: "10px",
+            }}
+          >
+            <Typography>{user ? "Logout" : "Login"}</Typography>
+          </Box>
+          <Box
+            onClick={handleUser}
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              margin: "2em 0",
+              padding: ".5em 1.5em",
+              background: user?.subscribed ? "#1e1e1e" : "#C31815",
+              boxShadow:
+                " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              borderRadius: "10px",
+            }}
+          >
+            <Typography sx={{ color: "white" }}>
+              {user?.subscribed ? "Subscribed" : "Subscribe"}
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

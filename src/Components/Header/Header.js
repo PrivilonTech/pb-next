@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
 
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
@@ -15,6 +14,7 @@ import ProfileMenu from "./ProfileMenu";
 import HamburgMenu from "./HamburgMenu";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { isAdminCheck } from "@/utils/utilsUser";
+import { ModalContext } from "../HomePage/ModalProvider";
 
 function Header() {
   const auth = getAuth(firebaseApp);
@@ -22,8 +22,7 @@ function Header() {
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
 
-  const currentUser = useCurrentUser();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { user } = useContext(ModalContext);
 
   const [showHamburg, setShowHamburg] = useState(false);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
@@ -32,15 +31,6 @@ function Header() {
   useEffect(() => {
     setShowHamburg(false);
   }, [upMd]);
-
-  useEffect(() => {
-    const adminCheck = async () => {
-      const isAdmin = await isAdminCheck(currentUser);
-      setIsAdmin(isAdmin);
-    };
-
-    adminCheck();
-  }, [currentUser]);
 
   useEffect(() => {
     //close user profile menu
@@ -84,7 +74,7 @@ function Header() {
             </Box>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
-            {currentUser ? (
+            {user ? (
               <>
                 <Box
                   onClick={handleToggleProfileMenu}
@@ -102,12 +92,10 @@ function Header() {
                 >
                   <Typography sx={{ color: "white" }}>
                     Hello{" "}
-                    {currentUser.displayName
-                      ? currentUser.displayName.split(" ")[0]
-                      : "User"}{" "}
+                    {user.displayName ? user.displayName.split(" ")[0] : "User"}{" "}
                   </Typography>
                 </Box>
-                {isAdmin && (
+                {user?.subscribed && (
                   <Box
                     sx={{
                       border: "2px solid gray",
@@ -171,7 +159,7 @@ function Header() {
               sx={{ margin: "auto", width: "100%" }}
               onClick={() => setShowHamburg(true)}
             >
-              <MenuIcon sx={{ fontSize: 34 }} />
+              <img src={"/Header/hamburg.svg"} alt="hamburg-icon" />
             </Box>
             <Box sx={{ margin: "auto" }}>
               <img src={"/Header/logo.svg"} alt="Logo" height={25}></img>
@@ -183,7 +171,7 @@ function Header() {
         <HamburgMenu
           setShowHamburg={setShowHamburg}
           showHamburg={showHamburg}
-          user={currentUser}
+          user={user}
           auth={auth}
         />
       }

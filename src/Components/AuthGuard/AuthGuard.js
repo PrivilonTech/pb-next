@@ -1,24 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import firebaseApp from "@/firebase/clientApp";
+import { ModalContext } from "../HomePage/ModalProvider";
+import { getUserByUID } from "@/utils/utilsUser";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 export default function AuthGuard({ children }) {
   const router = useRouter();
-  const auth = getAuth(firebaseApp);
+
+  const currentUser = useCurrentUser();
+
+  const { setUser } = useContext(ModalContext);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        if (router.pathname !== "/" && router.pathname !== "/register") {
-          router.push("/register");
-        }
-      }
-    });
+    const getUserInfo = async () => {
+      const fetchedUser = await getUserByUID(currentUser?.uid);
+      setUser(fetchedUser);
+    };
 
-    return unsubscribe;
-  }, [auth]);
+    getUserInfo();
+  }, [currentUser]);
 
   return <>{children}</>;
 }

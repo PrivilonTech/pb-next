@@ -1,22 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import useCurrentUser from "@/hooks/useCurrentUser";
-import { useEffect } from "react";
-import { getUserByUID } from "@/utils/utilsUser";
-
 function HomePage() {
-  const currentUser = useCurrentUser();
-
-  useEffect(() => {
-    const getUserInfo = async () => {
-      const fetchedUser = await getUserByUID(currentUser?.uid);
-      setFetchedUser(fetchedUser);
-    };
-
-    getUserInfo();
-  }, [currentUser]);
-
   return (
     <>
       <Box
