@@ -14,6 +14,7 @@ import Link from "next/link";
 import ProfileMenu from "./ProfileMenu";
 import HamburgMenu from "./HamburgMenu";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { isAdminCheck } from "@/utils/utilsUser";
 
 function Header() {
   const auth = getAuth(firebaseApp);
@@ -22,14 +23,24 @@ function Header() {
   const router = useRouter();
 
   const currentUser = useCurrentUser();
-  const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const [showHamburg, setShowHamburg] = useState(false);
+  const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
 
   //if someone resizes disable hamburg menu on large screens
   useEffect(() => {
     setShowHamburg(false);
   }, [upMd]);
+
+  useEffect(() => {
+    const adminCheck = async () => {
+      const isAdmin = await isAdminCheck(currentUser);
+      setIsAdmin(isAdmin);
+    };
+
+    adminCheck();
+  }, [currentUser]);
 
   useEffect(() => {
     //close user profile menu
@@ -48,8 +59,6 @@ function Header() {
     <Box
       sx={{
         position: "relative",
-        padding: { xs: ".5em 1em", md: ".5em 3em" },
-        width: "90%",
       }}
     >
       {upMd ? (
@@ -58,6 +67,7 @@ function Header() {
             height: "10vh",
             display: "flex",
             justifyContent: "space-between",
+            padding: { xs: ".5em 1em", md: ".5em 3em" },
           }}
         >
           <Box
@@ -73,29 +83,46 @@ function Header() {
               <img src={"/Header/logo.svg"} alt="Logo"></img>
             </Box>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
             {currentUser ? (
-              <Box
-                onClick={handleToggleProfileMenu}
-                sx={{
-                  background: "#d9232a",
-                  padding: ".5em 1.25em",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
-                  "&:hover": {
-                    background: "#c7161d",
-                  },
-                  transition: "background 150ms ease-in",
-                }}
-              >
-                <Typography sx={{ color: "white" }}>
-                  Hello{" "}
-                  {currentUser.displayName
-                    ? currentUser.displayName.split(" ")[0]
-                    : "User"}{" "}
-                </Typography>
-              </Box>
+              <>
+                <Box
+                  onClick={handleToggleProfileMenu}
+                  sx={{
+                    background: "#d9232a",
+                    padding: ".5em 1.25em",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                    boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                    "&:hover": {
+                      background: "#c7161d",
+                    },
+                    transition: "background 150ms ease-in",
+                  }}
+                >
+                  <Typography sx={{ color: "white" }}>
+                    Hello{" "}
+                    {currentUser.displayName
+                      ? currentUser.displayName.split(" ")[0]
+                      : "User"}{" "}
+                  </Typography>
+                </Box>
+                {isAdmin && (
+                  <Box
+                    sx={{
+                      border: "2px solid gray",
+                      padding: ".5em 1em",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Link href="https://pb-admin-khaki.vercel.app/">
+                      <Typography sx={{ color: "#1e1e1e" }}>
+                        Admin Panel
+                      </Typography>
+                    </Link>
+                  </Box>
+                )}
+              </>
             ) : (
               <Link href="/register">
                 <Box
@@ -131,6 +158,7 @@ function Header() {
             height: "10vh",
             display: "flex",
             justifyContent: "space-between",
+            padding: { xs: ".5em 1em", md: ".5em 3em" },
           }}
         >
           <Box

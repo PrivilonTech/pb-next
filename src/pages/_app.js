@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { Toaster } from "react-hot-toast";
 
 import "@/styles/globals.css";
@@ -32,7 +32,11 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider theme={fontTheme}>
         <Toaster />
         {/* <Loading> */}
-        {!showLayout && <Header />}
+        {!showLayout && (
+          // <Box sx={{ width: "100vw" }}>
+          <Header />
+          // </Box>
+        )}
         {upMd && !showLayout && <Pane path={firstString} />}
 
         <Component {...pageProps} />

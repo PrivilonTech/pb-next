@@ -35,6 +35,7 @@ export default function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -80,6 +81,7 @@ export default function Register() {
         //create new user in the database
         await createNewUser({
           uid: userCredential.user.uid,
+          displayName: name,
           email: userCredential.user.email,
           role: "user",
           subscribed: false,
@@ -173,6 +175,7 @@ export default function Register() {
         if (!existingUser) {
           await createNewUser({
             uid: auth.currentUser.uid,
+            displayName: name,
             phone: `+${phoneNumber}`,
             role: "user",
             subscribed: false,
@@ -239,6 +242,18 @@ export default function Register() {
                 : "Create your account"
             }
           />
+          {!isLoginPage && (
+            <Box
+              sx={{ display: "flex", flexDirection: "column", gap: ".25em" }}
+            >
+              <Typography sx={{ color: "#2d333a", fontSize: ".95rem" }}>
+                {!showOTP && "Name"}
+              </Typography>
+              {!showOTP && (
+                <Input type="text" placeholder="Name" setState={setName} />
+              )}
+            </Box>
+          )}
           <Box sx={{ display: "flex", flexDirection: "column", gap: ".25em" }}>
             <Typography sx={{ color: "#2d333a", fontSize: ".95rem" }}>
               {showOTP ? "OTP" : isMobilePage ? "Mobile" : "Email"}

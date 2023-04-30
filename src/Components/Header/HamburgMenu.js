@@ -4,6 +4,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 import Pane from "../Pane/Pane";
 import { useRouter } from "next/router";
+import UserInfo from "./UserInfo";
 
 export default function HamburgMenu({
   setShowHamburg,
@@ -30,13 +31,13 @@ export default function HamburgMenu({
   return (
     <Box
       sx={{
-        height: "102vh",
-        width: "102%",
+        height: "100svh",
+        width: "105vw",
         display: "flex",
         position: "absolute",
         top: "-10px",
         left: "-15px",
-        background: "#e7ecff",
+        background: "white",
         justifyContent: "space-around",
         zIndex: "99999",
         alignItems: "center",
@@ -56,23 +57,16 @@ export default function HamburgMenu({
           position: "relative",
         }}
       >
-        <Box
+        <KeyboardArrowUpIcon
           sx={{
             position: "absolute",
-            right: "20px",
-            top: "25px",
-            padding: ".2em .5em",
-            borderRadius: "100%",
-            border: "2px solid #d5d9eb",
-            boxShadow:
-              " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+            right: "25px",
+            top: "35px",
+            fontSize: 25,
+            color: "gray",
           }}
-        >
-          <KeyboardArrowUpIcon
-            sx={{ fontSize: 30, color: "#1e1e1e" }}
-            onClick={() => setShowHamburg(false)}
-          />
-        </Box>
+          onClick={() => setShowHamburg(false)}
+        />
         <Box
           sx={{
             height: "80%",
@@ -80,6 +74,9 @@ export default function HamburgMenu({
             marginTop: "4em",
           }}
         >
+          <Box>
+            <UserInfo />
+          </Box>
           <Pane />
         </Box>
       </Box>

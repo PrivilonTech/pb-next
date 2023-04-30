@@ -32,7 +32,7 @@ export default function Graph({ data }) {
     <Box
       sx={{
         marginLeft: { md: "1em" },
-        height: { xs: "60vh", md: "100%" },
+        height: { xs: "60vh", md: "60vh" },
         width: "100%",
         display: "flex",
         justifyContent: "center",

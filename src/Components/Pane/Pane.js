@@ -89,6 +89,7 @@ function Pane({ path }) {
             height: "100%",
             display: "flex",
             justifyContent: "center",
+            gap: 0,
             flexWrap: "wrap",
           }}
         >
@@ -101,7 +102,7 @@ function Pane({ path }) {
                   textDecoration: "none",
                   color: "#000",
                   height: "20%",
-                  width: "35%",
+                  width: { xs: "20%", sm: "25%" },
                   padding: ".25em",
                   border:
                     active === res.link ? "1px solid red" : "2px solid #d5d9eb",
@@ -120,7 +121,13 @@ function Pane({ path }) {
                 >
                   <Image height={45} width={45} src={res.icon} alt={res.txt} />
                 </Box>
-                <Typography sx={{ margin: "auto", textAlign: "center" }}>
+                <Typography
+                  sx={{
+                    margin: "auto",
+                    textAlign: "center",
+                    fontSize: ".75rem",
+                  }}
+                >
                   {res.txt}
                 </Typography>
               </Link>

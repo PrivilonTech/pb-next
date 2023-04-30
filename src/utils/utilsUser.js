@@ -98,6 +98,10 @@ export const getUserByUID = async (uid) => {
 };
 
 export const isAdminCheck = async (userLoggedIn) => {
+  if (!userLoggedIn) {
+    return null;
+  }
+
   const existingUser = await getUserByUID(userLoggedIn?.uid);
 
   if (existingUser.role === "admin") {

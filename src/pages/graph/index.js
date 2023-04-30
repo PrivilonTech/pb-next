@@ -13,12 +13,10 @@ function index({ response }) {
 
   const currentYear = currentDate.getFullYear();
   const [year, setYear] = useState(currentYear);
+  const getYearArray = yearArray();
 
   const [category, setCategory] = useState(graphData["PP"][0]);
   const [cities, setCities] = useState(Object.keys(response.data));
-  // const [selectedCity, setSelectedCity] = useState(cities[0]);
-
-  const getYearArray = yearArray();
 
   const graphStructureOne = {
     labels: response.data[cities[0]]?.date,
@@ -49,15 +47,9 @@ function index({ response }) {
   const [data, setData] = useState(graphStructureOne);
   const [secondaryData, setSecondaryData] = useState(graphStructureTwo);
 
-  // console.log(data, secondaryData);
-
-  // useEffect(() => {
-  //   setData(graphStructureOne);
-  // }, [selectedCity]);
-
   //year and category change
   useEffect(() => {
-    getHistoricalData("Lami", year, setData, setSecondaryData);
+    getHistoricalData("ppRaffia", year, setData, setSecondaryData);
   }, [year, category]);
 
   const BodyContent = (
@@ -98,10 +90,6 @@ function index({ response }) {
         secondaryDropdownData={getYearArray}
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
-        // thirdDropdown={cities.length > 0}
-        // thirdDropdownData={cities}
-        // thirdSelectedOption={selectedCity}
-        // thirdSetSelectionOption={setSelectedCity}
       />
     </>
   );
@@ -115,7 +103,7 @@ export const getServerSideProps = async () => {
   const currentYear = currentDate.getFullYear();
 
   const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=Lami&year=${currentYear}`
+    `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=ppRaffia&year=${currentYear}`
   );
   return {
     props: {
