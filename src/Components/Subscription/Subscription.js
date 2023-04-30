@@ -16,14 +16,15 @@ export default function Subscription() {
           marginBottom: "4em",
         }}
       >
-        <Typography sx={{ fontSize: "2.75rem" }}>Choose your plan</Typography>
+        <Typography sx={{ fontSize: "2.75rem", fontWeight: "500" }}>
+          Choose your plan
+        </Typography>
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column", lg: "row" },
             gap: "1em",
             margin: "2em",
-            // width: "100%",
           }}
         >
           {subscriptionList.map((subscriptionItem) => (

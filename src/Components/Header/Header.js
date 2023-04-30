@@ -21,7 +21,6 @@ function Header() {
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
 
-  const targetRef = useRef(null);
   const currentUser = useCurrentUser();
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
 
@@ -50,6 +49,7 @@ function Header() {
       sx={{
         position: "relative",
         padding: { xs: ".5em 1em", md: ".5em 3em" },
+        width: "90%",
       }}
     >
       {upMd ? (
@@ -160,10 +160,7 @@ function Header() {
         />
       }
       {isUserProfileModalOpen && (
-        <ProfileMenu
-          setIsUserProfileModalOpen={setIsUserProfileModalOpen}
-          targetRef={targetRef}
-        />
+        <ProfileMenu setIsUserProfileModalOpen={setIsUserProfileModalOpen} />
       )}
     </Box>
   );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { categorizeData } from "./structureData";
+import { categorizeData, structureDataGlobal } from "./structureData";
 
 //crude
 export const getCrudeData = async (name, country, selectedOption, setData) => {
@@ -47,30 +47,39 @@ export const getGlobalData = async (country, month, year, setData) => {
     `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${country}&month=${month}&year=${year}`
   );
 
-  setData(response.data.data.data);
+  setData(structureDataGlobal(response.data.data.data));
 };
 
 //crude/historicaldata
 export const getHistoricalData = async (
   polymer,
   year,
-  setData,
-  selectedOption
+  selectedOption,
+  setData
 ) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=${polymer}&year=${year}`
   );
 
   setData({
-    labels: response.data[selectedOption].date,
+    labels: response.data.data[selectedOption].date,
     datasets: [
       {
         label: selectedOption,
-        data: response.data[selectedOption].value,
+        data: response.data.data[selectedOption].value,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],
         borderWidth: 2,
       },
     ],
   });
+};
+
+//global
+export const getTextData = async (country, month, year, setData) => {
+  const response = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/blogs?type=${country}&year=${year}&month=${month}`
+  );
+
+  setData(response.data.data);
 };

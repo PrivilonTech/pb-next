@@ -9,7 +9,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import firebaseApp from "@/firebase/clientApp";
 import ProfileItem from "./ProfileItem";
 
-export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
+export default function ProfileMenu({ setIsUserProfileModalOpen }) {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
 
@@ -25,7 +25,6 @@ export default function ProfileMenu({ setIsUserProfileModalOpen, targetRef }) {
 
   return (
     <Box
-      ref={targetRef}
       sx={{
         width: { xs: "102%", md: "100%" },
         position: "absolute",
