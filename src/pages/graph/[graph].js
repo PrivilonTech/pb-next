@@ -7,6 +7,8 @@ import { getHistoricalData } from "@/utils/apiCalls";
 import { yearArray } from "@/utils/dateArray";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { ClipLoader } from "react-spinners";
 
 export default function GraphData() {
   const router = useRouter();
@@ -28,18 +30,19 @@ export default function GraphData() {
 
   const [data, setData] = useState({});
   const [secondaryData, setSecondaryData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getHistoricalData(category, year, setData, setSecondaryData);
+    getHistoricalData(category, year, setData, setSecondaryData, setIsLoading);
   }, []);
 
   useEffect(() => {
-    getHistoricalData(category, year, setData, setSecondaryData);
+    getHistoricalData(category, year, setData, setSecondaryData, setIsLoading);
   }, [year, category]);
 
   const BodyContent = (
     <>
-      {data.labels ? (
+      {data?.labels ? (
         <Box
           sx={{
             display: "flex",
@@ -52,8 +55,15 @@ export default function GraphData() {
           <Graph data={secondaryData} />
         </Box>
       ) : (
-        <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
-          <Typography>No Data</Typography>
+        <Box
+          sx={{
+            display: "grid",
+            placeItems: "center",
+            width: "100%",
+            height: "50vh",
+          }}
+        >
+          {isLoading ? <ClipLoader color="#C31815" size={30} /> : <EmptyData />}
         </Box>
       )}
     </>

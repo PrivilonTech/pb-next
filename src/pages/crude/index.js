@@ -1,25 +1,42 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import crudeList from "../../menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
 import { getCrudeData } from "@/utils/apiCalls";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { Box } from "@mui/material";
+import { ClipLoader } from "react-spinners";
 
-function index({ response }) {
+function index() {
   const [selectedOption, setSelectedOption] = useState("Monthly");
   const [data, setData] = useState({});
 
+  const [isLoading, setIsLoading] = useState(true);
+
   //on state change
   useEffect(() => {
-    getCrudeData("Naphtha", "China", selectedOption, setData);
+    getCrudeData("Naphtha", "China", selectedOption, setData, setIsLoading);
   }, [selectedOption]);
-
-  console.log(data);
 
   const BodyContent = (
     <>
-      <Graph data={data} />
+      <>
+        {isLoading ? (
+          <Box
+            sx={{
+              display: "grid",
+              placeItems: "center",
+              width: "100%",
+              height: "50vh",
+            }}
+          >
+            <ClipLoader color="#C31815" size={30} />
+          </Box>
+        ) : (
+          <Graph data={data} />
+        )}
+      </>
     </>
   );
 
@@ -41,14 +58,3 @@ function index({ response }) {
 }
 
 export default index;
-
-export const getServerSideProps = async () => {
-  const res = await axios.get(
-    "https://polymerbazar-be.onrender.com/api/feedstock?name=Naphtha&country=China&type=Monthly"
-  );
-  return {
-    props: {
-      response: res.data,
-    },
-  };
-};

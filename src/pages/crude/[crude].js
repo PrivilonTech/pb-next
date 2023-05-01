@@ -1,28 +1,47 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
 
 import crudeList from "@/menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
 import { getCrudeData } from "@/utils/apiCalls";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { ClipLoader } from "react-spinners";
+import { Box } from "@mui/material";
 
-function Crude({ response }) {
+function Crude() {
   const router = useRouter();
   const path = router.query.crude;
 
   const [selectedOption, setSelectedOption] = useState("Monthly");
 
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  //on state change
   useEffect(() => {
-    getCrudeData(path, "China", selectedOption, setData);
-  }, [selectedOption]);
+    if (path) {
+      getCrudeData(path, "China", selectedOption, setData, setIsLoading);
+    }
+  }, [selectedOption, path]);
 
   const BodyContent = (
     <>
-      <Graph data={data} />
+      <>
+        {isLoading ? (
+          <Box
+            sx={{
+              display: "grid",
+              placeItems: "center",
+              width: "100%",
+              height: "50vh",
+            }}
+          >
+            <ClipLoader color="#C31815" size={30} />
+          </Box>
+        ) : (
+          <Graph data={data} />
+        )}
+      </>
     </>
   );
 
@@ -44,14 +63,3 @@ function Crude({ response }) {
 }
 
 export default Crude;
-
-export const getServerSideProps = async ({ query }) => {
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/feedstock?name=${query.crude}&country=China&type=Monthly`
-  );
-  return {
-    props: {
-      response: res.data,
-    },
-  };
-};

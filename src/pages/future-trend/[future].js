@@ -9,6 +9,8 @@ import BlogContent from "@/Components/PaneContent/BlogContent";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import futureTrendList from "@/menuLists/futureTrendList";
 import { getTextData } from "@/utils/apiCalls";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { ClipLoader } from "react-spinners";
 
 export default function FuturePage({ response }) {
   const router = useRouter();
@@ -16,6 +18,7 @@ export default function FuturePage({ response }) {
 
   const [data, setData] = useState(response.data);
   const [dataChange, setDataChange] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
@@ -27,7 +30,7 @@ export default function FuturePage({ response }) {
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
 
   useEffect(() => {
-    getTextData(path, monthIndex, year, setData);
+    getTextData(path, monthIndex, year, setData, setIsLoading);
   }, [dataChange, month, year]);
 
   const BodyContent = (
@@ -40,10 +43,21 @@ export default function FuturePage({ response }) {
       }}
     >
       <AdminTextUpload path={path} setDataChange={setDataChange} />
-      {data.length > 0 ? (
+      {isLoading ? (
+        <Box
+          sx={{
+            display: "grid",
+            placeItems: "center",
+            width: "100%",
+            height: "50vh",
+          }}
+        >
+          <ClipLoader color="#C31815" size={30} />
+        </Box>
+      ) : data.length > 0 ? (
         <BlogContent data={data} />
       ) : (
-        <Typography sx={{ textAlign: "center" }}>No data yet</Typography>
+        <EmptyData />
       )}
     </Box>
   );

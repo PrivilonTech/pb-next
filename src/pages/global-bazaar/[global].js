@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
@@ -10,6 +10,8 @@ import { getGlobalData, getTextData } from "@/utils/apiCalls";
 import DataContainer from "@/Components/PaneContent/DataContainer";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { ClipLoader } from "react-spinners";
 
 function Global({ response }) {
   const router = useRouter();
@@ -27,16 +29,17 @@ function Global({ response }) {
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
 
   const [dataChange, setDataChange] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (path !== "china") {
-      getGlobalData(path, monthIndex, year, setData);
+      getGlobalData(path, monthIndex, year, setData, setIsLoading);
     }
   }, [month, year]);
 
   useEffect(() => {
     if (path === "china") {
-      getTextData(path, monthIndex, year, setData);
+      getTextData(path, monthIndex, year, setData, setIsLoading);
     }
   }, [dataChange, month, year]);
 
@@ -60,31 +63,53 @@ function Global({ response }) {
           }}
         >
           {data.length > 0 ? (
-            data.map((eachData, index) => (
-              <>
-                {eachData.dataKeys.map((dataItem, id) => (
-                  <DataContainer
-                    key={id}
-                    date={data[index].date}
-                    title={dataItem}
-                    polymerSubType={eachData.subKeys[dataItem]}
-                    polymerValue={eachData.subValues[dataItem]}
-                  />
-                ))}
-              </>
-            ))
+            data.map((eachData, index) =>
+              eachData.dataKeys.map((dataItem, id) => (
+                <DataContainer
+                  key={`${index}-${id}`}
+                  date={data[index].date}
+                  title={dataItem}
+                  polymerSubType={eachData.subKeys[dataItem]}
+                  polymerValue={eachData.subValues[dataItem]}
+                />
+              ))
+            )
           ) : (
-            <Typography
-              sx={{ marginTop: ".5em", color: "#575757", fontSize: "1.5rem" }}
+            <Box
+              sx={{
+                display: "grid",
+                placeItems: "center",
+                width: "100%",
+                height: "50vh",
+              }}
             >
-              No Data yet
-            </Typography>
+              {isLoading ? (
+                <ClipLoader color="#C31815" size={30} />
+              ) : (
+                <EmptyData />
+              )}
+            </Box>
           )}
         </Box>
       ) : (
         <>
           <AdminTextUpload path={path} setDataChange={setDataChange} />
-          <BlogContent data={data} />
+          {isLoading ? (
+            <Box
+              sx={{
+                display: "grid",
+                placeItems: "center",
+                width: "100%",
+                height: "50vh",
+              }}
+            >
+              <ClipLoader color="#C31815" size={30} />
+            </Box>
+          ) : data.length > 0 ? (
+            <BlogContent data={data} />
+          ) : (
+            <EmptyData />
+          )}
         </>
       )}
     </Box>

@@ -1,12 +1,17 @@
 import axios from "axios";
-import { categorizeData } from "./structureData";
+import { categorizeData, structureDataGlobal } from "./structureData";
 
 //crude
-export const getCrudeData = async (name, country, selectedOption, setData) => {
+export const getCrudeData = async (
+  name,
+  country,
+  selectedOption,
+  setData,
+  setIsLoading
+) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/feedstock?name=${name}&country=${country}&type=${selectedOption}`
   );
-
   setData({
     labels: response.data.data.key,
     datasets: [
@@ -19,15 +24,18 @@ export const getCrudeData = async (name, country, selectedOption, setData) => {
       },
     ],
   });
+
+  setIsLoading(false);
 };
 
 //citywise/city
-export const getIndianData = async (city, setData) => {
+export const getIndianData = async (city, setData, setIsLoading) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/citywise/${city}`
   );
 
   setData(response.data.data);
+  setIsLoading(false);
 };
 
 //citywise
@@ -43,12 +51,19 @@ export const getCityData = async (setCity, setCityCategory, setCityNames) => {
 };
 
 //global
-export const getGlobalData = async (country, month, year, setData) => {
+export const getGlobalData = async (
+  country,
+  month,
+  year,
+  setData,
+  setLoading
+) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${country}&month=${month}&year=${year}`
   );
 
-  setData(response.data.data.data);
+  setData(structureDataGlobal(response.data.data.data));
+  setLoading(false);
 };
 
 //crude/historicaldata
@@ -56,7 +71,8 @@ export const getHistoricalData = async (
   category,
   year,
   setData,
-  setSecondaryData
+  setSecondaryData,
+  setIsLoading
 ) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=${category}&year=${year}`
@@ -89,13 +105,22 @@ export const getHistoricalData = async (
       },
     ],
   });
+
+  setIsLoading(false);
 };
 
 //global
-export const getTextData = async (country, month, year, setData) => {
+export const getTextData = async (
+  country,
+  month,
+  year,
+  setData,
+  setIsLoading
+) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/blogs?type=${country}&year=${year}&month=${month}`
   );
 
   setData(response.data.data);
+  setIsLoading(false);
 };

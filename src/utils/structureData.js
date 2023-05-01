@@ -3,6 +3,7 @@ export const structureDataGlobal = (data) => {
 
   for (let i = 0; i < data.length; i++) {
     const dataKeys = Object.keys(data[i].data);
+    const date = data[i].date;
     const subKeys = {};
 
     for (let key of dataKeys) {
@@ -15,7 +16,7 @@ export const structureDataGlobal = (data) => {
       subValues[key] = Object.values(data[i].data[key]);
     }
 
-    newData.push({ dataKeys, subKeys, subValues });
+    newData.push({ dataKeys, subKeys, subValues, date });
   }
   return newData;
 };

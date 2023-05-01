@@ -10,11 +10,11 @@ import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import { monthsArray, yearArray } from "@/utils/dateArray";
 import { getGlobalData } from "@/utils/apiCalls";
 import { structureDataGlobal } from "@/utils/structureData";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { ClipLoader } from "react-spinners";
 
 function index({ response }) {
   const currentDate = new Date();
-
-  console.log(response.data);
 
   const getYearArray = yearArray();
   const [data, setData] = useState(response.data.data);
@@ -25,12 +25,11 @@ function index({ response }) {
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(monthsArray[currentMonth]);
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getGlobalData("USA", monthIndex, year, setData);
+    getGlobalData("USA", monthIndex, year, setData, setIsLoading);
   }, [month, year]);
-
-  const modifiedData = structureDataGlobal(data);
 
   const BodyContent = (
     <Box
@@ -50,26 +49,33 @@ function index({ response }) {
           flexWrap: "wrap",
         }}
       >
-        {modifiedData.length > 0 ? (
-          modifiedData.map((eachData, index) => (
-            <>
-              {eachData.dataKeys.map((dataItem, id) => (
-                <DataContainer
-                  key={id}
-                  date={data[index].date}
-                  title={dataItem}
-                  polymerSubType={eachData.subKeys[dataItem]}
-                  polymerValue={eachData.subValues[dataItem]}
-                />
-              ))}
-            </>
-          ))
+        {data.length > 0 ? (
+          data.map((eachData, index) =>
+            eachData.dataKeys.map((dataItem, id) => (
+              <DataContainer
+                key={`${index}-${id}`}
+                date={data[index].date}
+                title={dataItem}
+                polymerSubType={eachData.subKeys[dataItem]}
+                polymerValue={eachData.subValues[dataItem]}
+              />
+            ))
+          )
         ) : (
-          <Typography
-            sx={{ marginTop: "1em", color: "#575757", fontSize: "1.5rem" }}
+          <Box
+            sx={{
+              display: "grid",
+              placeItems: "center",
+              width: "100%",
+              height: "50vh",
+            }}
           >
-            No Data yet
-          </Typography>
+            {isLoading ? (
+              <ClipLoader color="#C31815" size={30} />
+            ) : (
+              <EmptyData />
+            )}
+          </Box>
         )}
       </Box>
     </Box>

@@ -10,6 +10,8 @@ import { structureDataIndian } from "@/utils/structureData";
 import { monthsArray, yearArray } from "@/utils/dateArray";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { ClipLoader } from "react-spinners";
 
 export default function Indian() {
   const router = useRouter();
@@ -17,6 +19,7 @@ export default function Indian() {
 
   const [data, setData] = useState({}); //stores data of a particular city
   const [dataChange, setDataChange] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
@@ -35,10 +38,10 @@ export default function Indian() {
   useEffect(() => {
     if (path === "citywise") {
       getCityData(setCity, setCityCategory, setCityNames);
-      getIndianData("Mumbai", setData);
+      getIndianData("Mumbai", setData, setIsLoading);
     } else {
       // rate revision and rate prediction call
-      getTextData(path, monthIndex, year, setData);
+      getTextData(path, monthIndex, year, setData, setIsLoading);
     }
   }, [path]);
 
@@ -46,13 +49,13 @@ export default function Indian() {
 
   useEffect(() => {
     if (path === "citywise") {
-      getIndianData(cityCategory, setData);
+      getIndianData(cityCategory, setData, setIsLoading);
     }
   }, [cityCategory]);
 
   useEffect(() => {
     if (path !== "citywise") {
-      getTextData(path, monthIndex, year, setData);
+      getTextData(path, monthIndex, year, setData, setIsLoading);
     }
   }, [dataChange, month, year]);
 
@@ -88,10 +91,21 @@ export default function Indian() {
           }}
         >
           <AdminTextUpload path={path} setDataChange={setDataChange} />
-          {data.length > 0 ? (
+          {isLoading ? (
+            <Box
+              sx={{
+                display: "grid",
+                placeItems: "center",
+                width: "100%",
+                height: "50vh",
+              }}
+            >
+              <ClipLoader color="#C31815" size={30} />
+            </Box>
+          ) : data.length > 0 ? (
             <BlogContent data={data} />
           ) : (
-            <Typography sx={{ textAlign: "center" }}>No data yet</Typography>
+            <EmptyData />
           )}
         </Box>
       )}

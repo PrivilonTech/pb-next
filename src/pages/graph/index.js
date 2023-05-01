@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Box } from "@mui/material";
 
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import { graphList, graphData } from "@/menuLists/graphList";
 import { getHistoricalData } from "@/utils/apiCalls";
 import Graph from "@/Components/PaneContent/Graph";
 import { yearArray } from "@/utils/dateArray";
-import { Box, Typography } from "@mui/material";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import { ClipLoader } from "react-spinners";
 
 function index({ response }) {
   const currentDate = new Date();
@@ -46,15 +48,22 @@ function index({ response }) {
 
   const [data, setData] = useState(graphStructureOne);
   const [secondaryData, setSecondaryData] = useState(graphStructureTwo);
+  const [isLoading, setIsLoading] = useState(true);
 
   //year and category change
   useEffect(() => {
-    getHistoricalData("ppRaffia", year, setData, setSecondaryData);
+    getHistoricalData(
+      "ppRaffia",
+      year,
+      setData,
+      setSecondaryData,
+      setIsLoading
+    );
   }, [year, category]);
 
   const BodyContent = (
     <>
-      {data.labels ? (
+      {data?.labels ? (
         <Box
           sx={{
             display: "flex",
@@ -67,8 +76,15 @@ function index({ response }) {
           <Graph data={secondaryData} />
         </Box>
       ) : (
-        <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
-          <Typography>No Data</Typography>
+        <Box
+          sx={{
+            display: "grid",
+            placeItems: "center",
+            width: "100%",
+            height: "50vh",
+          }}
+        >
+          {isLoading ? <ClipLoader color="#C31815" size={30} /> : <EmptyData />}
         </Box>
       )}
     </>
