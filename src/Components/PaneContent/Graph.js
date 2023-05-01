@@ -27,7 +27,7 @@ export default function Graph({ data }) {
               context.mode === "default" &&
               !delayed
             ) {
-              delay = context.dataIndex * 200 + context.datasetIndex * 80;
+              delay = context.dataIndex * 100 + context.datasetIndex * 150;
             }
             return delay;
           },
@@ -40,9 +40,6 @@ export default function Graph({ data }) {
         radius: 3,
         hoverRadius: 5,
         scales: {
-          // y: {
-          //   beginAtZero: true,
-          // },
           x: {
             ticks: {
               display: false,
