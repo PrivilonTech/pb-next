@@ -5,7 +5,7 @@ export default function Video() {
   return (
     <Box
       sx={{
-        width: { xs: "100%", md: "300px" },
+        width: { xs: "100%", md: "350px" },
         display: "flex",
         flexDirection: "column",
         gap: "1.5em",

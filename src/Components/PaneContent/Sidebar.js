@@ -25,7 +25,7 @@ function Sidebar({ path, list, page }) {
               key={id}
               sx={{
                 textDecoration: "none",
-                color: active === res.slug ? "#fff" : "#575757",
+                color: active === res.slug ? "whitesmoke" : "#575757",
                 width: { md: "90%" },
                 background: active === res.slug ? "#D9232A" : "",
                 display: "flex",
@@ -55,7 +55,7 @@ function Sidebar({ path, list, page }) {
                   padding: "5px 0",
                   px: { xs: "15px", md: "" },
                   fontSize: { xs: ".9rem", md: "1rem" },
-                  fontWeight: "600",
+                  fontWeight: "500",
                 }}
               >
                 {res.section}
