@@ -25,7 +25,7 @@ export default function SocialLogin({
         await createNewUser({
           uid: result.user.uid,
           email: result.user.email,
-          name: result.user.displayName,
+          displayName: result.user.displayName,
           role: "user",
           subscribed: "false",
           createdAt: serverTimestamp(),

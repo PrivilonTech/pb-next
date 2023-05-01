@@ -47,26 +47,75 @@ export default function AdminTextUpload({ path, setDataChange }) {
     checkAdmin();
   }, [currentUser, setIsAdmin]);
 
-  console.log(body);
+  const [backTickclick, setBackTickClick] = useState(false);
+  const [headingClick, setHeadingClick] = useState(false);
+  const [boldClick, setBoldClick] = useState(false);
+  const [bulletClick, setBulletClick] = useState(false);
 
-  const backTick = "``";
-  const [click, setClick] = useState(false);
   const textAreaRef = useRef(null);
 
-  const handleClick = () => {
+  //highlight
+  const handleHightlight = () => {
     setBody(body + "`" + "`");
-    setClick((prev) => !prev);
+    setBackTickClick((prev) => !prev);
   };
 
+  //bold
+  const handleBulletClick = () => {
+    setBody(body + "*  ");
+    setBulletClick((prev) => !prev);
+  };
+
+  //bold
+  const handleBold = () => {
+    setBody(body + "**" + "**");
+    setBoldClick((prev) => !prev);
+  };
+
+  //heading
+  const handleHeading = () => {
+    setBody(body + "# ");
+    setHeadingClick((prev) => !prev);
+  };
+
+  //highlight useEffect
   useEffect(() => {
     const textarea = textAreaRef.current;
     if (textarea) {
-      console.log(body.length);
       textarea.selectionStart = body.length;
       textarea.selectionEnd = body.length - 1;
       textAreaRef.current.focus();
     }
-  }, [click]);
+  }, [backTickclick]);
+
+  //bullet useEffect
+  useEffect(() => {
+    const textarea = textAreaRef.current;
+    if (textarea) {
+      textarea.selectionStart = body.length;
+      textarea.selectionEnd = body.length - 1;
+      textAreaRef.current.focus();
+    }
+  }, [bulletClick]);
+
+  //bold useEffect
+  useEffect(() => {
+    const textarea = textAreaRef.current;
+    if (textarea) {
+      textarea.selectionStart = body.length;
+      textarea.selectionEnd = body.length - 2;
+      textAreaRef.current.focus();
+    }
+  }, [boldClick]);
+
+  //heading useEffect
+  useEffect(() => {
+    const textarea = textAreaRef.current;
+    if (textarea) {
+      textarea.selectionStart = body.length;
+      textAreaRef.current.focus();
+    }
+  }, [headingClick]);
 
   const handleSendData = async () => {
     if (!title || !body || !bodyDate) {
@@ -124,7 +173,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "3em",
+            gap: "2em",
             width: "100%",
           }}
         >
@@ -139,19 +188,29 @@ export default function AdminTextUpload({ path, setDataChange }) {
               <Typography sx={{ fontSize: "2rem" }}>Title</Typography>
               <Input type="text" placeholder="" setState={setTitle} />
             </Box>
-            {/* <select
-              value={selectedOption}
-              onChange={handleOptionChange}
-              className="dropdown-select"
+            <Box
+              sx={{
+                marginTop: "1em",
+                display: "flex",
+                justifyContent: "space-around",
+                width: "90%",
+              }}
             >
-              {options.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-                     
-            </select> */}
-            <button onClick={handleClick}>Heading</button>
+              <Button label="Heading" small outline onClick={handleHeading} />
+              <Button label="Bold" small outline onClick={handleBold} />
+              <Button
+                label="Highlight"
+                small
+                outline
+                onClick={handleHightlight}
+              />
+              <Button
+                label="Bullet"
+                small
+                outline
+                onClick={handleBulletClick}
+              />
+            </Box>
             <Box sx={{ display: "flex", flexDirection: "column", gap: ".5em" }}>
               <Typography sx={{ fontSize: "2rem" }}>Data</Typography>
               <textarea

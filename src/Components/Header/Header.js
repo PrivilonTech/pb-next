@@ -12,8 +12,6 @@ import firebaseApp from "@/firebase/clientApp";
 import Link from "next/link";
 import ProfileMenu from "./ProfileMenu";
 import HamburgMenu from "./HamburgMenu";
-import useCurrentUser from "@/hooks/useCurrentUser";
-import { isAdminCheck } from "@/utils/utilsUser";
 import { ModalContext } from "../HomePage/ModalProvider";
 
 function Header() {
@@ -95,7 +93,7 @@ function Header() {
                     {user.displayName ? user.displayName.split(" ")[0] : "User"}{" "}
                   </Typography>
                 </Box>
-                {user?.subscribed && (
+                {user?.role === "admin" && (
                   <Box
                     sx={{
                       border: "2px solid gray",
