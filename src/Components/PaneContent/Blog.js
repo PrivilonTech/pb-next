@@ -8,7 +8,7 @@ export default function Blog({ data }) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: { xs: "100%", md: "40%" },
+        width: { xs: "100%", md: "100%" },
         minHeight: "250px",
         borderRadius: "10px",
         background: "#f9e8e8",
@@ -21,7 +21,7 @@ export default function Blog({ data }) {
           {data.title}
         </Typography>
       </Box>
-      <Box sx={{ padding: "1em .5em" }}>
+      <Box sx={{ padding: "1em 2em" }}>
         <MarkdownView markdown={data.blogContent} />
       </Box>
     </Box>
