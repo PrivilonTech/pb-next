@@ -9,18 +9,29 @@ export default function TesterFooter() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: { xs: "center", md: "flex-start", lg: "center" },
-          gap: { xs: "3em 6em", md: "2em 7em", lg: "2em 10em" },
-          flexWrap: "wrap",
+          justifyContent: "center",
+          // gap: { xs: "5em", lg: "8em" },
           margin: { xs: "4em 2em", md: "4em 8em" },
+          flexDirection: { xs: "column", sm: "row" },
         }}
       >
         {footerList.map((footerColumn) => (
           <Box
             key={footerColumn.id}
-            sx={{ display: "flex", flexDirection: "column", gap: "1em" }}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "1em",
+            }}
           >
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "1em" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1em",
+                width: "200px",
+              }}
+            >
               <Typography
                 sx={{
                   color: "#657786",
@@ -40,6 +51,7 @@ export default function TesterFooter() {
                       color: "#878997",
                       fontSize: "1rem",
                       cursor: "pointer",
+                      width: "100%",
                     }}
                   >
                     {listItem.name}

@@ -2,13 +2,20 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { ClipLoader } from "react-spinners";
 
-export default function Button({ onClick, label, isLoading, small, outline }) {
+export default function Button({
+  onClick,
+  label,
+  isLoading,
+  small,
+  outline,
+  noShadow,
+}) {
   return (
     <button
       onClick={onClick}
       style={{
         background: outline ? "white" : "#C31815",
-        boxShadow: "0px 8px 22px rgba(74, 58, 255, 0.26)",
+        boxShadow: !noShadow && "0px 8px 22px rgba(74, 58, 255, 0.26)",
         borderRadius: "7px",
         color: outline ? "black" : "white",
         border: outline ? "2px solid #d5d9eb" : "none",

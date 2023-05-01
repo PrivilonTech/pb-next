@@ -13,6 +13,8 @@ export default function Sidebar() {
         margin: "1em 0",
         display: "flex",
         justifyContent: "space-between",
+        flexDirection: { xs: "column", lg: "row" },
+        gap: { xs: "2em", lg: "" },
       }}
     >
       <Box sx={{ float: "left" }}>
@@ -26,7 +28,14 @@ export default function Sidebar() {
           oneParagraph oneParagraph oneParagraph oneParagraph one
         </Typography>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "2em" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row", lg: "column" },
+          justifyContent: { xs: "center", lg: "" },
+          gap: "2em",
+        }}
+      >
         <Box
           sx={{
             float: "right",

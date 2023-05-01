@@ -10,6 +10,7 @@ export default function SocialLinks() {
         justifyContent: "center",
         flexWrap: "wrap",
         gap: "1em",
+        marginBottom: "1em",
       }}
     >
       {socialIcons.map((socialItem) => (

@@ -81,7 +81,7 @@ export default function Footer() {
             flexDirection: { xs: "column", md: "raw" },
           }}
         >
-          <Box sx={{ width: { xs: "100%", md: "61%" } }}>
+          <Box sx={{ width: "100%" }}>
             <Typography
               sx={{
                 marginTop: "20px",
@@ -95,7 +95,6 @@ export default function Footer() {
               2021 reserved.
             </Typography>
           </Box>
-          <Box sx={{ width: { xs: "100%", md: "40%" } }}></Box>
         </Box>
       </Box>
     </>

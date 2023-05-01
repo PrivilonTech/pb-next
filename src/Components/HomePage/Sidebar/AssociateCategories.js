@@ -7,8 +7,7 @@ export default function AssociateCategories() {
   return (
     <Box
       sx={{
-        width: "300px",
-        padding: "1em",
+        width: { xs: "100%", lg: "300px" },
         display: "flex",
         flexDirection: "column",
         gap: "1.5em",
@@ -20,6 +19,7 @@ export default function AssociateCategories() {
           textTransform: "uppercase",
           textAlign: "center",
           borderBottom: "1px solid #dee2e6",
+          margin: "1em",
         }}
       >
         Associate Categories

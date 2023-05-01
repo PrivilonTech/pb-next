@@ -32,10 +32,20 @@ function Sidebar({ path, list, page }) {
                 margin: { xs: "10px", md: "10px 0" },
 
                 border:
-                  active === res.slug ? "2px solid #D9232A" : "2px solid #000",
+                  active === res.slug ? "2px solid #D9232A" : "2px solid gray",
                 borderRadius: { xs: "20px", md: "0px" },
                 borderTopLeftRadius: { md: "20px" },
                 borderBottomLeftRadius: { md: "20px" },
+
+                "&:hover": {
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+                },
+                transition: "boxShadow 150ms ease-in",
+                boxShadow:
+                  active === res.slug
+                    ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+                    : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
               }}
             >
               <Typography

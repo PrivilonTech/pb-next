@@ -25,12 +25,15 @@ export default function DropDownItem({
   return (
     <Box
       sx={{
-        width: { xs: "100px", md: "200px" },
+        width: { xs: "100px", md: "100px" },
         position: "absolute",
         left: { sm: "0", md: "30px" },
         marginTop: "5px",
-        borderRadius: "7px",
+        borderRadius: "10px",
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        background: "#e7e4e4",
+        boxShadow: "8px 8px 16px #c2c0c0, -8px -8px 16px #ffffff",
+        overflow: "hidden",
       }}
     >
       {data.map((option, index) => (
@@ -39,7 +42,7 @@ export default function DropDownItem({
           sx={{
             padding: ".5em 1em",
             overflow: "hidden",
-            borderBottom: "1px solid gray",
+            borderTop: "1px solid #e3c0c0",
             background: selectedOption === option ? "#c31815" : "#dfdfdf",
             cursor: "pointer",
           }}

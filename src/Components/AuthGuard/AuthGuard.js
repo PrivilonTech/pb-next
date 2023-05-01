@@ -10,7 +10,7 @@ export default function AuthGuard({ children }) {
 
   const currentUser = useCurrentUser();
 
-  const { user, setUser } = useContext(ModalContext);
+  const { setUser } = useContext(ModalContext);
 
   useEffect(() => {
     const getUserInfo = async () => {

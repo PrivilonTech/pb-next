@@ -196,18 +196,32 @@ export default function AdminTextUpload({ path, setDataChange }) {
                 width: "90%",
               }}
             >
-              <Button label="Heading" small outline onClick={handleHeading} />
-              <Button label="Bold" small outline onClick={handleBold} />
+              <Button
+                label="Heading"
+                small
+                outline
+                noShadow
+                onClick={handleHeading}
+              />
+              <Button
+                label="Bold"
+                small
+                outline
+                noShadow
+                onClick={handleBold}
+              />
               <Button
                 label="Highlight"
                 small
                 outline
+                noShadow
                 onClick={handleHightlight}
               />
               <Button
                 label="Bullet"
                 small
                 outline
+                noShadow
                 onClick={handleBulletClick}
               />
             </Box>
@@ -233,7 +247,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
               ></textarea>
             </Box>
             <Box sx={{ display: "flex", flexDirection: "column", gap: ".5em" }}>
-              <Typography sx={{ fontSize: "2rem" }}>Calender</Typography>
+              <Typography sx={{ fontSize: "2rem" }}>Calendar</Typography>
               <input
                 type="date"
                 value={bodyDate}
@@ -257,6 +271,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
               onClick={() => setAdminPanel(false)}
               loading={isLoading}
               outline
+              noShadow
             />
             <Button
               label="Submit"

@@ -41,8 +41,8 @@ export default function App({ Component, pageProps }) {
             {upMd && !showLayout && <Pane path={firstString} />}
 
             <Component {...pageProps} />
-            {/* {!showLayout && <Footer />} */}
-            {!showLayout && <TesterFooter />}
+            {!showLayout && <Footer />}
+            {/* {!showLayout && <TesterFooter />} */}
           </ThemeProvider>
         </AuthGuard>
       </ModalProvider>

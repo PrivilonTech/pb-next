@@ -39,17 +39,12 @@ function Pane({ path }) {
                   color: "#000",
                   height: "90%",
                   width: "10%",
-                  border:
-                    active === res.link
-                      ? "3px solid #d6232b"
-                      : "1px solid #d5d9eb",
+                  border: "1px solid #d5d9eb",
                   margin: "auto",
                   borderRadius: "20px",
                   display: "flex",
                   flexDirection: "column",
                   padding: ".5em",
-                  boxShadow:
-                    "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
                   "&:hover": {
                     boxShadow:
                       "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
@@ -57,6 +52,12 @@ function Pane({ path }) {
                   },
                   transition:
                     "boxShadow 150ms ease-in, transform 150ms ease-in",
+                  background: "white",
+                  transform: active === res.link ? "scale(1.05)" : "scale(1)",
+                  boxShadow:
+                    active === res.link
+                      ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+                      : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
                 }}
               >
                 <Box
