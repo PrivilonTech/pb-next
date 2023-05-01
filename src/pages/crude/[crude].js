@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import crudeList from "@/menuLists/crudeList";
+import { crudeList, crudeStructure } from "@/menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
 import { getCrudeData } from "@/utils/apiCalls";
-import EmptyData from "@/Components/PaneContent/EmptyData";
 import { ClipLoader } from "react-spinners";
 import { Box } from "@mui/material";
+import { structureFeedstockData } from "@/utils/structureData";
 
 function Crude() {
   const router = useRouter();
@@ -17,12 +17,30 @@ function Crude() {
 
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const { displayValues, callValues } = structureFeedstockData(
+    crudeStructure,
+    path
+  );
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   useEffect(() => {
     if (path) {
-      getCrudeData(path, "China", selectedOption, setData, setIsLoading);
+      setSelectedCountry(displayValues[0]);
     }
-  }, [selectedOption, path]);
+  }, [path]);
+
+  useEffect(() => {
+    if (path) {
+      getCrudeData(
+        path,
+        callValues[displayValues.indexOf(selectedCountry)],
+        selectedOption,
+        setData,
+        setIsLoading,
+        selectedCountry
+      );
+    }
+  }, [selectedOption, path, selectedCountry]);
 
   const BodyContent = (
     <>
@@ -53,8 +71,12 @@ function Crude() {
         page="crude"
         path={path}
         mainContent={BodyContent}
+        dropdown={path}
+        dropdownData={displayValues}
+        selectedOption={selectedCountry}
+        setSelectedOption={setSelectedCountry}
         secondaryDropdown
-        secondaryDropdownData={["Monthly", "Yearly"]}
+        secondaryDropdownData={["Monthly", "Yearly", "Weekly"]}
         secondarySelectedOption={selectedOption}
         secondarySetSelectedOption={setSelectedOption}
       />

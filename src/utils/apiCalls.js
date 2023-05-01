@@ -7,16 +7,18 @@ export const getCrudeData = async (
   country,
   selectedOption,
   setData,
-  setIsLoading
+  setIsLoading,
+  selectedCountry
 ) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/feedstock?name=${name}&country=${country}&type=${selectedOption}`
   );
+
   setData({
     labels: response.data.data.key,
     datasets: [
       {
-        label: name,
+        label: selectedCountry,
         data: response.data.data.value,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],

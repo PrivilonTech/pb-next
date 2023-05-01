@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from "react";
 
-import crudeList from "../../menuLists/crudeList";
+import { crudeList, crudeStructure } from "../../menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
 import { getCrudeData } from "@/utils/apiCalls";
-import EmptyData from "@/Components/PaneContent/EmptyData";
 import { Box } from "@mui/material";
 import { ClipLoader } from "react-spinners";
+import { structureFeedstockData } from "@/utils/structureData";
 
 function index() {
   const [selectedOption, setSelectedOption] = useState("Monthly");
   const [data, setData] = useState({});
+  const { displayValues, callValues } = structureFeedstockData(
+    crudeStructure,
+    "Naphtha"
+  );
 
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCountry, setSelectedCountry] = useState(displayValues[0]);
 
-  //on state change
   useEffect(() => {
-    getCrudeData("Naphtha", "China", selectedOption, setData, setIsLoading);
-  }, [selectedOption]);
+    getCrudeData(
+      "Naphtha",
+      callValues[displayValues.indexOf(selectedCountry)],
+      selectedOption,
+      setData,
+      setIsLoading,
+      selectedCountry
+    );
+  }, [selectedOption, selectedCountry]);
 
   const BodyContent = (
     <>
@@ -48,8 +59,12 @@ function index() {
         page="crude"
         path="Naphtha"
         mainContent={BodyContent}
+        dropdown
+        dropdownData={displayValues}
+        selectedOption={selectedCountry}
+        setSelectedOption={setSelectedCountry}
         secondaryDropdown
-        secondaryDropdownData={["Monthly", "Yearly"]}
+        secondaryDropdownData={["Monthly", "Yearly", "Weekly"]}
         secondarySelectedOption={selectedOption}
         secondarySetSelectedOption={setSelectedOption}
       />

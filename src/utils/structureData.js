@@ -43,3 +43,17 @@ export const categorizeData = (data) => {
   });
   return category;
 };
+
+export const structureFeedstockData = (crudeStructure, path) => {
+  const displayValues = [];
+  const callValues = [];
+
+  if (crudeStructure[path]) {
+    crudeStructure[path].forEach((item) => {
+      displayValues.push(item.display);
+      callValues.push(item.call);
+    });
+  }
+
+  return { displayValues, callValues };
+};
