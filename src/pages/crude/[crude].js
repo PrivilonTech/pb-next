@@ -8,12 +8,13 @@ import { getCrudeData } from "@/utils/apiCalls";
 import { ClipLoader } from "react-spinners";
 import { Box } from "@mui/material";
 import { structureFeedstockData } from "@/utils/structureData";
+import Periodic from "@/Components/PaneContent/Periodic";
 
 function Crude() {
   const router = useRouter();
   const path = router.query.crude;
 
-  const [selectedOption, setSelectedOption] = useState("Monthly");
+  const [periodicTime, setPeriodicTime] = useState("Monthly");
 
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -34,13 +35,13 @@ function Crude() {
       getCrudeData(
         path,
         callValues[displayValues.indexOf(selectedCountry)],
-        selectedOption,
+        periodicTime,
         setData,
         setIsLoading,
         selectedCountry
       );
     }
-  }, [selectedOption, path, selectedCountry]);
+  }, [periodicTime, path, selectedCountry]);
 
   const BodyContent = (
     <>
@@ -57,7 +58,13 @@ function Crude() {
             <ClipLoader color="#C31815" size={30} />
           </Box>
         ) : (
-          <Graph data={data} />
+          <>
+            <Graph data={data} />
+            <Periodic
+              periodicTime={periodicTime}
+              setPeriodicTime={setPeriodicTime}
+            />
+          </>
         )}
       </>
     </>
@@ -75,10 +82,6 @@ function Crude() {
         dropdownData={displayValues}
         selectedOption={selectedCountry}
         setSelectedOption={setSelectedCountry}
-        secondaryDropdown
-        secondaryDropdownData={["Monthly", "Yearly", "Weekly"]}
-        secondarySelectedOption={selectedOption}
-        secondarySetSelectedOption={setSelectedOption}
       />
     </>
   );

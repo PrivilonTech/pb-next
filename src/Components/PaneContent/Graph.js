@@ -27,7 +27,7 @@ export default function Graph({ data }) {
               context.mode === "default" &&
               !delayed
             ) {
-              delay = context.dataIndex * 100 + context.datasetIndex * 150;
+              delay = context.dataIndex * 40 + context.datasetIndex * 150;
             }
             return delay;
           },
