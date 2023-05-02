@@ -8,6 +8,7 @@ export default function HeroSection() {
         marginTop: ".75em",
         display: "flex",
         alignItems: "center",
+        height: "80vh",
         flexDirection: { xs: "column-reverse", md: "row" },
       }}
     >

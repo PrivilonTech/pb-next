@@ -21,7 +21,7 @@ function Pane({ path }) {
       {upMd ? (
         <Box
           sx={{
-            margin: "1em auto",
+            margin: "0 auto",
             height: "15vh",
             display: "flex",
             justifyContent: "space-around",
@@ -90,9 +90,7 @@ function Pane({ path }) {
             display: "flex",
             justifyContent: "flex-start",
             gap: 0,
-            background: "#f4fdfd",
-            paddingTop: "5vh",
-            paddingLeft: "10px",
+            paddingLeft: { xs: "", sm: "10px" },
             flexWrap: "wrap",
           }}
         >
@@ -106,7 +104,7 @@ function Pane({ path }) {
                   color: "#000",
                   height: "20%",
                   width: { xs: "20%", sm: "25%" },
-                  padding: ".5em",
+                  padding: { xs: ".75em", sm: ".5em" },
                   lineHeight: "1px",
                   border:
                     active === res.link ? "1px solid red" : "2px solid #d5d9eb",

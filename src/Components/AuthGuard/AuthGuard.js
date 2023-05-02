@@ -2,18 +2,19 @@ import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
 
 import { ModalContext } from "../HomePage/ModalProvider";
-import { getUserByUID } from "@/utils/utilsUser";
+import { getUserByUID, trialExpirationCheck } from "@/utils/utilsUser";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import Loading from "../Loading/Loading";
 
 export default function AuthGuard({ children }) {
   const router = useRouter();
+  const path = router.pathname;
 
   const currentUser = useCurrentUser();
 
-  const { user, setUser } = useContext(ModalContext);
-
-  const [loading, setLoading] = useState(true);
+  const { user, setUser, loading, setLoading } = useContext(ModalContext);
   const [fetching, setFetching] = useState(true);
+  const [inTrial, setInTrial] = useState(false);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -31,9 +32,22 @@ export default function AuthGuard({ children }) {
     if (!fetching && user) {
       setLoading(false);
     }
+    if (currentUser && user?.role !== "admin") {
+      setInTrial(trialExpirationCheck(user));
+    }
   }, [user]);
 
-  console.log(loading);
+  // auth guard implementation
+  // useEffect(() => {
+  //   console.log(currentUser);
+  //   if (!currentUser) {
+  //     if (path !== "/") {
+  //       router.push("/register");
+  //     }
+  //   } else if (!user?.subscribed && !inTrial && path !== "/") {
+  //     router.push("/subscription");
+  //   }
+  // }, [path, currentUser]);
 
   return <>{children}</>;
 }

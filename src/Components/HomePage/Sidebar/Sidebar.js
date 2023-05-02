@@ -18,14 +18,14 @@ export default function Sidebar() {
       }}
     >
       <Box sx={{ float: "left" }}>
-        <Typography sx={{ fontSize: "3rem" }}>Heading One</Typography>
+        <Typography sx={{ fontSize: "3rem" }}>About Us</Typography>
         <Typography>
-          Paragraph oneParagraph oneParagraph oneParagraph oneParagraph
-          oneParagraph oneParagraph oneParagraph oneParagraph oneParagraph
-          oneParagraph oneParagraph oneParagraph oneParagraph oneParagraph
-          oneParagraph oneParagraph oneParagraph oneParagraph oneParagraph
-          oneParagraph oneParagraph oneParagraph oneParagraph oneParagraph
-          oneParagraph oneParagraph oneParagraph oneParagraph one
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quibusdam
+          accusantium amet dolores neque itaque exercitationem! Aliquid esse vel
+          culpa mollitia nihil vitae eos adipisci assumenda consequuntur
+          laboriosam, commodi voluptatibus expedita! Neque adipisci doloribus
+          fugit omnis repellat quaerat aliquam eaque expedita accusamus dolorem
+          modi harum debitis rerum, laboriosam necessitatibus ad.
         </Typography>
       </Box>
       <Box
@@ -39,7 +39,7 @@ export default function Sidebar() {
         <Box
           sx={{
             float: "right",
-            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
             borderRadius: "10px",
           }}
         >
@@ -49,7 +49,7 @@ export default function Sidebar() {
         <Box
           sx={{
             float: "right",
-            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
             borderRadius: "10px",
           }}
         >

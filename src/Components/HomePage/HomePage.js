@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import HeroSection from "./Hero/HeroSection";
 import Sidebar from "./Sidebar/Sidebar";
 import MediaPartner from "./MediaPartner/MediaPartner";
+import TestHeroSection from "./Hero/TestHeroSection";
 
 function HomePage() {
   return (
@@ -15,7 +16,8 @@ function HomePage() {
         margin: ".75em 2em",
       }}
     >
-      <HeroSection />
+      {/* <HeroSection /> */}
+      <TestHeroSection />
       <Sidebar />
       <MediaPartner />
     </Box>

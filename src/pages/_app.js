@@ -6,11 +6,11 @@ import { Poppins } from "next/font/google";
 
 import "@/styles/globals.css";
 import Footer from "@/Components/Footer/Footer";
-import TesterFooter from "@/Components/Footer/TesterFooter";
 import Header from "@/Components/Header/Header";
 import Pane from "@/Components/Pane/Pane";
 import AuthGuard from "@/Components/AuthGuard/AuthGuard";
 import { ModalProvider } from "@/Components/HomePage/ModalProvider";
+import Marquee from "@/Components/HomePage/Marquee/Marquee";
 
 const font = Poppins({ subsets: ["latin"], weight: "400" });
 
@@ -36,13 +36,12 @@ export default function App({ Component, pageProps }) {
         <AuthGuard>
           <ThemeProvider theme={fontTheme}>
             <Toaster />
-
+            {!showLayout && <Marquee />}
             {!showLayout && <Header />}
             {upMd && !showLayout && <Pane path={firstString} />}
 
             <Component {...pageProps} />
             {!showLayout && <Footer />}
-            {/* {!showLayout && <TesterFooter />} */}
           </ThemeProvider>
         </AuthGuard>
       </ModalProvider>

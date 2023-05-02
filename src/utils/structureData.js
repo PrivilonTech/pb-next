@@ -57,3 +57,19 @@ export const structureFeedstockData = (crudeStructure, path) => {
 
   return { displayValues, callValues };
 };
+
+export const structureMarqueeData = (data) => {
+  const key = [];
+  const value = [];
+
+  data.dataKeys.map((dataItem) => {
+    data.subKeys[dataItem].map((keyName) => {
+      key.push(keyName);
+    });
+    data.subValues[dataItem].map((valueAmount) => {
+      value.push(valueAmount);
+    });
+  });
+
+  return { key, value };
+};

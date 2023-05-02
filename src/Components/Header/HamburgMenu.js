@@ -49,7 +49,7 @@ export default function HamburgMenu({
         display: "flex",
         position: "absolute",
         overflow: "hidden",
-        top: "-10px",
+        top: "-50px",
         left: "-15px",
         background: "white",
         justifyContent: "space-around",
@@ -107,7 +107,6 @@ export default function HamburgMenu({
             display: "flex",
             justifyContent: "space-around",
             width: "100%",
-            background: "#f4fdfd",
           }}
         >
           <Box

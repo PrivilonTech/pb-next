@@ -111,8 +111,12 @@ export const isAdminCheck = async (userLoggedIn) => {
   return false;
 };
 
-export const trialExpirationCheck = (userCreationTime) => {
-  const createdAt = userCreationTime.toDate();
+export const trialExpirationCheck = (user) => {
+  if (!user) {
+    return null;
+  }
+
+  const createdAt = user.createdAt.toDate();
   const currentTime = new Date();
 
   const timeDiff = currentTime.getTime() - createdAt.getTime(); // Calculate the difference between the two times
@@ -120,8 +124,8 @@ export const trialExpirationCheck = (userCreationTime) => {
 
   // The user was created more than 2 days ago
   if (timeDiff > twoDaysInMs) {
-    return true;
+    return false;
   }
 
-  return false;
+  return true;
 };

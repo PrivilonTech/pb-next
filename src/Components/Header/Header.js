@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import firebaseApp from "@/firebase/clientApp";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -21,7 +21,7 @@ function Header() {
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
 
-  const { user } = useContext(ModalContext);
+  const { user, setUser, loading } = useContext(ModalContext);
 
   const [showHamburg, setShowHamburg] = useState(false);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
@@ -58,6 +58,8 @@ function Header() {
             display: "flex",
             justifyContent: "space-between",
             padding: { xs: ".5em 1em", md: ".5em 3em" },
+            // alignItems: "flex-start",
+            paddingTop: 0,
           }}
         >
           <Box
@@ -74,7 +76,18 @@ function Header() {
             </Box>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
-            {user ? (
+            {loading ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  margin: ".5em 30px",
+                  cursor: "not-allowed",
+                }}
+              >
+                <Skeleton variant="circular" width={50} height={50} />
+              </Box>
+            ) : user ? (
               <>
                 {user?.role === "admin" && (
                   <Box
@@ -108,7 +121,7 @@ function Header() {
                     height={50}
                     style={{
                       borderRadius: "50%",
-                      boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                      boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
                     }}
                   />
                 </Box>
@@ -178,7 +191,10 @@ function Header() {
         />
       }
       {isUserProfileModalOpen && (
-        <ProfileMenu setIsUserProfileModalOpen={setIsUserProfileModalOpen} />
+        <ProfileMenu
+          setIsUserProfileModalOpen={setIsUserProfileModalOpen}
+          setUser={setUser}
+        />
       )}
     </Box>
   );
