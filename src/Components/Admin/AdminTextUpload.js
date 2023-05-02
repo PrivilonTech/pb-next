@@ -119,7 +119,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
 
   const handleSendData = async () => {
     if (!title || !body || !bodyDate) {
-      toast.error("Please enter text in both the fields");
+      toast.error("Please enter data in all fields");
       return;
     }
 
@@ -192,7 +192,8 @@ export default function AdminTextUpload({ path, setDataChange }) {
               sx={{
                 marginTop: "1em",
                 display: "flex",
-                justifyContent: "space-around",
+                justifyContent: { xs: "space-between", sm: "space-around" },
+                flexWrap: "wrap",
                 width: "90%",
               }}
             >

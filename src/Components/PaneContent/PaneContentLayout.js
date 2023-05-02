@@ -40,7 +40,6 @@ export default function PaneContentLayout({
           width: "100%",
           height: { xs: "10%", md: "6%" },
           borderRadius: "20px",
-
           border: "1px solid #D9232A",
           marginBottom: "10px",
         }}
@@ -48,7 +47,7 @@ export default function PaneContentLayout({
         <Typography
           sx={{
             color: "#575757",
-            padding: "5px 25px",
+            padding: { xs: "5px 10px", sm: "5px 25px" },
             width: { sm: "15%", md: "9.5%" },
             borderRight: "1px solid #D9232A",
           }}
@@ -56,7 +55,12 @@ export default function PaneContentLayout({
           {title}
         </Typography>
 
-        <Box sx={{ display: "flex", gap: ".5em" }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "0em",
+          }}
+        >
           {dropdown && (
             <DropDown
               data={dropdownData}
@@ -69,6 +73,7 @@ export default function PaneContentLayout({
               data={secondaryDropdownData}
               selectedOption={secondarySelectedOption}
               setSelectedOption={secondarySetSelectedOption}
+              mobile
             />
           )}
           {thirdDropdown && (

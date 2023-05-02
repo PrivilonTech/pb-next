@@ -7,6 +7,7 @@ export default function DropDownItem({
   selectedOption,
   setIsDropDownOpen,
   setSelectedOption,
+  mobile,
 }) {
   const handleSelectionOption = (option) => {
     setSelectedOption(option);
@@ -25,9 +26,10 @@ export default function DropDownItem({
   return (
     <Box
       sx={{
-        width: { xs: "100px", md: "100px" },
+        width: "auto",
+        minWidth: "110px",
         position: "absolute",
-        left: { sm: "0", md: "30px" },
+        left: { sm: "10px", md: "30px" },
         marginTop: "5px",
         borderRadius: "10px",
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",

@@ -1,6 +1,7 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import { ClipLoader } from "react-spinners";
+import { useTheme } from "@mui/material/styles";
 
 export default function Button({
   onClick,
@@ -10,6 +11,9 @@ export default function Button({
   outline,
   noShadow,
 }) {
+  const theme = useTheme();
+  const upSm = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <button
       onClick={onClick}
@@ -20,7 +24,7 @@ export default function Button({
         color: outline ? "black" : "white",
         border: outline ? "2px solid #d5d9eb" : "none",
         padding: ".75em .5em",
-        width: small ? "20%" : "100%",
+        width: small ? (upSm ? "20%" : "auto") : "100%",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",

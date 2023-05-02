@@ -4,14 +4,19 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import DropDownItem from "./DropDownItem";
 
-export default function DropDown({ data, selectedOption, setSelectedOption }) {
+export default function DropDown({
+  data,
+  selectedOption,
+  setSelectedOption,
+  mobile,
+}) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   return (
     <Box sx={{ position: "relative" }}>
       <Box
         sx={{
-          padding: "0 30px",
+          padding: { xs: "0 10px", md: "0 30px" },
           color: "#575757",
           fontSize: ".9rem",
           display: "flex",
@@ -34,6 +39,7 @@ export default function DropDown({ data, selectedOption, setSelectedOption }) {
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           setIsDropDownOpen={setIsDropDownOpen}
+          mobile
         />
       )}
     </Box>

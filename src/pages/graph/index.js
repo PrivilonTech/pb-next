@@ -93,7 +93,7 @@ function index({ response }) {
   return (
     <>
       <PaneContentLayout
-        title="Historical Data"
+        title="Graph"
         list={graphList}
         page="graph"
         path="PP"
