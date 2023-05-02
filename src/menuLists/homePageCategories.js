@@ -25,7 +25,7 @@ export const homePageCategories = [
     href: "/graph/PVC",
   },
   {
-    id: 5,
+    id: 6,
     label: "Future",
     href: "/future-trends",
   },

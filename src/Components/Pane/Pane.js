@@ -22,7 +22,6 @@ function Pane({ path }) {
         <Box
           sx={{
             margin: "1em auto",
-            width: "90vw",
             height: "15vh",
             display: "flex",
             justifyContent: "space-around",
@@ -45,6 +44,12 @@ function Pane({ path }) {
                   display: "flex",
                   flexDirection: "column",
                   padding: ".5em",
+                  background: "white",
+                  transform: active === res.link ? "scale(1.05)" : "scale(1)",
+                  boxShadow:
+                    active === res.link
+                      ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+                      : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
                   "&:hover": {
                     boxShadow:
                       "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
@@ -52,12 +57,6 @@ function Pane({ path }) {
                   },
                   transition:
                     "boxShadow 150ms ease-in, transform 150ms ease-in",
-                  background: "white",
-                  transform: active === res.link ? "scale(1.05)" : "scale(1)",
-                  boxShadow:
-                    active === res.link
-                      ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
-                      : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
                 }}
               >
                 <Box
@@ -91,7 +90,7 @@ function Pane({ path }) {
             display: "flex",
             justifyContent: "flex-start",
             gap: 0,
-            background: "#e9ebf2",
+            background: "#f4fdfd",
             paddingTop: "5vh",
             paddingLeft: "10px",
             flexWrap: "wrap",
@@ -115,8 +114,18 @@ function Pane({ path }) {
                   borderRadius: "20px",
                   display: "flex",
                   flexDirection: "column",
+                  background: "white",
                   boxShadow:
-                    " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+                    active === res.link
+                      ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+                      : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
+                  "&:hover": {
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+                    transform: "scale(1.05)",
+                  },
+                  transition:
+                    "boxShadow 150ms ease-in, transform 150ms ease-in",
                 }}
               >
                 <Box

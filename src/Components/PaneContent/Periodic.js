@@ -13,10 +13,12 @@ export default function Periodic({ periodicTime, setPeriodicTime }) {
       <Typography
         onClick={() => setPeriodicTime("Weekly")}
         sx={{
+          display: "flex",
+          alignItems: "center",
           color: periodicTime === "Weekly" ? "#4bb54c" : "#7c7e8c",
           background: periodicTime === "Weekly" && "#e5faf5",
           cursor: "pointer",
-          padding: ".3em .5em",
+          padding: ".6em .7em",
           borderRadius: "50%",
           "&:hover": {
             background: "#e5faf5",
@@ -29,11 +31,17 @@ export default function Periodic({ periodicTime, setPeriodicTime }) {
       <Typography
         onClick={() => setPeriodicTime("Monthly")}
         sx={{
+          display: "flex",
+          alignItems: "center",
           color: periodicTime === "Monthly" ? "#4bb54c" : "#7c7e8c",
           background: periodicTime === "Monthly" && "#e5faf5",
-          padding: ".3em .5em",
+          padding: ".5em .7em",
           borderRadius: "50%",
           cursor: "pointer",
+          "&:hover": {
+            background: "#e5faf5",
+          },
+          transition: "background 150ms ease-in",
         }}
       >
         1M
@@ -41,10 +49,12 @@ export default function Periodic({ periodicTime, setPeriodicTime }) {
       <Typography
         onClick={() => setPeriodicTime("Yearly")}
         sx={{
+          display: "flex",
+          alignItems: "center",
           color: periodicTime === "Yearly" ? "#4bb54c" : "#7c7e8c",
           background: periodicTime === "Yearly" && "#e5faf5",
           cursor: "pointer",
-          padding: ".25em .5em",
+          padding: ".5em .9em",
           borderRadius: "50%",
           "&:hover": {
             background: "#e5faf5",

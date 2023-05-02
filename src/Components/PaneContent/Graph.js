@@ -16,6 +16,7 @@ export default function Graph({ data }) {
         maintainAspectRatio: false,
         tension: 0.1,
         fill: true,
+        // pointStyle: false,
         animation: {
           onComplete: () => {
             delayed = true;

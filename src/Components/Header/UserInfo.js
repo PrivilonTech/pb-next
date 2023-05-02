@@ -1,16 +1,16 @@
 import React from "react";
-import useCurrentUser from "@/hooks/useCurrentUser";
 import { Box, Typography } from "@mui/material";
-import { useRouter } from "next/router";
+
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 export default function UserInfo({ user }) {
-  const router = useRouter();
   const currentUser = useCurrentUser();
+  console.log(currentUser?.photoURL);
 
   return (
     <Box
       sx={{
-        display: currentUser ? "flex" : "none",
+        display: "flex",
         justifyContent: "space-between",
         paddingBottom: ".75em",
       }}
@@ -35,7 +35,7 @@ export default function UserInfo({ user }) {
         <img
           src={
             currentUser?.photoURL
-              ? currentUser?.photoURL
+              ? currentUser.photoURL
               : "/Header/placeholderUser.png"
           }
           alt="profile picture"

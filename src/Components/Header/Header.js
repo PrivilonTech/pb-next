@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import firebaseApp from "@/firebase/clientApp";
 
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -8,11 +10,10 @@ import { useMediaQuery } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
-import firebaseApp from "@/firebase/clientApp";
-import Link from "next/link";
 import ProfileMenu from "./ProfileMenu";
 import HamburgMenu from "./HamburgMenu";
 import { ModalContext } from "../HomePage/ModalProvider";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 function Header() {
   const auth = getAuth(firebaseApp);
@@ -24,6 +25,7 @@ function Header() {
 
   const [showHamburg, setShowHamburg] = useState(false);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
+  const currentUser = useCurrentUser();
 
   //if someone resizes disable hamburg menu on large screens
   useEffect(() => {
@@ -74,25 +76,6 @@ function Header() {
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
             {user ? (
               <>
-                <Box
-                  onClick={handleToggleProfileMenu}
-                  sx={{
-                    background: "#d9232a",
-                    padding: ".5em 1.25em",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                    boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
-                    "&:hover": {
-                      background: "#c7161d",
-                    },
-                    transition: "background 150ms ease-in",
-                  }}
-                >
-                  <Typography sx={{ color: "white" }}>
-                    Hello{" "}
-                    {user.displayName ? user.displayName.split(" ")[0] : "User"}{" "}
-                  </Typography>
-                </Box>
                 {user?.role === "admin" && (
                   <Box
                     sx={{
@@ -108,6 +91,27 @@ function Header() {
                     </Link>
                   </Box>
                 )}
+                <Box
+                  onClick={handleToggleProfileMenu}
+                  sx={{
+                    margin: ".5em 30px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <img
+                    src={
+                      currentUser?.photoURL
+                        ? currentUser.photoURL
+                        : "/Header/placeholderUser.png"
+                    }
+                    alt="profile picture"
+                    height={50}
+                    style={{
+                      borderRadius: "50%",
+                      boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                    }}
+                  />
+                </Box>
               </>
             ) : (
               <Link href="/register">
