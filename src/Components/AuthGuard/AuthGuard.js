@@ -10,16 +10,30 @@ export default function AuthGuard({ children }) {
 
   const currentUser = useCurrentUser();
 
-  const { setUser } = useContext(ModalContext);
+  const { user, setUser } = useContext(ModalContext);
+
+  const [loading, setLoading] = useState(true);
+  const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const fetchedUser = await getUserByUID(currentUser?.uid);
-      setUser(fetchedUser);
+      if (currentUser) {
+        const fetchedUser = await getUserByUID(currentUser?.uid);
+        setUser(fetchedUser);
+        setFetching(false);
+      }
     };
 
     getUserInfo();
   }, [currentUser]);
+
+  useEffect(() => {
+    if (!fetching && user) {
+      setLoading(false);
+    }
+  }, [user]);
+
+  console.log(loading);
 
   return <>{children}</>;
 }

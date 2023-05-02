@@ -5,7 +5,6 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 
 export default function UserInfo({ user }) {
   const currentUser = useCurrentUser();
-  console.log(currentUser?.photoURL);
 
   return (
     <Box
