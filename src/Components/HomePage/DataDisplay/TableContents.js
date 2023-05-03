@@ -30,47 +30,37 @@ export default function TableContents({ data, loading }) {
   }, [data, selectedData]);
 
   return (
-    <>
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <LoadingTable />
-        </Box>
-      ) : (
-        <table>
-          {selectedData && (
-            <>
-              <tr>
-                <th>{selectedData}</th>
-                <th>Price</th>
-              </tr>
-              {data[0].subKeys[selectedData]
-                .slice(0, 5)
-                .map((subItems, index) => (
-                  <tr key={index}>
-                    <td>{subItems}</td>
-                    <td style={{ textAlign: "center" }}>
-                      {data[0].subValues[selectedData][index]}
-                    </td>
-                  </tr>
-                ))}
-              {[
-                ...Array(Math.max(0, 5 - data[0].subKeys[selectedData].length)),
-              ].map((_, index) => (
-                <tr key={`empty-${index}`}>
-                  <td style={{ padding: "25px 0" }}></td>
-                  <td style={{ padding: "25px 0" }}></td>
+    <table>
+      {selectedData && (
+        <>
+          <thead>
+            <tr>
+              <th>{selectedData}</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data[0].subKeys[selectedData]
+              .slice(0, 5)
+              .map((subItems, index) => (
+                <tr key={index}>
+                  <td>{subItems}</td>
+                  <td style={{ textAlign: "center" }}>
+                    {data[0].subValues[selectedData][index]}
+                  </td>
                 </tr>
               ))}
-            </>
-          )}
-        </table>
+            {[
+              ...Array(Math.max(0, 5 - data[0].subKeys[selectedData].length)),
+            ].map((_, index) => (
+              <tr key={index}>
+                <td style={{ padding: "25px 0" }}></td>
+                <td style={{ padding: "25px 0" }}></td>
+              </tr>
+            ))}
+          </tbody>
+        </>
       )}
-    </>
+    </table>
   );
 }
