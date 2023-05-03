@@ -8,7 +8,7 @@ import "@/styles/globals.css";
 import Footer from "@/Components/Footer/Footer";
 import Header from "@/Components/Header/Header";
 import Pane from "@/Components/Pane/Pane";
-import AuthGuard from "@/Components/AuthGuard/AuthGuard";
+import AuthGuard from "@/Components/RouteGuards/AuthGuard";
 import { ModalProvider } from "@/Components/HomePage/ModalProvider";
 import Marquee from "@/Components/HomePage/Marquee/Marquee";
 import PhoneBar from "@/Components/HomePage/PhoneBar/PhoneBar";

@@ -12,7 +12,13 @@ export default function LoadingTable() {
           flexWrap: "wrap",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "1em" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1em",
+          }}
+        >
           <Skeleton
             variant="rectangular"
             width={170}
@@ -45,7 +51,13 @@ export default function LoadingTable() {
           />
         </Box>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: ".5em" }}>
+      <Box
+        sx={{
+          display: { xs: "none", sm: "flex" },
+          flexDirection: "column",
+          gap: ".5em",
+        }}
+      >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1em" }}>
           <Skeleton
             variant="rectangular"

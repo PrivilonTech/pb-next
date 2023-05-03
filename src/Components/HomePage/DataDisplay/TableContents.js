@@ -15,6 +15,10 @@ export default function TableContents({ data, loading }) {
   }, [loading, data]);
 
   useEffect(() => {
+    if (!data) {
+      return;
+    }
+
     const interval = setInterval(() => {
       const currentIndex = data[0].dataKeys.indexOf(selectedData);
       const nextIndex = (currentIndex + 1) % data[0].dataKeys.length;

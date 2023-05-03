@@ -7,6 +7,7 @@ import { getCrudeData } from "@/utils/apiCalls";
 import { structureFeedstockData } from "@/utils/structureData";
 import { crudeStructure } from "@/menuLists/crudeList";
 import Periodic from "@/Components/PaneContent/Periodic";
+import LoadingGraph from "@/Components/Loading/LoadingGraph";
 
 export default function GraphDisplay() {
   const [data, setData] = useState({});
@@ -43,9 +44,18 @@ export default function GraphDisplay() {
   }, []);
 
   return (
-    <Box sx={{ width: { xs: "100%", lg: "500px" }, cursor: "pointer" }}>
-      <Graph data={data} onClick={() => router.push("/crude")} />
-      <Periodic periodicTime={periodicTime} setPeriodicTime={setPeriodicTime} />
-    </Box>
+    <>
+      {isLoading ? (
+        <LoadingGraph />
+      ) : (
+        <Box sx={{ width: { xs: "100%", lg: "500px" }, cursor: "pointer" }}>
+          <Graph data={data} onClick={() => router.push("/crude")} />
+          <Periodic
+            periodicTime={periodicTime}
+            setPeriodicTime={setPeriodicTime}
+          />
+        </Box>
+      )}
+    </>
   );
 }

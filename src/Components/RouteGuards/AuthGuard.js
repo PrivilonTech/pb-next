@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
 
 import { ModalContext } from "../HomePage/ModalProvider";
-import { getUserByUID, trialExpirationCheck } from "@/utils/utilsUser";
+import { getUserByUID } from "@/utils/utilsUser";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import Loading from "../Loading/Loading";
 
@@ -12,15 +12,18 @@ export default function AuthGuard({ children }) {
 
   const currentUser = useCurrentUser();
 
-  const { user, setUser, loading, setLoading } = useContext(ModalContext);
+  const [authLoader, setAuthLoader] = useState(false);
+  const { user, setUser, loading, setLoading, currentUserLoading } =
+    useContext(ModalContext);
   const [fetching, setFetching] = useState(true);
-  const [inTrial, setInTrial] = useState(false);
 
   useEffect(() => {
     const getUserInfo = async () => {
       if (currentUser) {
         const fetchedUser = await getUserByUID(currentUser?.uid);
         setUser(fetchedUser);
+        setFetching(false);
+      } else if (!currentUserLoading) {
         setFetching(false);
       }
     };
@@ -29,25 +32,24 @@ export default function AuthGuard({ children }) {
   }, [currentUser]);
 
   useEffect(() => {
-    if (!fetching && user) {
+    if (!fetching) {
       setLoading(false);
     }
-    if (currentUser && user?.role !== "admin") {
-      setInTrial(trialExpirationCheck(user));
+    if (!currentUserLoading && !currentUser) {
+      setLoading(false);
     }
-  }, [user]);
+  }, [currentUserLoading, fetching]);
 
   // auth guard implementation
   // useEffect(() => {
-  //   console.log(currentUser);
-  //   if (!currentUser) {
+  //   if (!currentUser && !loading) {
   //     if (path !== "/") {
+  //       setAuthLoader(true);
   //       router.push("/register");
+  //       setAuthLoader(false);
   //     }
-  //   } else if (!user?.subscribed && !inTrial && path !== "/") {
-  //     router.push("/subscription");
   //   }
   // }, [path, currentUser]);
 
-  return <>{children}</>;
+  return <Loading isLoading={authLoader}>{children}</Loading>;
 }

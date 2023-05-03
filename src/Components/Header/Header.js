@@ -15,6 +15,7 @@ import HamburgMenu from "./HamburgMenu";
 import { ModalContext } from "../HomePage/ModalProvider";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import Button from "../Button/Button";
+import LoadingButton from "../Loading/LoadingButton";
 
 function Header() {
   const auth = getAuth(firebaseApp);
@@ -82,10 +83,12 @@ function Header() {
                 sx={{
                   display: "flex",
                   alignItems: "center",
+                  gap: "2em",
                   margin: ".5em 30px",
                   cursor: "not-allowed",
                 }}
               >
+                <LoadingButton />
                 <Skeleton variant="circular" width={50} height={50} />
               </Box>
             ) : user ? (
@@ -185,7 +188,7 @@ function Header() {
             >
               <img src={"/Header/hamburg.svg"} alt="hamburg-icon" />
             </Box>
-            <Box sx={{ margin: "auto" }}>
+            <Box onClick={() => router.push("/")} sx={{ margin: "auto" }}>
               <img src={"/Header/logo.svg"} alt="Logo" height={25}></img>
             </Box>
           </Box>

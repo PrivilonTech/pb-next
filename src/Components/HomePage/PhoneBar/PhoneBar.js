@@ -16,9 +16,6 @@ export default function PhoneBar() {
         +91 XXXXX XXXXX
       </Typography>
       <Typography sx={{ color: "white", fontSize: ".9rem" }}>
-        GST ID: 8412397321
-      </Typography>
-      <Typography sx={{ color: "white", fontSize: ".9rem" }}>
         CIN: UI2381020123
       </Typography>
     </Box>
