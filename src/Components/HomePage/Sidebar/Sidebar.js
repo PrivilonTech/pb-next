@@ -22,7 +22,6 @@ export default function Sidebar() {
         <Box
           sx={{
             border: "2px solid rgba(99, 99, 99, 0.2)",
-            borderRadius: "10px",
             width: "100%",
           }}
         >
@@ -49,7 +48,6 @@ export default function Sidebar() {
             sx={{
               float: "right",
               border: "2px solid rgba(99, 99, 99, 0.2)",
-              borderRadius: "10px",
               height: "100%",
             }}
           >
@@ -70,7 +68,6 @@ export default function Sidebar() {
             sx={{
               float: "right",
               border: "2px solid rgba(99, 99, 99, 0.2)",
-              borderRadius: "10px",
               height: "100%",
             }}
           >

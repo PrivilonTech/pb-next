@@ -41,15 +41,15 @@ export default function AuthGuard({ children }) {
   }, [currentUserLoading, fetching]);
 
   // auth guard implementation
-  // useEffect(() => {
-  //   if (!currentUser && !loading) {
-  //     if (path !== "/") {
-  //       setAuthLoader(true);
-  //       router.push("/register");
-  //       setAuthLoader(false);
-  //     }
-  //   }
-  // }, [path, currentUser]);
+  useEffect(() => {
+    if (!currentUser && !currentUserLoading) {
+      setAuthLoader(true);
+      if (path !== "/") {
+        router.push("/register");
+      }
+      setAuthLoader(false);
+    }
+  }, [path, currentUserLoading]);
 
   return <Loading isLoading={authLoader}>{children}</Loading>;
 }

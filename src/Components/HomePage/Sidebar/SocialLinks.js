@@ -20,8 +20,7 @@ export default function SocialLinks() {
           sx={{
             background: "rgba(221, 221, 221, 0.2)",
             borderRadius: "50%",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-            backdropDilter: "blur(5px)",
+            border: "1px solid gray",
             padding: ".75em .75em",
             display: "flex",
             justifyContent: "center",

@@ -28,6 +28,7 @@ import Input from "@/Components/Register/Input";
 import Button from "@/Components/Button/Button";
 import MobilePage from "@/Components/Register/MobilePage";
 import TogglePassword from "@/Components/Register/TogglePassword";
+import ShowBackArrow from "@/Components/Register/ShowBackArrow";
 
 export default function Register() {
   const router = useRouter();
@@ -218,6 +219,7 @@ export default function Register() {
         height: "100vh",
       }}
     >
+      <ShowBackArrow />
       <Box id="recaptcha-container"></Box>
       <Box
         sx={{

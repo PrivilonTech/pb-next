@@ -16,7 +16,7 @@ export default function Graph({ data, leftSpacing, onClick }) {
         maintainAspectRatio: false,
         tension: 0.1,
         fill: true,
-        // pointStyle: false,
+        pointStyle: false,
         animation: {
           onComplete: () => {
             delayed = true;
@@ -43,6 +43,14 @@ export default function Graph({ data, leftSpacing, onClick }) {
         scales: {
           x: {
             ticks: {
+              display: false,
+            },
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            grid: {
               display: false,
             },
           },

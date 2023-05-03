@@ -29,7 +29,6 @@ export default function DataDisplay() {
       <Box
         onClick={() => router.push("/indian-bazaar")}
         sx={{
-          border: "2px solid rgba(99, 99, 99, 0.2)",
           borderRadius: "10px",
           cursor: "pointer",
         }}
