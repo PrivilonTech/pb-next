@@ -6,7 +6,7 @@ export default function Socials() {
   return (
     <Box
       sx={{
-        width: { xs: "100%", lg: "350px" },
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         gap: "1em",
@@ -18,7 +18,7 @@ export default function Socials() {
           textTransform: "uppercase",
           textAlign: "center",
           borderBottom: "1px solid #dee2e6",
-          margin: "1em",
+          margin: "1em 1em 0 1em",
         }}
       >
         Socials

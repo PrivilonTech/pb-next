@@ -11,6 +11,7 @@ import Pane from "@/Components/Pane/Pane";
 import AuthGuard from "@/Components/AuthGuard/AuthGuard";
 import { ModalProvider } from "@/Components/HomePage/ModalProvider";
 import Marquee from "@/Components/HomePage/Marquee/Marquee";
+import PhoneBar from "@/Components/HomePage/PhoneBar/PhoneBar";
 
 const font = Poppins({ subsets: ["latin"], weight: "400" });
 
@@ -36,8 +37,13 @@ export default function App({ Component, pageProps }) {
         <AuthGuard>
           <ThemeProvider theme={fontTheme}>
             <Toaster />
-            {!showLayout && <Marquee />}
-            {!showLayout && <Header />}
+            {!showLayout && (
+              <>
+                <PhoneBar />
+                <Header />
+                <Marquee />
+              </>
+            )}
             {upMd && !showLayout && <Pane path={firstString} />}
 
             <Component {...pageProps} />

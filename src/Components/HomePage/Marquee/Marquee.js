@@ -29,18 +29,40 @@ export default function Marquee() {
       {loading ? (
         <LoadingMarquee />
       ) : (
-        <marquee behavior="scroll" direction="left" scrollamount="5">
-          <Box sx={{ display: "flex", gap: "1em" }}>
-            {key.map((keyName, index) => (
-              <Box key={index} sx={{ display: "flex", gap: ".5em" }}>
-                <Typography sx={{ fontWeight: "bold", color: "#C31815" }}>
-                  {keyName}
-                </Typography>
-                <Typography>{value[index]}</Typography>
-              </Box>
-            ))}
-          </Box>
-        </marquee>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            padding: "3px 0",
+            borderTop: "2px solid gray",
+            borderBottom: "2px solid gray",
+          }}
+        >
+          <marquee behavior="scroll" direction="left" scrollamount="5">
+            <Box
+              sx={{
+                display: "flex",
+                gap: "1em",
+              }}
+            >
+              {key.map((keyName, index) => (
+                <Box key={index} sx={{ display: "flex", gap: ".5em" }}>
+                  <Typography
+                    sx={{
+                      fontFamily: "Arial",
+                      fontWeight: "bold",
+                      color: "#C31815",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {keyName}
+                  </Typography>
+                  <Typography>{value[index]}</Typography>
+                </Box>
+              ))}
+            </Box>
+          </marquee>
+        </Box>
       )}
     </>
   );

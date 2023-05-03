@@ -1,10 +1,11 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-import HeroSection from "./Hero/HeroSection";
 import Sidebar from "./Sidebar/Sidebar";
 import MediaPartner from "./MediaPartner/MediaPartner";
-import TestHeroSection from "./Hero/TestHeroSection";
+import CarouselComponent from "./Carousel/Carousel";
+import DataDisplay from "./DataDisplay/DataDisplay";
+import ScrollTop from "./ScrollTop/ScrollTop";
 
 function HomePage() {
   return (
@@ -16,8 +17,9 @@ function HomePage() {
         margin: ".75em 2em",
       }}
     >
-      {/* <HeroSection /> */}
-      <TestHeroSection />
+      <CarouselComponent />
+      <ScrollTop />
+      <DataDisplay />
       <Sidebar />
       <MediaPartner />
     </Box>

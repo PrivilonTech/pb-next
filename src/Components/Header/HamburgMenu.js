@@ -49,7 +49,7 @@ export default function HamburgMenu({
         display: "flex",
         position: "absolute",
         overflow: "hidden",
-        top: "-50px",
+        top: "-30px",
         left: "-15px",
         background: "white",
         justifyContent: "space-around",
@@ -75,7 +75,7 @@ export default function HamburgMenu({
           sx={{
             position: "absolute",
             right: "25px",
-            top: "35px",
+            top: "30px",
             fontSize: 25,
             color: "gray",
           }}
@@ -136,8 +136,9 @@ export default function HamburgMenu({
               justifyContent: "flex-start",
               margin: "2em 0",
               padding: ".5em 1.5em",
-              background: user?.subscribed ? "whitesmoke" : "#1e1e1e",
-              border: user?.subscribed ? "2px solid #b0aeae" : "",
+              background:
+                user?.subscribed === "true" ? "whitesmoke" : "#1e1e1e",
+              border: user?.subscribed === "true" ? "2px solid #b0aeae" : "",
               boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
               "&:hover": {
                 boxShadow:
@@ -148,8 +149,10 @@ export default function HamburgMenu({
               borderRadius: "10px",
             }}
           >
-            <Typography sx={{ color: user?.subscribed ? "#1e1e1e" : "white" }}>
-              {user?.subscribed ? "Subscribed" : "Subscribe"}
+            <Typography
+              sx={{ color: user?.subscribed === "true" ? "#1e1e1e" : "white" }}
+            >
+              {user?.subscribed === "true" ? "Subscribed" : "Subscribe"}
             </Typography>
           </Box>
         </Box>

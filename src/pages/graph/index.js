@@ -72,8 +72,8 @@ function index({ response }) {
             maxWidth: "100%",
           }}
         >
-          <Graph data={data} />
-          <Graph data={secondaryData} />
+          <Graph data={data} leftSpacing />
+          <Graph data={secondaryData} leftSpacing />
         </Box>
       ) : (
         <Box

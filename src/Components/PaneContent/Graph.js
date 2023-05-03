@@ -3,7 +3,7 @@ import Chart from "chart.js/auto";
 
 import { Box } from "@mui/material";
 
-export default function Graph({ data }) {
+export default function Graph({ data, leftSpacing, onClick }) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -56,15 +56,16 @@ export default function Graph({ data }) {
   }, [data]);
   return (
     <Box
+      onClick={onClick}
       sx={{
-        marginLeft: { md: "1em" },
+        marginLeft: leftSpacing && { md: "1em" },
         height: { xs: "60vh", md: "60vh" },
         width: "100%",
         display: "flex",
         justifyContent: "center",
       }}
     >
-      <canvas style={{ marginTop: "2vh" }} ref={chartRef} />
+      <canvas ref={chartRef} />
     </Box>
   );
 }

@@ -7,10 +7,10 @@ export default function AssociateCategories() {
   return (
     <Box
       sx={{
-        width: { xs: "100%", lg: "350px" },
+        width: "100%",
         display: "flex",
         flexDirection: "column",
-        gap: "1.5em",
+        gap: ".5em",
       }}
     >
       <Typography

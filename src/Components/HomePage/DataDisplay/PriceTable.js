@@ -5,7 +5,7 @@ import { getGlobalData } from "@/utils/apiCalls";
 import TableContents from "./TableContents";
 
 export default function PriceTable() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

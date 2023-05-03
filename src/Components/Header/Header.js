@@ -14,6 +14,7 @@ import ProfileMenu from "./ProfileMenu";
 import HamburgMenu from "./HamburgMenu";
 import { ModalContext } from "../HomePage/ModalProvider";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import Button from "../Button/Button";
 
 function Header() {
   const auth = getAuth(firebaseApp);
@@ -89,7 +90,7 @@ function Header() {
               </Box>
             ) : user ? (
               <>
-                {user?.role === "admin" && (
+                {user?.role === "admin" ? (
                   <Box
                     sx={{
                       border: "2px solid gray",
@@ -103,7 +104,15 @@ function Header() {
                       </Typography>
                     </Link>
                   </Box>
+                ) : (
+                  user?.subscribed && (
+                    <Button
+                      label="Subscribe Now"
+                      onClick={() => router.push("/subscription")}
+                    />
+                  )
                 )}
+
                 <Box
                   onClick={handleToggleProfileMenu}
                   sx={{

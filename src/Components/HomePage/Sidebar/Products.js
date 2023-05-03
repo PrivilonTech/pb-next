@@ -15,6 +15,7 @@ export default function Products() {
         justifyContent: "center",
         flexWrap: "wrap",
         gap: "2em",
+        marginBottom: "1em",
       }}
     >
       {homePageCategories.map((item) => (
@@ -23,18 +24,15 @@ export default function Products() {
           key={item.id}
           sx={{
             width: "30%",
-
-            background: "rgba(221, 221, 221, 0.2)",
-            borderRadius: "10px",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
             backdropDilter: "blur(5px)",
+            border: "1px solid #1e1e1e",
             padding: ".5em 1em",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             cursor: "pointer",
             "&:hover": {
-              background: "#d6d3d2",
+              background: "#e5e5e5",
             },
             transition: "background 150ms ease-in",
           }}

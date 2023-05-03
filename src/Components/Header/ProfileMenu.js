@@ -9,7 +9,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import firebaseApp from "@/firebase/clientApp";
 import ProfileItem from "./ProfileItem";
 
-export default function ProfileMenu({ setIsUserProfileModalOpen,setUser }) {
+export default function ProfileMenu({ setIsUserProfileModalOpen, setUser }) {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
 
@@ -18,7 +18,7 @@ export default function ProfileMenu({ setIsUserProfileModalOpen,setUser }) {
       router.push("/");
       await auth.signOut();
       setIsUserProfileModalOpen(false);
-      setUser(null)
+      setUser(null);
     } catch (error) {
       console.error("Error logging out user", error);
     }
@@ -59,11 +59,6 @@ export default function ProfileMenu({ setIsUserProfileModalOpen,setUser }) {
             text="Profile"
             icon={AccountCircleIcon}
             onClick={() => router.push("/profile")}
-          />
-          <ProfileItem
-            text="Subscription"
-            icon={CardMembershipIcon}
-            onClick={() => router.push("/subscription")}
           />
           <ProfileItem text="Logout" icon={LogoutIcon} onClick={handleLogout} />
         </Box>
