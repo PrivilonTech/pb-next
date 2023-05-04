@@ -83,7 +83,7 @@ function index({ response }) {
 
   return (
     <>
-      {/* <PaneContentLayout
+      <PaneContentLayout
         title="Global Bazaar"
         list={globalBazaarList}
         page="global-bazaar"
@@ -97,7 +97,7 @@ function index({ response }) {
         secondaryDropdownData={getYearArray}
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
-      /> */}
+      />
     </>
   );
 }
