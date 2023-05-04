@@ -5,11 +5,12 @@ import { Box } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import secureLocalStorage from "react-secure-storage";
 
 import firebaseApp from "@/firebase/clientApp";
 import ProfileItem from "./ProfileItem";
 
-export default function ProfileMenu({ setIsUserProfileModalOpen, setUser }) {
+export default function ProfileMenu({ setIsUserProfileModalOpen }) {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
 
@@ -17,8 +18,9 @@ export default function ProfileMenu({ setIsUserProfileModalOpen, setUser }) {
     try {
       router.push("/");
       await auth.signOut();
+
       setIsUserProfileModalOpen(false);
-      setUser(null);
+      secureLocalStorage.removeItem("user");
     } catch (error) {
       console.error("Error logging out user", error);
     }

@@ -35,8 +35,13 @@ export default function TableContents({ data, loading }) {
         <>
           <thead>
             <tr>
-              <th>{selectedData}</th>
-              <th>Price</th>
+              <th style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <Typography>{selectedData}</Typography>
+                <Typography>{data[0].date}</Typography>
+              </th>
+              <th>
+                <Typography>Price</Typography>
+              </th>
             </tr>
           </thead>
           <tbody>

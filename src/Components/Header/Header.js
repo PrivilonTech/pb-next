@@ -3,6 +3,7 @@ import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import firebaseApp from "@/firebase/clientApp";
+import secureLocalStorage from "react-secure-storage";
 
 import { Box, Skeleton, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -22,16 +23,18 @@ function Header() {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
-
-  const { user, setUser, loading } = useContext(ModalContext);
+  const [loading, setLoading] = useState(true);
 
   const [showHamburg, setShowHamburg] = useState(false);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
   const currentUser = useCurrentUser();
 
+  const user = secureLocalStorage.getItem("user");
+
   //if someone resizes disable hamburg menu on large screens
   useEffect(() => {
     setShowHamburg(false);
+    setLoading(false);
   }, [upMd]);
 
   useEffect(() => {
@@ -53,14 +56,13 @@ function Header() {
         position: "relative",
       }}
     >
-      {upMd ? (
+      {upMd && !loading ? (
         <Box
           sx={{
             height: "10vh",
             display: "flex",
             justifyContent: "space-between",
             padding: { xs: ".5em 1em", md: ".5em 3em" },
-            // alignItems: "flex-start",
             paddingTop: 0,
           }}
         >
@@ -78,20 +80,7 @@ function Header() {
             </Box>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
-            {loading ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "2em",
-                  margin: ".5em 30px",
-                  cursor: "not-allowed",
-                }}
-              >
-                <LoadingButton />
-                <Skeleton variant="circular" width={50} height={50} />
-              </Box>
-            ) : user ? (
+            {user ? (
               <>
                 {user?.role === "admin" ? (
                   <Box
@@ -108,14 +97,13 @@ function Header() {
                     </Link>
                   </Box>
                 ) : (
-                  user?.subscribed && (
+                  user?.subscribed === "false" && (
                     <Button
                       label="Subscribe Now"
                       onClick={() => router.push("/subscription")}
                     />
                   )
                 )}
-
                 <Box
                   onClick={handleToggleProfileMenu}
                   sx={{
@@ -192,21 +180,15 @@ function Header() {
               <img src={"/Header/logo.svg"} alt="Logo" height={25}></img>
             </Box>
           </Box>
+          <HamburgMenu
+            setShowHamburg={setShowHamburg}
+            showHamburg={showHamburg}
+            auth={auth}
+          />
         </Box>
       )}
-      {
-        <HamburgMenu
-          setShowHamburg={setShowHamburg}
-          showHamburg={showHamburg}
-          user={user}
-          auth={auth}
-        />
-      }
       {isUserProfileModalOpen && (
-        <ProfileMenu
-          setIsUserProfileModalOpen={setIsUserProfileModalOpen}
-          setUser={setUser}
-        />
+        <ProfileMenu setIsUserProfileModalOpen={setIsUserProfileModalOpen} />
       )}
     </Box>
   );

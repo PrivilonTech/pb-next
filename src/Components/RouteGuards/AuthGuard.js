@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import secureLocalStorage from "react-secure-storage";
 
 import { ModalContext } from "../HomePage/ModalProvider";
 import { getUserByUID } from "@/utils/utilsUser";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import Loading from "../Loading/Loading";
 
 export default function AuthGuard({ children }) {
   const router = useRouter();
@@ -12,44 +12,30 @@ export default function AuthGuard({ children }) {
 
   const currentUser = useCurrentUser();
 
-  const [authLoader, setAuthLoader] = useState(false);
-  const { user, setUser, loading, setLoading, currentUserLoading } =
-    useContext(ModalContext);
-  const [fetching, setFetching] = useState(true);
+  const { loading, setLoading } = useContext(ModalContext);
+  const userLoggedIn = secureLocalStorage.getItem("user");
 
+  const userNotFound = userLoggedIn === "undefined" || !userLoggedIn;
+
+  //store user data only once in the local storage
   useEffect(() => {
-    const getUserInfo = async () => {
-      if (currentUser) {
+    if (userNotFound && currentUser) {
+      const getUserInfo = async () => {
         const fetchedUser = await getUserByUID(currentUser?.uid);
-        setUser(fetchedUser);
-        setFetching(false);
-      } else if (!currentUserLoading) {
-        setFetching(false);
-      }
-    };
-
-    getUserInfo();
+        secureLocalStorage.setItem("user", fetchedUser);
+        setLoading(false);
+      };
+      getUserInfo();
+    } else {
+      setLoading(false);
+    }
   }, [currentUser]);
 
   useEffect(() => {
-    if (!fetching) {
-      setLoading(false);
+    if (userNotFound && path !== "/") {
+      router.push("/register");
     }
-    if (!currentUserLoading && !currentUser) {
-      setLoading(false);
-    }
-  }, [currentUserLoading, fetching]);
+  }, [path]);
 
-  // auth guard implementation
-  useEffect(() => {
-    if (!currentUser && !currentUserLoading) {
-      setAuthLoader(true);
-      if (path !== "/") {
-        router.push("/register");
-      }
-      setAuthLoader(false);
-    }
-  }, [path, currentUserLoading]);
-
-  return <Loading isLoading={authLoader}>{children}</Loading>;
+  return <>{children}</>;
 }

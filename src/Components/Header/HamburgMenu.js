@@ -1,25 +1,31 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import secureLocalStorage from "react-secure-storage";
 
 import Pane from "../Pane/Pane";
 import { useRouter } from "next/router";
 import UserInfo from "./UserInfo";
 import { toast } from "react-hot-toast";
+import { useState } from "react";
+import { useEffect } from "react";
 
-export default function HamburgMenu({
-  setShowHamburg,
-  showHamburg,
-  user,
-  auth,
-}) {
+export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   const router = useRouter();
+  const [user, setUser] = useState(null);
 
-  const handleUser = async () => {
+  useEffect(() => {
+    const user = secureLocalStorage.getItem("user");
+    setUser(user);
+  }, []);
+
+  const handleUserLogout = async () => {
     if (user) {
       try {
         router.push("/");
         await auth.signOut();
+
+        secureLocalStorage.removeItem("user");
         setShowHamburg(false);
       } catch (error) {
         toast.error("Something went wrong");
@@ -110,7 +116,7 @@ export default function HamburgMenu({
           }}
         >
           <Box
-            onClick={handleUser}
+            onClick={handleUserLogout}
             sx={{
               display: "flex",
               justifyContent: "flex-start",
