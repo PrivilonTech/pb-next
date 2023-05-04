@@ -23,7 +23,6 @@ function Header() {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
 
   const [showHamburg, setShowHamburg] = useState(false);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
@@ -34,7 +33,6 @@ function Header() {
   //if someone resizes disable hamburg menu on large screens
   useEffect(() => {
     setShowHamburg(false);
-    setLoading(false);
   }, [upMd]);
 
   useEffect(() => {
@@ -56,7 +54,7 @@ function Header() {
         position: "relative",
       }}
     >
-      {upMd && !loading ? (
+      {upMd ? (
         <Box
           sx={{
             height: "10vh",
