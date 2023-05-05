@@ -5,6 +5,8 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { serverTimestamp } from "firebase/firestore";
 
 import { createNewUser, getUserByEmail } from "@/utils/utilsUser";
+import { ModalContext } from "../HomePage/ModalProvider";
+import { useContext } from "react";
 
 export default function SocialLogin({
   auth,
@@ -15,10 +17,13 @@ export default function SocialLogin({
   const router = useRouter();
   const googleProvider = new GoogleAuthProvider();
 
+  const { setLoading } = useContext(ModalContext);
+
   //google login
   const handleUserGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      setLoading(true);
       const existingUser = await getUserByEmail(result.user.email);
 
       if (!existingUser) {
