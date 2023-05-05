@@ -4,6 +4,8 @@ import { Box } from "@mui/material";
 
 import PriceTable from "./PriceTable";
 import GraphDisplay from "./GraphDisplay";
+import AssociateCategories from "../Sidebar/AssociateCategories";
+import Socials from "../Sidebar/Socials";
 
 export default function DataDisplay() {
   const router = useRouter();
@@ -35,6 +37,24 @@ export default function DataDisplay() {
         }}
       >
         <PriceTable />
+      </Box>
+      <Box
+        sx={{
+          cursor: "pointer",
+          border: "2px solid rgba(99, 99, 99, 0.2)",
+          width: "100%",
+        }}
+      >
+        <AssociateCategories />
+      </Box>
+      <Box
+        sx={{
+          cursor: "pointer",
+          border: "2px solid rgba(99, 99, 99, 0.2)",
+          width: "100%",
+        }}
+      >
+        <Socials />
       </Box>
     </Box>
   );

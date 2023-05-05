@@ -1,9 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-import AssociateCategories from "./AssociateCategories";
-import Socials from "./Socials";
 import Video from "./Video";
+import WhatsAppScan from "./WhatsAppScan";
 
 export default function Sidebar() {
   return (
@@ -18,7 +17,7 @@ export default function Sidebar() {
         gap: { xs: "2em", lg: "" },
       }}
     >
-      <Box sx={{ width: { xs: "100%", lg: "50%" } }}>
+      <Box sx={{ width: { xs: "100%", lg: "70%" } }}>
         <Box
           sx={{
             border: "2px solid rgba(99, 99, 99, 0.2)",
@@ -28,51 +27,14 @@ export default function Sidebar() {
           <Video />
         </Box>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row", lg: "column" },
-          justifyContent: "space-between",
-        }}
-      >
+      <Box sx={{ width: { xs: "100%", lg: "30%" } }}>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row", lg: "column" },
-            justifyContent: { xs: "center", lg: "" },
-            gap: "2em",
+            border: "2px solid rgba(99, 99, 99, 0.2)",
             width: "100%",
           }}
         >
-          <Box
-            sx={{
-              float: "right",
-              border: "2px solid rgba(99, 99, 99, 0.2)",
-              height: "100%",
-            }}
-          >
-            <AssociateCategories />
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row", lg: "column" },
-            justifyContent: { xs: "flex-end", lg: "" },
-            alignItems: "stretch",
-            gap: "2em",
-            width: "100%",
-          }}
-        >
-          <Box
-            sx={{
-              float: "right",
-              border: "2px solid rgba(99, 99, 99, 0.2)",
-              height: "100%",
-            }}
-          >
-            <Socials />
-          </Box>
+          <WhatsAppScan />
         </Box>
       </Box>
     </Box>
