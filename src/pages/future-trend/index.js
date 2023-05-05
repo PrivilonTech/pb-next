@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import axios from "axios";
+import { ClipLoader } from "react-spinners";
 
 import { monthsArray, yearArray } from "@/utils/dateArray";
 import { getTextData } from "@/utils/apiCalls";
@@ -9,10 +9,9 @@ import BlogContent from "@/Components/PaneContent/BlogContent";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import futureTrendList from "@/menuLists/futureTrendList";
 import EmptyData from "@/Components/PaneContent/EmptyData";
-import { ClipLoader } from "react-spinners";
 
-function index({ response }) {
-  const [data, setData] = useState(response.data);
+function index() {
+  const [data, setData] = useState({});
   const [dataChange, setDataChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,6 +23,10 @@ function index({ response }) {
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(monthsArray[currentMonth]);
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
+
+  useEffect(() => {
+    getTextData("PP", monthIndex, year, setData, setIsLoading);
+  }, []);
 
   useEffect(() => {
     getTextData("PP", monthIndex, year, setData, setIsLoading);
@@ -80,21 +83,3 @@ function index({ response }) {
 }
 
 export default index;
-
-export const getServerSideProps = async () => {
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
-
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/blogs?type=PP&year=${currentYear}&month=${
-      currentMonth + 1
-    }`
-  );
-
-  return {
-    props: {
-      response: res.data,
-    },
-  };
-};

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useRouter } from "next/router";
+import { ClipLoader } from "react-spinners";
 
 import { graphData, graphList } from "@/menuLists/graphList";
 import { getHistoricalData } from "@/utils/apiCalls";
@@ -8,7 +9,6 @@ import { yearArray } from "@/utils/dateArray";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
 import EmptyData from "@/Components/PaneContent/EmptyData";
-import { ClipLoader } from "react-spinners";
 
 export default function GraphData() {
   const router = useRouter();

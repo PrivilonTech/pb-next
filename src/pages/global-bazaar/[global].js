@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
+import { ClipLoader } from "react-spinners";
 import { Box } from "@mui/material";
 
 import globalBazaarList from "../../menuLists/globalBazaarList";
@@ -11,13 +11,12 @@ import DataContainer from "@/Components/PaneContent/DataContainer";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
 import EmptyData from "@/Components/PaneContent/EmptyData";
-import { ClipLoader } from "react-spinners";
 
-function Global({ response }) {
+function Global() {
   const router = useRouter();
   const path = router.query.global;
 
-  const [data, setData] = useState(response.data.data);
+  const [data, setData] = useState({});
 
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
@@ -30,6 +29,16 @@ function Global({ response }) {
 
   const [dataChange, setDataChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (path) {
+      if (path !== "china") {
+        getGlobalData(path, monthIndex, year, setData, setIsLoading);
+      } else {
+        getTextData(path, monthIndex, year, setData, setIsLoading);
+      }
+    }
+  }, [path]);
 
   useEffect(() => {
     if (path !== "china") {
@@ -137,20 +146,3 @@ function Global({ response }) {
 }
 
 export default Global;
-
-export const getServerSideProps = async ({ query }) => {
-  const currentDate = new Date();
-
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
-
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/internationaloffers?country=${query.global}&month=${currentMonth}&year=${currentYear}`
-  );
-
-  return {
-    props: {
-      response: res.data,
-    },
-  };
-};

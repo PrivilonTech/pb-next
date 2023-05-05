@@ -46,7 +46,7 @@ export const getCityData = async (setCity, setCityCategory, setCityNames) => {
     `https://polymerbazar-be.onrender.com/api/citywise`
   );
 
-  setCityCategory(response.data.data[0].city);
+  setCityCategory(response.data.data[0]?.city);
   setCityNames(categorizeData(response.data.data));
 
   setCity(response.data.data);

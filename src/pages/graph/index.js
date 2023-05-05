@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { ClipLoader } from "react-spinners";
 import { Box } from "@mui/material";
 
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
@@ -8,9 +8,8 @@ import { getHistoricalData } from "@/utils/apiCalls";
 import Graph from "@/Components/PaneContent/Graph";
 import { yearArray } from "@/utils/dateArray";
 import EmptyData from "@/Components/PaneContent/EmptyData";
-import { ClipLoader } from "react-spinners";
 
-function index({ response }) {
+function index() {
   const currentDate = new Date();
 
   const currentYear = currentDate.getFullYear();
@@ -18,37 +17,21 @@ function index({ response }) {
   const getYearArray = yearArray();
 
   const [category, setCategory] = useState(graphData["PP"][0]);
-  const [cities, setCities] = useState(Object.keys(response.data));
+  const [cities, setCities] = useState([]);
 
-  const graphStructureOne = {
-    labels: response.data[cities[0]]?.date,
-    datasets: [
-      {
-        label: cities[0],
-        data: response.data[cities[0]]?.value,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
-        borderWidth: 2,
-      },
-    ],
-  };
-
-  const graphStructureTwo = {
-    labels: response.data[cities[1]]?.date,
-    datasets: [
-      {
-        label: cities[1],
-        data: response.data[cities[1]]?.value,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
-        borderWidth: 2,
-      },
-    ],
-  };
-
-  const [data, setData] = useState(graphStructureOne);
-  const [secondaryData, setSecondaryData] = useState(graphStructureTwo);
+  const [data, setData] = useState({});
+  const [secondaryData, setSecondaryData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getHistoricalData(
+      "ppRaffia",
+      year,
+      setData,
+      setSecondaryData,
+      setIsLoading
+    );
+  }, []);
 
   //year and category change
   useEffect(() => {
@@ -112,18 +95,3 @@ function index({ response }) {
 }
 
 export default index;
-
-export const getServerSideProps = async () => {
-  const currentDate = new Date();
-
-  const currentYear = currentDate.getFullYear();
-
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=ppRaffia&year=${currentYear}`
-  );
-  return {
-    props: {
-      response: res.data,
-    },
-  };
-};

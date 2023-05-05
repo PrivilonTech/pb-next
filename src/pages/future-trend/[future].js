@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Box, Typography } from "@mui/material";
-import axios from "axios";
+import { Box } from "@mui/material";
+import { ClipLoader } from "react-spinners";
 
 import { monthsArray, yearArray } from "@/utils/dateArray";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
@@ -10,13 +10,12 @@ import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import futureTrendList from "@/menuLists/futureTrendList";
 import { getTextData } from "@/utils/apiCalls";
 import EmptyData from "@/Components/PaneContent/EmptyData";
-import { ClipLoader } from "react-spinners";
 
-export default function FuturePage({ response }) {
+export default function FuturePage() {
   const router = useRouter();
   const path = router.query.future;
 
-  const [data, setData] = useState(response.data);
+  const [data, setData] = useState({});
   const [dataChange, setDataChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,6 +27,12 @@ export default function FuturePage({ response }) {
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(monthsArray[currentMonth]);
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
+
+  useEffect(() => {
+    if (path) {
+      getTextData(path, monthIndex, year, setData, setIsLoading);
+    }
+  }, [path]);
 
   useEffect(() => {
     getTextData(path, monthIndex, year, setData, setIsLoading);
@@ -82,19 +87,3 @@ export default function FuturePage({ response }) {
     </>
   );
 }
-
-export const getServerSideProps = async ({ query }) => {
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
-
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/blogs?type=${query.future}&year=${currentYear}&month=${currentMonth}`
-  );
-
-  return {
-    props: {
-      response: res.data,
-    },
-  };
-};

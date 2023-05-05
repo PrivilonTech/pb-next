@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import { ClipLoader } from "react-spinners";
 
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import indianBazaarList from "@/menuLists/indianBazaarList";
 import DataContainer from "@/Components/PaneContent/DataContainer";
-import { getCityData, getIndianData, getTextData } from "@/utils/apiCalls";
-import { structureDataIndian } from "@/utils/structureData";
-import { monthsArray, yearArray } from "@/utils/dateArray";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
 import EmptyData from "@/Components/PaneContent/EmptyData";
-import { ClipLoader } from "react-spinners";
+import { getCityData, getIndianData, getTextData } from "@/utils/apiCalls";
+import { structureDataIndian } from "@/utils/structureData";
+import { monthsArray, yearArray } from "@/utils/dateArray";
 
 export default function Indian() {
   const router = useRouter();
@@ -32,20 +32,20 @@ export default function Indian() {
 
   const [city, setCity] = useState({}); //stores data of all cities
   const [cityNames, setCityNames] = useState([]);
-
   const [cityCategory, setCityCategory] = useState("");
 
+  const modifiedData = structureDataIndian(data);
+
   useEffect(() => {
-    if (path === "citywise") {
-      getCityData(setCity, setCityCategory, setCityNames);
-      getIndianData("Mumbai", setData, setIsLoading);
-    } else {
-      // rate revision and rate prediction call
-      getTextData(path, monthIndex, year, setData, setIsLoading);
+    if (path) {
+      if (path === "citywise") {
+        getCityData(setCity, setCityCategory, setCityNames);
+        getIndianData("Mumbai", setData, setIsLoading);
+      } else {
+        getTextData(path, monthIndex, year, setData, setIsLoading);
+      }
     }
   }, [path]);
-
-  const modifiedData = structureDataIndian(data);
 
   useEffect(() => {
     if (path === "citywise") {

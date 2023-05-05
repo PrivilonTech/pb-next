@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Box, Typography } from "@mui/material";
+import { ClipLoader } from "react-spinners";
 
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
@@ -11,13 +11,12 @@ import { monthsArray, yearArray } from "@/utils/dateArray";
 import { getGlobalData } from "@/utils/apiCalls";
 import { structureDataGlobal } from "@/utils/structureData";
 import EmptyData from "@/Components/PaneContent/EmptyData";
-import { ClipLoader } from "react-spinners";
 
-function index({ response }) {
+function index() {
   const currentDate = new Date();
 
   const getYearArray = yearArray();
-  const [data, setData] = useState(response.data.data);
+  const [data, setData] = useState({});
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
@@ -26,6 +25,10 @@ function index({ response }) {
   const [month, setMonth] = useState(monthsArray[currentMonth]);
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getGlobalData("USA", monthIndex, year, setData, setIsLoading);
+  }, []);
 
   useEffect(() => {
     getGlobalData("USA", monthIndex, year, setData, setIsLoading);
@@ -103,20 +106,3 @@ function index({ response }) {
 }
 
 export default index;
-
-export const getServerSideProps = async () => {
-  const currentDate = new Date();
-
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
-
-  const res = await axios.get(
-    `https://polymerbazar-be.onrender.com/api/internationaloffers?country=USA&month=${currentMonth}&year=${currentYear}`
-  );
-
-  return {
-    props: {
-      response: res.data,
-    },
-  };
-};
