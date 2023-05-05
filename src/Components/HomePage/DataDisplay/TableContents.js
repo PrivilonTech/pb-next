@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import AnimatedNumber from "react-animated-number";
 
 import LoadingTable from "@/Components/Loading/LoadingTable";
 
@@ -58,21 +57,7 @@ export default function TableContents({ data, loading }) {
                     <tr key={index}>
                       <td>{subItems}</td>
                       <td style={{ textAlign: "center" }}>
-                        {/* {data[0].subValues[selectedData][index]} */}
-                        <AnimatedNumber
-                          component="text"
-                          style={{
-                            transition: "0.8s ease-out",
-                            transitionProperty:
-                              "background-color, color, opacity",
-                          }}
-                          formatValue={(v) => v.toFixed(0)}
-                          value={data[0].subValues[selectedData][index]}
-                          duration={1000}
-                          frameStyle={(perc) => {
-                            opacity: perc / 100;
-                          }}
-                        />
+                        {data[0].subValues[selectedData][index]}
                       </td>
                     </tr>
                   ))}
