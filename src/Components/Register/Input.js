@@ -19,7 +19,7 @@ export default function Input({
         borderRadius: "7px",
         fontSize: "1rem",
         width: "90%",
-        height: largeHeight ? "100px" : "",
+        height: largeHeight ? "100px" : "auto",
       }}
       onChange={(e) => setState(e.target.value)}
     />
