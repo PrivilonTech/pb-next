@@ -5,23 +5,22 @@ import secureLocalStorage from "react-secure-storage";
 import { ModalContext } from "../HomePage/ModalProvider";
 import { getUserByUID } from "@/utils/utilsUser";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import Loading from "../Loading/Loading";
 
 export default function AuthGuard({ children }) {
   const router = useRouter();
   const path = router.pathname;
 
   const currentUser = useCurrentUser();
+  const { loading, setLoading, setFetchedUser } = useContext(ModalContext);
 
-  const { setLoading, setFetchedUser } = useContext(ModalContext);
   const userLoggedIn = secureLocalStorage.getItem("user");
-
   const userNotFound = userLoggedIn === "undefined" || !userLoggedIn;
 
   //store user data only once in the local storage
   useEffect(() => {
     if (userNotFound && currentUser) {
       const getUserInfo = async () => {
-        // console.log(currentUser?.uid);
         let fetchedUser = null;
         while (!fetchedUser) {
           fetchedUser = await getUserByUID(currentUser?.uid);
@@ -42,9 +41,13 @@ export default function AuthGuard({ children }) {
 
   useEffect(() => {
     if (userNotFound && path !== "/") {
+      setLoading(true);
       router.push("/register");
+    }
+    if (path === "/register") {
+      setLoading(false);
     }
   }, [path]);
 
-  return <>{children}</>;
+  return <Loading isLoading={loading}>{children}</Loading>;
 }
