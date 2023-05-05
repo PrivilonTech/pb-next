@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import secureLocalStorage from "react-secure-storage";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 import Pane from "../Pane/Pane";
-import { useRouter } from "next/router";
 import UserInfo from "./UserInfo";
-import { toast } from "react-hot-toast";
-import { useState } from "react";
-import { useEffect } from "react";
 
 export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   const router = useRouter();
@@ -26,6 +24,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
         await auth.signOut();
 
         secureLocalStorage.removeItem("user");
+        setUser(null);
         setShowHamburg(false);
       } catch (error) {
         toast.error("Something went wrong");
@@ -55,8 +54,8 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
         display: "flex",
         position: "absolute",
         overflow: "hidden",
-        top: "-30px",
-        left: "-15px",
+        top: "0px",
+        left: "-5px",
         background: "white",
         justifyContent: "space-around",
         zIndex: "99999",
@@ -142,9 +141,8 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
               justifyContent: "flex-start",
               margin: "2em 0",
               padding: ".5em 1.5em",
-              background:
-                user?.subscribed === "true" ? "whitesmoke" : "#1e1e1e",
-              border: user?.subscribed === "true" ? "2px solid #b0aeae" : "",
+              background: user?.subscribed ? "whitesmoke" : "#1e1e1e",
+              border: user?.subscribed ? "2px solid #b0aeae" : "",
               boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
               "&:hover": {
                 boxShadow:
@@ -155,10 +153,8 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
               borderRadius: "10px",
             }}
           >
-            <Typography
-              sx={{ color: user?.subscribed === "true" ? "#1e1e1e" : "white" }}
-            >
-              {user?.subscribed === "true" ? "Subscribed" : "Subscribe"}
+            <Typography sx={{ color: user?.subscribed ? "#1e1e1e" : "white" }}>
+              {user?.subscribed ? "Subscribed" : "Subscribe"}
             </Typography>
           </Box>
         </Box>

@@ -48,7 +48,7 @@ export default function GraphDisplay() {
       {isLoading ? (
         <LoadingGraph />
       ) : (
-        <Box sx={{ width: { xs: "100%", lg: "500px" }, cursor: "pointer" }}>
+        <Box sx={{ width: { xs: "100%", lg: "100%" }, cursor: "pointer" }}>
           <Graph data={data} onClick={() => router.push("/crude")} />
           <Periodic
             periodicTime={periodicTime}

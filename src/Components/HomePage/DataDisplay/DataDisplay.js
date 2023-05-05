@@ -11,17 +11,18 @@ export default function DataDisplay() {
   return (
     <Box
       sx={{
-        height: { xs: "auto", lg: "60vh" },
+        height: { xs: "auto", lg: "" },
+        width: { xs: "100%", md: "350px" },
         display: "flex",
-        flexDirection: { xs: "column", lg: "row" },
-        justifyContent: "center",
+        flexDirection: { xs: "column", lg: "column" },
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
         gap: { xs: "2em", lg: "" },
-        margin: { xs: "1em 0", sm: "1em 2em", md: "4em 3em" },
       }}
     >
       <Box
         sx={{
-          borderRadius: "10px",
+          width: "100%",
         }}
       >
         <GraphDisplay />
@@ -29,8 +30,8 @@ export default function DataDisplay() {
       <Box
         onClick={() => router.push("/indian-bazaar")}
         sx={{
-          borderRadius: "10px",
           cursor: "pointer",
+          width: "100%",
         }}
       >
         <PriceTable />

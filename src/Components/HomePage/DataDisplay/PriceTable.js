@@ -15,7 +15,7 @@ export default function PriceTable() {
   return (
     <Box
       sx={{
-        width: { xs: "100%", lg: "500px" },
+        width: { xs: "100%", lg: "100%" },
         display: "flex",
         flexDirection: "column",
         gap: "1.5em",

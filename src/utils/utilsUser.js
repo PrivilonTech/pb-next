@@ -14,7 +14,6 @@ export const createNewUser = async (userData) => {
   try {
     const db = getFirestore(firebaseApp);
     const userCollectionRef = collection(db, "users");
-    console.log(userCollectionRef);
 
     // Set the document data to the user's display name and email address
     addDoc(userCollectionRef, userData)

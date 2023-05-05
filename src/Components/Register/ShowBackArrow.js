@@ -14,7 +14,7 @@ export default function ShowBackArrow() {
       sx={{
         position: "absolute",
         top: "30px",
-        left: "50px",
+        left: { xs: "20px", md: "50px" },
         cursor: "pointer",
       }}
     >

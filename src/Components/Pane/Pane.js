@@ -21,11 +21,12 @@ function Pane({ path }) {
       {upMd ? (
         <Box
           sx={{
-            margin: "0 auto",
+            margin: "0 4em",
             height: "15vh",
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-evenly",
             padding: "1em",
+            paddingBottom: 0,
           }}
         >
           {list.map((res, id) => {
@@ -64,7 +65,7 @@ function Pane({ path }) {
                     margin: "auto",
                   }}
                 >
-                  <Image height={45} width={45} src={res.icon} alt={res.txt} />
+                  <Image height={40} width={40} src={res.icon} alt={res.txt} />
                 </Box>
                 <Typography
                   sx={{
@@ -90,7 +91,7 @@ function Pane({ path }) {
             display: "flex",
             justifyContent: "flex-start",
             gap: 0,
-            paddingLeft: { xs: "", sm: "10px" },
+            paddingLeft: { xs: "5px", sm: "10px" },
             flexWrap: "wrap",
           }}
         >

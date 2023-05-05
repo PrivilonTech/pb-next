@@ -27,7 +27,7 @@ export default function SocialLogin({
           email: result.user.email,
           displayName: result.user.displayName,
           role: "user",
-          subscribed: "false",
+          subscribed: false,
           createdAt: serverTimestamp(),
         });
       }

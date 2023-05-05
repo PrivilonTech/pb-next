@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 
 export default function CarouselComponent() {
   return (
-    <Box sx={{ margin: { xs: "1em 0em", sm: "1em", lg: "2em 5em" } }}>
+    <Box sx={{ margin: { xs: "1em 0em", sm: "1em", lg: "1em 5em" } }}>
       <Carousel
         autoPlay
         emulateTouch
@@ -19,20 +19,20 @@ export default function CarouselComponent() {
           <img
             src="/Homepage/hero/hero-image.jpg"
             style={{ objectFit: "cover", borderRadius: "10px" }}
-            height={500}
+            height={250}
           />
         </Box>
         <Box>
           <img
             src="/Homepage/hero/hero-image_2.jpg"
-            height={500}
+            height={250}
             style={{ objectFit: "cover", borderRadius: "10px" }}
           />
         </Box>
         <Box>
           <img
             src="/Homepage/hero/hero-image_3.jpg"
-            height={500}
+            height={250}
             style={{ objectFit: "cover", borderRadius: "10px" }}
           />
         </Box>

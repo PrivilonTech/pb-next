@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { getAuth } from "firebase/auth";
 import { Box } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import secureLocalStorage from "react-secure-storage";
 
@@ -33,8 +32,8 @@ export default function ProfileMenu({ setIsUserProfileModalOpen }) {
         position: "absolute",
         display: "flex",
         justifyContent: "flex-end",
-        top: "11vh",
-        right: "50px",
+        top: "15vh",
+        right: "70px",
         zIndex: 9999,
       }}
     >

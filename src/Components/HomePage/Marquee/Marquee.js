@@ -33,9 +33,7 @@ export default function Marquee() {
           sx={{
             display: "flex",
             alignItems: "center",
-            padding: "3px 0",
-            borderTop: "2px solid gray",
-            borderBottom: "2px solid gray",
+            padding: "8px 0",
           }}
         >
           <marquee behavior="scroll" direction="left" scrollamount="5">
