@@ -12,7 +12,7 @@ export default function AuthGuard({ children }) {
 
   const currentUser = useCurrentUser();
 
-  const { loading, setLoading } = useContext(ModalContext);
+  const { setLoading, setFetchedUser } = useContext(ModalContext);
   const userLoggedIn = secureLocalStorage.getItem("user");
 
   const userNotFound = userLoggedIn === "undefined" || !userLoggedIn;
@@ -21,7 +21,16 @@ export default function AuthGuard({ children }) {
   useEffect(() => {
     if (userNotFound && currentUser) {
       const getUserInfo = async () => {
-        const fetchedUser = await getUserByUID(currentUser?.uid);
+        // console.log(currentUser?.uid);
+        let fetchedUser = null;
+        while (!fetchedUser) {
+          fetchedUser = await getUserByUID(currentUser?.uid);
+          if (!fetchedUser) {
+            // User data not yet available in database, wait for 1 second and try again
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+          }
+        }
+        setFetchedUser(fetchedUser);
         secureLocalStorage.setItem("user", fetchedUser);
         setLoading(false);
       };

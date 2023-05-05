@@ -24,11 +24,13 @@ function Header() {
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
 
+  const { fetchedUser } = useContext(ModalContext);
   const [showHamburg, setShowHamburg] = useState(false);
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
   const currentUser = useCurrentUser();
 
-  const user = secureLocalStorage.getItem("user");
+  // const user = secureLocalStorage.getItem("user");
+  const [user, setUser] = useState(secureLocalStorage.getItem("user"));
 
   //if someone resizes disable hamburg menu on large screens
   useEffect(() => {
@@ -44,30 +46,30 @@ function Header() {
     });
   }, []);
 
+  useEffect(() => {
+    setUser(secureLocalStorage.getItem("user"));
+  }, [fetchedUser, secureLocalStorage.getItem("user")]);
+
   const handleToggleProfileMenu = () => {
     setIsUserProfileModalOpen((prev) => !prev);
   };
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-      }}
-    >
+    <Box sx={{}}>
       {upMd ? (
         <Box
           sx={{
             height: "10vh",
             display: "flex",
             justifyContent: "space-between",
-            padding: { xs: ".5em 1em", md: ".5em 3em" },
-            paddingTop: 0,
           }}
         >
           <Box
             sx={{
               display: "flex",
-              width: "40%",
+              width: "45%",
+              paddingTop: 0,
+              padding: { xs: ".5em 1em", md: ".5em 3em" },
             }}
           >
             <Box
@@ -77,7 +79,15 @@ function Header() {
               <img src={"/Header/logo.svg"} alt="Logo"></img>
             </Box>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1em",
+              paddingTop: 0,
+              padding: { xs: ".5em 1em", md: ".5em 3em" },
+            }}
+          >
             {user ? (
               <>
                 {user?.role === "admin" ? (
@@ -95,7 +105,7 @@ function Header() {
                     </Link>
                   </Box>
                 ) : (
-                  user?.subscribed === "false" && (
+                  !user?.subscribed && (
                     <Button
                       label="Subscribe Now"
                       onClick={() => router.push("/subscription")}
@@ -159,6 +169,7 @@ function Header() {
             height: "10vh",
             display: "flex",
             justifyContent: "space-between",
+            paddingTop: 0,
             padding: { xs: ".5em 1em", md: ".5em 3em" },
           }}
         >
