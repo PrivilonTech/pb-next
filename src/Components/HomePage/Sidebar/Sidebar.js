@@ -17,21 +17,22 @@ export default function Sidebar() {
         gap: { xs: "2em", lg: "" },
       }}
     >
-      <Box sx={{ width: { xs: "100%", lg: "70%" } }}>
+      <Box sx={{ width: { xs: "100%", lg: "60%" } }}>
         <Box
           sx={{
-            border: "2px solid rgba(99, 99, 99, 0.2)",
             width: "100%",
+            height: "100%",
           }}
         >
           <Video />
         </Box>
       </Box>
-      <Box sx={{ width: { xs: "100%", lg: "30%" } }}>
+      <Box sx={{ width: { xs: "100%", lg: "40%" } }}>
         <Box
           sx={{
             border: "2px solid rgba(99, 99, 99, 0.2)",
             width: "100%",
+            height: "100%",
           }}
         >
           <WhatsAppScan />

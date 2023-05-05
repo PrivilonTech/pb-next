@@ -11,12 +11,11 @@ export default function AskQuestions() {
         width: "calc(100% + 4em)",
         height: { xs: "350px", md: "150px" },
         margin: ".75em -2em",
+        marginBottom: 0,
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        // border: "1px solid red",
       }}
     >
-      {/* 004E86 */}
       <Box
         sx={{
           background: "#c31815",
@@ -52,7 +51,6 @@ export default function AskQuestions() {
       >
         <Box
           sx={{
-            // border: "2px solid blue",
             display: "flex",
             padding: "2em 0",
             flexDirection: "column",

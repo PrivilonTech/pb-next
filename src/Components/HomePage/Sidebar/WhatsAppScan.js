@@ -9,6 +9,7 @@ export default function WhatsAppScan() {
         display: "flex",
         flexDirection: "column",
         gap: ".5em",
+        height: "100%",
       }}
     >
       <Box
@@ -36,7 +37,22 @@ export default function WhatsAppScan() {
           alt="whatsapp-icon"
         />
       </Box>
-      <img src={"/Homepage/appStore/whatsappScan.jpeg"} alt="whatsapp-scan" />
+      <Box
+        sx={{
+          display: "flex",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={"/Homepage/appStore/whatsappScan.jpeg"}
+          style={{
+            height: "300px",
+          }}
+          alt="whatsapp-scan"
+        />
+      </Box>
     </Box>
   );
 }

@@ -3,7 +3,7 @@ import Chart from "chart.js/auto";
 
 import { Box } from "@mui/material";
 
-export default function Graph({ data, leftSpacing, onClick }) {
+export default function Graph({ data, leftSpacing, onClick, small }) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -16,7 +16,6 @@ export default function Graph({ data, leftSpacing, onClick }) {
         maintainAspectRatio: false,
         tension: 0.1,
         fill: true,
-        // pointStyle: false,
         animation: {
           onComplete: () => {
             delayed = true;
@@ -45,15 +44,7 @@ export default function Graph({ data, leftSpacing, onClick }) {
             ticks: {
               display: false,
             },
-            // grid: {
-            //   display: false,
-            // },
           },
-          // y: {
-          //   grid: {
-          //     display: false,
-          //   },
-          // },
         },
       },
     });
@@ -67,7 +58,7 @@ export default function Graph({ data, leftSpacing, onClick }) {
       onClick={onClick}
       sx={{
         marginLeft: leftSpacing && { md: "1em" },
-        height: { xs: "60vh", md: "60vh" },
+        height: small ? "40vh" : "60vh",
         width: "100%",
         display: "flex",
         justifyContent: "center",

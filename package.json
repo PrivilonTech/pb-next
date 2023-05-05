@@ -36,6 +36,8 @@
     "react-secure-storage": "^1.2.2",
     "react-showdown": "^2.3.1",
     "react-spinners": "^0.13.8",
+    "react-tweet-embed": "^2.0.0",
+    "react-twitter-embed": "^4.0.4",
     "styled-components": "^5.3.9"
   }
 }

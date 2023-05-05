@@ -5,19 +5,21 @@ export default function Video() {
   return (
     <Box
       sx={{
-        width: { xs: "100%", lg: "100%" },
+        width: "100%",
         display: "flex",
+        height: "100%",
         flexDirection: "column",
         gap: "1.5em",
       }}
     >
-      <video
-        src={"/Homepage/video/Video.mp4"}
-        autoPlay
-        muted
-        controls
-        style={{ borderRadius: "10px", margin: "1em" }}
-      ></video>
+      <iframe
+        height={400}
+        src="https://www.youtube.com/embed/Q7oWElOK1hw"
+        title="React.js Project to Embed Youtube Video in IFrame inside Browser Without any Library in Javascript"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
       <Box
         sx={{
           display: "flex",

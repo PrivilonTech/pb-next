@@ -29,7 +29,6 @@ function Header() {
   const [isUserProfileModalOpen, setIsUserProfileModalOpen] = useState(false);
   const currentUser = useCurrentUser();
 
-  // const user = secureLocalStorage.getItem("user");
   const [user, setUser] = useState(secureLocalStorage.getItem("user"));
 
   //if someone resizes disable hamburg menu on large screens

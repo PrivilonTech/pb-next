@@ -8,7 +8,7 @@ export default function DownloadNow() {
       sx={{
         width: "calc(100% + 4em)",
         height: { xs: "400px", md: "200px" },
-        margin: "1em -2em",
+        margin: "0em -2em",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
       }}

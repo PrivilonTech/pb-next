@@ -1,37 +1,31 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { Box } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
+import { TwitterTimelineEmbed } from "react-twitter-embed";
+
+import LoadingTweets from "@/Components/Loading/LoadingTweets";
 
 export default function TwitterBlogs() {
+  const theme = useTheme();
+  const upMd = useMediaQuery(theme.breakpoints.up("md"));
+  const [loading, setLoading] = useState(true);
+
   return (
-    <Box sx={{ width: { xs: "100%", md: "65%" } }}>
-      <Typography sx={{ fontSize: 30, margin: ".5em 0" }}>
-        Blog Content
-      </Typography>
-      <Typography>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio sunt
-        magni totam unde iusto cum eos magnam, dolore facilis culpa nostrum
-        aliquid. Iste magni laudantium incidunt? Veritatis placeat molestias
-        animi! Quia mollitia ullam facere id molestiae deleniti ea asperiores
-        quod est, reiciendis dignissimos voluptates itaque. Facere pariatur
-        totam nam itaque libero odit deserunt dolorem debitis officiis illum a
-        enim, aut quidem eveniet possimus? Debitis quaerat dolores reprehenderit
-        facilis voluptatibus ex esse reiciendis temporibus eius consectetur
-        velit unde distinctio, dolore aliquid consequuntur in earum dolor
-        nesciunt autem similique doloribus suscipit accusamus.
-      </Typography>
-      <br />
-      <Typography>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio sunt
-        magni totam unde iusto cum eos magnam, dolore facilis culpa nostrum
-        aliquid. Iste magni laudantium incidunt? Veritatis placeat molestias
-        animi! Quia mollitia ullam facere id molestiae deleniti ea asperiores
-        quod est, reiciendis dignissimos voluptates itaque. Facere pariatur
-        totam nam itaque libero odit deserunt dolorem debitis officiis illum a
-        enim, aut quidem eveniet possimus? Debitis quaerat dolores reprehenderit
-        facilis voluptatibus ex esse reiciendis temporibus eius consectetur
-        velit unde distinctio, dolore aliquid consequuntur in earum dolor
-        nesciunt autem similique doloribus suscipit accusamus.
-      </Typography>
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: { xs: "100%", lg: "65%", xl: "70%" },
+      }}
+    >
+      {loading && <LoadingTweets />}
+      <TwitterTimelineEmbed
+        sourceType="profile"
+        screenName="POLYMERBAZAAR"
+        options={{ height: 1200, width: "100%" }}
+        onLoad={() => setLoading(false)}
+        onLoadSuccess={() => setLoading(false)}
+      />
     </Box>
   );
 }

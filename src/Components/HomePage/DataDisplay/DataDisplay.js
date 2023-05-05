@@ -13,13 +13,12 @@ export default function DataDisplay() {
   return (
     <Box
       sx={{
-        height: { xs: "auto", lg: "" },
-        width: { xs: "100%", md: "350px" },
+        height: "auto",
+        width: { xs: "100%", lg: "25%" },
         display: "flex",
-        flexDirection: { xs: "column", lg: "column" },
-        justifyContent: "flex-end",
+        flexDirection: "column",
+        justifyContent: "flex-start",
         alignItems: "flex-end",
-        gap: { xs: "2em", lg: "" },
       }}
     >
       <Box

@@ -20,14 +20,14 @@ function HomePage() {
         margin: ".75em 2em",
       }}
     >
-      <CarouselComponent />
+      {/* <CarouselComponent /> */}
       <ScrollTop />
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           margin: { xs: "1em 0", sm: "1em 0em", md: "2em 1em" },
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: { xs: "column", lg: "row" },
           gap: { xs: "2em", md: "0" },
         }}
       >
@@ -35,8 +35,10 @@ function HomePage() {
         <DataDisplay />
       </Box>
       <Sidebar />
-      <AskQuestions />
-      <DownloadNow />
+      <Box>
+        <AskQuestions />
+        <DownloadNow />
+      </Box>
       <MediaPartner />
     </Box>
   );
