@@ -20,7 +20,7 @@ function HomePage() {
         margin: ".75em 2em",
       }}
     >
-      <CarouselComponent />
+      {/* <CarouselComponent /> */}
       <ScrollTop />
       <Box
         sx={{
