@@ -25,7 +25,7 @@ export default function TableContents({ data, loading }) {
       const nextIndex = (currentIndex + 1) % data[0].dataKeys.length;
 
       setSelectedData(data[0].dataKeys[nextIndex]);
-    }, 10000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [data, selectedData]);
@@ -59,7 +59,7 @@ export default function TableContents({ data, loading }) {
                       <td>{subItems}</td>
                       <td style={{ textAlign: "center" }}>
                         <FlipNumbers
-                          height={20}
+                          height={17}
                           width={15}
                           play
                           perspective={200}

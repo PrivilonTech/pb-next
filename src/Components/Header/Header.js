@@ -60,6 +60,8 @@ function Header() {
             height: "10vh",
             display: "flex",
             justifyContent: "space-between",
+            background: "faf5f5",
+            background: "linear-gradient(0deg, #fff, #E1C1C1)",
           }}
         >
           <Box
@@ -107,6 +109,7 @@ function Header() {
                     <Button
                       label="Subscribe Now"
                       onClick={() => router.push("/subscription")}
+                      noShadow
                     />
                   )
                 )}
