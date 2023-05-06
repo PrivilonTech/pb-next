@@ -18,7 +18,6 @@ function HomePage() {
         flexDirection: "column",
         gap: "1em",
         margin: ".75em 2em",
-        // px: "5%",
       }}
     >
       {/* <CarouselComponent /> */}

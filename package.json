@@ -29,6 +29,7 @@
     "react-day-picker": "^8.7.1",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-flip-numbers": "^3.0.8",
     "react-hot-toast": "^2.4.0",
     "react-phone-input-2": "^2.15.1",
     "react-plotly.js": "^2.6.0",

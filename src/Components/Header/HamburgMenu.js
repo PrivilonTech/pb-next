@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import secureLocalStorage from "react-secure-storage";
@@ -7,15 +7,23 @@ import { useRouter } from "next/router";
 
 import Pane from "../Pane/Pane";
 import UserInfo from "./UserInfo";
+import { ModalContext } from "../HomePage/ModalProvider";
 
 export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   const router = useRouter();
+
+  const { fetchedUser } = useContext(ModalContext);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const user = secureLocalStorage.getItem("user");
     setUser(user);
   }, []);
+
+  useEffect(() => {
+    const user = secureLocalStorage.getItem("user");
+    setUser(user);
+  }, [fetchedUser, secureLocalStorage.getItem("user")]);
 
   const handleUserLogout = async () => {
     if (user) {

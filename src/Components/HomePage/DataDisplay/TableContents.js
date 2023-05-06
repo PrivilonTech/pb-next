@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
-// import FlipNumbers from "react-flip-numbers";
+import FlipNumbers from "react-flip-numbers";
 
 import LoadingTable from "@/Components/Loading/LoadingTable";
 
@@ -58,18 +58,15 @@ export default function TableContents({ data, loading }) {
                     <tr key={index}>
                       <td>{subItems}</td>
                       <td style={{ textAlign: "center" }}>
-                        {data[0].subValues[selectedData][index]}
-                        {/* <FlipNumbers
+                        <FlipNumbers
                           height={20}
-                          width={12}
-                          color="#333"
-                          background="#fff"
+                          width={15}
                           play
-                          perspective={1000}
-                          durationSeconds={0.5}
-                          delaySeconds={0}
-                          numbers={data[0].subValues[selectedData][index]}
-                        /> */}
+                          perspective={200}
+                          numbers={data[0].subValues[selectedData][
+                            index
+                          ].toString()}
+                        />
                       </td>
                     </tr>
                   ))}

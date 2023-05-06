@@ -5,7 +5,7 @@ import Link from "next/link";
 import firebaseApp from "@/firebase/clientApp";
 import secureLocalStorage from "react-secure-storage";
 
-import { Box, Skeleton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -16,7 +16,6 @@ import HamburgMenu from "./HamburgMenu";
 import { ModalContext } from "../HomePage/ModalProvider";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import Button from "../Button/Button";
-import LoadingButton from "../Loading/LoadingButton";
 
 function Header() {
   const auth = getAuth(firebaseApp);
