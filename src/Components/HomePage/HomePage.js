@@ -9,6 +9,7 @@ import ScrollTop from "./ScrollTop/ScrollTop";
 import TwitterBlogs from "./DataDisplay/TwitterBlogs";
 import AskQuestions from "./AskQuestions/AskQuestions";
 import DownloadNow from "./DownloadNow/DownloadNow";
+import GlobalMap from "./MediaPartner/GlobalMap";
 
 function HomePage() {
   return (
@@ -39,7 +40,10 @@ function HomePage() {
         <AskQuestions />
         <DownloadNow />
       </Box>
-      <MediaPartner />
+      <Box>
+        <MediaPartner />
+        <GlobalMap />
+      </Box>
     </Box>
   );
 }
