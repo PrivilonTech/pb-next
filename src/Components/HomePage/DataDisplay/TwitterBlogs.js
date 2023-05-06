@@ -15,7 +15,7 @@ export default function TwitterBlogs() {
     <Box
       sx={{
         width: "100%",
-        maxWidth: { xs: "100%", lg: "65%", xl: "70%" },
+        maxWidth: { xs: "100%", lg: "60%", xl: "70%" },
       }}
     >
       {loading && <LoadingTweets />}
