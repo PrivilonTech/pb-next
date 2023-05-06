@@ -8,17 +8,20 @@ export default function Footer() {
       <Box
         sx={{
           height: { xs: "100vh", md: "50vh" },
-          width: { xs: "100%", md: "80%" },
-          margin: { md: "auto" },
+          width: { xs: "100%", md: "100%" },
+          background: "#e9e9e9",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
         }}
       >
         <Box
           sx={{
-            height: "80%",
-            borderBottom: "1px solid gray",
+            height: "70%",
             display: "flex",
             justifyContent: "space-around",
             flexWrap: "wrap",
+            padding: { xs: "0 2em", sm: "0 4em", md: "0 auto" },
           }}
         >
           {headList.map((res, id) => {
@@ -40,8 +43,8 @@ export default function Footer() {
                       sx={{
                         marginTop: { xs: "20px" },
                         textAlign: "left",
-                        fontSize: { xs: "5vmin", md: "3vmin" },
-                        color: "#657786",
+                        fontSize: { xs: "5vmin", md: "3.5vmin" },
+                        color: "#787878",
                         fontWeight: "bold",
                       }}
                     >
@@ -52,7 +55,6 @@ export default function Footer() {
                     sx={{
                       height: "70%",
                       display: "flex",
-                      marginTop: ".5em",
                       flexDirection: "column",
                       justifyContent: "space-around",
                     }}
@@ -62,7 +64,7 @@ export default function Footer() {
                         <Typography
                           key={id}
                           id={ans.id}
-                          sx={{ color: "#878997" }}
+                          sx={{ color: "#787878" }}
                         >
                           {ans.name}
                         </Typography>
@@ -78,16 +80,24 @@ export default function Footer() {
           sx={{
             height: "20%",
             display: "flex",
-            flexDirection: { xs: "column", md: "raw" },
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "center",
           }}
         >
-          <Box sx={{ width: "100%" }}>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Typography
               sx={{
                 marginTop: "20px",
                 marginLeft: { xs: "4vw", md: "0vw" },
+                width: { xs: "40em", sm: "50em", lg: "70em" },
                 fontSize: ".9rem",
-                color: "#575757",
+                color: "#787878",
               }}
             >
               Please refer Terms & Conditions : M/S SAMYAK ENTERPRISE,
