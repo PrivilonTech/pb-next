@@ -60,7 +60,7 @@ function Header() {
             height: "10vh",
             display: "flex",
             justifyContent: "space-between",
-            background: "faf5f5",
+            background: "#faf5f5",
             background: "linear-gradient(0deg, #fff, #E1C1C1)",
           }}
         >
@@ -172,6 +172,8 @@ function Header() {
             justifyContent: "space-between",
             paddingTop: 0,
             padding: { xs: ".5em 1em", md: ".5em 3em" },
+            background: "#faf5f5",
+            background: "linear-gradient(0deg, #fff, #E1C1C1)",
           }}
         >
           <Box
