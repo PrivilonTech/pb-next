@@ -26,7 +26,7 @@ function HomePage() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-evenly",
+          justifyContent: "space-evenly ",
           margin: { xs: "1em 0", sm: "1em 0em", md: "2em 1em" },
           flexDirection: { xs: "column", lg: "row" },
           gap: { xs: "2em", md: "0" },

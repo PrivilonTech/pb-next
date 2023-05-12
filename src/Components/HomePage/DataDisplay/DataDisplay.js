@@ -14,7 +14,7 @@ export default function DataDisplay() {
     <Box
       sx={{
         height: "auto",
-        width: { xs: "100%", lg: "25%" },
+        width: { xs: "100%", lg: "32%" },
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
@@ -33,6 +33,9 @@ export default function DataDisplay() {
         sx={{
           cursor: "pointer",
           width: "100%",
+          marginBottom: "20px",
+          // boxShadow:
+          //   "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
         }}
       >
         <PriceTable />
@@ -41,6 +44,8 @@ export default function DataDisplay() {
         sx={{
           cursor: "pointer",
           border: "0.5px solid rgba(99, 99, 99, 0.2)",
+          boxShadow:
+            "rgba(0,58,108, 0.45) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
           width: "100%",
           marginBottom: "20px",
         }}
@@ -51,6 +56,8 @@ export default function DataDisplay() {
         sx={{
           cursor: "pointer",
           border: "0.5px solid rgba(99, 99, 99, 0.2)",
+          boxShadow:
+            "rgba(0,58,108, 0.45) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
           width: "100%",
         }}
       >

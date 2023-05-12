@@ -12,6 +12,16 @@ export default function Video() {
         gap: "1.5em",
       }}
     >
+      <Typography
+        sx={{
+          fontSize: "1.5rem",
+          textTransform: "uppercase",
+          textAlign: "left",
+          borderBottom: "1px solid #E5322D",
+        }}
+      >
+        Market Videos
+      </Typography>
       <iframe
         height={400}
         src="https://www.youtube.com/embed/Q7oWElOK1hw"
@@ -20,25 +30,6 @@ export default function Video() {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       ></iframe>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: ".25em",
-          margin: "1em",
-        }}
-      >
-        <Typography
-          sx={{ fontSize: ".9rem", color: "#787878", fontWeight: "500" }}
-        >
-          Daily Video,
-        </Typography>
-        <Typography sx={{ fontSize: ".9rem" }}>
-          We organise events all over India, including conferences, seminars,
-          networking events and panel discussions. Showcasing the latest ideas
-          and technologies Know more.
-        </Typography>
-      </Box>
     </Box>
   );
 }

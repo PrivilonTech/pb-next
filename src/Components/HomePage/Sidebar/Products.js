@@ -25,6 +25,7 @@ export default function Products() {
           sx={{
             width: "30%",
             backdropDilter: "blur(5px)",
+            boxShadow: " rgba(0, 0, 0, 0.24) 0px 3px 8px",
             border: "1px solid #1e1e1e",
             padding: ".5em 1em",
             display: "flex",

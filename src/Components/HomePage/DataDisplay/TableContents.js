@@ -44,7 +44,9 @@ export default function TableContents({ data, loading }) {
                     style={{ display: "flex", justifyContent: "space-evenly" }}
                   >
                     <Typography>{selectedData}</Typography>
-                    <Typography>{data[0].date}</Typography>
+                  </th>
+                  <th>
+                    <Typography>Date</Typography>
                   </th>
                   <th>
                     <Typography>Price</Typography>
@@ -52,30 +54,30 @@ export default function TableContents({ data, loading }) {
                 </tr>
               </thead>
               <tbody>
-                {data[0].subKeys[selectedData]
-                  .slice(0, 5)
-                  .map((subItems, index) => (
-                    <tr key={index}>
-                      <td>{subItems}</td>
-                      <td style={{ textAlign: "center" }}>
-                        <FlipNumbers
-                          height={17}
-                          width={15}
-                          play
-                          perspective={200}
-                          numbers={data[0].subValues[selectedData][
-                            index
-                          ].toString()}
-                        />
-                      </td>
-                    </tr>
-                  ))}
+                {data[0].subKeys[selectedData].map((subItems, index) => (
+                  <tr key={index}>
+                    <td>{subItems}</td>
+                    <td>{data[0].date} </td>
+                    <td style={{ textAlign: "center" }}>
+                      <FlipNumbers
+                        height={17}
+                        width={15}
+                        play
+                        perspective={200}
+                        numbers={data[0].subValues[selectedData][
+                          index
+                        ].toString()}
+                      />
+                    </td>
+                  </tr>
+                ))}
                 {[
                   ...Array(
                     Math.max(0, 5 - data[0].subKeys[selectedData].length)
                   ),
                 ].map((_, index) => (
                   <tr key={index}>
+                    <td style={{ padding: "25px 0" }}></td>
                     <td style={{ padding: "25px 0" }}></td>
                     <td style={{ padding: "25px 0" }}></td>
                   </tr>

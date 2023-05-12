@@ -57,7 +57,7 @@ function Header() {
       {upMd ? (
         <Box
           sx={{
-            height: "13vh",
+            height: "15vh",
             display: "flex",
             justifyContent: "space-between",
 
