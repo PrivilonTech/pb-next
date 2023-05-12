@@ -16,8 +16,9 @@ export default function PhoneBar() {
       <Box
         sx={{
           display: "flex",
-          gap: "1em",
-          padding: { xs: "5px 20px", sm: "0" },
+          gap: ".5em 1em",
+          flexWrap: "wrap",
+          padding: { xs: "5px 20px" },
         }}
       >
         <Typography sx={{ color: "white", fontSize: ".8rem" }}>
@@ -35,7 +36,7 @@ export default function PhoneBar() {
         sx={{
           display: "flex",
           gap: "1em",
-          padding: { xs: "5px 20px", sm: "0" },
+          padding: { xs: "5px 20px" },
         }}
       >
         <Typography sx={{ color: "white", fontSize: ".8rem" }}>FAQ</Typography>

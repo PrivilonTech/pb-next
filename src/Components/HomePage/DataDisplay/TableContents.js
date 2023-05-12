@@ -3,6 +3,7 @@ import { Typography } from "@mui/material";
 import FlipNumbers from "react-flip-numbers";
 
 import LoadingTable from "@/Components/Loading/LoadingTable";
+import { formatDate } from "@/utils/dateArray";
 
 export default function TableContents({ data, loading }) {
   const [selectedData, setSelectedData] = useState(
@@ -57,7 +58,7 @@ export default function TableContents({ data, loading }) {
                 {data[0].subKeys[selectedData].map((subItems, index) => (
                   <tr key={index}>
                     <td>{subItems}</td>
-                    <td>{data[0].date} </td>
+                    <td>{formatDate(data[0].date)}</td>
                     <td style={{ textAlign: "center" }}>
                       <FlipNumbers
                         height={17}

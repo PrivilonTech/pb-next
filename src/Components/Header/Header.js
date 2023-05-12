@@ -53,7 +53,7 @@ function Header() {
   };
 
   return (
-    <Box sx={{}}>
+    <Box>
       {upMd ? (
         <Box
           sx={{
@@ -78,7 +78,7 @@ function Header() {
               onClick={() => router.push("/")}
               sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
             >
-              <img src={"/Header/logo.svg"} alt="Logo"></img>
+              <img src={"/Header/logo.svg"} alt="Logo" height={45}></img>
             </Box>
           </Box>
           <Box

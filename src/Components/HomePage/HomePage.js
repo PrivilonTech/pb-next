@@ -32,7 +32,7 @@ function HomePage() {
           "/Homepage/hero/hero-image_2.jpg",
           "/Homepage/hero/hero-image_3.jpg",
         ]}
-        height={150}
+        height={250}
         numberOfImages={1}
       />
       <CarouselComponent

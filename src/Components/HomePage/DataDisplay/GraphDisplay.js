@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import Graph from "@/Components/PaneContent/Graph";
 import { getCrudeData } from "@/utils/apiCalls";
@@ -49,6 +49,17 @@ export default function GraphDisplay() {
         <LoadingGraph />
       ) : (
         <Box sx={{ width: "100%", cursor: "pointer" }}>
+          <Typography
+            sx={{
+              fontSize: "1.5rem",
+              textTransform: "uppercase",
+              textAlign: "center",
+              borderBottom: "1px solid #dee2e6",
+              margin: "1em",
+            }}
+          >
+            Naphtha
+          </Typography>
           <Graph data={data} onClick={() => router.push("/crude")} small />
           <Periodic
             periodicTime={periodicTime}

@@ -8,7 +8,7 @@ export default function GlobalMap() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: { xs: "200px", md: "300px", lg: "400px" },
+        height: { xs: "200px", sm: "300px", md: "400px", lg: "500px" },
       }}
     >
       <img
