@@ -26,15 +26,17 @@ function HomePage() {
         margin: ".75em 2em",
       }}
     >
-      {/* <CarouselComponent
+      <CarouselComponent
         srcArray={[
           "/Homepage/hero/hero-image.jpg",
           "/Homepage/hero/hero-image_2.jpg",
           "/Homepage/hero/hero-image_3.jpg",
+          "/Homepage/hero/hero-image_4.jpg",
         ]}
-        height={250}
+        height={400}
         numberOfImages={1}
-      /> */}
+        objectFit="cover"
+      />
       <CarouselComponent
         srcArray={[
           "/Homepage/carousel/image_1.jpg",
@@ -48,6 +50,8 @@ function HomePage() {
         ]}
         height={100}
         numberOfImages={upMd ? 5 : 3}
+        objectFit="contain"
+        padding="20px"
       />
       <ScrollTop />
       <Box

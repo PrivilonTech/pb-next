@@ -8,6 +8,8 @@ export default function CarouselComponent({
   srcArray,
   height,
   numberOfImages,
+  padding,
+  objectFit,
 }) {
   const settings = {
     dots: true,
@@ -25,12 +27,16 @@ export default function CarouselComponent({
     <Box sx={{ margin: { xs: "1em 0em", sm: "1em", lg: "1em 5em" } }}>
       <Slider {...settings}>
         {srcArray.map((src, index) => (
-          <Box key={index}>
+          <Box
+            key={index}
+            sx={{
+              padding: padding ? padding : 0,
+            }}
+          >
             <img
               src={src}
               style={{
-                objectFit: "cover",
-                borderRadius: "10px",
+                objectFit: objectFit,
                 width: "100%",
               }}
               height={height}

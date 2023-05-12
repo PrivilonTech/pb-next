@@ -32,8 +32,9 @@ export default function ScrollTop() {
         sx={{
           position: "fixed",
           right: "30px",
+          opacity: showButton ? 1 : 0,
           bottom: showButton ? "40px" : "-60px",
-          transition: "bottom 200ms ease-in",
+          transition: "bottom 200ms ease-in, opacity 200ms ease-in",
           background: "#dbd9d9",
           padding: "5px",
           display: "flex",
