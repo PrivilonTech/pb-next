@@ -1,42 +1,43 @@
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import { Box } from "@mui/material";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
-export default function CarouselComponent() {
+export default function CarouselComponent({
+  srcArray,
+  height,
+  numberOfImages,
+}) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: numberOfImages,
+    slidesToScroll: numberOfImages,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false,
+    adaptiveHeight: true,
+  };
+
   return (
     <Box sx={{ margin: { xs: "1em 0em", sm: "1em", lg: "1em 5em" } }}>
-      <Carousel
-        autoPlay
-        emulateTouch
-        infiniteLoop
-        showArrows={false}
-        showThumbs={false}
-        showStatus={false}
-        interval={3500}
-      >
-        <Box>
-          <img
-            src="/Homepage/hero/hero-image.jpg"
-            style={{ objectFit: "cover", borderRadius: "10px" }}
-            height={250}
-          />
-        </Box>
-        <Box>
-          <img
-            src="/Homepage/hero/hero-image_2.jpg"
-            height={250}
-            style={{ objectFit: "cover", borderRadius: "10px" }}
-          />
-        </Box>
-        <Box>
-          <img
-            src="/Homepage/hero/hero-image_3.jpg"
-            height={250}
-            style={{ objectFit: "cover", borderRadius: "10px" }}
-          />
-        </Box>
-      </Carousel>
+      <Slider {...settings}>
+        {srcArray.map((src, index) => (
+          <Box key={index}>
+            <img
+              src={src}
+              style={{
+                objectFit: "cover",
+                borderRadius: "10px",
+                width: "100%",
+              }}
+              height={height}
+            />
+          </Box>
+        ))}
+      </Slider>
     </Box>
   );
 }

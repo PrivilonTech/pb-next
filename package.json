@@ -33,12 +33,13 @@
     "react-hot-toast": "^2.4.0",
     "react-phone-input-2": "^2.15.1",
     "react-plotly.js": "^2.6.0",
-    "react-responsive-carousel": "^3.2.23",
     "react-secure-storage": "^1.2.2",
     "react-showdown": "^2.3.1",
+    "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
     "react-tweet-embed": "^2.0.0",
     "react-twitter-embed": "^4.0.4",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.9"
   }
 }

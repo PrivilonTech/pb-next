@@ -64,12 +64,6 @@ function Header() {
             background: "rgb(0,48,91)",
             background:
               "linear-gradient(225deg, rgba(0,58,108,1) 43%, rgba(229,50,45,1) 43%, rgba(229,50,45,1) 44%, rgba(244,244,244,1) 44%)",
-
-            // background: " #abbaab" /* fallback for old browsers */,
-            // background:
-            //   "-webkit-linear-gradient(to right, #ffffff, #abbaab)" /* Chrome 10-25, Safari 5.1-6 */,
-            // background:
-            //   "linear-gradient(to right, #ffffff, #abbaab)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
           }}
         >
           <Box
