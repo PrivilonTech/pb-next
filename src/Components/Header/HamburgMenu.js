@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import secureLocalStorage from "react-secure-storage";
@@ -12,12 +12,47 @@ import { ModalContext } from "../HomePage/ModalProvider";
 export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   const router = useRouter();
 
+  const hamburgRef = useRef(null);
   const { fetchedUser } = useContext(ModalContext);
   const [user, setUser] = useState(null);
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleTouchStart = (event) => {
+    touchStartX = event.touches[0].clientX;
+  };
+
+  const handleTouchMove = (event) => {
+    touchEndX = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const touchDiff = touchStartX - touchEndX;
+
+    if (touchDiff > 50) {
+      // Swipe left detected, close the menu
+      setShowHamburg(false);
+    }
+  };
 
   useEffect(() => {
     const user = secureLocalStorage.getItem("user");
     setUser(user);
+
+    if (hamburgRef.current) {
+      hamburgRef.current.addEventListener("touchstart", handleTouchStart);
+      hamburgRef.current.addEventListener("touchmove", handleTouchMove);
+      hamburgRef.current.addEventListener("touchend", handleTouchEnd);
+    }
+
+    return () => {
+      if (hamburgRef.current) {
+        hamburgRef.current.removeEventListener("touchstart", handleTouchStart);
+        hamburgRef.current.removeEventListener("touchmove", handleTouchMove);
+        hamburgRef.current.removeEventListener("touchend", handleTouchEnd);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -56,6 +91,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
 
   return (
     <Box
+      ref={hamburgRef}
       sx={{
         height: "100vh",
         width: "100%",

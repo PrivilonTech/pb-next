@@ -27,7 +27,7 @@ export const yearArray = () => {
   return yearsArray;
 };
 
-//convert 11/10/2022 -> 11th October, 2022
+//convert 11/10/2022 -> 11th October
 export const formatDate = (dateString) => {
   // Split the date string into month, day, and year
   var parts = dateString.split("/");
@@ -72,7 +72,7 @@ export const formatDate = (dateString) => {
   }
 
   // Construct the formatted date string
-  var formattedDate = day + daySuffix + " " + months[month - 1] + ", " + year;
+  var formattedDate = day + daySuffix + " " + months[month - 1];
 
   return formattedDate;
 };

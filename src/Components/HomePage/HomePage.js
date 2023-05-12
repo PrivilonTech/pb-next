@@ -26,7 +26,7 @@ function HomePage() {
         margin: ".75em 2em",
       }}
     >
-      <CarouselComponent
+      {/* <CarouselComponent
         srcArray={[
           "/Homepage/hero/hero-image.jpg",
           "/Homepage/hero/hero-image_2.jpg",
@@ -34,7 +34,7 @@ function HomePage() {
         ]}
         height={250}
         numberOfImages={1}
-      />
+      /> */}
       <CarouselComponent
         srcArray={[
           "/Homepage/carousel/image_1.jpg",
