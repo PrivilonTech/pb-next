@@ -20,8 +20,30 @@ export const getCrudeData = async (
       {
         label: selectedCountry,
         data: response.data.data.value,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
+        backgroundColor: (context) => {
+          const bgColor = [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 255, 255, 0)",
+            "rgba(255, 255, 255, 0)",
+          ];
+          if (!context.chart.chartArea) {
+            return;
+          }
+
+          const {
+            ctx,
+            chartArea: { top, bottom },
+          } = context.chart;
+          const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
+
+          gradientBg.addColorStop(0, bgColor[0]);
+          gradientBg.addColorStop(0.5, bgColor[1]);
+          gradientBg.addColorStop(1, bgColor[2]);
+
+          return gradientBg;
+        },
+        borderColor: ["#d9232a"],
         borderWidth: 2,
       },
     ],
@@ -88,8 +110,30 @@ export const getHistoricalData = async (
       {
         label: cities[0],
         data: response.data.data[cities[0]]?.value,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
+        backgroundColor: (context) => {
+          const bgColor = [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 255, 255, 0)",
+            "rgba(255, 255, 255, 0)",
+          ];
+          if (!context.chart.chartArea) {
+            return;
+          }
+
+          const {
+            ctx,
+            chartArea: { top, bottom },
+          } = context.chart;
+          const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
+
+          gradientBg.addColorStop(0, bgColor[0]);
+          gradientBg.addColorStop(0.5, bgColor[1]);
+          gradientBg.addColorStop(1, bgColor[2]);
+
+          return gradientBg;
+        },
+        borderColor: ["#d9232a"],
         borderWidth: 2,
       },
     ],
@@ -101,8 +145,30 @@ export const getHistoricalData = async (
       {
         label: cities[1],
         data: response.data.data[cities[1]]?.value,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
+        backgroundColor: (context) => {
+          const bgColor = [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 255, 255, 0)",
+            "rgba(255, 255, 255, 0)",
+          ];
+          if (!context.chart.chartArea) {
+            return;
+          }
+
+          const {
+            ctx,
+            chartArea: { top, bottom },
+          } = context.chart;
+          const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
+
+          gradientBg.addColorStop(0, bgColor[0]);
+          gradientBg.addColorStop(0.5, bgColor[1]);
+          gradientBg.addColorStop(1, bgColor[2]);
+
+          return gradientBg;
+        },
+        borderColor: ["#d9232a"],
         borderWidth: 2,
       },
     ],

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
-
 import { Box } from "@mui/material";
 
 export default function Graph({ data, leftSpacing, onClick, small }) {
@@ -8,13 +7,14 @@ export default function Graph({ data, leftSpacing, onClick, small }) {
 
   useEffect(() => {
     let delayed;
+
     const chart = new Chart(chartRef.current, {
       type: "line",
       data: data,
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        tension: 0.1,
+        tension: 0.4,
         fill: true,
         animation: {
           onComplete: () => {
@@ -36,12 +36,22 @@ export default function Graph({ data, leftSpacing, onClick, small }) {
           intersect: false,
           mode: "index",
         },
+        pointRadius: 0,
+        pointHoverRadius: 0,
         pointBackgroundColor: "#fff",
         radius: 3,
         hoverRadius: 5,
         scales: {
           x: {
             ticks: {
+              display: false,
+            },
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            grid: {
               display: false,
             },
           },
@@ -53,6 +63,7 @@ export default function Graph({ data, leftSpacing, onClick, small }) {
       chart.destroy();
     };
   }, [data]);
+
   return (
     <Box
       onClick={onClick}
