@@ -39,7 +39,10 @@ function Pane({ path }) {
                   color: "#000",
                   height: "90%",
                   width: "10%",
-                  border: "1px solid #d5d9eb",
+                  border:
+                    active === res.link
+                      ? "1px solid #E5322D"
+                      : "1px solid #000",
                   margin: "auto",
                   borderRadius: "20px",
                   display: "flex",

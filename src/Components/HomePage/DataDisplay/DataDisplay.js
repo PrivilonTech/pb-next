@@ -40,8 +40,9 @@ export default function DataDisplay() {
       <Box
         sx={{
           cursor: "pointer",
-          border: "2px solid rgba(99, 99, 99, 0.2)",
+          border: "0.5px solid rgba(99, 99, 99, 0.2)",
           width: "100%",
+          marginBottom: "20px",
         }}
       >
         <AssociateCategories />
@@ -49,7 +50,7 @@ export default function DataDisplay() {
       <Box
         sx={{
           cursor: "pointer",
-          border: "2px solid rgba(99, 99, 99, 0.2)",
+          border: "0.5px solid rgba(99, 99, 99, 0.2)",
           width: "100%",
         }}
       >

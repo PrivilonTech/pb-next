@@ -6,7 +6,7 @@ export default function PhoneBar() {
     <Box
       sx={{
         width: "100%",
-        background: "#1e1e1e",
+        background: "#E5322D",
         display: "flex",
         justifyContent: "space-around",
         padding: "10px 0",

@@ -57,11 +57,19 @@ function Header() {
       {upMd ? (
         <Box
           sx={{
-            height: "10vh",
+            height: "13vh",
             display: "flex",
             justifyContent: "space-between",
-            background: "#faf5f5",
-            background: "linear-gradient(0deg, #fff, #E1C1C1)",
+
+            background: "rgb(0,48,91)",
+            background:
+              "linear-gradient(225deg, rgba(0,58,108,1) 43%, rgba(229,50,45,1) 43%, rgba(229,50,45,1) 44%, rgba(244,244,244,1) 44%)",
+
+            // background: " #abbaab" /* fallback for old browsers */,
+            // background:
+            //   "-webkit-linear-gradient(to right, #ffffff, #abbaab)" /* Chrome 10-25, Safari 5.1-6 */,
+            // background:
+            //   "linear-gradient(to right, #ffffff, #abbaab)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
           }}
         >
           <Box

@@ -22,7 +22,7 @@ export default function TwitterBlogs() {
       <TwitterTimelineEmbed
         sourceType="profile"
         screenName="POLYMERBAZAAR"
-        options={{ height: 1200, width: "100%" }}
+        options={{ height: 900, width: "100%" }}
         onLoad={() => setLoading(false)}
         onLoadSuccess={() => setLoading(false)}
       />

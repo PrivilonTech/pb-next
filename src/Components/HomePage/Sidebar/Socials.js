@@ -19,6 +19,7 @@ export default function Socials() {
           textAlign: "center",
           borderBottom: "1px solid #dee2e6",
           margin: "1em 1em 0 1em",
+          // fontWeight:"700",
         }}
       >
         Socials
