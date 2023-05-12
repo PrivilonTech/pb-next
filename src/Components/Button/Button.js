@@ -23,7 +23,7 @@ export default function Button({
         borderRadius: "7px",
         color: outline ? "black" : "white",
         border: outline ? "2px solid #d5d9eb" : "none",
-        padding: ".75em .5em",
+        padding: ".75em .9em",
         width: small ? (upSm ? "20%" : "auto") : "100%",
         cursor: "pointer",
         display: "flex",
@@ -34,7 +34,7 @@ export default function Button({
       {isLoading ? (
         <ClipLoader color="white" size={20} />
       ) : (
-        <Typography sx={{ fontWeight: 500 }}>{label}</Typography>
+        <Typography sx={{ fontWeight: 200 }}>{label}</Typography>
       )}
     </button>
   );

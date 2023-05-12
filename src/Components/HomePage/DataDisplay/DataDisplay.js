@@ -14,7 +14,7 @@ export default function DataDisplay() {
     <Box
       sx={{
         height: "auto",
-        width: { xs: "100%", lg: "32%" },
+        width: { xs: "100%", lg: "30%" },
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",

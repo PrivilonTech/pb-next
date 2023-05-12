@@ -25,7 +25,6 @@ export default function Video() {
       <iframe
         height={400}
         src="https://www.youtube.com/embed/Q7oWElOK1hw"
-        title="React.js Project to Embed Youtube Video in IFrame inside Browser Without any Library in Javascript"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen

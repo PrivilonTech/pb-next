@@ -20,11 +20,14 @@ export default function PhoneBar() {
           padding: { xs: "5px 20px", sm: "0" },
         }}
       >
-        <Typography sx={{ color: "white", fontSize: ".9rem" }}>
-          +91 XXXXX XXXXX
+        <Typography sx={{ color: "white", fontSize: ".8rem" }}>
+          +91 1234567890
         </Typography>
-        <Typography sx={{ color: "white", fontSize: ".9rem" }}>
-          CIN: UI2381020123
+        <Typography sx={{ color: "white", fontSize: ".8rem" }}>
+          GST ID : 54ASECS0000F2LS
+        </Typography>
+        <Typography sx={{ color: "white", fontSize: ".8rem" }}>
+          CIN : Z358200MH600PTC525252
         </Typography>
       </Box>
 
@@ -35,11 +38,11 @@ export default function PhoneBar() {
           padding: { xs: "5px 20px", sm: "0" },
         }}
       >
-        <Typography sx={{ color: "white", fontSize: ".9rem" }}>FAQ</Typography>
-        <Typography sx={{ color: "white", fontSize: ".9rem" }}>
+        <Typography sx={{ color: "white", fontSize: ".8rem" }}>FAQ</Typography>
+        <Typography sx={{ color: "white", fontSize: ".8rem" }}>
           Contact
         </Typography>
-        <Typography sx={{ color: "white", fontSize: ".9rem" }}>
+        <Typography sx={{ color: "white", fontSize: ".8rem" }}>
           English
         </Typography>
       </Box>
