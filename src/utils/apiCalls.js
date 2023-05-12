@@ -44,7 +44,7 @@ export const getCrudeData = async (
           return gradientBg;
         },
         borderColor: ["#d9232a"],
-        borderWidth: 2,
+        borderWidth: 2.5,
       },
     ],
   });
@@ -134,7 +134,7 @@ export const getHistoricalData = async (
           return gradientBg;
         },
         borderColor: ["#d9232a"],
-        borderWidth: 2,
+        borderWidth: 2.5,
       },
     ],
   });
@@ -169,7 +169,7 @@ export const getHistoricalData = async (
           return gradientBg;
         },
         borderColor: ["#d9232a"],
-        borderWidth: 2,
+        borderWidth: 2.5,
       },
     ],
   });
