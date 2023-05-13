@@ -102,7 +102,6 @@ export default function PaneContentLayout({
         </Box>
         <Box
           sx={{
-            marginTop: ".7em",
             marginLeft: { md: "1em" },
             width: { xs: "100%", md: "85%" },
             display: "flex",
@@ -110,6 +109,17 @@ export default function PaneContentLayout({
             alignItems: "flex-start",
             flexWrap: "wrap",
             gap: "2em",
+            paddingTop: "1em",
+
+            background: "hsla(180, 27%, 94%, 1)",
+            backgroundImage:
+              "radial-gradient(circle, hsla(180, 27%, 94%, 1) 0%, hsla(0, 0%, 100%, 1) 80%)",
+            MozBackgroundImage:
+              "radial-gradient(circle, hsla(180, 27%, 94%, 1) 0%, hsla(0, 0%, 100%, 1) 80%)",
+            WebkitBackgroundImage:
+              "radial-gradient(circle, hsla(180, 27%, 94%, 1) 0%, hsla(0, 0%, 100%, 1) 80%)",
+            filter:
+              "progid:DXImageTransform.Microsoft.gradient(startColorstr='#EAF3F3', endColorstr='#FFFFFF', GradientType=1)",
           }}
         >
           {/* CONTENT HERE */}

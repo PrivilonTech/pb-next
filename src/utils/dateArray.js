@@ -76,3 +76,51 @@ export const formatDate = (dateString) => {
 
   return formattedDate;
 };
+
+//convert 13/11/2022 to 13th Nov,2022
+export const formatDate_DD_MM = (dateInputs) => {
+  return dateInputs.map((dateString) => {
+    const dateParts = dateString.split("/");
+    const day = parseInt(dateParts[0]);
+    const month = parseInt(dateParts[1]);
+    const year = parseInt(dateParts[2]);
+
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const formattedDate = `${day}${getOrdinalSuffix(day)} ${
+      months[month - 1]
+    }, ${year}`;
+
+    return formattedDate;
+  });
+};
+
+const getOrdinalSuffix = (day) => {
+  if (day >= 11 && day <= 13) {
+    return "th";
+  }
+
+  switch (day % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
+  }
+};

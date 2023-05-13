@@ -1,5 +1,6 @@
 import axios from "axios";
 import { categorizeData, structureDataGlobal } from "./structureData";
+import { formatDate_DD_MM } from "./dateArray";
 
 //crude
 export const getCrudeData = async (
@@ -15,7 +16,7 @@ export const getCrudeData = async (
   );
 
   setData({
-    labels: response.data.data.key,
+    labels: formatDate_DD_MM(response.data.data.key),
     datasets: [
       {
         label: selectedCountry,
@@ -105,7 +106,9 @@ export const getHistoricalData = async (
   const cities = Object.keys(response.data.data);
 
   setData({
-    labels: response.data.data[cities[0]]?.date,
+    labels: response.data.data[cities[0]]?.date
+      ? formatDate_DD_MM(response.data.data[cities[0]]?.date)
+      : response.data.data[cities[0]]?.date,
     datasets: [
       {
         label: cities[0],
@@ -140,7 +143,9 @@ export const getHistoricalData = async (
   });
 
   setSecondaryData({
-    labels: response.data.data[cities[1]]?.date,
+    labels: response.data.data[cities[1]]?.date
+      ? formatDate_DD_MM(response.data.data[cities[0]]?.date)
+      : response.data.data[cities[0]]?.date,
     datasets: [
       {
         label: cities[1],

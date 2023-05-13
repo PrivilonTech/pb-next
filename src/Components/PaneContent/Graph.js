@@ -73,6 +73,16 @@ export default function Graph({ data, leftSpacing, onClick, small }) {
         width: "100%",
         display: "flex",
         justifyContent: "center",
+
+        background: "hsla(180, 27%, 94%, 1)",
+        backgroundImage:
+          "radial-gradient(circle, hsla(180, 27%, 94%, 1) 0%, hsla(0, 0%, 100%, 1) 80%)",
+        MozBackgroundImage:
+          "radial-gradient(circle, hsla(180, 27%, 94%, 1) 0%, hsla(0, 0%, 100%, 1) 80%)",
+        WebkitBackgroundImage:
+          "radial-gradient(circle, hsla(180, 27%, 94%, 1) 0%, hsla(0, 0%, 100%, 1) 80%)",
+        filter:
+          "progid:DXImageTransform.Microsoft.gradient(startColorstr='#EAF3F3', endColorstr='#FFFFFF', GradientType=1)",
       }}
     >
       <canvas ref={chartRef} />
