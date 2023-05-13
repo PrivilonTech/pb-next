@@ -96,7 +96,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
         height: "100vh",
         width: "100%",
         display: "flex",
-        position: "absolute",
+        position: "fixed",
         overflow: "hidden",
         top: "0px",
         left: "-5px",
