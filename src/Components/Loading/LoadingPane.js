@@ -28,7 +28,7 @@ const LoadingPane = ({ paneCount }) => {
             flexDirection: "column",
           }}
           variant="rectangular"
-          height={100}
+          height={50}
         />
       ))}
     </Box>
