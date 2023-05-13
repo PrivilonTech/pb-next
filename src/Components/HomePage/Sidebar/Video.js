@@ -22,20 +22,15 @@ export default function Video() {
           fontWeight: "bold",
           fontFamily: "arial",
 
-          background: "hsla(2, 78%, 54%, 1)",
-          background:
-            "linear-gradient(135deg, hsla(2, 78%, 54%, 1) 0%, hsla(0, 100%, 89%, 1) 100%)",
-          background:
-            "-moz-linear-gradient(90deg, hsla(2, 78%, 54%, 1) 0%, hsla(0, 100%, 89%, 1) 100%)",
-          background:
-            "-webkit-linear-gradient(90deg, hsla(2, 78%, 54%, 1) 0%, hsla(0, 100%, 89%, 1) 100%)",
-          filter:
-            "progid: DXImageTransform.Microsoft.gradient( startColorstr='#E5322D', endColorstr='#ffc8c8', GradientType=1 )",
-          "-webkit-background-clip": "text",
-          "-webkit-text-fill-color": "transparent",
+          backgroundImage:
+            "linear-gradient(0deg, hsla(0, 100%, 89%, 1) 0%, hsla(2, 78%, 54%, 1) 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          MozBackgroundClip: "text",
+          MozTextFillColor: "transparent",
           backgroundClip: "text",
-          "-moz-background-clip": "text",
-          "-moz-text-fill-color": "transparent",
+          filter:
+            "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc8c8', endColorstr='#E5322D', GradientType=1)",
         }}
       >
         Market Videos
