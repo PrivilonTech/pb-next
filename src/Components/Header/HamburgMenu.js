@@ -15,7 +15,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   const router = useRouter();
 
   const hamburgRef = useRef(null);
-  const { loading, fetchedUser } = useContext(ModalContext);
+  const { loading, fetchedUser, fetchLoader } = useContext(ModalContext);
   const [user, setUser] = useState(null);
 
   let touchStartX = 0;
@@ -39,6 +39,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   };
 
   useEffect(() => {
+    //user initialization
     const user = secureLocalStorage.getItem("user");
     setUser(user);
 
@@ -141,24 +142,26 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
               marginLeft: ".25em",
             }}
           >
-            {user ? (
+            {user || fetchLoader ? (
               <Box>
-                <UserInfo user={user} loading={loading} />
+                <UserInfo user={user} loading={fetchLoader} />
               </Box>
             ) : (
-              <Box sx={{ margin: "1em 20px" }}>
-                <Typography
-                  sx={{
-                    fontSize: "1.1rem",
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Please login to view more content
-                </Typography>
-              </Box>
+              !fetchLoader && (
+                <Box sx={{ margin: "1em 20px" }}>
+                  <Typography
+                    sx={{
+                      fontSize: "1.1rem",
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Please login to view more content
+                  </Typography>
+                </Box>
+              )
             )}
-            {loading ? <LoadingPane paneCount={8} /> : <Pane />}
+            {fetchLoader ? <LoadingPane paneCount={8} /> : <Pane />}
           </Box>
           <Box
             sx={{
@@ -167,7 +170,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
               width: "100%",
             }}
           >
-            {loading ? (
+            {fetchLoader ? (
               <Box sx={{ margin: "2em 0" }}>
                 <LoadingButton />
               </Box>
@@ -194,7 +197,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
                 <Typography>{user ? "Logout" : "Login"}</Typography>
               </Box>
             )}
-            {loading ? (
+            {fetchLoader ? (
               <Box sx={{ margin: "2em 0" }}>
                 <LoadingButton />
               </Box>

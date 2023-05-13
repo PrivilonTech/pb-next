@@ -5,6 +5,7 @@ export const ModalContext = createContext();
 export function ModalProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
+  const [fetchLoader, setFetchLoader] = useState(false);
 
   return (
     <ModalContext.Provider
@@ -13,6 +14,8 @@ export function ModalProvider({ children }) {
         setLoading,
         fetchedUser,
         setFetchedUser,
+        fetchLoader,
+        setFetchLoader,
       }}
     >
       {children}
