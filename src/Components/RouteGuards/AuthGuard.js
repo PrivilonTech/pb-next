@@ -22,7 +22,6 @@ export default function AuthGuard({ children }) {
     if (userNotFound && currentUser) {
       const getUserInfo = async () => {
         let fetchedUser = null;
-        setLoading(true);
         while (!fetchedUser) {
           fetchedUser = await getUserByUID(currentUser?.uid);
           if (!fetchedUser) {
