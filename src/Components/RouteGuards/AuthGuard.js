@@ -22,6 +22,7 @@ export default function AuthGuard({ children }) {
     if (userNotFound && currentUser) {
       const getUserInfo = async () => {
         let fetchedUser = null;
+        setLoading(true);
         while (!fetchedUser) {
           fetchedUser = await getUserByUID(currentUser?.uid);
           if (!fetchedUser) {
@@ -40,7 +41,7 @@ export default function AuthGuard({ children }) {
   }, [currentUser]);
 
   useEffect(() => {
-    if (!currentUser && userNotFound && path !== "/") {
+    if (!loading && !currentUser && userNotFound && path !== "/") {
       setLoading(true);
       router.push("/register");
     }

@@ -6,6 +6,7 @@ export default function HeaderTitle({ title }) {
     <Box>
       <Typography
         sx={{
+          marginTop: "1em",
           fontSize: "2rem",
           textAlign: "center",
           color: "#2d333a",

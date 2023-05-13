@@ -8,12 +8,14 @@ import { useRouter } from "next/router";
 import Pane from "../Pane/Pane";
 import UserInfo from "./UserInfo";
 import { ModalContext } from "../HomePage/ModalProvider";
+import LoadingPane from "../Loading/LoadingPane";
+import LoadingButton from "../Loading/LoadingButton";
 
 export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   const router = useRouter();
 
   const hamburgRef = useRef(null);
-  const { fetchedUser } = useContext(ModalContext);
+  const { loading, fetchedUser } = useContext(ModalContext);
   const [user, setUser] = useState(null);
 
   let touchStartX = 0;
@@ -90,125 +92,141 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   };
 
   return (
-    <Box
-      ref={hamburgRef}
-      sx={{
-        height: "100vh",
-        width: "100%",
-        display: "flex",
-        position: "fixed",
-        overflow: "hidden",
-        top: "0px",
-        left: "-5px",
-        background: "white",
-        justifyContent: "space-around",
-        zIndex: "99999",
-        alignItems: "center",
-        flexDirection: "column",
-        transform: showHamburg ? "translateX(0)" : "translateX(-110%)",
-        transition: "transform 0.3s ease",
-        borderRadius: "10px",
-        boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px",
-      }}
-    >
+    <>
       <Box
+        ref={hamburgRef}
         sx={{
-          height: "100%",
+          height: "100vh",
           width: "100%",
           display: "flex",
+          position: "fixed",
+          overflow: "hidden",
+          top: "0px",
+          left: "-5px",
+          background: "white",
+          justifyContent: "space-around",
+          zIndex: "99999",
+          alignItems: "center",
           flexDirection: "column",
-          position: "relative",
+          transform: showHamburg ? "translateX(0)" : "translateX(-110%)",
+          transition: "transform 0.3s ease",
+          borderRadius: "10px",
+          boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px",
         }}
       >
-        <ChevronLeftIcon
-          sx={{
-            position: "absolute",
-            right: "25px",
-            top: "30px",
-            fontSize: 25,
-            color: "gray",
-          }}
-          onClick={() => setShowHamburg(false)}
-        />
         <Box
           sx={{
-            height: "80%",
+            height: "100%",
             width: "100%",
-            marginTop: "4em",
-            marginLeft: ".25em",
-          }}
-        >
-          {user ? (
-            <Box>
-              <UserInfo user={user} />
-            </Box>
-          ) : (
-            <Box sx={{ margin: "1em 20px" }}>
-              <Typography
-                sx={{
-                  fontSize: "1.1rem",
-                  textAlign: "center",
-                  textTransform: "uppercase",
-                }}
-              >
-                Please login to view more content
-              </Typography>
-            </Box>
-          )}
-          <Pane />
-        </Box>
-        <Box
-          sx={{
             display: "flex",
-            justifyContent: "space-around",
-            width: "100%",
+            flexDirection: "column",
+            position: "relative",
           }}
         >
-          <Box
-            onClick={handleUserLogout}
+          <ChevronLeftIcon
             sx={{
-              display: "flex",
-              justifyContent: "flex-start",
-              margin: "2em 0",
-              padding: ".5em 2em",
-              border: "2px solid #d5d9eb",
-              borderRadius: "10px",
-              boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
-              "&:hover": {
-                boxShadow:
-                  "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-                transform: "scale(1.05)",
-              },
-              transition: "boxShadow 150ms ease-in, transform 150ms ease-in",
+              position: "absolute",
+              right: "25px",
+              top: "30px",
+              fontSize: 25,
+              color: "gray",
+            }}
+            onClick={() => setShowHamburg(false)}
+          />
+          <Box
+            sx={{
+              height: "80%",
+              width: "100%",
+              marginTop: "4em",
+              marginLeft: ".25em",
             }}
           >
-            <Typography>{user ? "Logout" : "Login"}</Typography>
+            {user ? (
+              <Box>
+                <UserInfo user={user} loading={loading} />
+              </Box>
+            ) : (
+              <Box sx={{ margin: "1em 20px" }}>
+                <Typography
+                  sx={{
+                    fontSize: "1.1rem",
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Please login to view more content
+                </Typography>
+              </Box>
+            )}
+            {loading ? <LoadingPane paneCount={8} /> : <Pane />}
           </Box>
           <Box
-            onClick={handleSubscriptionRoute}
             sx={{
               display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              margin: "2em 0",
-              padding: ".5em 1.5em",
-              background: user?.subscribed ? "gray" : "#1e1e1e",
-              boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
-              "&:hover": {
-                boxShadow:
-                  "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-                transform: "scale(1.05)",
-              },
-              transition: "boxShadow 150ms ease-in, transform 150ms ease-in",
-              borderRadius: "10px",
+              justifyContent: "space-around",
+              width: "100%",
             }}
           >
-            <Typography sx={{ color: "white" }}>
-              {user?.subscribed ? "Subscribed" : "Subscribe"}
-            </Typography>
+            {loading ? (
+              <Box sx={{ margin: "2em 0" }}>
+                <LoadingButton />
+              </Box>
+            ) : (
+              <Box
+                onClick={handleUserLogout}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  margin: "2em 0",
+                  padding: ".5em 2em",
+                  border: "2px solid #d5d9eb",
+                  borderRadius: "10px",
+                  boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
+                  "&:hover": {
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+                    transform: "scale(1.05)",
+                  },
+                  transition:
+                    "boxShadow 150ms ease-in, transform 150ms ease-in",
+                }}
+              >
+                <Typography>{user ? "Logout" : "Login"}</Typography>
+              </Box>
+            )}
+            {loading ? (
+              <Box sx={{ margin: "2em 0" }}>
+                <LoadingButton />
+              </Box>
+            ) : (
+              <Box
+                onClick={handleSubscriptionRoute}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  margin: "2em 0",
+                  padding: ".5em 1.5em",
+                  background: user?.subscribed ? "gray" : "#1e1e1e",
+                  boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
+                  "&:hover": {
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+                    transform: "scale(1.05)",
+                  },
+                  transition:
+                    "boxShadow 150ms ease-in, transform 150ms ease-in",
+                  borderRadius: "10px",
+                }}
+              >
+                <Typography sx={{ color: "white" }}>
+                  {user?.subscribed ? "Subscribed" : "Subscribe"}
+                </Typography>
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 }
