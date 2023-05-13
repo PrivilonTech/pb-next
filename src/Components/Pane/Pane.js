@@ -94,7 +94,7 @@ function Pane({ path }) {
             display: "flex",
             justifyContent: "flex-start",
             gap: 0,
-            paddingLeft: { xs: "5px", sm: "10px" },
+            paddingLeft: { xs: "5px", sm: "15px" },
             flexWrap: "wrap",
           }}
         >

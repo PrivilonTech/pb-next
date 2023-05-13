@@ -144,7 +144,13 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
             </Box>
           ) : (
             <Box sx={{ margin: "1em 20px" }}>
-              <Typography sx={{ fontSize: "1.1rem", textAlign: "center" }}>
+              <Typography
+                sx={{
+                  fontSize: "1.1rem",
+                  textAlign: "center",
+                  textTransform: "uppercase",
+                }}
+              >
                 Please login to view more content
               </Typography>
             </Box>
@@ -183,10 +189,11 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
             sx={{
               display: "flex",
               justifyContent: "flex-start",
+              alignItems: "center",
               margin: "2em 0",
               padding: ".5em 1.5em",
-              background: user?.subscribed ? "whitesmoke" : "#1e1e1e",
-              border: user?.subscribed ? "2px solid #b0aeae" : "",
+              background: user?.subscribed ? "gray" : "#1e1e1e",
+              border: !user?.subscribed ? "2px solid #b0aeae" : "",
               boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
               "&:hover": {
                 boxShadow:
@@ -197,7 +204,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
               borderRadius: "10px",
             }}
           >
-            <Typography sx={{ color: user?.subscribed ? "#1e1e1e" : "white" }}>
+            <Typography sx={{ color: user?.subscribed && "white" }}>
               {user?.subscribed ? "Subscribed" : "Subscribe"}
             </Typography>
           </Box>

@@ -14,6 +14,7 @@ export default function Subscription() {
           flexDirection: "column",
           gap: "5em",
           marginBottom: "4em",
+          marginTop: "2em",
         }}
       >
         <Typography sx={{ fontSize: "2.75rem", fontWeight: "500" }}>

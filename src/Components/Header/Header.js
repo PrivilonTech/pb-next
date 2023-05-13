@@ -95,13 +95,14 @@ function Header() {
                 {user?.role === "admin" ? (
                   <Box
                     sx={{
-                      border: "2px solid gray",
+                      background: "#1e1e1e",
                       padding: ".5em 1em",
                       borderRadius: "10px",
+                      boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
                     }}
                   >
                     <Link href="https://pb-admin-khaki.vercel.app/">
-                      <Typography sx={{ color: "#1e1e1e" }}>
+                      <Typography sx={{ color: "white" }}>
                         Admin Panel
                       </Typography>
                     </Link>

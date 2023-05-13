@@ -40,7 +40,7 @@ export default function AuthGuard({ children }) {
   }, [currentUser]);
 
   useEffect(() => {
-    if (userNotFound && path !== "/") {
+    if (!currentUser && userNotFound && path !== "/") {
       setLoading(true);
       router.push("/register");
     }

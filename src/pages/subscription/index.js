@@ -1,12 +1,12 @@
 import React from "react";
 
-import Header from "@/Components/Header/Header";
 import Subscription from "@/Components/Subscription/Subscription";
+import ShowBackArrow from "@/Components/Register/ShowBackArrow";
 
 export default function index() {
   return (
     <>
-      <Header />
+      <ShowBackArrow />
       <Subscription />
     </>
   );
