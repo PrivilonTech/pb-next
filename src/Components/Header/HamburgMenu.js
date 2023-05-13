@@ -193,7 +193,6 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
               margin: "2em 0",
               padding: ".5em 1.5em",
               background: user?.subscribed ? "gray" : "#1e1e1e",
-              border: !user?.subscribed ? "2px solid #b0aeae" : "",
               boxShadow: "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
               "&:hover": {
                 boxShadow:
@@ -204,7 +203,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
               borderRadius: "10px",
             }}
           >
-            <Typography sx={{ color: user?.subscribed && "white" }}>
+            <Typography sx={{ color: "white" }}>
               {user?.subscribed ? "Subscribed" : "Subscribe"}
             </Typography>
           </Box>
