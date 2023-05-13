@@ -8,6 +8,7 @@ export default function Periodic({ periodicTime, setPeriodicTime }) {
         display: "flex",
         justifyContent: "space-evenly",
         width: "100%",
+        margin: ".75em 0",
       }}
     >
       <Typography
