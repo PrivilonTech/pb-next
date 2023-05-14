@@ -24,11 +24,6 @@ export const graphList = [
     section: "Historical Data PVC",
     slug: "PVC",
   },
-  {
-    id: 6,
-    section: "Import Calculation",
-    slug: "importCalculation",
-  },
 ];
 
 export const graphData = {
