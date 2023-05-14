@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useRouter } from "next/router";
 
 import list from "../../menuLists/paneList";
 
 function Pane({ path }) {
   const theme = useTheme();
+  const router = useRouter();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const [active, setActive] = useState("");
@@ -31,11 +33,12 @@ function Pane({ path }) {
         >
           {list.map((res, id) => {
             return (
-              <Link
+              <Box
                 key={id}
-                href={res.link}
+                onClick={() => router.push(`/${res.link}`)}
                 sx={{
                   textDecoration: "none",
+                  cursor: "pointer",
                   color: "#000",
                   height: "90%",
                   width: "10%",
@@ -81,7 +84,7 @@ function Pane({ path }) {
                 >
                   {res.txt}
                 </Typography>
-              </Link>
+              </Box>
             );
           })}
         </Box>
@@ -100,11 +103,12 @@ function Pane({ path }) {
         >
           {list.map((res, id) => {
             return (
-              <Link
+              <Box
                 key={id}
-                href={res.link}
+                onClick={() => router.push(`/${res.link}`)}
                 sx={{
                   textDecoration: "none",
+                  cursor: "pointer",
                   color: "#000",
                   height: "20%",
                   width: { xs: "20%", sm: "25%" },
@@ -146,7 +150,7 @@ function Pane({ path }) {
                 >
                   {res.txt}
                 </Typography>
-              </Link>
+              </Box>
             );
           })}
         </Box>
