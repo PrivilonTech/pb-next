@@ -38,7 +38,9 @@ export default function AuthGuard({ children }) {
       getUserInfo();
     } else {
       setLoading(false);
-      setFetchLoader(false);
+      if (currentUser) {
+        setFetchLoader(false);
+      }
     }
   }, [currentUser]);
 
