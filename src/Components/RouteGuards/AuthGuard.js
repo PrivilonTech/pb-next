@@ -23,7 +23,6 @@ export default function AuthGuard({ children }) {
     if (userNotFound && currentUser) {
       const getUserInfo = async () => {
         let fetchedUser = null;
-        setFetchLoader(true);
         while (!fetchedUser) {
           fetchedUser = await getUserByUID(currentUser?.uid);
           if (!fetchedUser) {
@@ -39,6 +38,7 @@ export default function AuthGuard({ children }) {
       getUserInfo();
     } else {
       setLoading(false);
+      setFetchLoader(false);
     }
   }, [currentUser]);
 
