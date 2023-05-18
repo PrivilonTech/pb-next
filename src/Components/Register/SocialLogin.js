@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { serverTimestamp } from "firebase/firestore";
 
-import { createNewUser, getUserByEmail } from "@/utils/utilsUser";
+import {
+  createNewUser,
+  getCurrentDate,
+  getUserByEmail,
+} from "@/utils/utilsUser";
 import { ModalContext } from "../HomePage/ModalProvider";
-import { useContext } from "react";
 
 export default function SocialLogin({
   auth,
@@ -33,7 +35,7 @@ export default function SocialLogin({
           displayName: result.user.displayName,
           role: "user",
           subscribed: false,
-          createdAt: serverTimestamp(),
+          createdAt: getCurrentDate(),
         });
       }
 

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import secureLocalStorage from "react-secure-storage";
 
 import { ModalContext } from "../HomePage/ModalProvider";
-import { getUserByUID } from "@/utils/utilsUser";
+import { getUserByUID, isAdminCheck, isTrial } from "@/utils/utilsUser";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import Loading from "../Loading/Loading";
 
@@ -45,11 +45,20 @@ export default function AuthGuard({ children }) {
   }, [currentUser]);
 
   useEffect(() => {
-    if (!loading && !currentUser && userNotFound && path !== "/") {
-      setLoading(true);
-      router.push("/register");
+    if (!loading && path !== "/") {
+      if (!currentUser && userNotFound) {
+        setLoading(true);
+
+        router.push("/register");
+      } else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
+        if (!isTrial(userLoggedIn)) {
+          setLoading(true);
+
+          router.push("/subscription");
+        }
+      }
     }
-    if (path === "/register") {
+    if (path === "/register" || path === "/subscription") {
       setLoading(false);
     }
   }, [path]);

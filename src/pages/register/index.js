@@ -4,7 +4,6 @@ import { Box, Typography } from "@mui/material";
 import "react-phone-input-2/lib/style.css";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { toast } from "react-hot-toast";
-import { serverTimestamp } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -16,6 +15,7 @@ import {
 import firebaseApp from "../../firebase/clientApp";
 import {
   createNewUser,
+  getCurrentDate,
   getUserByEmail,
   getUserByPhone,
 } from "@/utils/utilsUser";
@@ -86,7 +86,7 @@ export default function Register() {
           email: userCredential.user.email,
           role: "user",
           subscribed: false,
-          createdAt: serverTimestamp(),
+          createdAt: getCurrentDate(),
         });
         router.push("/");
       })
@@ -180,7 +180,7 @@ export default function Register() {
             phone: `+${phoneNumber}`,
             role: "user",
             subscribed: false,
-            createdAt: serverTimestamp(),
+            createdAt: getCurrentDate(),
           });
         }
 

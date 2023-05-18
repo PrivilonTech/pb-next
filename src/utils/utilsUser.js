@@ -96,35 +96,45 @@ export const getUserByUID = async (uid) => {
   }
 };
 
-export const isAdminCheck = async (userLoggedIn) => {
+export const isAdminCheck = (userLoggedIn) => {
   if (!userLoggedIn) {
     return null;
   }
 
-  const existingUser = await getUserByUID(userLoggedIn?.uid);
-
-  if (existingUser.role === "admin") {
+  if (userLoggedIn.role === "admin") {
     return true;
   }
 
   return false;
 };
 
-export const trialExpirationCheck = (user) => {
+export const isTrial = (user) => {
   if (!user) {
     return null;
   }
 
-  const createdAt = user.createdAt.toDate();
-  const currentTime = new Date();
+  const currentDate = new Date(); // Current date
+  const createdAtDate = new Date(user.createdAt); // User's createdAt date
 
-  const timeDiff = currentTime.getTime() - createdAt.getTime(); // Calculate the difference between the two times
-  const twoDaysInMs = 2 * 24 * 60 * 60 * 1000; // Calculate two days in milliseconds
+  // Calculate the difference in milliseconds between the two dates
+  const timeDifference = currentDate.getTime() - createdAtDate.getTime();
+
+  const twoDaysInMilliseconds = 2 * 24 * 60 * 60 * 1000; // Two days in milliseconds
 
   // The user was created more than 2 days ago
-  if (timeDiff > twoDaysInMs) {
+  if (timeDifference > twoDaysInMilliseconds) {
     return false;
   }
 
   return true;
+};
+
+export const getCurrentDate = () => {
+  const currentDate = new Date();
+
+  const day = String(currentDate.getDate()).padStart(2, "0");
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const year = currentDate.getFullYear();
+
+  return `${day}-${month}-${year}`;
 };
