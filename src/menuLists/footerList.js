@@ -11,79 +11,59 @@ const footerList = [
         id: 2,
         name: "About Us",
       },
-      {
-        id: 3,
-        name: "Job Openings",
-      },
-      {
-        id: 4,
-        name: "Privacy Policy",
-      },
     ],
   },
   {
     id: 2,
-    txt: "Community",
+    txt: "Crude",
     list: [
       {
         id: 1,
-        name: "Another ",
+        name: "Naphtha",
       },
       {
         id: 2,
-        name: "About Us",
+        name: "Propylene",
       },
       {
         id: 3,
-        name: "Job Openings",
-      },
-      {
-        id: 4,
-        name: "Privacy Policy",
+        name: "Ethylene",
       },
     ],
   },
   {
     id: 3,
-    txt: "Categories",
+    txt: "Global Bazaar",
     list: [
       {
         id: 1,
-        name: "Blog",
+        name: "USA",
       },
       {
         id: 2,
-        name: "About Us",
+        name: "China",
       },
       {
         id: 3,
-        name: "Job Openings",
+        name: "India",
       },
       {
         id: 4,
-        name: "Privacy Policy",
+        name: "Turkey",
       },
     ],
   },
   {
     id: 4,
-    txt: "Contact us",
+    txt: "Other",
     list: [
       {
         id: 1,
-        name: "Blog",
+        name: "Contact Us",
       },
       {
         id: 2,
-        name: "About Us",
-      },
-      {
-        id: 3,
         name: "Job Openings",
-      },
-      {
-        id: 4,
-        name: "Privacy Policy",
       },
     ],
   },

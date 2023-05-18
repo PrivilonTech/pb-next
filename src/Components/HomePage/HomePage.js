@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -16,6 +16,17 @@ import GlobalMap from "./MediaPartner/GlobalMap";
 function HomePage() {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
+
+  useEffect(() => {
+    Notification.requestPermission().then((perm) => {
+      if (perm === "granted") {
+        new Notification("Welcome Back", {
+          body: "Welcome back to Polymer Bazaar",
+          icon: "/icon-192x192.png",
+        });
+      }
+    });
+  }, []);
 
   return (
     <Box
