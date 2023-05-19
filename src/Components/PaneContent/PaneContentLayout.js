@@ -29,6 +29,7 @@ export default function PaneContentLayout({
     <Box
       sx={{
         p: "5%",
+        pb: "1%",
         display: "flex",
         flexDirection: "column",
       }}

@@ -4,11 +4,13 @@ import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 
 import { graphData, graphList } from "@/menuLists/graphList";
-import { getHistoricalData } from "@/utils/apiCalls";
-import { yearArray } from "@/utils/dateArray";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
 import EmptyData from "@/Components/PaneContent/EmptyData";
+import PaneFooter from "@/Components/PaneContent/PaneFooter";
+
+import { getHistoricalData } from "@/utils/apiCalls";
+import { yearArray } from "@/utils/dateArray";
 
 export default function GraphData() {
   const router = useRouter();
@@ -86,6 +88,9 @@ export default function GraphData() {
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
       />
+      <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
+        <PaneFooter />
+      </Box>
     </>
   );
 }

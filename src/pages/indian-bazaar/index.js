@@ -7,6 +7,7 @@ import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
 import EmptyData from "@/Components/PaneContent/EmptyData";
+import PaneFooter from "@/Components/PaneContent/PaneFooter";
 
 import { monthsArray, yearArray } from "@/utils/dateArray";
 import { getTextData } from "@/utils/apiCalls";
@@ -79,6 +80,9 @@ export default function IndianBazaar() {
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
       />
+      <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
+        <PaneFooter />
+      </Box>
     </>
   );
 }

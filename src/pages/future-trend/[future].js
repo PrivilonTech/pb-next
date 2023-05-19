@@ -3,13 +3,15 @@ import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { ClipLoader } from "react-spinners";
 
-import { monthsArray, yearArray } from "@/utils/dateArray";
+import futureTrendList from "@/menuLists/futureTrendList";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import futureTrendList from "@/menuLists/futureTrendList";
-import { getTextData } from "@/utils/apiCalls";
 import EmptyData from "@/Components/PaneContent/EmptyData";
+import PaneFooter from "@/Components/PaneContent/PaneFooter";
+
+import { monthsArray, yearArray } from "@/utils/dateArray";
+import { getTextData } from "@/utils/apiCalls";
 
 export default function FuturePage() {
   const router = useRouter();
@@ -84,6 +86,9 @@ export default function FuturePage() {
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
       />
+      <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
+        <PaneFooter />
+      </Box>
     </>
   );
 }

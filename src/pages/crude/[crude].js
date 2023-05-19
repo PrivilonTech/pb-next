@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 import { useRouter } from "next/router";
+import { ClipLoader } from "react-spinners";
 
 import { crudeList, crudeStructure } from "@/menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
-import { getCrudeData } from "@/utils/apiCalls";
-import { ClipLoader } from "react-spinners";
-import { Box } from "@mui/material";
-import { structureFeedstockData } from "@/utils/structureData";
 import Periodic from "@/Components/PaneContent/Periodic";
+import PaneFooter from "@/Components/PaneContent/PaneFooter";
+import { getCrudeData } from "@/utils/apiCalls";
+import { structureFeedstockData } from "@/utils/structureData";
 
 function Crude() {
   const router = useRouter();
@@ -64,6 +65,7 @@ function Crude() {
               periodicTime={periodicTime}
               setPeriodicTime={setPeriodicTime}
             />
+            <PaneFooter />
           </>
         )}
       </>

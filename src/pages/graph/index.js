@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { Box } from "@mui/material";
 
-import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import { graphList, graphData } from "@/menuLists/graphList";
-import { getHistoricalData } from "@/utils/apiCalls";
+import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import Graph from "@/Components/PaneContent/Graph";
-import { yearArray } from "@/utils/dateArray";
 import EmptyData from "@/Components/PaneContent/EmptyData";
+import PaneFooter from "@/Components/PaneContent/PaneFooter";
+
+import { getHistoricalData } from "@/utils/apiCalls";
+import { yearArray } from "@/utils/dateArray";
 
 function index() {
   const currentDate = new Date();
@@ -17,7 +19,6 @@ function index() {
   const getYearArray = yearArray();
 
   const [category, setCategory] = useState(graphData["PP"][0]);
-  const [cities, setCities] = useState([]);
 
   const [data, setData] = useState({});
   const [secondaryData, setSecondaryData] = useState({});
@@ -90,6 +91,9 @@ function index() {
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
       />
+      <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
+        <PaneFooter />
+      </Box>
     </>
   );
 }

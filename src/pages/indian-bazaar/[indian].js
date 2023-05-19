@@ -3,12 +3,14 @@ import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { ClipLoader } from "react-spinners";
 
-import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import indianBazaarList from "@/menuLists/indianBazaarList";
+import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import DataContainer from "@/Components/PaneContent/DataContainer";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
 import EmptyData from "@/Components/PaneContent/EmptyData";
+import PaneFooter from "@/Components/PaneContent/PaneFooter";
+
 import { getCityData, getIndianData, getTextData } from "@/utils/apiCalls";
 import { structureDataIndian } from "@/utils/structureData";
 import { monthsArray, yearArray } from "@/utils/dateArray";
@@ -133,6 +135,9 @@ export default function Indian() {
         thirdSelectedOption={cityCategory}
         thirdSetSelectionOption={setCityCategory}
       />
+      <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
+        <PaneFooter />
+      </Box>
     </>
   );
 }

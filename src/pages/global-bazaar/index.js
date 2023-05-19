@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { ClipLoader } from "react-spinners";
 
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import DataContainer from "@/Components/PaneContent/DataContainer";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import PaneFooter from "@/Components/PaneContent/PaneFooter";
 
 import { monthsArray, yearArray } from "@/utils/dateArray";
 import { getGlobalData } from "@/utils/apiCalls";
-import { structureDataGlobal } from "@/utils/structureData";
-import EmptyData from "@/Components/PaneContent/EmptyData";
 
 function index() {
   const currentDate = new Date();
@@ -53,17 +53,19 @@ function index() {
         }}
       >
         {data.length > 0 ? (
-          data.map((eachData, index) =>
-            eachData.dataKeys.map((dataItem, id) => (
-              <DataContainer
-                key={`${index}-${id}`}
-                date={data[index].date}
-                title={dataItem}
-                polymerSubType={eachData.subKeys[dataItem]}
-                polymerValue={eachData.subValues[dataItem]}
-              />
-            ))
-          )
+          <>
+            {data.map((eachData, index) =>
+              eachData.dataKeys.map((dataItem, id) => (
+                <DataContainer
+                  key={`${index}-${id}`}
+                  date={eachData.date}
+                  title={dataItem}
+                  polymerSubType={eachData.subKeys[dataItem]}
+                  polymerValue={eachData.subValues[dataItem]}
+                />
+              ))
+            )}
+          </>
         ) : (
           <Box
             sx={{
@@ -101,6 +103,16 @@ function index() {
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
       />
+      <Box
+        sx={{
+          margin: {
+            xs: "1em 1.5em",
+            md: "2em 5em",
+          },
+        }}
+      >
+        <PaneFooter />
+      </Box>
     </>
   );
 }
