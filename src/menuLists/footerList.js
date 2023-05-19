@@ -6,10 +6,17 @@ const footerList = [
       {
         id: 1,
         name: "Blog",
+        href: "",
       },
       {
         id: 2,
         name: "About Us",
+        href: "",
+      },
+      {
+        id: 3,
+        name: "Terms & Condition",
+        href: "",
       },
     ],
   },
@@ -20,14 +27,17 @@ const footerList = [
       {
         id: 1,
         name: "Naphtha",
+        href: "/crude/Naphtha",
       },
       {
         id: 2,
         name: "Propylene",
+        href: "/crude/Propylene",
       },
       {
         id: 3,
         name: "Ethylene",
+        href: "/crude/Ethylene",
       },
     ],
   },
@@ -38,18 +48,22 @@ const footerList = [
       {
         id: 1,
         name: "USA",
+        href: "/global-bazaar/USA",
       },
       {
         id: 2,
         name: "China",
+        href: "/global-bazaar/China",
       },
       {
         id: 3,
         name: "India",
+        href: "/global-bazaar/India",
       },
       {
         id: 4,
         name: "Turkey",
+        href: "/global-bazaar/Turkey",
       },
     ],
   },
@@ -60,10 +74,22 @@ const footerList = [
       {
         id: 1,
         name: "Contact Us",
+        href: "",
       },
       {
         id: 2,
-        name: "Job Openings",
+        name: "Our Services",
+        href: "/services",
+      },
+      {
+        id: 3,
+        name: "Technical Data Sheets",
+        href: "",
+      },
+      {
+        id: 4,
+        name: "Bank Details",
+        href: "",
       },
     ],
   },

@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import headList from "../../menuLists/footerList";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -61,13 +62,22 @@ export default function Footer() {
                   >
                     {res.list.map((ans, id) => {
                       return (
-                        <Typography
-                          key={id}
-                          id={ans.id}
-                          sx={{ color: "#787878" }}
-                        >
-                          {ans.name}
-                        </Typography>
+                        <Link href={ans.href}>
+                          <Typography
+                            key={id}
+                            id={ans.id}
+                            sx={{
+                              color: "#787878",
+                              cursor: "pointer",
+                              "&:hover": {
+                                color: "#969595",
+                              },
+                              transition: "color 300ms",
+                            }}
+                          >
+                            {ans.name}
+                          </Typography>
+                        </Link>
                       );
                     })}
                   </Box>

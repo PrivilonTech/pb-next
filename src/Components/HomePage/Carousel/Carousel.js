@@ -39,6 +39,7 @@ export default function CarouselComponent({
                 objectFit: objectFit,
                 width: "100%",
               }}
+              alt="carousel-display"
               height={height}
             />
           </Box>
