@@ -8,10 +8,12 @@ export default function ServicesBlog() {
     <Box
       sx={{
         display: "flex",
+        flexWrap: "wrap",
+        gap: { xs: "2em", md: "0" },
         margin: "2em 0",
       }}
     >
-      <Box sx={{ width: "50%", padding: "0 .5em" }}>
+      <Box sx={{ width: { xs: "100%", md: "50%" } }}>
         <ServicesHeader />
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1em" }}>
           <Typography sx={{ fontSize: ".9rem" }}>
@@ -54,7 +56,7 @@ export default function ServicesBlog() {
           </Typography>
         </Box>
       </Box>
-      <Box sx={{ width: "50%", padding: "0 .5em" }}>
+      <Box sx={{ width: { xs: "100%", md: "50%" } }}>
         <ServicesHeader />
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box>
