@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/router";
 
 import Pane from "../Pane/Pane";
 import UserInfo from "./UserInfo";
@@ -15,7 +15,7 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
   const router = useRouter();
 
   const hamburgRef = useRef(null);
-  const { loading, fetchedUser, fetchLoader } = useContext(ModalContext);
+  const { fetchedUser, fetchLoader } = useContext(ModalContext);
   const [user, setUser] = useState(null);
 
   let touchStartX = 0;
@@ -161,7 +161,11 @@ export default function HamburgMenu({ setShowHamburg, showHamburg, auth }) {
                 </Box>
               )
             )}
-            {fetchLoader ? <LoadingPane paneCount={8} /> : <Pane />}
+            {fetchLoader ? (
+              <LoadingPane paneCount={8} />
+            ) : (
+              <Pane setShowHamburg={setShowHamburg} />
+            )}
           </Box>
           <Box
             sx={{

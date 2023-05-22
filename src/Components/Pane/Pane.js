@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 import list from "../../menuLists/paneList";
 
-function Pane({ path }) {
+function Pane({ path, setShowHamburg }) {
   const theme = useTheme();
   const router = useRouter();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
@@ -17,6 +17,11 @@ function Pane({ path }) {
   useEffect(() => {
     setActive(path);
   }, [path]);
+
+  const handleMobileRouteChange = (href) => {
+    router.push(href);
+    setShowHamburg(false);
+  };
 
   return (
     <>
@@ -105,7 +110,7 @@ function Pane({ path }) {
             return (
               <Box
                 key={id}
-                onClick={() => router.push(`/${res.link}`)}
+                onClick={() => handleMobileRouteChange(`/${res.link}`)}
                 sx={{
                   textDecoration: "none",
                   cursor: "pointer",
