@@ -1,16 +1,31 @@
 import React from "react";
-import { Box } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useRouter } from "next/router";
+import { Box } from "@mui/material";
+import secureLocalStorage from "react-secure-storage";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+import { isAdminCheck, isTrial } from "@/utils/utilsUser";
 
 export default function ShowBackArrow() {
   const router = useRouter();
+  const userLoggedIn = secureLocalStorage.getItem("user");
+
+  const handleRouteChange = () => {
+    if (
+      !userLoggedIn ||
+      !isAdminCheck(userLoggedIn) ||
+      !isTrial(userLoggedIn)
+    ) {
+      router.push("/");
+      return;
+    }
+
+    router.back();
+  };
 
   return (
     <Box
-      onClick={() => {
-        router.back();
-      }}
+      onClick={handleRouteChange}
       sx={{
         position: "absolute",
         top: "30px",

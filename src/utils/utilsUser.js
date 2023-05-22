@@ -116,17 +116,13 @@ export const isTrial = (user) => {
   const currentDate = new Date(); // Current date
   const createdAtDate = new Date(user.createdAt); // User's createdAt date
 
-  // Calculate the difference in milliseconds between the two dates
-  const timeDifference = currentDate.getTime() - createdAtDate.getTime();
+  currentDate.setHours(0, 0, 0, 0);
+  createdAtDate.setHours(0, 0, 0, 0);
 
-  const twoDaysInMilliseconds = 2 * 24 * 60 * 60 * 1000; // Two days in milliseconds
+  const timeDiff = currentDate.getTime() - createdAtDate.getTime();
+  const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-  // The user was created more than 2 days ago
-  if (timeDifference > twoDaysInMilliseconds) {
-    return false;
-  }
-
-  return true;
+  return daysDiff < 2;
 };
 
 export const getCurrentDate = () => {
