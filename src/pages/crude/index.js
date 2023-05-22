@@ -54,7 +54,6 @@ function index() {
               periodicTime={periodicTime}
               setPeriodicTime={setPeriodicTime}
             />
-           <PaneFooter />
           </>
         )}
       </>
@@ -74,6 +73,9 @@ function index() {
         selectedOption={selectedCountry}
         setSelectedOption={setSelectedCountry}
       />
+      <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
+        <PaneFooter />
+      </Box>
     </>
   );
 }

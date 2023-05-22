@@ -42,19 +42,16 @@ function Pane({ path, setShowHamburg }) {
                 key={id}
                 onClick={() => router.push(`/${res.link}`)}
                 sx={{
+                  display: "flex",
+                  flexDirection: "column",
                   textDecoration: "none",
                   cursor: "pointer",
                   color: "#000",
                   height: "90%",
                   width: "10%",
-                  border:
-                    active === res.link
-                      ? "1px solid #E5322D"
-                      : "1px solid #000",
+                  border: "1px solid #bababa",
                   margin: "auto",
                   borderRadius: "20px",
-                  display: "flex",
-                  flexDirection: "column",
                   padding: ".5em",
                   background: "white",
                   transform: active === res.link ? "scale(1.05)" : "scale(1)",
@@ -82,8 +79,9 @@ function Pane({ path, setShowHamburg }) {
                   sx={{
                     margin: "auto",
                     textAlign: "center",
-                    fontSize: { md: ".8em", lg: ".9rem" },
+                    fontSize: { md: ".8em", lg: ".85rem" },
                     fontWeight: 500,
+                    lineHeight: "17px",
                     color: "#121212",
                   }}
                 >

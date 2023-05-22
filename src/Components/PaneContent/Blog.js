@@ -3,17 +3,16 @@ import { Box, Typography } from "@mui/material";
 import MarkdownView from "react-showdown";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-hot-toast";
-import { useContext } from "react";
-import { ModalContext } from "../HomePage/ModalProvider";
+import secureLocalStorage from "react-secure-storage";
 
 export default function Blog({ data }) {
+  const user = secureLocalStorage.getItem("user");
+
   // delete comment
   const handleDeleteTweet = async (id) => {
     // delete api
     toast.success("Blog successfully deleted");
   };
-
-  const { user } = useContext(ModalContext);
 
   return (
     <Box

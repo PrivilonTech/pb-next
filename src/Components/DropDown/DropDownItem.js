@@ -46,6 +46,10 @@ export default function DropDownItem({
               overflow: "hidden",
               borderTop: "1px solid #e3c0c0",
               background: selectedOption === option ? "#c31815" : "#dfdfdf",
+              "&:hover": {
+                background: "#c7c7c7",
+              },
+              transition: "background 150ms ease-in",
               cursor: "pointer",
             }}
             onClick={() => handleSelectionOption(option)}
