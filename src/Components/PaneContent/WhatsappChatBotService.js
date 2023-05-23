@@ -9,7 +9,7 @@ export default function WhatsappChatBotService({
   historicalDataCommand,
 }) {
   return (
-    <Box sx={{ width: { xs: "100%", md: "45%" } }}>
+    <Box sx={{ width: { xs: "100%", md: "70%" } }}>
       <Box
         sx={{
           minHeight: "50px",

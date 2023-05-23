@@ -72,46 +72,9 @@ export default function DownloadNow() {
         >
           <Box>
             <Typography sx={{ color: "#1e1e1e", fontSize: ".9rem" }}>
-              Download Mobile App and Setup Your Notifications To Receive
-              Real-time Customized Alerts to Your Mobile
+              Install our web app directly from your browser and enjoy a
+              seamless desktop/mobile experience!
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "2em",
-                marginTop: "1em",
-              }}
-            >
-              <Box>
-                <Box sx={{ display: "flex", justifyContent: "center" }}>
-                  <Link href="#">
-                    <img
-                      src={"/Homepage/appStore/android.png"}
-                      alt="android"
-                      style={{ cursor: "pointer" }}
-                      height={40}
-                    />
-                  </Link>
-                </Box>
-                <Typography sx={{ fontSize: ".9rem" }}>
-                  Google Play Store
-                </Typography>
-              </Box>
-              <Box>
-                <Box sx={{ display: "flex", justifyContent: "center" }}>
-                  <Link href="#">
-                    <img
-                      src={"/Homepage/appStore/apple.png"}
-                      alt="apple"
-                      style={{ cursor: "pointer" }}
-                      height={40}
-                    />
-                  </Link>
-                </Box>
-                <Typography sx={{ fontSize: ".9rem" }}>App store</Typography>
-              </Box>
-            </Box>
           </Box>
         </Box>
       </Box>

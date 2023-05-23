@@ -10,14 +10,12 @@ export default function PaneFooter() {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        gap: "1em",
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "5px",
         }}
       >
         <WhatsappChatBotService
@@ -28,7 +26,8 @@ export default function PaneFooter() {
         />
         <Box
           sx={{
-            width: { xs: "100%", md: "45%" },
+            width: { xs: "100%", md: "30%" },
+            margin: { xs: ".75em 0", md: "0" },
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
