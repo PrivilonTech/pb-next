@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import secureLocalStorage from "react-secure-storage";
 
 import Button from "../Button/Button";
+import Link from "next/link";
 
 export default function Blog({ data, setDataChange }) {
   const user = secureLocalStorage.getItem("user");
@@ -80,14 +81,23 @@ export default function Blog({ data, setDataChange }) {
         <Typography sx={{ color: "#D9D9D9", textAlign: "center" }}>
           {data.title}
         </Typography>
-        {user?.role === "admin" && (
-          <Box
-            sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
-            onClick={() => setModal(true)}
-          >
-            <DeleteIcon sx={{ color: "#D9D9D9" }} />
-          </Box>
-        )}
+        <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          {user?.role === "admin" && (
+            <Box
+              sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+              onClick={() => setModal(true)}
+            >
+              <DeleteIcon sx={{ color: "#D9D9D9" }} />
+            </Box>
+          )}
+          {data?.attatchment && (
+            <Link href={data?.attatchment}>
+              <Typography sx={{ color: "#d9d9d9", fontSize: ".9rem" }}>
+                Download PDF
+              </Typography>
+            </Link>
+          )}
+        </Box>
       </Box>
       <Box sx={{ padding: "1em 2em" }}>
         <MarkdownView markdown={data.blogContent} />

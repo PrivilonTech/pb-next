@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import secureLocalStorage from "react-secure-storage";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -11,10 +12,15 @@ import Input from "../Register/Input";
 export default function AdminTextUpload({ path, setDataChange }) {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
+  const router = useRouter();
+  const futureTrendPath = router.pathname === "/future-trend";
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [bodyDate, setBodyDate] = useState("");
+
+  const [file, setFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -96,6 +102,28 @@ export default function AdminTextUpload({ path, setDataChange }) {
     }
   }, [headingClick]);
 
+  // FILE UPLOAD
+  const handleFileUpload = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        "https://polymerbazar-be.onrender.com/api/upload",
+        { file: file }
+      );
+
+      setFileUrl(response.url);
+      toast.success("File Uploaded Successfully");
+
+      setIsLoading(false);
+    } catch (error) {
+      toast.error("Something went wrong");
+
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+
+  //BLOG POST
   const handleSendData = async () => {
     if (!title || !body || !bodyDate) {
       toast.error("Please enter data in all fields");
@@ -111,6 +139,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
       title: title,
       blogContent: body,
       date: formatedDate,
+      attatchment: fileUrl,
     };
     try {
       setIsLoading(true);
@@ -131,6 +160,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
+      setIsLoading(false);
     }
   };
 
@@ -219,30 +249,78 @@ export default function AdminTextUpload({ path, setDataChange }) {
                   border: "2px solid #d7dbd8",
                   color: "#2d333a",
                   borderRadius: "7px",
-                  resize: "none",
+                  resize: "vertical",
                   fontSize: ".9rem",
                   width: "90%",
                 }}
                 onChange={(e) => setBody(e.target.value)}
               ></textarea>
             </Box>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: ".5em" }}>
-              <Typography sx={{ fontSize: "2rem" }}>Calendar</Typography>
-              <input
-                type="date"
-                value={bodyDate}
-                style={{
-                  padding: ".75em",
-                  outline: "none",
-                  fontFamily: "Poppins",
-                  border: "2px solid #d7dbd8",
-                  color: "#2d333a",
-                  borderRadius: "7px",
-                  fontSize: ".9rem",
-                  width: "90%",
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: futureTrendPath ? "flex-start" : "space-around",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: ".5em",
+                  width: futureTrendPath ? "50%" : "100%",
                 }}
-                onChange={(e) => setBodyDate(e.target.value)}
-              />
+              >
+                <Typography sx={{ fontSize: "2rem" }}>Calendar</Typography>
+                <input
+                  type="date"
+                  value={bodyDate}
+                  style={{
+                    padding: ".75em",
+                    outline: "none",
+                    fontFamily: "Poppins",
+                    border: "2px solid #d7dbd8",
+                    color: "#2d333a",
+                    borderRadius: "7px",
+                    fontSize: ".9rem",
+                    width: "90%",
+                  }}
+                  onChange={(e) => setBodyDate(e.target.value)}
+                />
+              </Box>
+              {futureTrendPath && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: ".5em",
+                    width: router.pathname === "/future-trend" ? "50%" : "100%",
+                  }}
+                >
+                  <Typography sx={{ fontSize: "2rem" }}>Attatchment</Typography>
+                  <Box sx={{ display: "flex", gap: "10px" }}>
+                    <input
+                      type="file"
+                      style={{
+                        padding: ".75em",
+                        outline: "none",
+                        fontFamily: "Poppins",
+                        border: "2px solid #d7dbd8",
+                        color: "#2d333a",
+                        borderRadius: "7px",
+                        fontSize: ".9rem",
+                        width: "90%",
+                      }}
+                      onChange={(e) => setFile(e.target.files[0])}
+                    />
+                    <Button
+                      label="Upload"
+                      onClick={handleFileUpload}
+                      small
+                      isLoading={isLoading}
+                    />
+                  </Box>
+                </Box>
+              )}
             </Box>
           </Box>
           <Box sx={{ display: "flex", gap: ".5em" }}>
