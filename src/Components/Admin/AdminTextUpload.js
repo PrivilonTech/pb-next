@@ -106,10 +106,20 @@ export default function AdminTextUpload({ path, setDataChange }) {
   const handleFileUpload = async () => {
     setIsLoading(true);
     try {
+      const formData = new FormData();
+
+      // loop over files and add to formData
+
+      formData.append("file", file);
+
+      console.log(file);
+
       const response = await axios.post(
         "https://polymerbazar-be.onrender.com/api/upload",
-        { file: file }
+        formData
       );
+
+      console.log(response);
 
       setFileUrl(response.url);
       toast.success("File Uploaded Successfully");
