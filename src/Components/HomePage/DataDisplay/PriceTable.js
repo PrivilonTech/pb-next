@@ -32,15 +32,15 @@ export default function PriceTable() {
           fontWeight: "bold",
           fontFamily: "arial",
 
-          backgroundImage:
-            "linear-gradient(0deg, hsla(0, 100%, 89%, 1) 0%, hsla(2, 78%, 54%, 1) 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          MozBackgroundClip: "text",
-          MozTextFillColor: "transparent",
-          backgroundClip: "text",
-          filter:
-            "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc8c8', endColorstr='#E5322D', GradientType=1)",
+          // backgroundImage:
+          //   "linear-gradient(0deg, hsla(0, 100%, 89%, 1) 0%, hsla(2, 78%, 54%, 1) 100%)",
+          // WebkitBackgroundClip: "text",
+          // WebkitTextFillColor: "transparent",
+          // MozBackgroundClip: "text",
+          // MozTextFillColor: "transparent",
+          // backgroundClip: "text",
+          // filter:
+          //   "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc8c8', endColorstr='#E5322D', GradientType=1)",
         }}
       >
         Weekly Polymer Price Tables

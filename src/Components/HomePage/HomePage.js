@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
@@ -12,6 +12,7 @@ import TwitterBlogs from "./DataDisplay/TwitterBlogs";
 import AskQuestions from "./AskQuestions/AskQuestions";
 import DownloadNow from "./DownloadNow/DownloadNow";
 import GlobalMap from "./MediaPartner/GlobalMap";
+import Button from "../Button/Button";
 
 function HomePage() {
   const theme = useTheme();
@@ -33,7 +34,7 @@ function HomePage() {
           "/Homepage/hero/hero-image_3.jpg",
           "/Homepage/hero/hero-image_4.jpg",
         ]}
-        height={400}
+        height={600}
         numberOfImages={1}
         objectFit="cover"
       />
@@ -54,6 +55,44 @@ function HomePage() {
         padding="20px"
       />
       <ScrollTop />
+      <Box
+        sx={{
+          height: "30vh",
+          width: "90vw",
+
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          backgroundBlendMode: "multiply",
+          backgroundImage: "url(/Homepage/image_2.jpg)",
+          backgroundSize: "cover",
+          objectFit: "cover",
+          backgroundAttachment: "fixed",
+          backgroundColor: "rgba(0,0,0,0.5)",
+          color: "#fff",
+          position: "relative",
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "45%",
+            left: "37%",
+            transform: "translate(-50%,-50%)",
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{ marginBottom: "20px", fontWeight: "500" }}
+          >
+            Empower your future polymer decisions
+          </Typography>
+          <Typography sx={{}}>
+            Monitor and capture the complexity of changing polymer markets with
+            consolidated and forward-looking view of global markets.
+          </Typography>
+        </Box>
+      </Box>
       <Box
         sx={{
           display: "flex",
