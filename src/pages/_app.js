@@ -12,6 +12,7 @@ import AuthGuard from "@/Components/RouteGuards/AuthGuard";
 import { ModalProvider } from "@/Components/HomePage/ModalProvider";
 import Marquee from "@/Components/HomePage/Marquee/Marquee";
 import PhoneBar from "@/Components/HomePage/PhoneBar/PhoneBar";
+import TesterFooter from "@/Components/Footer/TesterFooter";
 
 const font = Poppins({ subsets: ["latin"], weight: "400" });
 
@@ -47,7 +48,8 @@ export default function App({ Component, pageProps }) {
             {upMd && !showLayout && <Pane path={firstString} />}
 
             <Component {...pageProps} />
-            {!showLayout && <Footer />}
+            {/* {!showLayout && <Footer />} */}
+            {!showLayout && <TesterFooter />}
           </ThemeProvider>
         </AuthGuard>
       </ModalProvider>

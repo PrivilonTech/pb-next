@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import headList from "../../menuLists/footerList";
+import footerList from "../../menuLists/footerList";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,7 +10,7 @@ export default function Footer() {
         sx={{
           height: { xs: "100vh", md: "50vh" },
           width: { xs: "100%", md: "100%" },
-          background: "#e9e9e9",
+          background: "#003a6c",
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
@@ -25,7 +25,7 @@ export default function Footer() {
             padding: { xs: "0 2em", sm: "0 4em", md: "0 auto" },
           }}
         >
-          {headList.map((res, id) => {
+          {footerList.map((res, id) => {
             return (
               <React.Fragment key={id}>
                 <Box
@@ -45,7 +45,7 @@ export default function Footer() {
                         marginTop: { xs: "20px" },
                         textAlign: "left",
                         fontSize: { xs: "5vmin", md: "3.5vmin" },
-                        color: "#787878",
+                        color: "white",
                         fontWeight: "bold",
                       }}
                     >
@@ -67,7 +67,8 @@ export default function Footer() {
                             key={id}
                             id={ans.id}
                             sx={{
-                              color: "#787878",
+                              color: "white",
+                              fontSize: ".9rem",
                               cursor: "pointer",
                               "&:hover": {
                                 color: "#969595",
@@ -106,8 +107,8 @@ export default function Footer() {
                 marginTop: "20px",
                 marginLeft: { xs: "4vw", md: "0vw" },
                 width: { xs: "40em", sm: "50em", lg: "70em" },
-                fontSize: ".9rem",
-                color: "#787878",
+                fontSize: ".8rem",
+                color: "white",
               }}
             >
               Please refer Terms & Conditions : M/S SAMYAK ENTERPRISE,

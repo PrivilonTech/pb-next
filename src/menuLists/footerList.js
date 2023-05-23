@@ -1,97 +1,106 @@
-const footerList = [
+export const footerList = [
   {
     id: 1,
-    txt: "Company",
-    list: [
+    columnTitle: "Markets",
+    columnSection: [
       {
         id: 1,
-        name: "Blog",
-        href: "",
-      },
-      {
-        id: 2,
-        name: "About Us",
-        href: "",
-      },
-      {
-        id: 3,
-        name: "Terms & Condition",
-        href: "",
+        title: "Asia Pacific",
+        text: [
+          {
+            id: 1,
+            placeholder: "China",
+            href: "",
+          },
+          {
+            id: 2,
+            placeholder: "India",
+            href: "",
+          },
+          {
+            id: 3,
+            placeholder: "Southeast Asia",
+            href: "",
+          },
+        ],
       },
     ],
   },
   {
     id: 2,
-    txt: "Crude",
-    list: [
+    columnTitle: "Products",
+    columnSection: [
       {
         id: 1,
-        name: "Naphtha",
-        href: "/crude/Naphtha",
-      },
-      {
-        id: 2,
-        name: "Propylene",
-        href: "/crude/Propylene",
-      },
-      {
-        id: 3,
-        name: "Ethylene",
-        href: "/crude/Ethylene",
+        title: "Polymers",
+        text: [
+          {
+            id: 1,
+            placeholder: "Polypropylene (PP)",
+            href: "",
+          },
+          {
+            id: 2,
+            placeholder: "Polyvinyl Chloride (PVC)",
+            href: "",
+          },
+          {
+            id: 3,
+            placeholder: "Polyethylene (PE)",
+            href: "",
+          },
+        ],
       },
     ],
   },
   {
     id: 3,
-    txt: "Global Bazaar",
-    list: [
+    columnTitle: "Other Information",
+    columnSection: [
       {
         id: 1,
-        name: "USA",
-        href: "/global-bazaar/USA",
-      },
-      {
-        id: 2,
-        name: "China",
-        href: "/global-bazaar/China",
-      },
-      {
-        id: 3,
-        name: "India",
-        href: "/global-bazaar/India",
-      },
-      {
-        id: 4,
-        name: "Turkey",
-        href: "/global-bazaar/Turkey",
-      },
-    ],
-  },
-  {
-    id: 4,
-    txt: "Other",
-    list: [
-      {
-        id: 1,
-        name: "Contact Us",
-        href: "",
-      },
-      {
-        id: 2,
-        name: "Our Services",
-        href: "/services",
-      },
-      {
-        id: 3,
-        name: "Technical Data Sheets",
-        href: "",
-      },
-      {
-        id: 4,
-        name: "Bank Details",
-        href: "",
+        title: "Essential Information",
+        text: [
+          {
+            id: 1,
+            placeholder: "Polymer Market News",
+            href: "",
+          },
+          {
+            id: 2,
+            placeholder: "Daily Tweets",
+            href: "",
+          },
+          {
+            id: 3,
+            placeholder: "Pricing",
+            href: "",
+          },
+        ],
       },
     ],
   },
 ];
-export default footerList;
+
+export const footerLinks = [
+  {
+    id: 1,
+    label: "Terms",
+    href: "",
+  },
+  {
+    id: 2,
+    label: "About",
+    href: "",
+  },
+  {
+    id: 3,
+    label: "Cookie Policy",
+    href: "",
+  },
+  {
+    id: 4,
+    label: "Privacy Policy",
+    href: "",
+  },
+];
