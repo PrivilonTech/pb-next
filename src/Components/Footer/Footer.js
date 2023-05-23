@@ -9,6 +9,7 @@ export default function Footer() {
     <Box
       sx={{
         background: "#d9232a",
+        boxShadow: "#d9232a 0px 5px 15px",
       }}
     >
       <Box
@@ -22,7 +23,7 @@ export default function Footer() {
       >
         {footerList.map((item) => (
           <Box
-            ley={item.id}
+            key={item.id}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -31,8 +32,7 @@ export default function Footer() {
           >
             <Typography
               sx={{
-                fontSize: "1.3rem",
-                fontWeight: "bold",
+                fontSize: "1.75rem",
                 margin: "5px 0",
                 color: "white",
               }}
@@ -44,7 +44,7 @@ export default function Footer() {
                 key={section.id}
                 sx={{ display: "flex", flexDirection: "column", gap: ".5em" }}
               >
-                <Typography sx={{ fontSize: "1.1rem", color: "whitesmoke" }}>
+                <Typography sx={{ fontSize: "1.2rem", color: "whitesmoke" }}>
                   {section.title}
                 </Typography>
                 <Box
