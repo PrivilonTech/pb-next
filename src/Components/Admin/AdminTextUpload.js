@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import secureLocalStorage from "react-secure-storage";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { toast } from "react-hot-toast";
 
 import Button from "../Button/Button";
 import Input from "../Register/Input";
-import { isAdminCheck } from "@/utils/utilsUser";
-import useCurrentUser from "@/hooks/useCurrentUser";
 
 export default function AdminTextUpload({ path, setDataChange }) {
   const theme = useTheme();
@@ -19,40 +18,20 @@ export default function AdminTextUpload({ path, setDataChange }) {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const currentUser = useCurrentUser();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const userLoggedIn = secureLocalStorage.getItem("user");
   const [adminPanel, setAdminPanel] = useState(false);
 
-  const [selectedOption, setSelectedOption] = useState("");
-  const options = ["heading", "bold", "image"];
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  useEffect(() => {
-    const isAdminCall = async () => {
-      const response = await isAdminCheck(currentUser);
-
-      return response;
-    };
-
-    const checkAdmin = async () => {
-      if (currentUser) {
-        const adminResponse = await isAdminCall();
-        setIsAdmin(adminResponse);
-      }
-    };
-
-    checkAdmin();
-  }, [currentUser, setIsAdmin]);
-
+  const [isAdmin, setIsAdmin] = useState(false);
   const [backTickclick, setBackTickClick] = useState(false);
   const [headingClick, setHeadingClick] = useState(false);
   const [boldClick, setBoldClick] = useState(false);
   const [bulletClick, setBulletClick] = useState(false);
 
   const textAreaRef = useRef(null);
+
+  useEffect(() => {
+    setIsAdmin(userLoggedIn.role === "admin");
+  }, []);
 
   //highlight
   const handleHightlight = () => {

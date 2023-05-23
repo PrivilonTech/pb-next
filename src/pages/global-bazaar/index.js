@@ -5,7 +5,6 @@ import { ClipLoader } from "react-spinners";
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import DataContainer from "@/Components/PaneContent/DataContainer";
-import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import EmptyData from "@/Components/PaneContent/EmptyData";
 import PaneFooter from "@/Components/PaneContent/PaneFooter";
 

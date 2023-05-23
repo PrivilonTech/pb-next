@@ -56,7 +56,7 @@ export default function IndianBazaar() {
           <ClipLoader color="#C31815" size={30} />
         </Box>
       ) : data.length > 0 ? (
-        <BlogContent data={data} />
+        <BlogContent data={data} setDataChange={setDataChange} />
       ) : (
         <EmptyData />
       )}

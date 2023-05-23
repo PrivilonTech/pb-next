@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 import Blog from "./Blog";
 
-export default function BlogContent({ data }) {
+export default function BlogContent({ data, setDataChange }) {
   return (
     <Box
       sx={{
@@ -14,7 +14,11 @@ export default function BlogContent({ data }) {
       }}
     >
       {data.map((dataItem) => (
-        <Blog key={dataItem._id} data={dataItem} />
+        <Blog
+          key={dataItem._id}
+          data={dataItem}
+          setDataChange={setDataChange}
+        />
       ))}
     </Box>
   );

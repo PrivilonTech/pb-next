@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
+import axios from "axios";
 import MarkdownView from "react-showdown";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-hot-toast";
 import secureLocalStorage from "react-secure-storage";
 
-export default function Blog({ data }) {
+import Button from "../Button/Button";
+
+export default function Blog({ data, setDataChange }) {
   const user = secureLocalStorage.getItem("user");
+
+  const [modal, setModal] = useState(false);
 
   // delete comment
   const handleDeleteTweet = async (id) => {
-    // delete api
-    toast.success("Blog successfully deleted");
+    try {
+      await axios.delete(
+        `https://polymerbazar-be.onrender.com/api/blogs/${id}`
+      );
+      setModal(false);
+      setDataChange((prev) => !prev);
+      toast.success("Blog successfully deleted");
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error);
+    }
   };
 
   return (
@@ -36,13 +50,40 @@ export default function Blog({ data }) {
           alignItems: "center",
         }}
       >
+        <dialog
+          open={modal}
+          style={{
+            width: "300px",
+            border: "2px solid gray",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+            position: "fixed",
+            top: "40%",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1em",
+            }}
+          >
+            <Typography sx={{ fontSize: "1.2rem" }}>Are you sure?</Typography>
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Button label="Cancel" onClick={() => setModal(false)} outline />
+              <Button
+                label="Delete"
+                onClick={() => handleDeleteTweet(data._id)}
+              />
+            </Box>
+          </Box>
+        </dialog>
         <Typography sx={{ color: "#D9D9D9", textAlign: "center" }}>
           {data.title}
         </Typography>
         {user?.role === "admin" && (
           <Box
             sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
-            onClick={handleDeleteTweet}
+            onClick={() => setModal(true)}
           >
             <DeleteIcon sx={{ color: "#D9D9D9" }} />
           </Box>

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
-import { Box } from "@mui/material";
 
 import globalBazaarList from "../../menuLists/globalBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import { monthsArray, yearArray } from "@/utils/dateArray";
-import { getGlobalData, getTextData } from "@/utils/apiCalls";
 import DataContainer from "@/Components/PaneContent/DataContainer";
 import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
 import BlogContent from "@/Components/PaneContent/BlogContent";
 import EmptyData from "@/Components/PaneContent/EmptyData";
 import PaneFooter from "@/Components/PaneContent/PaneFooter";
+
+import { monthsArray, yearArray } from "@/utils/dateArray";
+import { getGlobalData, getTextData } from "@/utils/apiCalls";
 
 function Global() {
   const router = useRouter();
@@ -116,7 +117,7 @@ function Global() {
               <ClipLoader color="#C31815" size={30} />
             </Box>
           ) : data.length > 0 ? (
-            <BlogContent data={data} />
+            <BlogContent data={data} setDataChange={setDataChange} />
           ) : (
             <EmptyData />
           )}
