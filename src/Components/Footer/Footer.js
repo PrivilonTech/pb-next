@@ -1,123 +1,105 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
-import footerList from "../../menuLists/footerList";
+import { Box, Typography } from "@mui/material";
+
+import { footerLinks, footerList } from "@/menuLists/footerList";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <>
+    <Box
+      sx={{
+        background: "#d9232a",
+      }}
+    >
       <Box
         sx={{
-          height: { xs: "100vh", md: "50vh" },
-          width: { xs: "100%", md: "100%" },
-          background: "#003a6c",
           display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
+          justifyContent: { xs: "flex-start", sm: "space-evenly" },
+          flexWrap: "wrap",
+          padding: { xs: "3em 2em", sm: "3em 0" },
+          gap: { xs: "1em", sm: 0 },
         }}
       >
-        <Box
-          sx={{
-            height: "70%",
-            display: "flex",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
-            padding: { xs: "0 2em", sm: "0 4em", md: "0 auto" },
-          }}
-        >
-          {footerList.map((res, id) => {
-            return (
-              <React.Fragment key={id}>
-                <Box
-                  sx={{
-                    height: { xs: "50%", md: "90%" },
-                    width: { xs: "40%", md: "20%" },
-                    margin: "auto",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      height: "20%",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        marginTop: { xs: "20px" },
-                        textAlign: "left",
-                        fontSize: { xs: "5vmin", md: "3.5vmin" },
-                        color: "white",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {res.txt}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      height: "70%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-around",
-                    }}
-                  >
-                    {res.list.map((ans, id) => {
-                      return (
-                        <Link href={ans.href}>
-                          <Typography
-                            key={id}
-                            id={ans.id}
-                            sx={{
-                              color: "white",
-                              fontSize: ".9rem",
-                              cursor: "pointer",
-                              "&:hover": {
-                                color: "#969595",
-                              },
-                              transition: "color 300ms",
-                            }}
-                          >
-                            {ans.name}
-                          </Typography>
-                        </Link>
-                      );
-                    })}
-                  </Box>
-                </Box>
-              </React.Fragment>
-            );
-          })}
-        </Box>
-        <Box
-          sx={{
-            height: "20%",
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            justifyContent: "center",
-          }}
-        >
+        {footerList.map((item) => (
           <Box
+            ley={item.id}
             sx={{
-              width: "100%",
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
+              gap: ".5em",
             }}
           >
             <Typography
               sx={{
-                marginTop: "20px",
-                marginLeft: { xs: "4vw", md: "0vw" },
-                width: { xs: "40em", sm: "50em", lg: "70em" },
-                fontSize: ".8rem",
+                fontSize: "1.3rem",
+                fontWeight: "bold",
+                margin: "5px 0",
                 color: "white",
               }}
             >
-              Please refer Terms & Conditions : M/S SAMYAK ENTERPRISE,
-              Ahmedabad, Gujarat, India. +91 93 745 24 365 All Copyright ©2007 -
-              2021 reserved.
+              {item.columnTitle}
             </Typography>
+            {item.columnSection.map((section) => (
+              <Box
+                key={section.id}
+                sx={{ display: "flex", flexDirection: "column", gap: ".5em" }}
+              >
+                <Typography sx={{ fontSize: "1.1rem", color: "whitesmoke" }}>
+                  {section.title}
+                </Typography>
+                <Box
+                  sx={{ display: "flex", flexDirection: "column", gap: ".5em" }}
+                >
+                  {section.text.map((display) => (
+                    <Link key={display.id} href={display.href}>
+                      <Typography sx={{ fontSize: ".9rem", color: "#d2d6d4" }}>
+                        {display.placeholder}
+                      </Typography>
+                    </Link>
+                  ))}
+                </Box>
+              </Box>
+            ))}
           </Box>
+        ))}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1em",
+          pb: "1.5em",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: { xs: "1em", sm: "2em" },
+          }}
+        >
+          {footerLinks.map((footerLinks) => (
+            <Link key={footerLinks.id} href={footerLinks.href}>
+              <Typography sx={{ fontSize: ".8rem", color: "#d2d6d4" }}>
+                {footerLinks.label}
+              </Typography>
+            </Link>
+          ))}
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography
+            sx={{
+              fontSize: ".8rem",
+              color: "#d2d6d4",
+              maxWidth: { xs: "80%", md: "100%" },
+            }}
+          >
+            Please refer Terms & Conditions : M/S SAMYAK ENTERPRISE, Ahmedabad,
+            Gujarat, India. +91 93 745 24 365 All Copyright ©2007 - 2021
+            reserved.
+          </Typography>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
