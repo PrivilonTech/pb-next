@@ -1,13 +1,12 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import Link from "next/link";
 
 export default function DownloadNow() {
   return (
     <Box
       sx={{
         width: "calc(100% + 4em)",
-        height: { xs: "400px", md: "200px" },
+        height: { xs: "400px", md: "300px" },
         margin: "0em -2em",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
@@ -15,7 +14,7 @@ export default function DownloadNow() {
     >
       <Box
         sx={{
-          background: "#c31815",
+          background: "#0f1a2e",
           height: { xs: "50%", md: "100%" },
           width: { xs: "100%", md: "50%" },
         }}
@@ -56,28 +55,13 @@ export default function DownloadNow() {
       </Box>
       <Box
         sx={{
-          background: "#E9E9E9",
+          background: "url(/Services/download-now.png)",
+          backgroundSize: "cover",
+          objectFit: "contain",
           height: { xs: "50%", md: "100%" },
           width: { xs: "100%", md: "50%" },
         }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            margin: { xs: "0 2em", md: "0 4em" },
-            height: "100%",
-          }}
-        >
-          <Box>
-            <Typography sx={{ color: "#1e1e1e", fontSize: ".9rem" }}>
-              Install our web app directly from your browser and enjoy a
-              seamless desktop/mobile experience!
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
+      ></Box>
     </Box>
   );
 }

@@ -17,7 +17,7 @@ export default function ContactHero() {
       }}
     >
       <Typography sx={{ fontSize: "4rem", color: "white", fontWeight: 400 }}>
-        Speak to ICIS
+        Speak to Polymer Bazaar
       </Typography>
       <Box
         sx={{

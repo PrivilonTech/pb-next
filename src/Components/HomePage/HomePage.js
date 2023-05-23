@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
@@ -9,10 +9,11 @@ import CarouselComponent from "./Carousel/Carousel";
 import DataDisplay from "./DataDisplay/DataDisplay";
 import ScrollTop from "./ScrollTop/ScrollTop";
 import TwitterBlogs from "./DataDisplay/TwitterBlogs";
-import AskQuestions from "./AskQuestions/AskQuestions";
-import DownloadNow from "./DownloadNow/DownloadNow";
+import AskQuestions from "./Banners/AskQuestions/AskQuestions";
+import DownloadNow from "./Banners/DownloadNow/DownloadNow";
 import GlobalMap from "./MediaPartner/GlobalMap";
-import Button from "../Button/Button";
+import Connect from "./Banners/Connect/Connect";
+import FuturePolymer from "./Banners/FuturePolymer/FuturePolymer";
 
 function HomePage() {
   const theme = useTheme();
@@ -55,44 +56,7 @@ function HomePage() {
         padding="20px"
       />
       <ScrollTop />
-      <Box
-        sx={{
-          height: "30vh",
-          width: "90vw",
-
-          margin: "auto",
-          display: "flex",
-          flexDirection: "column",
-          backgroundImage: "url(/Homepage/image_2.jpg)",
-          backgroundBlendMode: "multiply",
-          backgroundSize: "cover",
-          objectFit: "cover",
-          backgroundAttachment: "fixed",
-          backgroundColor: "rgba(0,0,0,0.5)",
-          color: "#fff",
-          position: "relative",
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "45%",
-            left: "37%",
-            transform: "translate(-50%,-50%)",
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{ marginBottom: "20px", fontWeight: "500" }}
-          >
-            Empower your future polymer decisions
-          </Typography>
-          <Typography>
-            Monitor and capture the complexity of changing polymer markets with
-            consolidated and forward-looking view of global markets.
-          </Typography>
-        </Box>
-      </Box>
+      <FuturePolymer />
       <Box
         sx={{
           display: "flex",
@@ -108,6 +72,7 @@ function HomePage() {
       <Sidebar />
       <Box>
         <AskQuestions />
+        <Connect />
         <DownloadNow />
       </Box>
       <Box>
