@@ -63,8 +63,8 @@ function HomePage() {
           margin: "auto",
           display: "flex",
           flexDirection: "column",
-          backgroundBlendMode: "multiply",
           backgroundImage: "url(/Homepage/image_2.jpg)",
+          backgroundBlendMode: "multiply",
           backgroundSize: "cover",
           objectFit: "cover",
           backgroundAttachment: "fixed",
@@ -87,7 +87,7 @@ function HomePage() {
           >
             Empower your future polymer decisions
           </Typography>
-          <Typography sx={{}}>
+          <Typography>
             Monitor and capture the complexity of changing polymer markets with
             consolidated and forward-looking view of global markets.
           </Typography>
