@@ -23,6 +23,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
   const [fileUrl, setFileUrl] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
+  const [fileLoading, setFileLoading] = useState(false);
 
   const userLoggedIn = secureLocalStorage.getItem("user");
   const [adminPanel, setAdminPanel] = useState(false);
@@ -104,31 +105,26 @@ export default function AdminTextUpload({ path, setDataChange }) {
 
   // FILE UPLOAD
   const handleFileUpload = async () => {
-    setIsLoading(true);
+    setFileLoading(true);
     try {
       const formData = new FormData();
 
       // loop over files and add to formData
-
       formData.append("file", file);
-
-      console.log(file);
 
       const response = await axios.post(
         "https://polymerbazar-be.onrender.com/api/upload",
         formData
       );
 
-      console.log(response);
-
-      setFileUrl(response.url);
+      setFileUrl(response.data.url);
       toast.success("File Uploaded Successfully");
 
-      setIsLoading(false);
+      setFileLoading(false);
     } catch (error) {
       toast.error("Something went wrong");
 
-      setIsLoading(false);
+      setFileLoading(false);
       console.log(error);
     }
   };
@@ -149,11 +145,13 @@ export default function AdminTextUpload({ path, setDataChange }) {
       title: title,
       blogContent: body,
       date: formatedDate,
-      attatchment: fileUrl,
+      attachment: fileUrl,
     };
-    try {
-      setIsLoading(true);
+    setIsLoading(true);
 
+    console.log(bodyContent);
+
+    try {
       await axios.post(
         "https://polymerbazar-be.onrender.com/api/blogs",
         bodyContent
@@ -323,10 +321,11 @@ export default function AdminTextUpload({ path, setDataChange }) {
                       onChange={(e) => setFile(e.target.files[0])}
                     />
                     <Button
-                      label="Upload"
+                      label={fileUrl ? "Uploaded" : "Upload"}
                       onClick={handleFileUpload}
+                      disabled={fileUrl ? true : false}
                       small
-                      isLoading={isLoading}
+                      isLoading={fileLoading}
                     />
                   </Box>
                 </Box>

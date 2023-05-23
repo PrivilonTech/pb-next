@@ -10,6 +10,7 @@ export default function Button({
   small,
   outline,
   noShadow,
+  disabled,
 }) {
   const theme = useTheme();
   const upSm = useMediaQuery(theme.breakpoints.up("sm"));
@@ -25,7 +26,7 @@ export default function Button({
         border: outline ? "2px solid #d5d9eb" : "none",
         padding: ".75em .9em",
         width: small ? (upSm ? "20%" : "auto") : "100%",
-        cursor: "pointer",
+        cursor: disabled ? "not-allowed" : "pointer",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

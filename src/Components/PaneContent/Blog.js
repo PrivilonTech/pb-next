@@ -29,6 +29,7 @@ export default function Blog({ data, setDataChange }) {
     }
   };
 
+  console.log(data);
   return (
     <Box
       sx={{
@@ -55,7 +56,8 @@ export default function Blog({ data, setDataChange }) {
           open={modal}
           style={{
             width: "300px",
-            border: "2px solid gray",
+            border: "none",
+            borderRadius: "8px",
             boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
             position: "fixed",
             top: "40%",
@@ -90,8 +92,8 @@ export default function Blog({ data, setDataChange }) {
               <DeleteIcon sx={{ color: "#D9D9D9" }} />
             </Box>
           )}
-          {data?.attatchment && (
-            <Link href={data?.attatchment}>
+          {data?.attachment && (
+            <Link href={data?.attachment}>
               <Typography sx={{ color: "#d9d9d9", fontSize: ".9rem" }}>
                 Download PDF
               </Typography>
