@@ -20,6 +20,7 @@ const font = Poppins({ subsets: ["latin"], weight: "400" });
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const theme = useTheme();
+  const path = router.pathname;
 
   const fontTheme = createTheme({
     typography: {
@@ -27,16 +28,15 @@ export default function App({ Component, pageProps }) {
     },
   });
 
-  const firstString = "/" + router.pathname.split("/")[1];
+  const firstString = "/" + path.split("/")[1];
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const showLayout =
-    router.pathname === "/register" || router.pathname === "/subscription";
+  const showLayout = path === "/register" || path === "/subscription";
 
   const title =
-    router.pathname === "/"
+    path === "/"
       ? "Home"
-      : router.pathname.charAt(1).toUpperCase() + router.pathname.substring(2);
+      : path.charAt(1).toUpperCase() + path.substring(2, path.lastIndexOf("/"));
 
   return (
     <main className={font.className}>
