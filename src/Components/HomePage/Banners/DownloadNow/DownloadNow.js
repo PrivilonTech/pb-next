@@ -11,15 +11,17 @@ export default function DownloadNow() {
     <Box
       sx={{
         width: "calc(100% + 4em)",
-        height: { xs: "450px", md: "350px" },
+        height: { xs: "450px", md: "250px" },
         margin: "0em -2em",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
+        alignItems: "center",
       }}
     >
       <Box
         sx={{
           background: "#0f1a2e",
+          padding: { xs: "10px 0", md: 0 },
           height: { xs: "50%", md: "100%" },
           width: { xs: "100%", md: "50%" },
         }}
@@ -29,6 +31,7 @@ export default function DownloadNow() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
             margin: { xs: "0 2em", md: "0 4em" },
             height: "100%",
           }}
