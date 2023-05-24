@@ -2,7 +2,6 @@ import React from "react";
 import { Box } from "@mui/material";
 
 import Video from "./Video";
-import WhatsAppScan from "./WhatsAppScan";
 
 export default function Sidebar() {
   return (
@@ -27,17 +26,6 @@ export default function Sidebar() {
           <Video />
         </Box>
       </Box>
-      {/* <Box sx={{ width: { xs: "100%", lg: "40%" } }}>
-        <Box
-          sx={{
-            border: "2px solid rgba(99, 99, 99, 0.2)",
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <WhatsAppScan />
-        </Box>
-      </Box> */}
     </Box>
   );
 }
