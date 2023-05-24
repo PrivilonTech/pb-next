@@ -11,7 +11,7 @@ export default function AskQuestions() {
     <Box
       sx={{
         width: "calc(100% + 4em)",
-        height: { xs: "350px", md: "150px" },
+        height: { xs: "350px", md: "300px" },
         margin: ".75em -2em",
         marginBottom: 0,
         display: "flex",
@@ -20,7 +20,6 @@ export default function AskQuestions() {
     >
       <Box
         sx={{
-          // background: "#c31815",
           background: "#0f1a2e",
           height: "100%",
           width: { xs: "100%", md: "50%" },
@@ -32,6 +31,7 @@ export default function AskQuestions() {
             flexDirection: "column",
             justifyContent: "center",
             margin: { xs: "0 2em", md: "0 4em" },
+            gap: "1.5em",
             height: "100%",
           }}
         >
@@ -44,24 +44,6 @@ export default function AskQuestions() {
               and news!
             </Typography>
           </Box>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          background: "#E9E9E9",
-          width: { xs: "100%", md: "50%" },
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            padding: "2em 0",
-            flexDirection: "column",
-            justifyContent: "center",
-            margin: { xs: "0 2em", md: "0 4em" },
-            height: "50%",
-          }}
-        >
           <Box
             sx={{
               display: "flex",
@@ -76,10 +58,26 @@ export default function AskQuestions() {
               setState={setEmail}
               outline
             />
-            <Button label="Send" onClick={() => {}} small />
+            <Button
+              label="Send"
+              onClick={() => {}}
+              noShadow
+              small
+              secondaryButton
+            />
           </Box>
         </Box>
       </Box>
+      <Box
+        sx={{
+          background: "#E9E9E9",
+          width: { xs: "100%", md: "50%" },
+          background: "url(/Services/questions.png)",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          objectFit: "cover",
+        }}
+      ></Box>
     </Box>
   );
 }

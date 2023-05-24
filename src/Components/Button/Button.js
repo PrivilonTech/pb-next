@@ -11,6 +11,7 @@ export default function Button({
   outline,
   noShadow,
   disabled,
+  secondaryButton,
 }) {
   const theme = useTheme();
   const upSm = useMediaQuery(theme.breakpoints.up("sm"));
@@ -25,7 +26,7 @@ export default function Button({
         borderRadius: "7px",
 
         padding: small ? ".5em .75em" : ".75em .9em",
-        background: outline ? "white" : "#C31815",
+        background: secondaryButton ? "#233444" : outline ? "white" : "#C31815",
         boxShadow: !noShadow && "0px 8px 22px rgba(74, 58, 255, 0.26)",
         color: outline ? "black" : "white",
         border: outline ? "2px solid #d5d9eb" : "none",

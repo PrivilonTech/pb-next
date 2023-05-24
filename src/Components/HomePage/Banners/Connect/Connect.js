@@ -72,7 +72,11 @@ export default function Connect() {
             width: "50%",
           }}
         >
-          <Button label="Connect" onClick={() => router.push("/contact-us")} />
+          <Button
+            label="Connect"
+            onClick={() => router.push("/contact-us")}
+            secondaryButton
+          />
         </Box>
       </Box>
       <Box

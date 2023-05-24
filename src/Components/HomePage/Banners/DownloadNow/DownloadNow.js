@@ -11,7 +11,7 @@ export default function DownloadNow() {
     <Box
       sx={{
         width: "calc(100% + 4em)",
-        height: { xs: "450px", md: "250px" },
+        height: { xs: "450px", md: "300px" },
         margin: "0em -2em",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
