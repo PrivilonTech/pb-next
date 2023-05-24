@@ -1,12 +1,17 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useRouter } from "next/router";
+
+import Button from "@/Components/Button/Button";
 
 export default function FuturePolymer() {
+  const router = useRouter();
+
   return (
     <Box
       sx={{
-        height: "30vh",
-        width: "90vw",
+        height: { xs: "80vh", md: "40vh" },
+        width: "85vw",
 
         margin: "auto",
         display: "flex",
@@ -30,8 +35,11 @@ export default function FuturePolymer() {
         }}
       >
         <Typography
-          variant="h4"
-          sx={{ marginBottom: "20px", fontWeight: "500" }}
+          sx={{
+            marginBottom: "20px",
+            fontWeight: "500",
+            fontSize: { xs: "1.5rem", md: "2rem" },
+          }}
         >
           Empower your future polymer decisions
         </Typography>
@@ -39,6 +47,14 @@ export default function FuturePolymer() {
           Monitor and capture the complexity of changing polymer markets with
           consolidated and forward-looking view of global markets.
         </Typography>
+        <Box sx={{ mt: "1em" }}>
+          <Button
+            label="View Market"
+            outline
+            small
+            onClick={() => router.push("/global-bazaar")}
+          />
+        </Box>
       </Box>
     </Box>
   );

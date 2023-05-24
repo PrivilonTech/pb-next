@@ -19,17 +19,18 @@ export default function Button({
     <button
       onClick={onClick}
       style={{
-        background: outline ? "white" : "#C31815",
-        boxShadow: !noShadow && "0px 8px 22px rgba(74, 58, 255, 0.26)",
-        borderRadius: "7px",
-        color: outline ? "black" : "white",
-        border: outline ? "2px solid #d5d9eb" : "none",
-        padding: ".75em .9em",
-        width: small ? (upSm ? "20%" : "auto") : "100%",
-        cursor: disabled ? "not-allowed" : "pointer",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        borderRadius: "7px",
+
+        padding: small ? ".5em .75em" : ".75em .9em",
+        background: outline ? "white" : "#C31815",
+        boxShadow: !noShadow && "0px 8px 22px rgba(74, 58, 255, 0.26)",
+        color: outline ? "black" : "white",
+        border: outline ? "2px solid #d5d9eb" : "none",
+        width: small ? (upSm ? "20%" : "auto") : "100%",
+        cursor: disabled ? "not-allowed" : "pointer",
       }}
     >
       {isLoading ? (

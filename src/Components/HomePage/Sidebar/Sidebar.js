@@ -27,7 +27,7 @@ export default function Sidebar() {
           <Video />
         </Box>
       </Box>
-      <Box sx={{ width: { xs: "100%", lg: "40%" } }}>
+      {/* <Box sx={{ width: { xs: "100%", lg: "40%" } }}>
         <Box
           sx={{
             border: "2px solid rgba(99, 99, 99, 0.2)",
@@ -37,7 +37,7 @@ export default function Sidebar() {
         >
           <WhatsAppScan />
         </Box>
-      </Box>
+      </Box> */}
     </Box>
   );
 }

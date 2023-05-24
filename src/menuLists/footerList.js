@@ -10,17 +10,17 @@ export const footerList = [
           {
             id: 1,
             placeholder: "China",
-            href: "",
+            href: "/global-bazaar/China",
           },
           {
             id: 2,
             placeholder: "India",
-            href: "",
+            href: "/global-bazaar/India",
           },
           {
             id: 3,
-            placeholder: "Southeast Asia",
-            href: "",
+            placeholder: "Turkey",
+            href: "/global-bazaar/Turkey",
           },
         ],
       },
@@ -37,17 +37,17 @@ export const footerList = [
           {
             id: 1,
             placeholder: "Polypropylene (PP)",
-            href: "",
+            href: "/future-trend/PP",
           },
           {
             id: 2,
             placeholder: "Polyvinyl Chloride (PVC)",
-            href: "",
+            href: "/future-trend/PVC",
           },
           {
             id: 3,
             placeholder: "Polyethylene (PE)",
-            href: "",
+            href: "/future-trend/PE",
           },
         ],
       },
@@ -64,17 +64,17 @@ export const footerList = [
           {
             id: 1,
             placeholder: "Polymer Market News",
-            href: "",
+            href: "/news",
           },
           {
             id: 2,
             placeholder: "Daily Tweets",
-            href: "",
+            href: "https://twitter.com/POLYMERBAZAAR",
           },
           {
             id: 3,
             placeholder: "Pricing",
-            href: "",
+            href: "/subscription",
           },
         ],
       },

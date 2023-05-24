@@ -26,7 +26,7 @@ export const homePageCategories = [
   },
   {
     id: 6,
-    label: "Future",
+    label: "Futures",
     href: "/future-trends",
   },
 ];

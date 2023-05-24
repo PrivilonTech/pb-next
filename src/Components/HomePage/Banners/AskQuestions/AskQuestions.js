@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 
 import Button from "@/Components/Button/Button";
 import Input from "@/Components/Register/Input";
 
 export default function AskQuestions() {
+  const [email, setEmail] = useState("");
+
   return (
     <Box
       sx={{
@@ -18,7 +20,8 @@ export default function AskQuestions() {
     >
       <Box
         sx={{
-          background: "#c31815",
+          // background: "#c31815",
+          background: "#0f1a2e",
           height: "100%",
           width: { xs: "100%", md: "50%" },
         }}
@@ -67,7 +70,12 @@ export default function AskQuestions() {
               gap: { xs: "1em", sm: "5px" },
             }}
           >
-            <Input type="text" placeholder="Enter your email address" outline />
+            <Input
+              type="text"
+              placeholder="Enter your email address"
+              setState={setEmail}
+              outline
+            />
             <Button label="Send" onClick={() => {}} small />
           </Box>
         </Box>

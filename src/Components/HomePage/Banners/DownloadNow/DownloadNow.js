@@ -1,12 +1,17 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useRouter } from "next/router";
+
+import Button from "@/Components/Button/Button";
 
 export default function DownloadNow() {
+  const router = useRouter();
+
   return (
     <Box
       sx={{
         width: "calc(100% + 4em)",
-        height: { xs: "400px", md: "300px" },
+        height: { xs: "450px", md: "350px" },
         margin: "0em -2em",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
@@ -29,27 +34,38 @@ export default function DownloadNow() {
           }}
         >
           <Box>
-            <Typography sx={{ color: "white", fontSize: "1.2rem" }}>
-              Start Benefiting Now
-            </Typography>
-            <Typography sx={{ color: "white", fontSize: ".9rem" }}>
-              Stay on top of current prices and news, Reach thousands of
-              companies and professionals
-            </Typography>
-            <button
-              style={{
-                marginTop: "1em",
-                padding: ".65em .75em",
-                borderRadius: "7px",
-                outline: "none",
-                border: "none",
-                cursor: "pointer",
+            <Box
+              sx={{ display: "flex", flexDirection: "column", gap: ".25em" }}
+            >
+              <Typography
+                sx={{
+                  color: "white",
+                  fontSize: { xs: "1.75rem", sm: "2rem" },
+                  fontWeight: 400,
+                }}
+              >
+                Start Benefiting Now
+              </Typography>
+              <Typography
+                sx={{ color: "white", fontSize: ".9rem", width: "90%" }}
+              >
+                Stay on top of current prices and news, reach thousands of
+                companies and professionals.
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                width: "60%",
+                m: "1.5em 0",
               }}
             >
-              <Typography sx={{ fontWeight: 500, fontSize: ".9rem" }}>
-                Subscribe Now
-              </Typography>
-            </button>
+              <Button
+                label="Subscribe Now"
+                outline
+                noShadow
+                onClick={() => router.push("/subscription")}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -57,6 +73,7 @@ export default function DownloadNow() {
         sx={{
           background: "url(/Services/download-now.png)",
           backgroundSize: "cover",
+          backgroundPosition: "center",
           objectFit: "contain",
           height: { xs: "50%", md: "100%" },
           width: { xs: "100%", md: "50%" },

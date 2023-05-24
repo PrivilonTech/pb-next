@@ -8,8 +8,8 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        background: "#d9232a",
-        boxShadow: "#d9232a 0px 5px 15px",
+        background: "#0f1a2e",
+        boxShadow: "#0f1a2e 0px 5px 20px",
       }}
     >
       <Box

@@ -7,7 +7,6 @@ import Sidebar from "./Sidebar/Sidebar";
 import MediaPartner from "./MediaPartner/MediaPartner";
 import CarouselComponent from "./Carousel/Carousel";
 import DataDisplay from "./DataDisplay/DataDisplay";
-import ScrollTop from "./ScrollTop/ScrollTop";
 import TwitterBlogs from "./DataDisplay/TwitterBlogs";
 import AskQuestions from "./Banners/AskQuestions/AskQuestions";
 import DownloadNow from "./Banners/DownloadNow/DownloadNow";
@@ -37,7 +36,7 @@ function HomePage() {
         ]}
         height={600}
         numberOfImages={1}
-        objectFit="cover"
+        objectFit="contain"
       />
       <CarouselComponent
         srcArray={[
@@ -55,7 +54,6 @@ function HomePage() {
         objectFit="contain"
         padding="20px"
       />
-      <ScrollTop />
       <FuturePolymer />
       <Box
         sx={{

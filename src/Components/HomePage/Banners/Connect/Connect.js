@@ -12,15 +12,16 @@ export default function Connect() {
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        gap: { xs: "1em", md: 0 },
-        height: { xs: "650px", md: "350px" },
+        gap: { xs: "0em", md: 0 },
+        height: { xs: "650px", md: "450px" },
         margin: "0 -2em",
       }}
     >
       <Box
         sx={{
+          background: "#E9E9E9",
           width: { xs: "100%", md: "50%" },
-          margin: { xs: "1em 0", md: 0 },
+          padding: { xs: "1.75em 0", md: 0 },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -69,6 +70,7 @@ export default function Connect() {
           width: { xs: "100%", md: "50%" },
           height: "100%",
           background: "url(/Services/speak-to-us.png)",
+          backgroundPosition: "center",
           backgroundSize: "cover",
           objectFit: "cover",
         }}
