@@ -33,10 +33,12 @@ export default function App({ Component, pageProps }) {
 
   const showLayout = path === "/register" || path === "/subscription";
 
+  const pathSegments = path.split("/").filter((segment) => segment !== "");
+
   const title =
     path === "/"
       ? "Home"
-      : path.charAt(1).toUpperCase() + path.substring(2, path.lastIndexOf("/"));
+      : pathSegments[0].charAt(0).toUpperCase() + pathSegments[0].substring(1);
 
   return (
     <main className={font.className}>
