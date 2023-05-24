@@ -28,34 +28,44 @@ export default function Connect() {
           gap: "1em",
         }}
       >
-        <Typography
-          sx={{
-            fontSize: "2rem",
-            fontWeight: 400,
-            padding: { xs: "0 1em", md: "0 2em" },
-          }}
-        >
-          Speak to us
-        </Typography>
         <Box
           sx={{
+            m: "5px 0",
             display: "flex",
             flexDirection: "column",
-            gap: ".5em",
-            padding: { xs: "0 2em", md: "0 4em" },
+            gap: ".25em",
           }}
         >
-          <Typography sx={{ fontSize: ".9rem", width: "90%" }}>
-            Now more than ever, dynamic insights are key to navigating complex,
-            volatile commodity markets. Access to expert insights on the latest
-            industry developments and tracking market changes are vital in
-            making sustainable business decisions.
+          <Typography
+            sx={{
+              fontSize: "2rem",
+              fontWeight: 400,
+              padding: { xs: "0 1em", md: "0 2em" },
+            }}
+          >
+            Speak to us
           </Typography>
-          <Typography sx={{ fontSize: ".9rem", width: "90%" }}>
-            Want to learn about how we can work together to bring you actionable
-            insight and support your business decisions?
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: ".5em",
+              padding: { xs: "0 2em", md: "0 4em" },
+            }}
+          >
+            <Typography sx={{ fontSize: ".9rem", width: "90%" }}>
+              Now more than ever, dynamic insights are key to navigating
+              complex, volatile commodity markets. Access to expert insights on
+              the latest industry developments and tracking market changes are
+              vital in making sustainable business decisions.
+            </Typography>
+            <Typography sx={{ fontSize: ".9rem", width: "90%" }}>
+              Want to learn about how we can work together to bring you
+              actionable insight and support your business decisions?
+            </Typography>
+          </Box>
         </Box>
+
         <Box
           sx={{
             padding: { xs: "0 2em", md: "0 4em" },
