@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -31,19 +32,24 @@ export default function App({ Component, pageProps }) {
   const firstString = "/" + path.split("/")[1];
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
+  const [title, setTitle] = useState("");
   const showLayout = path === "/register" || path === "/subscription";
 
-  const pathSegments = path.split("/").filter((segment) => segment !== "");
-
-  const title =
-    path === "/"
-      ? "Home"
-      : pathSegments[0].charAt(0).toUpperCase() + pathSegments[0].substring(1);
+  useEffect(() => {
+    const pathSegments = path.split("/").filter((segment) => segment !== "");
+    setTitle(
+      path === "/"
+        ? "- Home"
+        : "- " +
+            pathSegments[0].charAt(0).toUpperCase() +
+            pathSegments[0].substring(1)
+    );
+  }, []);
 
   return (
     <main className={font.className}>
       <Head>
-        <title>Polymer Bazaar - {title}</title>
+        <title>Polymer Bazaar {title}</title>
       </Head>
       <ModalProvider>
         <AuthGuard>
