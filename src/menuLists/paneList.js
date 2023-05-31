@@ -47,6 +47,12 @@ const list = [
     txt: "Services",
     link: "/services",
   },
+  {
+    id: 9,
+    icon: "/Pane/events.svg",
+    txt: "Events",
+    link: "/events",
+  },
 ];
 
 export default list;

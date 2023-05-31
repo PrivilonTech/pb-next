@@ -34,6 +34,7 @@ function Pane({ path, setShowHamburg }) {
             justifyContent: "space-evenly",
             padding: "1em",
             paddingBottom: 0,
+            gap: "1em",
           }}
         >
           {list.map((res, id) => {

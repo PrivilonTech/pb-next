@@ -29,7 +29,7 @@ export default function ContactHero() {
       >
         <Typography sx={{ color: "white", fontSize: ".9rem" }}>
           Access to expert insights on the latest industry developments and
-          tracking market changes are vital in making sustainable business
+          tracking market changes are vital in making sustainable business.
         </Typography>
         <Typography sx={{ color: "white", fontSize: ".9rem" }}>
           If you would like to find out more about how we can work together to
