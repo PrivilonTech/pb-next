@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }) {
             pathSegments[0].charAt(0).toUpperCase() +
             pathSegments[0].substring(1)
     );
-  }, []);
+  }, [path]);
 
   return (
     <main className={font.className}>
