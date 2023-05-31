@@ -11,6 +11,8 @@ export default function DataContainer({
     <Box
       sx={{
         height: "auto",
+        maxHeight: "300px",
+        overflowY: "scroll",
         width: "300px",
         display: "flex",
         flexDirection: "column",

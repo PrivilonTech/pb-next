@@ -11,6 +11,7 @@ export default function BlogContent({ data, setDataChange }) {
         gap: "3em 1em",
         flexWrap: "wrap",
         justifyContent: { xs: "flex-start", md: "space-around" },
+        flexGrow: 1,
       }}
     >
       {data.map((dataItem) => (

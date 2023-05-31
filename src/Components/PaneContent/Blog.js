@@ -5,9 +5,9 @@ import MarkdownView from "react-showdown";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-hot-toast";
 import secureLocalStorage from "react-secure-storage";
+import Link from "next/link";
 
 import Button from "../Button/Button";
-import Link from "next/link";
 
 export default function Blog({ data, setDataChange }) {
   const user = secureLocalStorage.getItem("user");
@@ -29,7 +29,6 @@ export default function Blog({ data, setDataChange }) {
     }
   };
 
-  console.log(data);
   return (
     <Box
       sx={{

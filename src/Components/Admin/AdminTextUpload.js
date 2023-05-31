@@ -149,8 +149,6 @@ export default function AdminTextUpload({ path, setDataChange }) {
     };
     setIsLoading(true);
 
-    console.log(bodyContent);
-
     try {
       await axios.post(
         "https://polymerbazar-be.onrender.com/api/blogs",
@@ -159,7 +157,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
 
       toast.success("Data Uploaded");
       setAdminPanel(false);
-      setDataChange(true);
+      setDataChange((prev) => !prev);
       setIsLoading(false);
 
       setTitle("");
