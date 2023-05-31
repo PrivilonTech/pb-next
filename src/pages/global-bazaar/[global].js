@@ -18,7 +18,8 @@ function Global() {
   const router = useRouter();
   const path = router.query.global;
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
+  const [textData, setTextData] = useState([]);
 
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
@@ -34,24 +35,17 @@ function Global() {
 
   useEffect(() => {
     if (path) {
-      if (path !== "china") {
-        getGlobalData(path, monthIndex, year, setData, setIsLoading);
-      } else {
-        getTextData(path, monthIndex, year, setData, setIsLoading);
-      }
+      getGlobalData(path, monthIndex, year, setData, setIsLoading);
+      getTextData(path, monthIndex, year, setTextData, setIsLoading);
     }
   }, [path]);
 
   useEffect(() => {
-    if (path !== "china") {
-      getGlobalData(path, monthIndex, year, setData, setIsLoading);
-    }
+    getGlobalData(path, monthIndex, year, setData, setIsLoading);
   }, [month, year]);
 
   useEffect(() => {
-    if (path === "china") {
-      getTextData(path, monthIndex, year, setData, setIsLoading);
-    }
+    getTextData(path, monthIndex, year, setTextData, setIsLoading);
   }, [dataChange, month, year]);
 
   const BodyContent = (
@@ -63,66 +57,49 @@ function Global() {
         width: "100%",
       }}
     >
-      {path !== "china" ? (
-        <Box
-          sx={{
-            margin: { xs: "2em auto", md: "0 auto" },
-            display: "flex",
-            justifyContent: "center",
-            gap: "2em 5em",
-            flexWrap: "wrap",
-          }}
-        >
-          {data.length > 0 ? (
-            data.map((eachData, index) =>
+      <AdminTextUpload path={path} setDataChange={setDataChange} />
+      <Box
+        sx={{
+          margin: { xs: "2em auto", md: "0 auto" },
+          display: "flex",
+          justifyContent: "center",
+          gap: "2em 5em",
+          flexWrap: "wrap",
+          width: "100%",
+        }}
+      >
+        {data.length > 0 || textData.length > 0 ? (
+          <>
+            {data.map((eachData, index) =>
               eachData.dataKeys.map((dataItem, id) => (
                 <DataContainer
                   key={`${index}-${id}`}
-                  date={data[index].date}
+                  date={eachData.date}
                   title={dataItem}
                   polymerSubType={eachData.subKeys[dataItem]}
                   polymerValue={eachData.subValues[dataItem]}
                 />
               ))
-            )
-          ) : (
-            <Box
-              sx={{
-                display: "grid",
-                placeItems: "center",
-                width: "100%",
-                height: "50vh",
-              }}
-            >
-              {isLoading ? (
-                <ClipLoader color="#C31815" size={30} />
-              ) : (
-                <EmptyData />
-              )}
-            </Box>
-          )}
-        </Box>
-      ) : (
-        <>
-          <AdminTextUpload path={path} setDataChange={setDataChange} />
-          {isLoading ? (
-            <Box
-              sx={{
-                display: "grid",
-                placeItems: "center",
-                width: "100%",
-                height: "50vh",
-              }}
-            >
+            )}
+            <BlogContent data={textData} setDataChange={setDataChange} />
+          </>
+        ) : (
+          <Box
+            sx={{
+              display: "grid",
+              placeItems: "center",
+              width: "100%",
+              height: "50vh",
+            }}
+          >
+            {isLoading ? (
               <ClipLoader color="#C31815" size={30} />
-            </Box>
-          ) : data.length > 0 ? (
-            <BlogContent data={data} setDataChange={setDataChange} />
-          ) : (
-            <EmptyData />
-          )}
-        </>
-      )}
+            ) : (
+              <EmptyData />
+            )}
+          </Box>
+        )}
+      </Box>
     </Box>
   );
 

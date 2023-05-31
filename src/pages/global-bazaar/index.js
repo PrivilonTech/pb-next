@@ -7,15 +7,18 @@ import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 import DataContainer from "@/Components/PaneContent/DataContainer";
 import EmptyData from "@/Components/PaneContent/EmptyData";
 import PaneFooter from "@/Components/PaneContent/PaneFooter";
+import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
+import BlogContent from "@/Components/PaneContent/BlogContent";
 
 import { monthsArray, yearArray } from "@/utils/dateArray";
-import { getGlobalData } from "@/utils/apiCalls";
+import { getGlobalData, getTextData } from "@/utils/apiCalls";
 
 function index() {
   const currentDate = new Date();
 
   const getYearArray = yearArray();
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
+  const [textData, setTextData] = useState([]);
 
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
@@ -23,7 +26,9 @@ function index() {
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(monthsArray[currentMonth]);
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
+
   const [isLoading, setIsLoading] = useState(true);
+  const [dataChange, setDataChange] = useState(false);
 
   useEffect(() => {
     getGlobalData("USA", monthIndex, year, setData, setIsLoading);
@@ -32,6 +37,10 @@ function index() {
   useEffect(() => {
     getGlobalData("USA", monthIndex, year, setData, setIsLoading);
   }, [month, year]);
+
+  useEffect(() => {
+    getTextData("USA", monthIndex, year, setTextData, setIsLoading);
+  }, [dataChange, month, year]);
 
   const BodyContent = (
     <Box
@@ -42,6 +51,7 @@ function index() {
         width: "100%",
       }}
     >
+      <AdminTextUpload path="USA" setDataChange={setDataChange} />
       <Box
         sx={{
           margin: { xs: "2em auto", md: "0 auto" },
@@ -49,9 +59,10 @@ function index() {
           justifyContent: "center",
           gap: "2em 5em",
           flexWrap: "wrap",
+          width: "100%",
         }}
       >
-        {data.length > 0 ? (
+        {data.length > 0 || textData.length > 0 ? (
           <>
             {data.map((eachData, index) =>
               eachData.dataKeys.map((dataItem, id) => (
@@ -64,6 +75,7 @@ function index() {
                 />
               ))
             )}
+            <BlogContent data={textData} setDataChange={setDataChange} />
           </>
         ) : (
           <Box
