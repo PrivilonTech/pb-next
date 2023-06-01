@@ -51,7 +51,7 @@ export default function AuthGuard({ children }) {
 
         router.push("/register");
       } else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
-        if (!isTrial(userLoggedIn)) {
+        if (!isTrial(userLoggedIn) && !userLoggedIn.subscribed) {
           setLoading(true);
 
           router.push("/subscription");

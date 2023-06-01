@@ -112,19 +112,24 @@ export const isTrial = (user) => {
     return null;
   }
 
-  const currentDate = new Date(); // Current date
-  const createdAtParts = user.createdAt.split("-"); // Split the date string
-  const createdAtDate = new Date(
-    `${createdAtParts[2]}-${createdAtParts[1]}-${createdAtParts[0]}`
-  ); // Rearrange the date parts and create a new Date object
+  if (user.subscribed) {
+    //TODO: SUBSRIBTION END
+  } else {
+    // TRIAL PERIOD
+    const currentDate = new Date(); // Current date
+    const createdAtParts = user.createdAt.split("-"); // Split the date string
+    const createdAtDate = new Date(
+      `${createdAtParts[2]}-${createdAtParts[1]}-${createdAtParts[0]}`
+    ); // Rearrange the date parts and create a new Date object
 
-  currentDate.setHours(0, 0, 0, 0);
-  createdAtDate.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+    createdAtDate.setHours(0, 0, 0, 0);
 
-  const timeDiff = currentDate.getTime() - createdAtDate.getTime();
-  const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const timeDiff = currentDate.getTime() - createdAtDate.getTime();
+    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-  return daysDiff < 2;
+    return daysDiff < 2;
+  }
 };
 
 export const getCurrentDate = () => {
