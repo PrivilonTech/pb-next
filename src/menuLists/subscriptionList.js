@@ -1,43 +1,34 @@
 const subscriptionList = [
   {
     id: 1,
-    subscriptionType: "Starter",
-    subscriptionAmount: "$29",
-    subscriptionBenefits: [
-      "Access to all Charts & Data",
-      "10,000 visitors",
-      "Create Unlimited Widgets",
-      "All Widget Types",
-    ],
+    subscriptionType: "Mobile Application",
+    subscriptionAmount: 75_00,
   },
   {
     id: 2,
-    subscriptionType: "Pro",
-    subscriptionAmount: "$46",
-    subscriptionBenefits: [
-      "All in Starter",
-      "Access to all Charts & Data",
-      "10,000 visitors",
-      "Create Unlimited Widgets",
-      "All Widget Types",
-      "Website Personalization",
-      "Priority Support",
-    ],
+    subscriptionType: "Website Access",
+    subscriptionAmount: 15_000,
     mostPopular: true,
   },
   {
     id: 3,
-    subscriptionType: "Enterprise",
-    subscriptionAmount: "Custom",
-    subscriptionBenefits: [
-      "All in Starter and Pro",
-      "Access to all Charts & Data",
-      "10,000 visitors",
-      "Custom Contract",
-      "Create Unlimited Widgets",
-      "Custom Integration",
-      "Website Personalization",
-    ],
+    subscriptionType: "Normal Whatsapp",
+    subscriptionAmount: 55_00,
+  },
+  {
+    id: 4,
+    subscriptionType: "Auto Whatsapp",
+    subscriptionAmount: 65_00,
+  },
+  {
+    id: 5,
+    subscriptionType: "Sourcing & Delegation Service",
+    subscriptionAmount: 20_000,
+  },
+  {
+    id: 6,
+    subscriptionType: "Corporate packages",
+    subscriptionAmount: 25_000,
   },
 ];
 

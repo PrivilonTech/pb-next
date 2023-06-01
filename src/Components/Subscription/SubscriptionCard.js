@@ -1,85 +1,65 @@
 import React from "react";
-import DoneIcon from "@mui/icons-material/Done";
 import { Box, Typography } from "@mui/material";
-import Button from "../Button/Button";
 
-export default function SubscriptionCard({ data }) {
+export default function SubscriptionCard({ data, amount, setAmount }) {
   return (
     <Box
+      onClick={() => setAmount(data.subscriptionAmount)}
       sx={{
-        minHeight: "450px",
         width: { xs: "70vw", sm: "80vw", lg: "300px" },
-        border: "2px solid #d5d9eb",
-        borderRadius: "10px",
+        border: "2px solid #bcc0d1",
+        borderRadius: "15px",
         padding: "2em",
+        cursor: "pointer",
+        "&:hover": {
+          border:
+            amount === data.subscriptionAmount
+              ? "2px solid black"
+              : "2px solid #797b85",
+        },
+        transition: "border 150ms ease-in",
 
-        boxShadow:
-          "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-
-        transform: data?.mostPopular && { lg: "translateY(-50px)" },
+        transform: amount === data.subscriptionAmount && {
+          lg: "translateY(-5px)",
+        },
+        border:
+          amount === data.subscriptionAmount
+            ? "2px solid black"
+            : "2px solid #bcc0d1",
 
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "center",
       }}
     >
       <Box>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2em" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           {/* type and amount */}
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
+              justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <Typography sx={{ fontSize: "1.75rem", color: "#28282b" }}>
+            <Typography
+              sx={{ fontSize: { xs: "1rem", sm: "1.25rem" }, color: "#28282b" }}
+            >
               {data.subscriptionType}
             </Typography>
             <Box sx={{ display: "flex", gap: ".25em", alignItems: "center" }}>
-              <Typography sx={{ fontSize: "2.25rem", fontWeight: "bold" }}>
-                {data.subscriptionAmount}
+              <Typography sx={{ fontSize: { xs: "1rem", sm: "1.25rem" } }}>
+                ₹{data.subscriptionAmount}+
               </Typography>
-              {data.subscriptionAmount !== "Custom" && (
-                <Typography
-                  sx={{
-                    color: "#cacacc",
-                    fontWeight: "bold",
-                    fontSize: ".8rem",
-                  }}
-                >
-                  / MO
-                </Typography>
-              )}
             </Box>
           </Box>
-
-          {/* Benefits */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: ".5em",
-            }}
-          >
-            {data.subscriptionBenefits.map((item, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  gap: ".5em",
-                }}
-              >
-                <DoneIcon sx={{ color: "#4bb543" }} />
-                <Typography>{item}</Typography>
-              </Box>
-            ))}
-          </Box>
         </Box>
-      </Box>
-      {/* BUTTON */}
-      <Box>
-        <Button label="GET STARTED" onClick={() => {}} />
       </Box>
     </Box>
   );
