@@ -108,7 +108,7 @@ export const isAdminCheck = (userLoggedIn) => {
 };
 
 export const isTrial = (user) => {
-  if (!user) {
+  if (!user || user.role === "admin") {
     return null;
   }
 

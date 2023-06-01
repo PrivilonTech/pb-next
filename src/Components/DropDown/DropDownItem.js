@@ -47,7 +47,7 @@ export default function DropDownItem({
               borderTop: "1px solid #e3c0c0",
               background: selectedOption === option ? "#c31815" : "#dfdfdf",
               "&:hover": {
-                background: "#c7c7c7",
+                background: selectedOption === option ? "#c31815" : "#c7c7c7",
               },
               transition: "background 150ms ease-in",
               cursor: "pointer",
