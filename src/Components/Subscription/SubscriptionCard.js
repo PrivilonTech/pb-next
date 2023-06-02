@@ -25,16 +25,16 @@ export default function SubscriptionCard({
       onClick={handleSetAmount}
       sx={{
         width: "100%",
-        border: "2px solid #bcc0d1",
         borderRadius: "8px",
         padding: "1.5em",
         cursor: "pointer",
         "&:hover": {
-          border: alreadySelected ? "2.5px solid #d63f3c" : "2px solid #797b85",
+          background: "#f5f2f2",
         },
-        transition: "border 150ms ease-in",
+        transition: "background 150ms ease-in",
+        border: alreadySelected ? "2.5px solid #adaaaa" : "2.5px solid white",
 
-        border: alreadySelected ? "2.5px solid #d63f3c" : "2px solid #bcc0d1",
+        boxShadow: "rgba(0, 0, 0, 0.4) 0px 1px 4px",
 
         display: "flex",
         flexDirection: "column",
