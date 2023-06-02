@@ -1,32 +1,40 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-export default function SubscriptionCard({ data, amount, setAmount }) {
+export default function SubscriptionCard({
+  data,
+  setAmount,
+  selected,
+  setSelected,
+}) {
+  const alreadySelected = selected.includes(data.id);
+
+  const handleSetAmount = () => {
+    if (alreadySelected) {
+      setAmount((prev) => prev - data.subscriptionAmount);
+      setSelected(selected.filter((element) => element !== data.id));
+    } else {
+      setAmount((prev) => prev + data.subscriptionAmount);
+      setSelected((prev) => [...prev, data.id]);
+    }
+  };
+
   return (
     <Box
-      onClick={() => setAmount(data.subscriptionAmount)}
+      key={data.id}
+      onClick={handleSetAmount}
       sx={{
-        // width: { xs: "70vw", sm: "80vw", lg: "300px" },
         width: "100%",
         border: "2px solid #bcc0d1",
-        borderRadius: "15px",
-        padding: "2em",
+        borderRadius: "8px",
+        padding: "1.5em",
         cursor: "pointer",
         "&:hover": {
-          border:
-            amount === data.subscriptionAmount
-              ? "2px solid black"
-              : "2px solid #797b85",
+          border: alreadySelected ? "2.5px solid #d63f3c" : "2px solid #797b85",
         },
         transition: "border 150ms ease-in",
 
-        transform: amount === data.subscriptionAmount && {
-          lg: "translateY(-5px)",
-        },
-        border:
-          amount === data.subscriptionAmount
-            ? "2px solid black"
-            : "2px solid #bcc0d1",
+        border: alreadySelected ? "2.5px solid #d63f3c" : "2px solid #bcc0d1",
 
         display: "flex",
         flexDirection: "column",

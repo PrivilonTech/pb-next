@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { toast } from "react-hot-toast";
+import FlipNumbers from "react-flip-numbers";
 
 import SubscriptionCard from "./SubscriptionCard";
 import subscriptionList from "@/menuLists/subscriptionList";
 import Button from "../Button/Button";
+import AccordionComponent from "./Accordion";
 
 export default function Subscription() {
   const [amount, setAmount] = useState(0);
+  const [selected, setSelected] = useState([]);
 
   const handleSubscription = () => {
     if (amount === 0) {
@@ -31,13 +34,15 @@ export default function Subscription() {
       >
         <Typography
           sx={{
-            fontSize: { xs: "2.25rem", md: "3.25rem" },
+            fontSize: { xs: "2rem", md: "3.25rem" },
             fontWeight: "500",
             textAlign: "center",
             mt: { xs: "1.75rem" },
+            color: "#1e1e1e",
+            textTransform: "uppercase",
           }}
         >
-          Choose your plan
+          Subscription
         </Typography>
         <Box
           sx={{
@@ -45,29 +50,58 @@ export default function Subscription() {
             flexDirection: { xs: "column", md: "row" },
             gap: { xs: "2em", md: 0 },
             justifyContent: "space-between",
-            m: "0 2em",
+            m: { xs: "0 2em", md: "0 8em" },
           }}
         >
           <Box
             sx={{
               width: { xs: "100%", md: "60%" },
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
             }}
           >
             <Box
-              component="img"
-              src="/Services/subscribe.webp"
               sx={{
-                height: { xs: "90%", md: 400 },
-                width: { xs: "90%", md: 500 },
                 position: "sticky",
-                borderRadius: "10px",
-                boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
                 top: "80px",
               }}
-              alt="Subcription"
-            />
+            >
+              <Typography
+                sx={{
+                  fontSize: ".9rem",
+                  textTransform: "uppercase",
+                  color: "#e5322d",
+                  fontWeight: "bold",
+                }}
+              >
+                welcome to polymer bazaar!
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: { xs: "2rem", sm: "3rem" },
+                  fontWeight: "500",
+                  color: "#1e1e1e",
+                }}
+              >
+                Select Your Plan
+              </Typography>
+              <AccordionComponent />
+              <Box sx={{ display: "flex", gap: ".5em" }}>
+                <Typography sx={{ fontSize: "2rem", color: "#1e1e1e" }}>
+                  Your Total:
+                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center", gap: "2px" }}>
+                  <Typography sx={{ fontSize: "1.5rem" }}>₹</Typography>
+                  <FlipNumbers
+                    height={26}
+                    width={20}
+                    play
+                    perspective={200}
+                    numbers={amount.toString()}
+                  />
+                </Box>
+              </Box>
+            </Box>
           </Box>
           <Box
             sx={{
@@ -80,10 +114,10 @@ export default function Subscription() {
           >
             {subscriptionList.map((subscriptionItem) => (
               <SubscriptionCard
-                key={subscriptionItem.id}
                 data={subscriptionItem}
-                amount={amount}
                 setAmount={setAmount}
+                selected={selected}
+                setSelected={setSelected}
               />
             ))}
             <Box
@@ -92,7 +126,7 @@ export default function Subscription() {
                 mt: "2em",
               }}
             >
-              <Button label="Proceed" onClick={handleSubscription} />
+              <Button label="Continue" onClick={handleSubscription} />
             </Box>
           </Box>
         </Box>
