@@ -6,7 +6,8 @@ export default function SubscriptionCard({ data, amount, setAmount }) {
     <Box
       onClick={() => setAmount(data.subscriptionAmount)}
       sx={{
-        width: { xs: "70vw", sm: "80vw", lg: "300px" },
+        // width: { xs: "70vw", sm: "80vw", lg: "300px" },
+        width: "100%",
         border: "2px solid #bcc0d1",
         borderRadius: "15px",
         padding: "2em",
