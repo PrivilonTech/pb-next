@@ -91,7 +91,7 @@ export const getGlobalData = async (
   setLoading(false);
 };
 
-//crude/historicaldata
+//graph/historicaldata
 export const getHistoricalData = async (
   category,
   year,
@@ -182,7 +182,7 @@ export const getHistoricalData = async (
   setIsLoading(false);
 };
 
-//global
+//global/citywise
 export const getTextData = async (
   country,
   month,
@@ -196,4 +196,13 @@ export const getTextData = async (
 
   setData(response.data.data);
   setIsLoading(false);
+};
+
+//events
+export const getEventsData = async (setData) => {
+  const response = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/events`
+  );
+
+  setData(response.data);
 };

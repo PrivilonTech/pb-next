@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 
 import EventBanner from "@/Components/HomePage/Banners/EventBanner/EventBanner";
 import UpcomingEvents from "@/Components/Events/UpcomingEvents";
 
+import { getEventsData } from "@/utils/apiCalls";
+
 export default function index() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getEventsData(setData);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -49,7 +57,7 @@ export default function index() {
         </Box>
       </Box>
       <EventBanner />
-      <UpcomingEvents />
+      <UpcomingEvents data={data} />
     </Box>
   );
 }

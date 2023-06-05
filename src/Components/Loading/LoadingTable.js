@@ -25,36 +25,14 @@ export default function LoadingTable() {
             gap: "1em",
           }}
         >
-          <Skeleton
-            variant="rectangular"
-            width={300}
-            sx={{ borderRadius: "10px" }}
-          />
-          <Skeleton
-            variant="rectangular"
-            width={300}
-            sx={{ borderRadius: "10px" }}
-          />
-          <Skeleton
-            variant="rectangular"
-            width={300}
-            sx={{ borderRadius: "10px" }}
-          />
-          <Skeleton
-            variant="rectangular"
-            width={300}
-            sx={{ borderRadius: "10px" }}
-          />
-          <Skeleton
-            variant="rectangular"
-            width={300}
-            sx={{ borderRadius: "10px" }}
-          />
-          <Skeleton
-            variant="rectangular"
-            width={300}
-            sx={{ borderRadius: "10px" }}
-          />
+          {Array.from({ length: 6 }, (_, index) => index + 1).map((id) => (
+            <Skeleton
+              key={id}
+              variant="rectangular"
+              width={300}
+              sx={{ borderRadius: "10px" }}
+            />
+          ))}
         </Box>
       </Box>
     </Box>
