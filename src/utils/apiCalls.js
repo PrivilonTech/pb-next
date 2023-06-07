@@ -194,7 +194,7 @@ export const getTextData = async (
     `https://polymerbazar-be.onrender.com/api/blogs?type=${country}&year=${year}&month=${month}`
   );
 
-  setData(response.data.data);
+  setData(response.data.data.reverse());
   setIsLoading(false);
 };
 
@@ -202,6 +202,15 @@ export const getTextData = async (
 export const getEventsData = async (setData) => {
   const response = await axios.get(
     `https://polymerbazar-be.onrender.com/api/events`
+  );
+
+  setData(response.data);
+};
+
+//images
+export const getCarouselData = async (setData) => {
+  const response = await axios.get(
+    `https://polymerbazar-be.onrender.com/api/carousels/`
   );
 
   setData(response.data);

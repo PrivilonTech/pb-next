@@ -4,12 +4,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import DropDownItem from "./DropDownItem";
 
-export default function DropDown({
-  data,
-  selectedOption,
-  setSelectedOption,
-  mobile,
-}) {
+export default function DropDown({ data, selectedOption, setSelectedOption }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   return (
@@ -39,7 +34,6 @@ export default function DropDown({
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           setIsDropDownOpen={setIsDropDownOpen}
-          mobile
         />
       )}
     </Box>
