@@ -7,12 +7,18 @@ export default function EventBanner() {
     <Box
       sx={{
         display: "flex",
-        height: { xs: "450px", md: "400px" },
+        height: { xs: "650px", md: "400px" },
         flexDirection: { xs: "column", md: "row" },
       }}
     >
       <Box sx={{ width: { xs: "100%", md: "50%" } }}>
-        <Box sx={{ display: "flex", gap: "1em", padding: "3em", pb: 0 }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "1em",
+            padding: { xs: "2em 2em 0em", md: "3em" },
+          }}
+        >
           <Typography sx={{ fontSize: "1.65rem", color: "#1e1e1e" }}>
             Connect.
           </Typography>
@@ -28,7 +34,7 @@ export default function EventBanner() {
             display: "flex",
             flexDirection: "column",
             gap: "1em",
-            padding: ".5em 3em",
+            padding: ".5em 2em 2em",
           }}
         >
           <Typography sx={{ fontSize: ".9rem" }}>

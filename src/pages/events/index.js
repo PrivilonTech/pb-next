@@ -8,10 +8,11 @@ import { getEventsData } from "@/utils/apiCalls";
 
 export default function index() {
   const [data, setData] = useState([]);
+  const [dataChange, setDataChange] = useState(false);
 
   useEffect(() => {
     getEventsData(setData);
-  }, []);
+  }, [dataChange]);
 
   return (
     <Box
@@ -34,7 +35,13 @@ export default function index() {
           padding: { xs: "1em 2em", md: "2em 6em" },
         }}
       >
-        <Typography sx={{ fontSize: "4rem", color: "white", fontWeight: 400 }}>
+        <Typography
+          sx={{
+            fontSize: { xs: "3rem", md: "4rem" },
+            color: "white",
+            fontWeight: 400,
+          }}
+        >
           Conferences & Events
         </Typography>
         <Box
@@ -57,7 +64,7 @@ export default function index() {
         </Box>
       </Box>
       <EventBanner />
-      <UpcomingEvents data={data} />
+      <UpcomingEvents data={data} setDataChange={setDataChange} />
     </Box>
   );
 }
