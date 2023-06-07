@@ -74,7 +74,6 @@ export default function PaneContentLayout({
               data={secondaryDropdownData}
               selectedOption={secondarySelectedOption}
               setSelectedOption={secondarySetSelectedOption}
-              mobile
             />
           )}
           {thirdDropdown && (

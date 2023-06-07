@@ -53,6 +53,12 @@ const list = [
     txt: "Events",
     link: "/events",
   },
+  {
+    id: 10,
+    icon: "/Pane/events.svg",
+    txt: "Press Release",
+    link: "/press-release",
+  },
 ];
 
 export default list;

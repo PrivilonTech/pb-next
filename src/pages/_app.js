@@ -33,7 +33,8 @@ export default function App({ Component, pageProps }) {
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const [title, setTitle] = useState("");
-  const showLayout = path === "/register" || path === "/subscription";
+  const showLayout =
+    path === "/register" || path === "/subscription" || path === "/details";
 
   useEffect(() => {
     const pathSegments = path.split("/").filter((segment) => segment !== "");

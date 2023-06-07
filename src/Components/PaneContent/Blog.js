@@ -11,7 +11,6 @@ import Button from "../Button/Button";
 
 export default function Blog({ data, setDataChange }) {
   const user = secureLocalStorage.getItem("user");
-
   const [modal, setModal] = useState(false);
 
   // delete comment
@@ -20,6 +19,7 @@ export default function Blog({ data, setDataChange }) {
       await axios.delete(
         `https://polymerbazar-be.onrender.com/api/blogs/${id}`
       );
+
       setModal(false);
       setDataChange((prev) => !prev);
       toast.success("Blog successfully deleted");
