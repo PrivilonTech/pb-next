@@ -37,8 +37,10 @@ export default function AdminTextUpload({ path, setDataChange }) {
   const textAreaRef = useRef(null);
 
   useEffect(() => {
-    setIsAdmin(userLoggedIn.role === "admin");
-  }, []);
+    if (userLoggedIn) {
+      setIsAdmin(userLoggedIn?.role === "admin");
+    }
+  }, [userLoggedIn]);
 
   //highlight
   const handleHightlight = () => {
@@ -201,7 +203,11 @@ export default function AdminTextUpload({ path, setDataChange }) {
               }}
             >
               <Typography sx={{ fontSize: "2rem" }}>Title</Typography>
-              <Input type="text" placeholder="" setState={setTitle} />
+              <Input
+                type="text"
+                placeholder="Please enter blog title"
+                setState={setTitle}
+              />
             </Box>
             <Box
               sx={{
@@ -247,6 +253,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
                 ref={textAreaRef}
                 value={body}
                 cols="30"
+                placeholder="Please enter body content"
                 rows="10"
                 style={{
                   padding: ".75em",
