@@ -6,6 +6,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { toast } from "react-hot-toast";
 
 import firebaseApp from "@/firebase/clientApp";
 
@@ -24,6 +25,45 @@ export const createNewUser = async (userData) => {
       });
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const updateUserInfoByEmail = async (
+  // query,
+  // queryParameter,
+  email,
+  additionalData,
+  setLoading
+) => {
+  try {
+    setLoading(true);
+    const firebaseDatabase = getFirestore(firebaseApp);
+    const colRef = collection(firebaseDatabase, "users");
+
+    const queries = query(colRef, where("email", "==", email));
+    const querySnapshot = await getDocs(queries);
+
+    querySnapshot.forEach((doc) => {
+      const docRef = doc.ref;
+      const updatedData = { ...doc.data(), ...additionalData };
+
+      console.log(docRef, updatedData);
+
+      updateDoc(docRef, updatedData)
+        .then(() => {
+          console.log("User document updated successfully!");
+        })
+        .catch((error) => {
+          console.log("Error updating user document", error);
+        });
+    });
+
+    setLoading(false);
+  } catch (error) {
+    toast("Something went wrong");
+    console.log(error);
+
+    setLoading(false);
   }
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Input({
-  type,
+  type = "text",
   placeholder,
   setState,
   largeHeight,

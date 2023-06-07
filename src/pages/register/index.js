@@ -29,10 +29,12 @@ import Button from "@/Components/Button/Button";
 import MobilePage from "@/Components/Register/MobilePage";
 import TogglePassword from "@/Components/Register/TogglePassword";
 import ShowBackArrow from "@/Components/Register/ShowBackArrow";
+import useRegisterInfo from "@/hooks/useRegisterInfo";
 
 export default function Register() {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
+  const { setInputs } = useRegisterInfo();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -88,7 +90,9 @@ export default function Register() {
           subscribed: false,
           createdAt: getCurrentDate(),
         });
-        router.push("/");
+
+        setInputs(["email"]);
+        router.push("/details");
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
@@ -184,7 +188,12 @@ export default function Register() {
           });
         }
 
-        router.push("/");
+        if (existingUser?.company) {
+          return router.push("/");
+        }
+
+        setInputs(["phone"]);
+        router.push("/details");
       })
       .catch((error) => {
         console.log("error", error);

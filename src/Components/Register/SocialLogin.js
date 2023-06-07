@@ -9,6 +9,7 @@ import {
   getUserByEmail,
 } from "@/utils/utilsUser";
 import { ModalContext } from "../HomePage/ModalProvider";
+import useRegisterInfo from "@/hooks/useRegisterInfo";
 
 export default function SocialLogin({
   auth,
@@ -17,6 +18,7 @@ export default function SocialLogin({
   setIsLoginPage,
 }) {
   const router = useRouter();
+  const { setInputs } = useRegisterInfo();
   const googleProvider = new GoogleAuthProvider();
 
   const { setLoading } = useContext(ModalContext);
@@ -39,7 +41,12 @@ export default function SocialLogin({
         });
       }
 
-      router.push("/");
+      if (existingUser?.company) {
+        return router.push("/");
+      }
+
+      setInputs(["email"]);
+      router.push("/details");
     } catch (error) {
       console.error(error);
     }
