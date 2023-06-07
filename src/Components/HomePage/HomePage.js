@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -13,10 +13,23 @@ import DownloadNow from "./Banners/DownloadNow/DownloadNow";
 import GlobalMap from "./MediaPartner/GlobalMap";
 import Connect from "./Banners/Connect/Connect";
 import FuturePolymer from "./Banners/FuturePolymer/FuturePolymer";
+import AdminCarouselUpload from "../Admin/AdminCarouselUpload";
+
+import { getCarouselData } from "@/utils/apiCalls";
 
 function HomePage() {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
+
+  const [data, setData] = useState([]);
+  const [dataChange, setDataChange] = useState(false);
+
+  useEffect(() => {
+    getCarouselData(setData);
+  }, [dataChange]);
+
+  const srcArray = data.map((object) => object.imageUrl);
+  const idArray = data.map((object) => object._id);
 
   return (
     <Box
@@ -28,16 +41,14 @@ function HomePage() {
       }}
     >
       <CarouselComponent
-        srcArray={[
-          "/Homepage/hero/hero-image.jpg",
-          "/Homepage/hero/hero-image_2.jpg",
-          "/Homepage/hero/hero-image_3.jpg",
-          "/Homepage/hero/hero-image_4.jpg",
-        ]}
+        srcArray={srcArray}
+        idArray={idArray}
         height={600}
         numberOfImages={1}
         objectFit="contain"
+        setDataChange={setDataChange}
       />
+      <AdminCarouselUpload setDataChange={setDataChange} />
       <CarouselComponent
         srcArray={[
           "/Homepage/carousel/image_1.jpg",
@@ -53,6 +64,7 @@ function HomePage() {
         numberOfImages={upMd ? 5 : 3}
         objectFit="contain"
         padding="20px"
+        setDataChange={setDataChange}
       />
       <FuturePolymer />
       <Box
