@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
 const useRegisterInfo = create((set) => ({
-  inputs: [],
-  setInputs: (array) => set({ inputs: array }),
-  reset: () => set({ inputs: [] }),
+  inputs: {},
+  setInputs: (object) => set({ inputs: object }),
+  reset: () => set({ inputs: {} }),
 }));
 
 export default useRegisterInfo;

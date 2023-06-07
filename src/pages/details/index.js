@@ -8,7 +8,10 @@ import Input from "@/Components/Register/Input";
 import useRegisterInfo from "@/hooks/useRegisterInfo";
 import Button from "@/Components/Button/Button";
 
-import { updateUserInfoByEmail } from "@/utils/utilsUser";
+import {
+  updateUserInfoByEmail,
+  updateUserInfoByPhone,
+} from "@/utils/utilsUser";
 
 export default function index() {
   const router = useRouter();
@@ -19,12 +22,13 @@ export default function index() {
   const [email, setEmail] = useState("");
 
   const { inputs, reset } = useRegisterInfo();
+
   const [loading, setLoading] = useState(false);
 
   const handleAddUserInformation = async () => {
-    if (inputs.includes("email")) {
+    if (inputs.email) {
       await updateUserInfoByEmail(
-        email,
+        inputs.email,
         {
           company,
           location,
@@ -32,21 +36,19 @@ export default function index() {
         },
         setLoading
       );
-    } else if (inputs.includes("phone")) {
-      //   await updateUserInfo(
-      //     "phone",
-      //     phoneNumber,
-      //     {
-      //       email,
-      //       company,
-      //       location,
-      //     },
-      //     setLoading
-      //   );
+    } else if (inputs.phone) {
+      await updateUserInfoByPhone(
+        inputs.phone,
+        {
+          company,
+          location,
+          email,
+        },
+        setLoading
+      );
     }
 
     router.push("/");
-    reset();
   };
 
   return (
@@ -89,7 +91,7 @@ export default function index() {
             </Typography>
             <Input placeholder="e.g: ABC Enterprise" setState={setCompany} />
           </Box>
-          {!inputs.includes("email") && (
+          {!inputs.email && (
             <Box
               sx={{ display: "flex", flexDirection: "column", gap: ".25em" }}
             >
@@ -103,7 +105,7 @@ export default function index() {
               />
             </Box>
           )}
-          {!inputs.includes("number") && (
+          {!inputs.phone && (
             <Box
               sx={{ display: "flex", flexDirection: "column", gap: ".25em" }}
             >

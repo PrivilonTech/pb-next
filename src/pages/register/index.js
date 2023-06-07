@@ -91,7 +91,7 @@ export default function Register() {
           createdAt: getCurrentDate(),
         });
 
-        setInputs(["email"]);
+        setInputs({ email: userCredential.user.email });
         router.push("/details");
       })
       .catch((error) => {
@@ -192,7 +192,7 @@ export default function Register() {
           return router.push("/");
         }
 
-        setInputs(["phone"]);
+        setInputs({ phone: `+${phoneNumber}` });
         router.push("/details");
       })
       .catch((error) => {

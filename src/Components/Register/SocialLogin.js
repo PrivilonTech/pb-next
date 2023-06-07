@@ -45,7 +45,7 @@ export default function SocialLogin({
         return router.push("/");
       }
 
-      setInputs(["email"]);
+      setInputs({ email: result.user.email });
       router.push("/details");
     } catch (error) {
       console.error(error);
