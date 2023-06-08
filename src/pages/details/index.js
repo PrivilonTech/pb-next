@@ -21,7 +21,7 @@ export default function index() {
   const [phoneNumber, setPhoneNumber] = useState("+91 ");
   const [email, setEmail] = useState("");
 
-  const { inputs, reset } = useRegisterInfo();
+  const { inputs } = useRegisterInfo();
 
   const [loading, setLoading] = useState(false);
 

@@ -116,7 +116,7 @@ function Pane({ path, setShowHamburg }) {
                   color: "#000",
                   height: "20%",
                   width: { xs: "20%", sm: "25%" },
-                  padding: { xs: ".75em", sm: ".5em" },
+                  padding: { xs: ".5em .75em", sm: ".5em" },
                   lineHeight: "1px",
                   border:
                     active === res.link ? "1px solid red" : "2px solid #d5d9eb",
