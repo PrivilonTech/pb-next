@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { CountryDropdown } from "react-country-region-selector";
-import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 
 import Input from "@/Components/Register/Input";
@@ -9,16 +8,18 @@ import useRegisterInfo from "@/hooks/useRegisterInfo";
 import Button from "@/Components/Button/Button";
 
 import {
+  getUserByEmail,
   updateUserInfoByEmail,
   updateUserInfoByPhone,
 } from "@/utils/utilsUser";
+import { sendMail } from "@/utils/apiCalls";
 
 export default function index() {
   const router = useRouter();
 
   const [company, setCompany] = useState("");
   const [location, setLocation] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("+91 ");
+  const [phone, setPhone] = useState("+91 ");
   const [email, setEmail] = useState("");
 
   const { inputs } = useRegisterInfo();
@@ -32,10 +33,15 @@ export default function index() {
         {
           company,
           location,
-          phoneNumber,
+          phone,
         },
         setLoading
       );
+
+      const { displayName: name } = await getUserByEmail(email);
+      const { subject, content } = registerMessage(name);
+
+      sendMail(email, subject, content);
     } else if (inputs.phone) {
       await updateUserInfoByPhone(
         inputs.phone,
@@ -115,7 +121,7 @@ export default function index() {
               <Input
                 type="tel"
                 placeholder="e.g: +91 XXXXX XXXXX"
-                setState={setPhoneNumber}
+                setState={setPhone}
               />
             </Box>
           )}

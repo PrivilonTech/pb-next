@@ -19,6 +19,8 @@ import {
   getUserByEmail,
   getUserByPhone,
 } from "@/utils/utilsUser";
+import { loginMessage, registerMessage } from "@/utils/mail";
+import { sendMail } from "@/utils/apiCalls";
 
 import HeaderTitle from "@/Components/Register/HeaderTitle";
 import ErrorText from "@/Components/Register/ErrorText";
@@ -92,6 +94,10 @@ export default function Register() {
         });
 
         setInputs({ email: userCredential.user.email });
+
+        const { subject, content } = registerMessage(name);
+        sendMail(userCredential.user.email, subject, content);
+
         router.push("/details");
       })
       .catch((error) => {
@@ -110,8 +116,13 @@ export default function Register() {
   const signIn = (email, password) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then(async () => {
         // Signed in successfully
+        const existingUser = await getUserByEmail(email);
+
+        const { subject, content } = loginMessage(existingUser.displayName);
+        sendMail(email, subject, content);
+
         router.push("/");
       })
       .catch((error) => {
@@ -186,6 +197,11 @@ export default function Register() {
             subscribed: false,
             createdAt: getCurrentDate(),
           });
+        }
+
+        if (existingUser?.email) {
+          const { subject, content } = loginMessage(name);
+          sendMail(existingUser?.email, subject, content);
         }
 
         if (existingUser?.company) {

@@ -10,6 +10,8 @@ import {
 } from "@/utils/utilsUser";
 import { ModalContext } from "../HomePage/ModalProvider";
 import useRegisterInfo from "@/hooks/useRegisterInfo";
+import { sendMail } from "@/utils/apiCalls";
+import { loginMessage, registerMessage } from "@/utils/mail";
 
 export default function SocialLogin({
   auth,
@@ -39,6 +41,12 @@ export default function SocialLogin({
           subscribed: false,
           createdAt: getCurrentDate(),
         });
+
+        const registerMail = registerMessage(result.user.displayName);
+        sendMail(result.user.email, registerMail.subject, registerMail.content);
+      } else {
+        const loginMail = loginMessage(result.user.displayName);
+        sendMail(result.user.email, loginMail.subject, loginMail.content);
       }
 
       if (existingUser?.company) {

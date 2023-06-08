@@ -215,3 +215,21 @@ export const getCarouselData = async (setData) => {
 
   setData(response.data);
 };
+
+export const sendMail = async (to, subject, content) => {
+  try {
+    const response = await fetch("/api/sendMail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to,
+        subject,
+        content,
+      }),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
