@@ -49,13 +49,13 @@ const list = [
   },
   {
     id: 9,
-    icon: "/Pane/events.svg",
+    icon: "/Pane/events_1.png",
     txt: "Events",
     link: "/events",
   },
   {
     id: 10,
-    icon: "/Pane/events.svg",
+    icon: "/Pane/press-release_1.png",
     txt: "Press Release",
     link: "/press-release",
   },

@@ -34,7 +34,7 @@ export default function DropDownItem({
           borderRadius: "10px",
           boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
           background: "#e7e4e4",
-          boxShadow: "8px 8px 16px #c2c0c0, -8px -8px 16px #ffffff",
+          boxShadow: "4px 4px 8px #c2c0c0, -4px -4px 8px #ffffff",
           overflow: "hidden",
         }}
       >

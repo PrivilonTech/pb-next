@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
@@ -45,11 +45,11 @@ function HomePage() {
         idArray={idArray}
         height={600}
         numberOfImages={1}
-        objectFit="contain"
+        objectFit="cover"
         setDataChange={setDataChange}
       />
       <AdminCarouselUpload setDataChange={setDataChange} />
-      <CarouselComponent
+      {/* <CarouselComponent
         srcArray={[
           "/Homepage/carousel/image_1.jpg",
           "/Homepage/carousel/image_2.jpg",
@@ -65,7 +65,7 @@ function HomePage() {
         objectFit="contain"
         padding="20px"
         setDataChange={setDataChange}
-      />
+      /> */}
       <FuturePolymer />
       <Box
         sx={{
@@ -86,7 +86,33 @@ function HomePage() {
         <DownloadNow />
       </Box>
       <Box>
-        <MediaPartner />
+        {/* <MediaPartner /> */}
+        <Typography
+          sx={{
+            mt: ".75em",
+            textAlign: "center",
+            fontSize: { xs: "2.5rem", md: "3.5rem" },
+          }}
+        >
+          Media Partners
+        </Typography>
+        <CarouselComponent
+          srcArray={[
+            "/Homepage/carousel/image_1.jpg",
+            "/Homepage/carousel/image_2.jpg",
+            "/Homepage/carousel/image_3.jpg",
+            "/Homepage/carousel/image_4.jpg",
+            "/Homepage/carousel/image_5.jpg",
+            "/Homepage/carousel/image_6.jpg",
+            "/Homepage/carousel/image_7.jpg",
+            "/Homepage/carousel/image_8.jpg",
+          ]}
+          height={100}
+          numberOfImages={upMd ? 5 : 3}
+          objectFit="contain"
+          padding="20px"
+          setDataChange={setDataChange}
+        />
         <GlobalMap />
       </Box>
     </Box>
