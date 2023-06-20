@@ -41,7 +41,7 @@ export default function AuthGuard({ children }) {
 
       setTimeout(() => {
         setFetchLoader(false);
-      }, 2000);
+      }, 4000);
     }
   }, [currentUser]);
 
