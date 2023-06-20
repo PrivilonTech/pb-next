@@ -102,7 +102,7 @@ export default function CarouselComponent({
       </dialog>
       <Slider {...settings}>
         {srcArray.map((src, index) => (
-          <>
+          <React.Fragment key={idArray ? idArray[index] : index}>
             {isAdmin && idArray && (
               <>
                 <Box
@@ -125,7 +125,6 @@ export default function CarouselComponent({
               </>
             )}
             <Box
-              key={idArray ? idArray[index] : index}
               sx={{
                 padding: padding ? padding : 0,
               }}
@@ -140,7 +139,7 @@ export default function CarouselComponent({
                 height={height}
               />
             </Box>
-          </>
+          </React.Fragment>
         ))}
       </Slider>
     </Box>

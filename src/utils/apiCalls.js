@@ -218,7 +218,7 @@ export const getCarouselData = async (setData) => {
 
 export const sendMail = async (to, subject, content) => {
   try {
-    const response = await fetch("/api/sendMail", {
+    await fetch("/api/sendMail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
