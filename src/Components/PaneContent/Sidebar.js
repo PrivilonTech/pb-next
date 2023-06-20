@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { useRouter } from "next/router";
 
 function Sidebar({ path, list, page }) {
   const [active, setActive] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     setActive(path);
@@ -20,10 +22,11 @@ function Sidebar({ path, list, page }) {
       >
         {list.map((res, id) => {
           return (
-            <Link
-              href={`/${page}/${res.slug}`}
+            <Box
+              onClick={() => router.push(`/${page}/${res.slug}`)}
               key={id}
               sx={{
+                cursor: "pointer",
                 textDecoration: "none",
                 color: active === res.slug ? "whitesmoke" : "#575757",
                 width: { md: "90%" },
@@ -61,7 +64,7 @@ function Sidebar({ path, list, page }) {
               >
                 {res.section}
               </Typography>
-            </Link>
+            </Box>
           );
         })}
       </Box>
