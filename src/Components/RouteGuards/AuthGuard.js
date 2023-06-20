@@ -12,13 +12,8 @@ export default function AuthGuard({ children }) {
   const path = router.pathname;
 
   const currentUser = useCurrentUser();
-  const {
-    loading,
-    setLoading,
-    setFetchLoader,
-    setFetchedUser,
-    curretUserLoading,
-  } = useContext(ModalContext);
+  const { loading, setLoading, setFetchLoader, setFetchedUser } =
+    useContext(ModalContext);
 
   const userLoggedIn = secureLocalStorage.getItem("user");
   const userNotFound = userLoggedIn === "undefined" || !userLoggedIn;
@@ -44,11 +39,11 @@ export default function AuthGuard({ children }) {
     } else {
       setLoading(false);
 
-      if (!curretUserLoading) {
+      setTimeout(() => {
         setFetchLoader(false);
-      }
+      }, 2000);
     }
-  }, [currentUser, curretUserLoading]);
+  }, [currentUser]);
 
   useEffect(() => {
     if (!loading && path !== "/") {

@@ -6,7 +6,6 @@ export function ModalProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
   const [fetchLoader, setFetchLoader] = useState(true);
-  const [curretUserLoading, setCurretUserLoading] = useState(true);
 
   return (
     <ModalContext.Provider
@@ -17,8 +16,6 @@ export function ModalProvider({ children }) {
         setFetchedUser,
         fetchLoader,
         setFetchLoader,
-        curretUserLoading,
-        setCurretUserLoading,
       }}
     >
       {children}
