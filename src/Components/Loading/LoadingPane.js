@@ -21,7 +21,7 @@ const LoadingPane = ({ paneCount }) => {
           sx={{
             padding: { xs: ".75em", sm: ".5em" },
             lineHeight: "1px",
-            width: { xs: 140, sm: 150 },
+            width: { xs: 130, sm: 150 },
             margin: "10px",
             borderRadius: "20px",
             display: "flex",
