@@ -13,6 +13,7 @@ import {
   updateUserInfoByPhone,
 } from "@/utils/utilsUser";
 import { sendMail } from "@/utils/apiCalls";
+import { registerMessage } from "@/utils/mail";
 
 export default function index() {
   const router = useRouter();
@@ -38,10 +39,10 @@ export default function index() {
         setLoading
       );
 
-      const { displayName: name } = await getUserByEmail(email);
+      const { displayName: name } = await getUserByEmail(inputs.email);
       const { subject, content } = registerMessage(name);
 
-      sendMail(email, subject, content);
+      sendMail(inputs.email, subject, content);
     } else if (inputs.phone) {
       await updateUserInfoByPhone(
         inputs.phone,
@@ -52,6 +53,8 @@ export default function index() {
         },
         setLoading
       );
+
+      sendMail(email, subject, content);
     }
 
     router.push("/");
