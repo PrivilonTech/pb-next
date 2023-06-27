@@ -14,7 +14,7 @@ export default function Blog({ data, setDataChange }) {
   const user = secureLocalStorage.getItem("user");
   const [modal, setModal] = useState(false);
 
-  const isPDF = data?.attachment.includes(".pdf");
+  const isPDF = data?.attachment?.includes(".pdf");
   const isImageFile = (data?.attachment && !isPDF) || false;
 
   // delete comment
