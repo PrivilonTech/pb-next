@@ -38,6 +38,7 @@ function HomePage() {
         flexDirection: "column",
         gap: "1em",
         margin: ".75em 2em",
+        mt: 0,
       }}
     >
       <CarouselComponent

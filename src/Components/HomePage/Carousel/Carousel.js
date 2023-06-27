@@ -67,7 +67,7 @@ export default function CarouselComponent({
   return (
     <Box
       sx={{
-        margin: { xs: "1em 0em", sm: "1em", lg: "1em 5em" },
+        margin: { xs: "1em 0em", sm: "1em", lg: "0em 5em" },
       }}
     >
       <dialog

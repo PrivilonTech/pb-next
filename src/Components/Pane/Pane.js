@@ -28,12 +28,11 @@ function Pane({ path, setShowHamburg }) {
       {upMd ? (
         <Box
           sx={{
-            margin: "0 4em",
-            height: "15vh",
             display: "flex",
             justifyContent: "space-evenly",
+            alignItems: "center",
             padding: "1em",
-            paddingBottom: 0,
+            background: "#e5e5e5",
             gap: "1em",
           }}
         >
@@ -41,49 +40,25 @@ function Pane({ path, setShowHamburg }) {
             return (
               <Box
                 key={id}
-                onClick={() => router.push(`/${res.link}`)}
+                onClick={() => router.push(`${res.link}`)}
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  textDecoration: "none",
                   cursor: "pointer",
-                  color: "#000",
-                  height: "90%",
-                  width: "10%",
-                  border: "1px solid #bababa",
-                  margin: "auto",
-                  borderRadius: "20px",
+                  borderRadius: "10px",
                   padding: ".5em",
-                  background: "white",
-                  transform: active === res.link ? "scale(1.05)" : "scale(1)",
-                  boxShadow:
-                    active === res.link
-                      ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
-                      : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
-                  "&:hover": {
-                    boxShadow:
-                      "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-                    transform: "scale(1.05)",
-                  },
-                  transition:
-                    "boxShadow 150ms ease-in, transform 150ms ease-in",
                 }}
               >
-                <Box
-                  sx={{
-                    margin: "auto",
-                  }}
-                >
-                  <Image height={40} width={40} src={res.icon} alt={res.txt} />
-                </Box>
                 <Typography
                   sx={{
                     margin: "auto",
                     textAlign: "center",
-                    fontSize: { md: ".8em", lg: ".85rem" },
+                    fontSize: { md: ".8em", lg: "1rem" },
                     fontWeight: 500,
                     lineHeight: "17px",
                     color: "#121212",
+                    "&:hover": {
+                      color: "#d9232a",
+                    },
+                    transition: "color 150ms ease-in",
                   }}
                 >
                   {res.txt}
