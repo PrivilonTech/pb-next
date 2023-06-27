@@ -6,12 +6,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-hot-toast";
 import secureLocalStorage from "react-secure-storage";
 import Link from "next/link";
+import Image from "next/image";
 
 import Button from "../Button/Button";
 
 export default function Blog({ data, setDataChange }) {
   const user = secureLocalStorage.getItem("user");
   const [modal, setModal] = useState(false);
+
+  const isPDF = data?.attachment.includes(".pdf");
+  const isImageFile = (data?.attachment && !isPDF) || false;
 
   // delete comment
   const handleDeleteTweet = async (id) => {
@@ -91,8 +95,8 @@ export default function Blog({ data, setDataChange }) {
               <DeleteIcon sx={{ color: "#D9D9D9" }} />
             </Box>
           )}
-          {data?.attachment && (
-            <Link href={data?.attachment}>
+          {isPDF && (
+            <Link href={data.attachment}>
               <Typography sx={{ color: "#d9d9d9", fontSize: ".9rem" }}>
                 Download PDF
               </Typography>
@@ -103,6 +107,23 @@ export default function Blog({ data, setDataChange }) {
       <Box sx={{ padding: "1em 2em" }}>
         <MarkdownView markdown={data.blogContent} />
       </Box>
+      {isImageFile && (
+        <Box
+          sx={{
+            position: "relative",
+            height: { xs: "250px", md: "350px" },
+            width: "100%",
+            m: { xs: ".5em 0", md: "1em 0" },
+          }}
+        >
+          <Image
+            src={data.attachment}
+            fill
+            style={{ objectFit: "contain" }}
+            alt={`press-release-attachment-${data?._id}`}
+          />
+        </Box>
+      )}
     </Box>
   );
 }

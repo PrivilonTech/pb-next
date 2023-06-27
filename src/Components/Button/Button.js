@@ -19,6 +19,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
+      disabled={isLoading || disabled}
       style={{
         display: "flex",
         alignItems: "center",
@@ -31,7 +32,8 @@ export default function Button({
         color: outline ? "black" : "white",
         border: outline ? "2px solid #d5d9eb" : "none",
         width: small ? (upSm ? "20%" : "auto") : "100%",
-        cursor: disabled ? "not-allowed" : "pointer",
+        cursor: isLoading || disabled ? "not-allowed" : "pointer",
+        opacity: isLoading || disabled ? ".5" : "1",
       }}
     >
       {isLoading ? (

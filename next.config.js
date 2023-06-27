@@ -17,7 +17,11 @@ const withPWA = require("next-pwa")({
 module.exports = withPWA({
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "firebasestorage.googleapis.com"],
+    domains: [
+      "localhost",
+      "firebasestorage.googleapis.com",
+      "res.cloudinary.com",
+    ],
   },
   // next.js config
 });

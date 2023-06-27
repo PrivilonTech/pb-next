@@ -13,7 +13,9 @@ export default function AdminTextUpload({ path, setDataChange }) {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
+
   const futureTrendPath = router.pathname === "/future-trend";
+  const pressReleasePath = router.pathname === "/press-release";
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -134,8 +136,13 @@ export default function AdminTextUpload({ path, setDataChange }) {
   //BLOG POST
   const handleSendData = async () => {
     if (!title || !body || !bodyDate) {
-      toast.error("Please enter data in all fields");
-      return;
+      return toast.error("Please enter data in all fields");
+    }
+
+    if (futureTrendPath || pressReleasePath) {
+      if (!fileUrl) {
+        return toast.error("Please upload a file");
+      }
     }
 
     const selectedDate = new Date(bodyDate);
@@ -162,14 +169,20 @@ export default function AdminTextUpload({ path, setDataChange }) {
       setDataChange((prev) => !prev);
       setIsLoading(false);
 
-      setTitle("");
-      setBody("");
-      setBodyDate("");
+      reset();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
       setIsLoading(false);
     }
+  };
+
+  const reset = () => {
+    setTitle("");
+    setBody("");
+    setBodyDate("");
+    setFile(null);
+    setFileUrl("");
   };
 
   if (!isAdmin) {
@@ -272,7 +285,10 @@ export default function AdminTextUpload({ path, setDataChange }) {
             <Box
               sx={{
                 display: "flex",
-                justifyContent: futureTrendPath ? "flex-start" : "space-around",
+                justifyContent:
+                  futureTrendPath || pressReleasePath
+                    ? "flex-start"
+                    : "space-around",
               }}
             >
               <Box
@@ -280,7 +296,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
                   display: "flex",
                   flexDirection: "column",
                   gap: ".5em",
-                  width: futureTrendPath ? "50%" : "100%",
+                  width: futureTrendPath || pressReleasePath ? "50%" : "100%",
                 }}
               >
                 <Typography sx={{ fontSize: "2rem" }}>Calendar</Typography>
@@ -300,13 +316,13 @@ export default function AdminTextUpload({ path, setDataChange }) {
                   onChange={(e) => setBodyDate(e.target.value)}
                 />
               </Box>
-              {futureTrendPath && (
+              {(futureTrendPath || pressReleasePath) && (
                 <Box
                   sx={{
                     display: "flex",
                     flexDirection: "column",
                     gap: ".5em",
-                    width: router.pathname === "/future-trend" ? "50%" : "100%",
+                    width: futureTrendPath || pressReleasePath ? "50%" : "100%",
                   }}
                 >
                   <Typography sx={{ fontSize: "2rem" }}>Attatchment</Typography>
