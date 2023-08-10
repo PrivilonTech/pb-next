@@ -41,6 +41,12 @@ function HomePage() {
         mt: 0,
       }}
     >
+      <video
+        src={"/videos/home-page-video.mp4"}
+        autoPlay
+        muted
+        style={{ margin: "2em 0" }}
+      />
       <CarouselComponent
         srcArray={srcArray}
         idArray={idArray}
