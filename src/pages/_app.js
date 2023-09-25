@@ -20,6 +20,7 @@ const font = Poppins({ subsets: ["latin"], weight: "400" });
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+
   const theme = useTheme();
   const path = router.pathname;
 
@@ -34,18 +35,21 @@ export default function App({ Component, pageProps }) {
 
   const [title, setTitle] = useState("");
   const showLayout =
-    path === "/register" || path === "/subscription" || path === "/details";
+    path === "/register" ||
+    path === "/subscription" ||
+    path === "/details" ||
+    useEffect(() => {
+      router.push("/coming-soon/"); //remove this line to enable the app
 
-  useEffect(() => {
-    const pathSegments = path.split("/").filter((segment) => segment !== "");
-    setTitle(
-      path === "/"
-        ? "- Home"
-        : "- " +
-            pathSegments[0].charAt(0).toUpperCase() +
-            pathSegments[0].substring(1)
-    );
-  }, [path]);
+      const pathSegments = path.split("/").filter((segment) => segment !== "");
+      setTitle(
+        path === "/"
+          ? "- Home"
+          : "- " +
+              pathSegments[0].charAt(0).toUpperCase() +
+              pathSegments[0].substring(1)
+      );
+    }, [path]);
 
   return (
     <main className={font.className}>
