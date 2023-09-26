@@ -38,18 +38,20 @@ export default function App({ Component, pageProps }) {
     path === "/register" ||
     path === "/subscription" ||
     path === "/details" ||
-    useEffect(() => {
-      router.push("/coming-soon/"); //remove this line to enable the app
+    path === "/coming-soon";
 
-      const pathSegments = path.split("/").filter((segment) => segment !== "");
-      setTitle(
-        path === "/"
-          ? "- Home"
-          : "- " +
-              pathSegments[0].charAt(0).toUpperCase() +
-              pathSegments[0].substring(1)
-      );
-    }, [path]);
+  useEffect(() => {
+    router.push("/coming-soon"); //remove this line to enable the app
+
+    const pathSegments = path.split("/").filter((segment) => segment !== "");
+    setTitle(
+      path === "/"
+        ? "- Home"
+        : "- " +
+            pathSegments[0].charAt(0).toUpperCase() +
+            pathSegments[0].substring(1)
+    );
+  }, [path]);
 
   return (
     <main className={font.className}>

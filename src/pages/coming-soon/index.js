@@ -6,7 +6,12 @@ import { Box, Typography, CardActionArea } from "@mui/material";
 const ComingSoon = () => {
   return (
     <Box
-      sx={{ display: "flex", justifyContent: "center", px: "2rem", py: "4rem" }}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
     >
       <Card sx={{ maxWidth: 600 }}>
         <CardActionArea>
