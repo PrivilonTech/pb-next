@@ -35,14 +35,9 @@ export default function App({ Component, pageProps }) {
 
   const [title, setTitle] = useState("");
   const showLayout =
-    path === "/register" ||
-    path === "/subscription" ||
-    path === "/details" ||
-    path === "/coming-soon";
+    path === "/register" || path === "/subscription" || path === "/details";
 
   useEffect(() => {
-    router.push("/coming-soon"); //remove this line to enable the app
-
     const pathSegments = path.split("/").filter((segment) => segment !== "");
     setTitle(
       path === "/"

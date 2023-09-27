@@ -46,7 +46,7 @@ export default function AuthGuard({ children }) {
   }, [currentUser]);
 
   useEffect(() => {
-    if (!loading && path !== "/" && path !== "/coming-soon") {
+    if (!loading && path !== "/") {
       if (!currentUser && userNotFound) {
         setLoading(true);
 
