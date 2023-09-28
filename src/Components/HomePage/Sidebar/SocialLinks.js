@@ -1,5 +1,7 @@
 import React from "react";
+import Link from "next/link";
 import { Box } from "@mui/material";
+
 import { socialIcons } from "@/menuLists/homePageCategories";
 
 export default function SocialLinks() {
@@ -7,15 +9,15 @@ export default function SocialLinks() {
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         flexWrap: "wrap",
         gap: "1em",
         marginBottom: "1em",
       }}
     >
       {socialIcons.map((socialItem) => (
-        <Box
-          onClick={() => router.push(socialItem.href)}
+        <Link
+          href={socialItem.href}
           key={socialItem.id}
           sx={{
             background: "rgba(221, 221, 221, 0.2)",
@@ -32,7 +34,7 @@ export default function SocialLinks() {
           }}
         >
           <img src={socialItem.icon} alt="social-icon" height={20} />
-        </Box>
+        </Link>
       ))}
     </Box>
   );

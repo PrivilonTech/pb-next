@@ -22,13 +22,13 @@ export default function PhoneBar() {
         }}
       >
         <Typography sx={{ color: "white", fontSize: ".8rem" }}>
-          +91 1234567890
+          +91 9375424365
         </Typography>
         <Typography sx={{ color: "white", fontSize: ".8rem" }}>
-          GST ID : 54ASECS0000F2LS
+          GSTIN/UIN : 24ADCPV3612L1ZH
         </Typography>
         <Typography sx={{ color: "white", fontSize: ".8rem" }}>
-          CIN : Z358200MH600PTC525252
+          Email Id: Info@polymerbazaar.com
         </Typography>
       </Box>
 

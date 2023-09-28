@@ -34,7 +34,7 @@ export const homePageCategories = [
 export const socialIcons = [
   {
     id: 1,
-    href: "#",
+    href: "mailto:Info@polymerbazaar.com",
     icon: "/Homepage/socials/gmail.png",
   },
   {
