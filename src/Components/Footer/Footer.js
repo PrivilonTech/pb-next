@@ -37,21 +37,26 @@ export default function Footer() {
               display: "flex",
               alignItems: "flex-start",
               flexDirection: "column",
-              gap: ".75em",
             }}
           >
-            <Box sx={{ height: 30, width: 40 }}>
+            <Box sx={{ height: 80, width: 80, position: "relative" }}>
               <img
-                src={"/Header/logo.svg"}
+                src={"/Header/logo_new.svg"}
                 alt="Logo"
-                style={{ objectFit: "cover" }}
+                style={{
+                  objectFit: "cover",
+                  position: "absolute",
+                  left: "-1em",
+                  height: "100%",
+                  width: "100%",
+                }}
               />
             </Box>
             <Typography
               sx={{
                 color: "#1e1e1e",
                 fontSize: ".9rem",
-                width: { xs: "100%", md: "80%" },
+                width: { xs: "100%", md: "80%", mt: "-0.5em" },
               }}
             >
               Unlock valuable insights and make informed business decisions with
