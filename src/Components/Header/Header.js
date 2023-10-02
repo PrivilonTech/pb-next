@@ -77,7 +77,7 @@ function Header() {
               onClick={() => router.push("/")}
               sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
             >
-              <img src={"/Header/logo.svg"} alt="Logo" height={45}></img>
+              <img src={"/Header/logo_new.svg"} alt="Logo" height={100}></img>
             </Box>
           </Box>
           <Box
@@ -191,7 +191,7 @@ function Header() {
               <img src={"/Header/hamburg.svg"} alt="hamburg-icon" />
             </Box>
             <Box onClick={() => router.push("/")} sx={{ margin: "auto" }}>
-              <img src={"/Header/logo.svg"} alt="Logo" height={25}></img>
+              <img src={"/Header/logo_new.svg"} alt="Logo" height={75}></img>
             </Box>
           </Box>
           <HamburgMenu
