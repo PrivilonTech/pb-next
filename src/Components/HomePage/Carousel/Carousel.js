@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import Button from "@/Components/Button/Button";
+import Link from "next/link";
 
 export default function CarouselComponent({
   srcArray,
@@ -16,6 +17,7 @@ export default function CarouselComponent({
   numberOfImages,
   padding,
   objectFit,
+  linkArray,
   setDataChange,
 }) {
   const userLoggedIn = secureLocalStorage.getItem("user");
@@ -67,7 +69,7 @@ export default function CarouselComponent({
   return (
     <Box
       sx={{
-        margin: { xs: "1em 0em", sm: "1em", lg: "0em 5em" },
+        margin: "0em -2em",
       }}
     >
       <dialog
@@ -129,15 +131,29 @@ export default function CarouselComponent({
                 padding: padding ? padding : 0,
               }}
             >
-              <img
-                src={src}
-                style={{
-                  objectFit: objectFit,
-                  width: "100%",
-                }}
-                alt="carousel-display"
-                height={height}
-              />
+              {linkArray ? (
+                <Link href={linkArray[index]}>
+                  <img
+                    src={src}
+                    style={{
+                      objectFit: objectFit,
+                      width: "100%",
+                    }}
+                    alt="carousel-display"
+                    height={height}
+                  />
+                </Link>
+              ) : (
+                <img
+                  src={src}
+                  style={{
+                    objectFit: objectFit,
+                    width: "100%",
+                  }}
+                  alt="carousel-display"
+                  height={height}
+                />
+              )}
             </Box>
           </React.Fragment>
         ))}
