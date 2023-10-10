@@ -11,7 +11,11 @@ export default function ServicesHeader() {
           flexDirecton: "column",
         }}
       >
-        <img src={"/Services/PolymerLogo.png"} alt="polymer-logo" />
+        <img
+          src={"/Services/PolymerLogo.png"}
+          alt="polymer-logo"
+          height={150}
+        />
       </Box>
       <Typography
         sx={{
