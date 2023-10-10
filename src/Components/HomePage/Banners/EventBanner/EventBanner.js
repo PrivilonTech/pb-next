@@ -7,7 +7,7 @@ export default function EventBanner() {
     <Box
       sx={{
         display: "flex",
-        height: { xs: "650px", md: "400px" },
+        height: { xs: "850px", md: "400px" },
         flexDirection: { xs: "column", md: "row" },
       }}
     >
@@ -15,17 +15,24 @@ export default function EventBanner() {
         <Box
           sx={{
             display: "flex",
-            gap: "1em",
-            padding: { xs: "2em 2em 0em", md: "3em" },
+            flexWrap: "wrap",
+            gap: { xs: ".5em", md: "1em" },
+            padding: { xs: "2em 2em 0em", md: "2em" },
           }}
         >
-          <Typography sx={{ fontSize: "1.65rem", color: "#1e1e1e" }}>
+          <Typography
+            sx={{ fontSize: "1.8rem", fontWeight: "600", color: "#1e1e1e" }}
+          >
             Connect.
           </Typography>
-          <Typography sx={{ fontSize: "1.65rem", color: "#1e1e1e" }}>
+          <Typography
+            sx={{ fontSize: "1.8rem", fontWeight: "600", color: "#1e1e1e" }}
+          >
             Engage.
           </Typography>
-          <Typography sx={{ fontSize: "1.65rem", color: "#1e1e1e" }}>
+          <Typography
+            sx={{ fontSize: "1.8rem", fontWeight: "600", color: "#1e1e1e" }}
+          >
             Learn.
           </Typography>
         </Box>
@@ -38,8 +45,8 @@ export default function EventBanner() {
           }}
         >
           <Typography sx={{ fontSize: ".9rem" }}>
-            ICIS conferences and events bring together communities from across
-            the value chain within the chemical and energy sectors.
+            POLYMERBAZAAR conferences and events bring together communities from
+            across the value chain within the chemical and energy sectors.
           </Typography>
           <Typography sx={{ fontSize: ".9rem" }}>
             Through our virtual, hybrid and face-to-face events, we aim to
@@ -51,9 +58,9 @@ export default function EventBanner() {
             utmost priority, we are gradually re-introducing face-to-face events
             towards the end of 2021 in a hybrid format, enabling local audiences
             to meet in-person while providing an interactive virtual event
-            experience for those unable to travel or with safety concerns. ICIS
-            is proud to have supported our communities through the pandemic by
-            providing a space to connect, engage and learn.
+            experience for those unable to travel or with safety concerns.
+            POLYMERBAZAAR is proud to have supported our communities through the
+            pandemic by providing a space to connect, engage and learn.
           </Typography>
         </Box>
       </Box>

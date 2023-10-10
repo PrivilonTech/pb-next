@@ -31,7 +31,7 @@ export default function index() {
           backgroundBlendMode: "multiply",
           backgroundSize: "cover",
           objectFit: "cover",
-          height: "50vh",
+          minHeight: "50vh",
           padding: { xs: "1em 2em", md: "2em 6em" },
         }}
       >
