@@ -139,12 +139,6 @@ export default function AdminTextUpload({ path, setDataChange }) {
       return toast.error("Please enter data in all fields");
     }
 
-    if (futureTrendPath || pressReleasePath) {
-      if (!fileUrl) {
-        return toast.error("Please upload a file");
-      }
-    }
-
     const selectedDate = new Date(bodyDate);
     const formatedDate =
       selectedDate.toISOString().slice(0, 10) + "T00:00:00.000Z";
