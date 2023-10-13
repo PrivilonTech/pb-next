@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
+import secureLocalStorage from "react-secure-storage";
 
 import { graphData, graphList } from "@/menuLists/graphList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
@@ -21,6 +22,9 @@ export default function GraphData() {
   const [year, setYear] = useState(currentYear);
   const getYearArray = yearArray();
 
+  const [isAdmin, setIsAdmin] = useState(false);
+  const userLoggedIn = secureLocalStorage.getItem("user");
+
   const [category, setCategory] = useState("");
   const graphSubCategories = graphData[path];
 
@@ -33,6 +37,12 @@ export default function GraphData() {
   const [data, setData] = useState({});
   const [secondaryData, setSecondaryData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (userLoggedIn) {
+      setIsAdmin(userLoggedIn?.role === "admin");
+    }
+  }, [userLoggedIn]);
 
   useEffect(() => {
     getHistoricalData(category, year, setData, setSecondaryData, setIsLoading);
@@ -88,6 +98,20 @@ export default function GraphData() {
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
       />
+      {isAdmin && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            margin: { xs: "-1em 1em 1.5em", md: "-1em 1em 5em" },
+          }}
+        >
+          <Typography sx={{ color: "#7c7c7c" }}>
+            Expected sheet name:{" "}
+            <span style={{ fontWeight: 700 }}>{category}</span>
+          </Typography>
+        </Box>
+      )}
       <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
         <PaneFooter />
       </Box>

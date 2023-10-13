@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
+import secureLocalStorage from "react-secure-storage";
 
 import { crudeList, crudeStructure } from "@/menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
@@ -17,6 +18,9 @@ function Crude() {
 
   const [periodicTime, setPeriodicTime] = useState("Monthly");
 
+  const [isAdmin, setIsAdmin] = useState(false);
+  const userLoggedIn = secureLocalStorage.getItem("user");
+
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { displayValues, callValues } = structureFeedstockData(
@@ -24,6 +28,12 @@ function Crude() {
     path
   );
   const [selectedCountry, setSelectedCountry] = useState("");
+
+  useEffect(() => {
+    if (userLoggedIn) {
+      setIsAdmin(userLoggedIn?.role === "admin");
+    }
+  }, [userLoggedIn]);
 
   useEffect(() => {
     if (path) {
@@ -84,6 +94,20 @@ function Crude() {
         selectedOption={selectedCountry}
         setSelectedOption={setSelectedCountry}
       />
+      {isAdmin && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            margin: { xs: "-1em 1em 1.5em", md: "-1em 1em 5em" },
+          }}
+        >
+          <Typography sx={{ color: "#7c7c7c" }}>
+            Expected sheet name:{" "}
+            <span style={{ fontWeight: 700 }}>{selectedCountry}</span>
+          </Typography>
+        </Box>
+      )}
       <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
         <PaneFooter />
       </Box>

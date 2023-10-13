@@ -16,7 +16,7 @@ export const monthsArray = [
 export const yearArray = () => {
   const currentYear = new Date().getFullYear();
 
-  const startYear = currentYear - 10;
+  const startYear = currentYear - 12;
 
   const yearsArray = [];
 

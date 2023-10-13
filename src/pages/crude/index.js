@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import secureLocalStorage from "react-secure-storage";
 
 import { crudeList, crudeStructure } from "../../menuLists/crudeList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
@@ -19,8 +20,17 @@ function index() {
     "Naphtha"
   );
 
+  const [isAdmin, setIsAdmin] = useState(false);
+  const userLoggedIn = secureLocalStorage.getItem("user");
+
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState(displayValues[0]);
+
+  useEffect(() => {
+    if (userLoggedIn) {
+      setIsAdmin(userLoggedIn?.role === "admin");
+    }
+  }, [userLoggedIn]);
 
   useEffect(() => {
     getCrudeData(
@@ -73,6 +83,20 @@ function index() {
         selectedOption={selectedCountry}
         setSelectedOption={setSelectedCountry}
       />
+      {isAdmin && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            margin: { xs: "-1em 1em 1.5em", md: "-1em 1em 5em" },
+          }}
+        >
+          <Typography sx={{ color: "#7c7c7c" }}>
+            Expected sheet name:{" "}
+            <span style={{ fontWeight: 700 }}>{selectedCountry}</span>
+          </Typography>
+        </Box>
+      )}
       <Box
         sx={{
           margin: { xs: "1em 1.5em", md: "2em 5em" },

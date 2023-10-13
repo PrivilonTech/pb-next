@@ -27,9 +27,9 @@ export const graphList = [
 ];
 
 export const graphData = {
-  PP: ["ppRaffia", "ppFilm", "ppIngMldg", "ppIcp", "ppRandomCP"],
-  HDPE: ["hdpeRaffia", "hdpeIngMldg", "hdpeBlowMldg", "hdpeFilm"],
-  LLDPE: ["lldpeFilm", "lldpeRotoMldg", "lldpeIngMldg", "lldpeLami"],
-  LDPE: ["ldGeneral", "ldLami"],
-  PVC: ["pvcExtrusion", "pvcIngMldg"],
+  PP: ["PP Raffia", "PP Film", "PP IngMldg", "PP Icp", "PP RandomCP"],
+  HDPE: ["HDPE Raffia", "HDPE IngMldg", "HDPE BlowMldg", "HDPE Film"],
+  LLDPE: ["LLDPE Film", "LLDPE RotoMldg", "LLDPE IngMldg", "LLDPE Lami"],
+  LDPE: ["LD General", "LD Lami"],
+  PVC: ["PVC Extrusion", "PVC IngMldg"],
 };
