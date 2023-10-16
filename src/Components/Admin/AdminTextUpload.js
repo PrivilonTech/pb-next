@@ -14,8 +14,8 @@ export default function AdminTextUpload({ path, setDataChange }) {
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
 
-  const futureTrendPath = router.pathname === "/future-trend";
-  const pressReleasePath = router.pathname === "/press-release";
+  const futureTrendPath = router.pathname.startsWith("/future-trend");
+  const pressReleasePath = router.pathname.startsWith("/press-release");
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
