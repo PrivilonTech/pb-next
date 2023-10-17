@@ -19,7 +19,7 @@ export default function AssociateCategories() {
           textTransform: "uppercase",
           textAlign: "center",
           borderBottom: "1px solid #dee2e6",
-          margin: "1em",
+          marginBottom: "1em",
 
           fontWeight: "bold",
           fontFamily: "arial",

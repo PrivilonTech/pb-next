@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -9,9 +9,7 @@ import DataDisplay from "./DataDisplay/DataDisplay";
 import TwitterBlogs from "./DataDisplay/TwitterBlogs";
 import AskQuestions from "./Banners/AskQuestions/AskQuestions";
 import DownloadNow from "./Banners/DownloadNow/DownloadNow";
-import GlobalMap from "./MediaPartner/GlobalMap";
 import Connect from "./Banners/Connect/Connect";
-import FuturePolymer from "./Banners/FuturePolymer/FuturePolymer";
 import AdminCarouselUpload from "../Admin/AdminCarouselUpload";
 
 import { getCarouselData } from "@/utils/apiCalls";
@@ -43,37 +41,20 @@ function HomePage() {
       <CarouselComponent
         srcArray={srcArray}
         idArray={idArray}
-        height={600}
+        height={300}
         numberOfImages={1}
         objectFit="cover"
         setDataChange={setDataChange}
       />
       <AdminCarouselUpload setDataChange={setDataChange} />
-      <FuturePolymer />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-evenly ",
-          margin: { xs: "1em 0", sm: "1em 0em", md: "2em 1em" },
-          flexDirection: { xs: "column", lg: "row" },
-          gap: { xs: "2em", md: "0" },
-        }}
-      >
-        <TwitterBlogs />
-        <DataDisplay />
-      </Box>
-      <Sidebar />
-      <Box>
-        <AskQuestions />
-        <Connect />
-        <DownloadNow />
-      </Box>
-      <Box>
+      <Box sx={{ padding: "2em 0" }}>
         <Typography
           sx={{
             mt: ".75em",
             textAlign: "center",
-            fontSize: { xs: "2.5rem", md: "3.5rem" },
+            fontSize: { xs: "2.5rem", md: "3rem" },
+            fontWeight: "600",
+            color: "#1e1e1e",
           }}
         >
           Media Partners
@@ -97,7 +78,24 @@ function HomePage() {
           padding="20px"
           setDataChange={setDataChange}
         />
-        <GlobalMap />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly ",
+          margin: { xs: "1em 0", sm: "1em 0em", md: "2em 1em" },
+          flexDirection: { xs: "column", lg: "row" },
+          gap: { xs: "2em", md: "0" },
+        }}
+      >
+        <TwitterBlogs />
+        <DataDisplay />
+      </Box>
+      <Sidebar />
+      <Box>
+        <AskQuestions />
+        <Connect />
+        <DownloadNow />
       </Box>
     </Box>
   );

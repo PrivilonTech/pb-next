@@ -37,7 +37,7 @@ export default function DataDisplay() {
       >
         <PriceTable />
       </Box>
-      <Box
+      {/* <Box
         sx={{
           cursor: "pointer",
           border: "0.5px solid rgba(99, 99, 99, 0.2)",
@@ -48,7 +48,7 @@ export default function DataDisplay() {
         }}
       >
         <AssociateCategories />
-      </Box>
+      </Box> */}
     </Box>
   );
 }

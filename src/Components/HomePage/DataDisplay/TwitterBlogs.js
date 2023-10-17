@@ -18,11 +18,11 @@ export default function TwitterBlogs({ wideScreen }) {
         },
       }}
     >
-      {loading && <LoadingTweets />}
+      {loading && <LoadingTweets wideScreen={wideScreen} />}
       <TwitterTimelineEmbed
         sourceType="profile"
         screenName="POLYMERBAZAAR"
-        options={{ height: 1200, width: "100%" }}
+        options={{ height: wideScreen ? 1200 : 800, width: "100%" }}
         onLoad={() => setLoading(false)}
         onLoadSuccess={() => setLoading(false)}
       />
