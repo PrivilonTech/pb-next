@@ -18,7 +18,7 @@ export default function News() {
         }}
       >
         <ScrollTop />
-        <TwitterBlogs fullContent />
+        <TwitterBlogs wideScreen />
       </Box>
       <Box
         sx={{

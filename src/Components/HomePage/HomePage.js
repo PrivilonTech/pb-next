@@ -4,7 +4,6 @@ import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
 import Sidebar from "./Sidebar/Sidebar";
-// import MediaPartner from "./MediaPartner/MediaPartner";
 import CarouselComponent from "./Carousel/Carousel";
 import DataDisplay from "./DataDisplay/DataDisplay";
 import TwitterBlogs from "./DataDisplay/TwitterBlogs";
@@ -50,23 +49,6 @@ function HomePage() {
         setDataChange={setDataChange}
       />
       <AdminCarouselUpload setDataChange={setDataChange} />
-      {/* <CarouselComponent
-        srcArray={[
-          "/Homepage/carousel/image_1.jpg",
-          "/Homepage/carousel/image_2.jpg",
-          "/Homepage/carousel/image_3.jpg",
-          "/Homepage/carousel/image_4.jpg",
-          "/Homepage/carousel/image_5.jpg",
-          "/Homepage/carousel/image_6.jpg",
-          "/Homepage/carousel/image_7.jpg",
-          "/Homepage/carousel/image_8.jpg",
-        ]}
-        height={100}
-        numberOfImages={upMd ? 5 : 3}
-        objectFit="contain"
-        padding="20px"
-        setDataChange={setDataChange}
-      /> */}
       <FuturePolymer />
       <Box
         sx={{

@@ -4,7 +4,7 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 import LoadingTweets from "@/Components/Loading/LoadingTweets";
 
-export default function TwitterBlogs({ fullContent }) {
+export default function TwitterBlogs({ wideScreen }) {
   const [loading, setLoading] = useState(true);
 
   return (
@@ -13,8 +13,8 @@ export default function TwitterBlogs({ fullContent }) {
         width: "100%",
         maxWidth: {
           xs: "100%",
-          lg: fullContent ? "100%" : "60%",
-          xl: fullContent ? "100%" : "55%",
+          lg: wideScreen ? "100%" : "60%",
+          xl: wideScreen ? "100%" : "55%",
         },
       }}
     >
@@ -22,7 +22,7 @@ export default function TwitterBlogs({ fullContent }) {
       <TwitterTimelineEmbed
         sourceType="profile"
         screenName="POLYMERBAZAAR"
-        options={{ height: !fullContent && 1200, width: "100%" }}
+        options={{ height: 1200, width: "100%" }}
         onLoad={() => setLoading(false)}
         onLoadSuccess={() => setLoading(false)}
       />
