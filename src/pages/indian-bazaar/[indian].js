@@ -34,7 +34,7 @@ export default function Indian() {
 
   const [city, setCity] = useState({}); //stores data of all cities
   const [cityNames, setCityNames] = useState([]);
-  const [cityCategory, setCityCategory] = useState("");
+  const [cityCategory, setCityCategory] = useState("Ahmedabad");
 
   const modifiedData = structureDataIndian(data);
 
@@ -42,7 +42,7 @@ export default function Indian() {
     if (path) {
       if (path === "citywise") {
         getCityData(setCity, setCityCategory, setCityNames);
-        getIndianData("Mumbai", setData, setIsLoading);
+        getIndianData("Ahmedabad", setData, setIsLoading);
       } else {
         getTextData(path, monthIndex, year, setData, setIsLoading);
       }
@@ -64,24 +64,37 @@ export default function Indian() {
   const BodyContent = (
     <>
       {path === "citywise" ? (
-        <Box
-          sx={{
-            margin: { xs: "2em auto", md: "0 auto" },
-            display: "flex",
-            justifyContent: "center",
-            gap: "2em 5em",
-            flexWrap: "wrap",
-          }}
-        >
-          {modifiedData.dataKeys.map((dataItem, index) => (
-            <DataContainer
-              key={index}
-              title={dataItem}
-              polymerSubType={modifiedData.subKeys[dataItem]}
-              polymerValue={modifiedData.subValues[dataItem]}
-            />
-          ))}
-        </Box>
+        isLoading ? (
+          <Box
+            sx={{
+              display: "grid",
+              placeItems: "center",
+              width: "100%",
+              height: "50vh",
+            }}
+          >
+            <ClipLoader color="#C31815" size={30} />
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              margin: { xs: "2em auto", md: "0 auto" },
+              display: "flex",
+              justifyContent: "center",
+              gap: "2em 5em",
+              flexWrap: "wrap",
+            }}
+          >
+            {modifiedData.dataKeys.map((dataItem, index) => (
+              <DataContainer
+                key={index}
+                title={dataItem}
+                polymerSubType={modifiedData.subKeys[dataItem]}
+                polymerValue={modifiedData.subValues[dataItem]}
+              />
+            ))}
+          </Box>
+        )
       ) : (
         <Box
           Box

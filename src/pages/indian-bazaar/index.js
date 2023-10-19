@@ -1,49 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
+import { Box } from "@mui/material";
 
 import indianBazaarList from "@/menuLists/indianBazaarList";
 import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
-import BlogContent from "@/Components/PaneContent/BlogContent";
-import EmptyData from "@/Components/PaneContent/EmptyData";
 import PaneFooter from "@/Components/PaneContent/PaneFooter";
 
-import { monthsArray, yearArray } from "@/utils/dateArray";
-import { getTextData } from "@/utils/apiCalls";
+import { getCityData, getIndianData } from "@/utils/apiCalls";
+import { structureDataIndian } from "@/utils/structureData";
+import DataContainer from "@/Components/PaneContent/DataContainer";
 
 export default function IndianBazaar() {
   const [data, setData] = useState({});
-  const [dataChange, setDataChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
-  const getYearArray = yearArray();
+  const [city, setCity] = useState({}); //stores data of all cities
+  const [cityNames, setCityNames] = useState([]);
+  const [cityCategory, setCityCategory] = useState("Ahmedabad");
 
-  const [year, setYear] = useState(currentYear);
-  const [month, setMonth] = useState(monthsArray[currentMonth]);
-  const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
+  const modifiedData = structureDataIndian(data);
 
   useEffect(() => {
-    getTextData("rateRevision", monthIndex, year, setData, setIsLoading);
+    getCityData(setCity, setCityCategory, setCityNames);
+    getIndianData("Ahmedabad", setData, setIsLoading);
   }, []);
 
   useEffect(() => {
-    getTextData("rateRevision", monthIndex, year, setData, setIsLoading);
-  }, [dataChange, month, year]);
+    getIndianData(cityCategory, setData, setIsLoading);
+  }, [cityCategory]);
 
   const BodyContent = (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "2em",
-        width: "100%",
-      }}
-    >
-      <AdminTextUpload path="rateRevision" setDataChange={setDataChange} />
+    <>
       {isLoading ? (
         <Box
           sx={{
@@ -55,12 +42,27 @@ export default function IndianBazaar() {
         >
           <ClipLoader color="#C31815" size={30} />
         </Box>
-      ) : data.length > 0 ? (
-        <BlogContent data={data} setDataChange={setDataChange} />
       ) : (
-        <EmptyData />
+        <Box
+          sx={{
+            margin: { xs: "2em auto", md: "0 auto" },
+            display: "flex",
+            justifyContent: "center",
+            gap: "2em 5em",
+            flexWrap: "wrap",
+          }}
+        >
+          {modifiedData.dataKeys.map((dataItem, index) => (
+            <DataContainer
+              key={index}
+              title={dataItem}
+              polymerSubType={modifiedData.subKeys[dataItem]}
+              polymerValue={modifiedData.subValues[dataItem]}
+            />
+          ))}
+        </Box>
       )}
-    </Box>
+    </>
   );
 
   return (
@@ -69,16 +71,12 @@ export default function IndianBazaar() {
         title="Indian Bazaar"
         list={indianBazaarList}
         page="indian-bazaar"
-        path="rateRevision"
+        path="citywise"
         mainContent={BodyContent}
         dropdown
-        dropdownData={monthsArray}
-        selectedOption={month}
-        setSelectedOption={setMonth}
-        secondaryDropdown
-        secondaryDropdownData={getYearArray}
-        secondarySelectedOption={year}
-        secondarySetSelectedOption={setYear}
+        dropdownData={cityNames}
+        selectedOption={cityCategory}
+        setSelectedOption={setCityCategory}
       />
       <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
         <PaneFooter />
