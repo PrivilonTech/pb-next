@@ -10,6 +10,11 @@ const indianBazaarList = [
     section: "Rate Prediction",
     slug: "ratePrediction",
   },
+  {
+    id: 4,
+    section: "Company Price List",
+    slug: "companyPrice",
+  },
 ];
 
 export default indianBazaarList;
