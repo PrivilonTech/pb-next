@@ -124,3 +124,38 @@ const getOrdinalSuffix = (day) => {
       return "th";
   }
 };
+
+export function formatGraphDataInAscendingOrder(rawData, prevData) {
+  const existingCities = Object.keys(rawData);
+
+  if (!existingCities.length) {
+    return rawData;
+  }
+
+  for (const city of existingCities) {
+    const cityData = rawData[city];
+
+    const sortedDates = cityData.date.sort((a, b) => {
+      const dateA = new Date(a.split("/").reverse().join("-"));
+      const dateB = new Date(b.split("/").reverse().join("-"));
+      return dateA - dateB;
+    });
+
+    const prevCityData = prevData[city];
+
+    const sortedData = {
+      date: sortedDates,
+      value: sortedDates.map((sortedDate) => {
+        const valueIndex = prevCityData.date.findIndex(
+          (oldDate) => oldDate === sortedDate
+        );
+
+        return prevCityData.value[valueIndex];
+      }),
+    };
+
+    rawData[city] = sortedData;
+  }
+
+  return rawData;
+}

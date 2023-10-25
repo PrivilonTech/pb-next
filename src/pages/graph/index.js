@@ -34,16 +34,6 @@ function index() {
     }
   }, [userLoggedIn]);
 
-  useEffect(() => {
-    getHistoricalData(
-      "PP Raffia",
-      year,
-      setData,
-      setSecondaryData,
-      setIsLoading
-    );
-  }, []);
-
   //year and category change
   useEffect(() => {
     getHistoricalData(

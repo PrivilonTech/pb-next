@@ -46,10 +46,6 @@ export default function GraphData() {
 
   useEffect(() => {
     getHistoricalData(category, year, setData, setSecondaryData, setIsLoading);
-  }, []);
-
-  useEffect(() => {
-    getHistoricalData(category, year, setData, setSecondaryData, setIsLoading);
   }, [year, category]);
 
   const BodyContent = (

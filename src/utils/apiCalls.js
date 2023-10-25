@@ -1,6 +1,7 @@
 import axios from "axios";
 import { categorizeData, structureDataGlobal } from "./structureData";
-import { formatDate_DD_MM } from "./dateArray";
+import { formatDate_DD_MM, formatGraphDataInAscendingOrder } from "./dateArray";
+import { cloneDeep } from "lodash";
 
 //crude
 export const getCrudeData = async (
@@ -99,20 +100,28 @@ export const getHistoricalData = async (
   setSecondaryData,
   setIsLoading
 ) => {
-  const response = await axios.get(
+  const response = await axios(
     `https://polymerbazar-be.onrender.com/api/historicaldata?polymer=${category}&year=${year}`
   );
 
+  const clonedResponse = cloneDeep(response);
+
   const cities = Object.keys(response.data.data);
+  const coreData = formatGraphDataInAscendingOrder(
+    clonedResponse.data.data,
+    response.data.data
+  );
+
+  response.data.data = coreData;
 
   setData({
-    labels: response.data.data[cities[0]]?.date
+    labels: response.data.data?.[cities[0]]?.date
       ? formatDate_DD_MM(response.data.data[cities[0]]?.date)
-      : response.data.data[cities[0]]?.date,
+      : response.data.data?.[cities[0]]?.date,
     datasets: [
       {
         label: cities[0],
-        data: response.data.data[cities[0]]?.value,
+        data: response.data.data?.[cities[0]]?.value,
         backgroundColor: (context) => {
           const bgColor = [
             "rgba(255, 99, 132, 0.2)",
@@ -143,13 +152,13 @@ export const getHistoricalData = async (
   });
 
   setSecondaryData({
-    labels: response.data.data[cities[1]]?.date
+    labels: response.data.data?.[cities[1]]?.date
       ? formatDate_DD_MM(response.data.data[cities[0]]?.date)
-      : response.data.data[cities[0]]?.date,
+      : response.data.data?.[cities[0]]?.date,
     datasets: [
       {
         label: cities[1],
-        data: response.data.data[cities[1]]?.value,
+        data: response.data.data?.[cities[1]]?.value,
         backgroundColor: (context) => {
           const bgColor = [
             "rgba(255, 99, 132, 0.2)",
