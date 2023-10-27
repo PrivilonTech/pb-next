@@ -21,16 +21,36 @@ export const crudeList = [
   },
   {
     id: 5,
+    section: "EDC",
+    slug: "EDC",
+  },
+  {
+    id: 6,
     section: "VCM",
     slug: "VCM",
   },
   {
-    id: 6,
+    id: 7,
     section: "PTA",
     slug: "PTA",
   },
   {
-    id: 7,
+    id: 8,
+    section: "ACN - Acrylonitrile",
+    slug: "ACN",
+  },
+  {
+    id: 9,
+    section: "Butadiene",
+    slug: "Butadiene",
+  },
+  {
+    id: 10,
+    section: "Vinyl Acetate - VA",
+    slug: "VA",
+  },
+  {
+    id: 11,
     section: "MEG",
     slug: "MEG",
   },
