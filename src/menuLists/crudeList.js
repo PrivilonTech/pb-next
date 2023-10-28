@@ -64,12 +64,8 @@ export const crudeList = [
 export const crudeStructure = {
   Crude: [
     {
-      display: "C & F Japan",
-      call: "Japan",
-    },
-    {
-      display: "China",
-      call: "China",
+      display: "Brent",
+      call: "brent",
     },
   ],
   Naphtha: [
