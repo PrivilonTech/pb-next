@@ -17,7 +17,7 @@ function index() {
   const [data, setData] = useState({});
   const { displayValues, callValues } = structureFeedstockData(
     crudeStructure,
-    "Naphtha"
+    "Crude"
   );
 
   const [isAdmin, setIsAdmin] = useState(false);
@@ -34,7 +34,7 @@ function index() {
 
   useEffect(() => {
     getCrudeData(
-      "Naphtha",
+      "Crude",
       callValues[displayValues.indexOf(selectedCountry)],
       periodicTime,
       setData,
@@ -58,13 +58,20 @@ function index() {
             <ClipLoader color="#C31815" size={30} />
           </Box>
         ) : (
-          <>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              gap: "3rem",
+            }}
+          >
             <Graph data={data} />
             <Periodic
               periodicTime={periodicTime}
               setPeriodicTime={setPeriodicTime}
             />
-          </>
+          </Box>
         )}
       </>
     </>
@@ -76,7 +83,7 @@ function index() {
         title="Crude & FeedStock"
         list={crudeList}
         page="crude"
-        path="Naphtha"
+        path="Crude"
         mainContent={BodyContent}
         dropdown
         dropdownData={displayValues}

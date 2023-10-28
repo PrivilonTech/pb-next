@@ -1,62 +1,77 @@
 export const crudeList = [
   {
     id: 1,
+    section: "Crude",
+    slug: "Crude",
+  },
+  {
+    id: 2,
     section: "Naphtha",
     slug: "Naphtha",
   },
   {
-    id: 2,
+    id: 3,
     section: "Propylene",
     slug: "Propylene",
   },
   {
-    id: 3,
+    id: 4,
     section: "Ethylene",
     slug: "Ethylene",
   },
   {
-    id: 4,
+    id: 5,
     section: "Styrene",
     slug: "Styrene",
   },
   {
-    id: 5,
+    id: 6,
     section: "EDC",
     slug: "EDC",
   },
   {
-    id: 6,
+    id: 7,
     section: "VCM",
     slug: "VCM",
   },
   {
-    id: 7,
+    id: 8,
     section: "PTA",
     slug: "PTA",
   },
   {
-    id: 8,
+    id: 9,
     section: "ACN - Acrylonitrile",
     slug: "ACN",
   },
   {
-    id: 9,
+    id: 10,
     section: "Butadiene",
     slug: "Butadiene",
   },
   {
-    id: 10,
+    id: 11,
     section: "Vinyl Acetate - VA",
     slug: "VA",
   },
   {
-    id: 11,
+    id: 12,
     section: "MEG",
     slug: "MEG",
   },
 ];
 
 export const crudeStructure = {
+  Crude: [
+    {
+      display: "C & F Japan",
+      call: "Japan",
+    },
+    {
+      display: "China",
+      call: "China",
+    },
+  ],
   Naphtha: [
     {
       display: "C & F Japan",
@@ -110,6 +125,38 @@ export const crudeStructure = {
     },
   ],
   MEG: [
+    {
+      display: "China",
+      call: "China",
+    },
+  ],
+  EDC: [
+    {
+      display: "SEA",
+      call: "SEA",
+    },
+    {
+      display: "CFR SEA",
+      call: "cfr_sea",
+    },
+    {
+      display: "CFR FEA",
+      call: "cfr_fea",
+    },
+  ],
+  ACN: [
+    {
+      display: "SEA",
+      call: "SEA",
+    },
+  ],
+  Butadiene: [
+    {
+      display: "China",
+      call: "China",
+    },
+  ],
+  VA: [
     {
       display: "China",
       call: "China",

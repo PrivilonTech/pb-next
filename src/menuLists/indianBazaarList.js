@@ -15,6 +15,11 @@ const indianBazaarList = [
     section: "Company Price List",
     slug: "companyPrice",
   },
+  {
+    id: 4,
+    section: "US$- INR Custom Exchange Rate",
+    slug: "customExchangeRate",
+  },
 ];
 
 export default indianBazaarList;

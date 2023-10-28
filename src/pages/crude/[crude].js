@@ -69,13 +69,20 @@ function Crude() {
             <ClipLoader color="#C31815" size={30} />
           </Box>
         ) : (
-          <>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              gap: "3rem",
+            }}
+          >
             <Graph data={data} />
             <Periodic
               periodicTime={periodicTime}
               setPeriodicTime={setPeriodicTime}
             />
-          </>
+          </Box>
         )}
       </>
     </>
