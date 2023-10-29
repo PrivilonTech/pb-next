@@ -153,8 +153,8 @@ export const getHistoricalData = async (
 
   setSecondaryData({
     labels: response.data.data?.[cities[1]]?.date
-      ? formatDate_DD_MM(response.data.data[cities[0]]?.date)
-      : response.data.data?.[cities[0]]?.date,
+      ? formatDate_DD_MM(response.data.data[cities[1]]?.date)
+      : response.data.data?.[cities[1]]?.date,
     datasets: [
       {
         label: cities[1],

@@ -38,19 +38,11 @@ export default function Graph({ data, leftSpacing, onClick, small }) {
         },
         pointRadius: 3,
         pointHoverRadius: 4,
-        pointBackgroundColor: "#fff",
+        pointBackgroundColor: "#d9232a",
         radius: 3,
         hoverRadius: 5,
         scales: {
           x: {
-            ticks: {
-              display: false,
-            },
-            grid: {
-              display: false,
-            },
-          },
-          y: {
             grid: {
               display: false,
             },
