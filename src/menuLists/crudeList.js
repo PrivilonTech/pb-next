@@ -65,7 +65,7 @@ export const crudeStructure = {
   Crude: [
     {
       display: "Brent",
-      call: "brent",
+      call: "Brent",
     },
   ],
   Naphtha: [
