@@ -20,6 +20,8 @@ export default function Indian() {
   const path = router.query.indian;
 
   const [data, setData] = useState({}); //stores data of a particular city
+  const [textData, setTextData] = useState([]);
+
   const [dataChange, setDataChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -43,9 +45,9 @@ export default function Indian() {
       if (path === "citywise") {
         getCityData(setCity, setCityCategory, setCityNames);
         getIndianData("Ahmedabad", setData, setIsLoading);
-      } else {
-        getTextData(path, monthIndex, year, setData, setIsLoading);
       }
+
+      getTextData(path, monthIndex, year, setTextData, setIsLoading);
     }
   }, [path]);
 
@@ -56,15 +58,44 @@ export default function Indian() {
   }, [cityCategory]);
 
   useEffect(() => {
-    if (path !== "citywise") {
-      getTextData(path, monthIndex, year, setData, setIsLoading);
-    }
+    getTextData(path, monthIndex, year, setTextData, setIsLoading);
   }, [dataChange, month, year]);
 
   const BodyContent = (
-    <>
-      {path === "citywise" ? (
-        isLoading ? (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "2em",
+        width: "100%",
+      }}
+    >
+      <AdminTextUpload path={path} setDataChange={setDataChange} />
+      <Box
+        sx={{
+          margin: { xs: "2em auto", md: "0 auto" },
+          display: "flex",
+          justifyContent: "center",
+          gap: "2em 5em",
+          flexWrap: "wrap",
+          width: "100%",
+        }}
+      >
+        {modifiedData.dataKeys.length > 0 || textData.length > 0 ? (
+          <>
+            {path === "citywise" &&
+              modifiedData.dataKeys.map((dataItem, index) => (
+                <DataContainer
+                  key={index}
+                  title={dataItem}
+                  polymerSubType={modifiedData.subKeys[dataItem]}
+                  polymerValue={modifiedData.subValues[dataItem]}
+                />
+              ))}
+
+            <BlogContent data={textData} setDataChange={setDataChange} />
+          </>
+        ) : (
           <Box
             sx={{
               display: "grid",
@@ -73,58 +104,15 @@ export default function Indian() {
               height: "50vh",
             }}
           >
-            <ClipLoader color="#C31815" size={30} />
-          </Box>
-        ) : (
-          <Box
-            sx={{
-              margin: { xs: "2em auto", md: "0 auto" },
-              display: "flex",
-              justifyContent: "center",
-              gap: "2em 5em",
-              flexWrap: "wrap",
-            }}
-          >
-            {modifiedData.dataKeys.map((dataItem, index) => (
-              <DataContainer
-                key={index}
-                title={dataItem}
-                polymerSubType={modifiedData.subKeys[dataItem]}
-                polymerValue={modifiedData.subValues[dataItem]}
-              />
-            ))}
-          </Box>
-        )
-      ) : (
-        <Box
-          Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "2em",
-            width: "100%",
-          }}
-        >
-          <AdminTextUpload path={path} setDataChange={setDataChange} />
-          {isLoading ? (
-            <Box
-              sx={{
-                display: "grid",
-                placeItems: "center",
-                width: "100%",
-                height: "50vh",
-              }}
-            >
+            {isLoading ? (
               <ClipLoader color="#C31815" size={30} />
-            </Box>
-          ) : data.length > 0 ? (
-            <BlogContent data={data} setDataChange={setDataChange} />
-          ) : (
-            <EmptyData />
-          )}
-        </Box>
-      )}
-    </>
+            ) : (
+              <EmptyData />
+            )}
+          </Box>
+        )}
+      </Box>
+    </Box>
   );
 
   return (
@@ -135,11 +123,11 @@ export default function Indian() {
         page="indian-bazaar"
         path={path}
         mainContent={BodyContent}
-        dropdown={path !== "citywise"}
+        dropdown
         dropdownData={monthsArray}
         selectedOption={month}
         setSelectedOption={setMonth}
-        secondaryDropdown={path !== "citywise"}
+        secondaryDropdown
         secondaryDropdownData={getYearArray}
         secondarySelectedOption={year}
         secondarySetSelectedOption={setYear}
