@@ -77,6 +77,7 @@ export const NavDropDownItem = ({ item, href, isDropDownOpen }) => {
   return (
     <motion.div initial={{ y: 0 }} animate={{ y: 20 }} exit={{ y: 0 }}>
       <Box
+        onClick={() => router.push(href)}
         sx={{
           padding: ".5em 1em",
           borderTop: "1px solid #e3c0c0",
@@ -86,9 +87,7 @@ export const NavDropDownItem = ({ item, href, isDropDownOpen }) => {
           transition: "color 150ms ease-in",
         }}
       >
-        <Typography onClick={() => router.push(href)}>
-          {item.section}
-        </Typography>
+        <Typography>{item.section}</Typography>
       </Box>
     </motion.div>
   );
