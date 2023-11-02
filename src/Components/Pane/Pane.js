@@ -6,6 +6,8 @@ import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 
 import list from "../../menuLists/paneList";
+import DropDown from "../DropDown/DropDown";
+import NavDropDownContainer from "../DropDown/NavDropdown";
 
 function Pane({ path, setShowHamburg }) {
   const theme = useTheme();
@@ -36,36 +38,9 @@ function Pane({ path, setShowHamburg }) {
             gap: "1em",
           }}
         >
-          {list.map((res, id) => {
-            return (
-              <Box
-                key={id}
-                onClick={() => router.push(`${res.link}`)}
-                sx={{
-                  cursor: "pointer",
-                  borderRadius: "10px",
-                  padding: ".5em",
-                }}
-              >
-                <Typography
-                  sx={{
-                    margin: "auto",
-                    textAlign: "center",
-                    fontSize: { md: ".8em", lg: "1rem" },
-                    fontWeight: 500,
-                    lineHeight: "17px",
-                    color: "#121212",
-                    "&:hover": {
-                      color: "#d9232a",
-                    },
-                    transition: "color 150ms ease-in",
-                  }}
-                >
-                  {res.txt}
-                </Typography>
-              </Box>
-            );
-          })}
+          {list.map((res, id) => (
+            <NavDropDownContainer key={id} content={res} />
+          ))}
         </Box>
       ) : (
         <Box

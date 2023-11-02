@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function DropDownItem({
   data,
@@ -67,3 +68,28 @@ export default function DropDownItem({
     </motion.div>
   );
 }
+
+export const NavDropDownItem = ({ item, href, isDropDownOpen }) => {
+  const router = useRouter();
+
+  if (!isDropDownOpen) return;
+
+  return (
+    <motion.div initial={{ y: 0 }} animate={{ y: 20 }} exit={{ y: 0 }}>
+      <Box
+        sx={{
+          padding: ".5em 1em",
+          borderTop: "1px solid #e3c0c0",
+          "&:hover": {
+            color: "#d9232a",
+          },
+          transition: "color 150ms ease-in",
+        }}
+      >
+        <Typography onClick={() => router.push(href)}>
+          {item.section}
+        </Typography>
+      </Box>
+    </motion.div>
+  );
+};

@@ -1,3 +1,9 @@
+import { crudeList } from "./crudeList";
+import futureTrendList from "./futureTrendList";
+import globalBazaarList from "./globalBazaarList";
+import { graphList } from "./graphList";
+import indianBazaarList from "./indianBazaarList";
+
 const list = [
   {
     id: 1,
@@ -15,30 +21,35 @@ const list = [
     id: 3,
     icon: "/Pane/crude.svg",
     txt: "Crude & Feedstock",
+    navItems: crudeList,
     link: "/crude",
   },
   {
     id: 4,
     icon: "/Pane/global.svg",
     txt: "Global Bazaar",
+    navItems: globalBazaarList,
     link: "/global-bazaar",
   },
   {
     id: 5,
     icon: "/Pane/indian.svg",
     txt: "Indian Bazaar",
+    navItems: indianBazaarList,
     link: "/indian-bazaar",
   },
   {
     id: 6,
     icon: "/Pane/graph.svg",
     txt: "Graph",
+    navItems: graphList,
     link: "/graph",
   },
   {
     id: 7,
     icon: "/Pane/future.svg",
     txt: "Future Trend",
+    navItems: futureTrendList,
     link: "/future-trend",
   },
   {
