@@ -41,8 +41,8 @@ const globalBazaarList = [
   },
   {
     id: 9,
-    section: "European",
-    slug: "European",
+    section: "Europe",
+    slug: "Europe",
   },
   {
     id: 10,

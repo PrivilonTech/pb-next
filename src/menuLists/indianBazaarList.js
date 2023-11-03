@@ -7,8 +7,8 @@ const indianBazaarList = [
   { id: 2, section: "Rate Revision", slug: "rateRevision" },
   {
     id: 3,
-    section: "Rate Prediction",
-    slug: "ratePrediction",
+    section: "Price Prediction",
+    slug: "pricePrediction",
   },
   {
     id: 4,

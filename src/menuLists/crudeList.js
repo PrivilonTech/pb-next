@@ -40,6 +40,11 @@ export const crudeList = [
     slug: "PTA",
   },
   {
+    id: 12,
+    section: "MEG",
+    slug: "MEG",
+  },
+  {
     id: 9,
     section: "ACN - Acrylonitrile",
     slug: "ACN",
@@ -53,11 +58,6 @@ export const crudeList = [
     id: 11,
     section: "Vinyl Acetate - VA",
     slug: "VA",
-  },
-  {
-    id: 12,
-    section: "MEG",
-    slug: "MEG",
   },
 ];
 

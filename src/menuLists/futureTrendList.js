@@ -46,7 +46,7 @@ const futureTrendList = [
   },
   {
     id: 10,
-    section: "Nylon 6 & Nylon 66",
+    section: "Nylon 6 & 6 6",
     slug: "nylon-6-nylon-66",
   },
   {

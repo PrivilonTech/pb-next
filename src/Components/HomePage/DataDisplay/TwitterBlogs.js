@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { TwitterTimelineEmbed } from "react-twitter-embed";
+import { Timeline } from "react-twitter-widgets";
 
 import LoadingTweets from "@/Components/Loading/LoadingTweets";
 
@@ -19,12 +19,16 @@ export default function TwitterBlogs({ wideScreen }) {
       }}
     >
       {loading && <LoadingTweets wideScreen={wideScreen} />}
-      <TwitterTimelineEmbed
-        sourceType="profile"
-        screenName="POLYMERBAZAAR"
-        options={{ height: wideScreen ? 1200 : 800, width: "100%" }}
+      <Timeline
+        dataSource={{
+          type: "profile",
+          screenName: "POLYMERBAZAAR",
+        }}
         onLoad={() => setLoading(false)}
-        onLoadSuccess={() => setLoading(false)}
+        options={{
+          height: wideScreen ? 1200 : 800,
+          width: "100%",
+        }}
       />
     </Box>
   );
