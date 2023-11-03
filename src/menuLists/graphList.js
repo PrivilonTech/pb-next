@@ -1,27 +1,27 @@
 export const graphList = [
   {
     id: 1,
-    section: "Historical Data - PP",
+    section: "PP",
     slug: "PP",
   },
   {
     id: 2,
-    section: "Historical Data - HDPE",
+    section: "HDPE",
     slug: "HDPE",
   },
   {
     id: 3,
-    section: "Historical Data - LLDPE",
+    section: "LLDPE",
     slug: "LLDPE",
   },
   {
     id: 4,
-    section: "Historical Data - LDPE",
+    section: "LDPE",
     slug: "LDPE",
   },
   {
     id: 5,
-    section: "Historical Data PVC",
+    section: "PVC",
     slug: "PVC",
   },
 ];

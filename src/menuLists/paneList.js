@@ -41,9 +41,9 @@ const list = [
   {
     id: 6,
     icon: "/Pane/graph.svg",
-    txt: "Graph",
+    txt: "Historical Data",
     navItems: graphList,
-    link: "/graph",
+    link: "/historical-data",
   },
   {
     id: 7,

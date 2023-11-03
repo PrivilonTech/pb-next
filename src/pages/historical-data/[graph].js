@@ -80,7 +80,7 @@ export default function GraphData() {
   return (
     <>
       <PaneContentLayout
-        title="Graph"
+        title="Historical Data"
         list={graphList}
         page="graph"
         path={path}
