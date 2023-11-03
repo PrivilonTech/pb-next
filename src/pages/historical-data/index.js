@@ -79,7 +79,7 @@ function index() {
       <PaneContentLayout
         title="Historical Data"
         list={graphList}
-        page="graph"
+        page="historical-data"
         path="PP"
         mainContent={BodyContent}
         dropdown

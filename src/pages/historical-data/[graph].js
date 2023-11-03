@@ -82,7 +82,7 @@ export default function GraphData() {
       <PaneContentLayout
         title="Historical Data"
         list={graphList}
-        page="graph"
+        page="historical-data"
         path={path}
         mainContent={BodyContent}
         dropdown={path}
