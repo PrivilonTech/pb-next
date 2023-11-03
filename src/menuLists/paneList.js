@@ -14,8 +14,8 @@ const list = [
   {
     id: 2,
     icon: "/Pane/news.svg",
-    txt: "News",
-    link: "/news",
+    txt: "Buy & Sell",
+    link: "/buy-sell",
   },
   {
     id: 3,

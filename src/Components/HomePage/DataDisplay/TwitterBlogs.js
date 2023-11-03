@@ -4,7 +4,7 @@ import { Timeline } from "react-twitter-widgets";
 
 import LoadingTweets from "@/Components/Loading/LoadingTweets";
 
-export default function TwitterBlogs({ wideScreen }) {
+export default function TwitterBlogs({ wideScreen, screenName }) {
   const [loading, setLoading] = useState(true);
 
   return (
@@ -22,7 +22,7 @@ export default function TwitterBlogs({ wideScreen }) {
       <Timeline
         dataSource={{
           type: "profile",
-          screenName: "POLYMERBAZAAR",
+          screenName,
         }}
         onLoad={() => setLoading(false)}
         options={{

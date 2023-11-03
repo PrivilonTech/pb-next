@@ -90,7 +90,7 @@ function HomePage() {
           gap: { xs: "2em", md: "0" },
         }}
       >
-        <TwitterBlogs />
+        <TwitterBlogs screenName="POLYMERBAZAAR" />
         <DataDisplay />
       </Box>
       <Sidebar />

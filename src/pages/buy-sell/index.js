@@ -18,7 +18,7 @@ export default function News() {
         }}
       >
         <ScrollTop />
-        <TwitterBlogs wideScreen />
+        <TwitterBlogs wideScreen screenName="ResinBazaar" />
       </Box>
       <Box
         sx={{

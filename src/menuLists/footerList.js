@@ -64,7 +64,7 @@ export const footerList = [
           {
             id: 1,
             placeholder: "Polymer Market News",
-            href: "/news",
+            href: "/buy-sell",
           },
           {
             id: 2,

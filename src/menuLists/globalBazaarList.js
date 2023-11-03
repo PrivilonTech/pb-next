@@ -5,6 +5,11 @@ const globalBazaarList = [
     slug: "USA",
   },
   {
+    id: 9,
+    section: "Europe",
+    slug: "Europe",
+  },
+  {
     id: 2,
     section: "Asia - China",
     slug: "china",
@@ -26,8 +31,8 @@ const globalBazaarList = [
   },
   {
     id: 6,
-    section: "Saudi Arabia",
-    slug: "SaudiArabia",
+    section: "KSA",
+    slug: "ksa",
   },
   {
     id: 7,
@@ -38,11 +43,6 @@ const globalBazaarList = [
     id: 8,
     section: "Turkey",
     slug: "Turkey",
-  },
-  {
-    id: 9,
-    section: "Europe",
-    slug: "Europe",
   },
   {
     id: 10,
