@@ -123,18 +123,18 @@ export default function Indian() {
         page="indian-bazaar"
         path={path}
         mainContent={BodyContent}
-        dropdown
-        dropdownData={monthsArray}
-        selectedOption={month}
-        setSelectedOption={setMonth}
+        dropdown={path === "citywise"}
+        dropdownData={cityNames}
+        selectedOption={cityCategory}
+        setSelectionOption={setCityCategory}
         secondaryDropdown
-        secondaryDropdownData={getYearArray}
-        secondarySelectedOption={year}
-        secondarySetSelectedOption={setYear}
-        thirdDropdown={path === "citywise"}
-        thirdDropdownData={cityNames}
-        thirdSelectedOption={cityCategory}
-        thirdSetSelectionOption={setCityCategory}
+        secondaryDropdownData={monthsArray}
+        secondarySelectedOption={month}
+        secondarySetSelectedOption={setMonth}
+        thirdDropdown
+        thirdDropdownData={getYearArray}
+        thirdSelectedOption={year}
+        thirdSetSelectedOption={setYear}
       />
       <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
         <PaneFooter />
