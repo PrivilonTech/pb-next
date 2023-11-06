@@ -37,8 +37,11 @@ export const structureDataIndian = (data) => {
 export const categorizeData = (data) => {
   const category = [];
   data?.map((object) => {
-    if (!category.includes(object.city)) {
-      category.push(object.city);
+    const formattedCity =
+      object.city.charAt(0).toUpperCase() + object.city.slice(1);
+
+    if (!category.includes(formattedCity)) {
+      category.push(formattedCity);
     }
   });
   return category;

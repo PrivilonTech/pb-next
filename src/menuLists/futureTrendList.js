@@ -59,6 +59,11 @@ const futureTrendList = [
     section: "POM",
     slug: "POM",
   },
+  {
+    id: 13,
+    section: "PMMA",
+    slug: "PMMA",
+  },
 ];
 
 export default futureTrendList;
