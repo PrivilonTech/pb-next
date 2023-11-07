@@ -54,18 +54,24 @@ const list = [
   },
   {
     id: 8,
+    icon: "/Pane/plant-news.png",
+    txt: "Plant News",
+    link: "/plant-news",
+  },
+  {
+    id: 9,
     icon: "/Pane/services.svg",
     txt: "Services",
     link: "/services",
   },
   {
-    id: 9,
+    id: 10,
     icon: "/Pane/events_1.png",
     txt: "Events",
     link: "/events",
   },
   {
-    id: 10,
+    id: 11,
     icon: "/Pane/press-release_1.png",
     txt: "Press Release",
     link: "/press-release",

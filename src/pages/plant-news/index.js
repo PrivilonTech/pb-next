@@ -26,7 +26,7 @@ export default function index() {
   const monthIndex = monthsArray.indexOf(month) + 1; //stores month in numbers
 
   useEffect(() => {
-    getTextData("PressRelease", monthIndex, year, setData, setIsLoading);
+    getTextData("PlantNews", monthIndex, year, setData, setIsLoading);
   }, [dataChange, monthIndex, year]);
 
   return (
@@ -77,7 +77,7 @@ export default function index() {
           />
         </Box>
       </Box>
-      <AdminTextUpload path="PressRelease" setDataChange={setDataChange} />
+      <AdminTextUpload path="PlantNews" setDataChange={setDataChange} />
       {isLoading ? (
         <Box
           sx={{
