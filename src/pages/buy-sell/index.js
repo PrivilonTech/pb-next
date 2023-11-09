@@ -2,8 +2,9 @@ import Link from "next/link";
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import TwitterBlogs from "@/Components/HomePage/DataDisplay/TwitterBlogs";
 import ScrollTop from "@/Components/HomePage/ScrollTop/ScrollTop";
+import TwitterBlogs from "@/Components/HomePage/DataDisplay/TwitterBlogs";
+import BuySellTable from "@/Components/HomePage/DataDisplay/BuySellTable";
 
 export default function News() {
   return (
@@ -11,14 +12,29 @@ export default function News() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
-          margin: { xs: "2em", md: "3em 5em" },
-          flexDirection: { xs: "column", lg: "row" },
-          gap: { xs: "2em", md: "0" },
+          flexWrap: { xs: "wrap", lg: "nowrap" },
+          flexDirection: { xs: "column-reverse", lg: "row" },
+          margin: { xs: "2em", md: "3em 3em" },
+          gap: "1em",
+          overflowX: "auto",
         }}
       >
-        <ScrollTop />
-        <TwitterBlogs wideScreen screenName="ResinBazaar" />
+        <Box sx={{ width: { xs: "100%", lg: "80%" } }}>
+          <BuySellTable />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+
+            flexDirection: { xs: "column", lg: "row" },
+            gap: { xs: "2em", md: "0" },
+            width: { xs: "100%", lg: "30%" },
+          }}
+        >
+          <ScrollTop />
+          <TwitterBlogs wideScreen screenName="ResinBazaar" />
+        </Box>
       </Box>
       <Box
         sx={{
