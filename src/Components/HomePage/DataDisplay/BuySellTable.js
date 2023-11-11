@@ -110,11 +110,11 @@ export default function BuySellTable() {
         <tbody>
           {buySellData.map((item, index) => (
             <tr key={index}>
-              <td>{item.serialNo}</td>
-              <td>{item.product}</td>
-              <td>{item.phone}</td>
-              <td>{item.email}</td>
-              <td>
+              <td style={{ fontSize: ".85rem" }}>{item.serialNo}</td>
+              <td style={{ fontSize: ".85rem" }}>{item.product}</td>
+              <td style={{ fontSize: ".85rem" }}>{item.phone}</td>
+              <td style={{ fontSize: ".85rem" }}>{item.email}</td>
+              <td style={{ fontSize: ".85rem" }}>
                 <Link href={item.whatsapp}>{item.whatsapp}</Link>
               </td>
             </tr>
