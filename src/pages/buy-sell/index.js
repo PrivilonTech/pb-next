@@ -19,7 +19,7 @@ export default function News() {
           overflowX: "auto",
         }}
       >
-        <Box sx={{ width: { xs: "100%", lg: "80%" } }}>
+        <Box sx={{ width: { xs: "100%", lg: "70%" } }}>
           <BuySellTable />
         </Box>
         <Box
