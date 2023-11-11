@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import { NavDropDownItem } from "./DropDownItem";
 
-export default function NavDropDownContainer({ content }) {
+export default function NavDropDownContainer({ content, lastContainer }) {
   const router = useRouter();
   const path = router.pathname;
 
@@ -58,6 +58,7 @@ export default function NavDropDownContainer({ content }) {
               background: "#e5e5e5",
               zIndex: 99999,
               paddingBottom: isDropDownOpen ? "1.25em" : 0,
+              left: lastContainer ? "-75%" : "0%",
             }}
           >
             {content.navItems.map((item, index) => (

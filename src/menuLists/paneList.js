@@ -62,19 +62,19 @@ const list = [
     id: 9,
     icon: "/Pane/services.svg",
     txt: "Services",
+    navItems: [
+      {
+        id: 1,
+        section: "Events",
+        slug: "events",
+      },
+      {
+        id: 2,
+        section: "Press Release",
+        slug: "press-release",
+      },
+    ],
     link: "/services",
-  },
-  {
-    id: 10,
-    icon: "/Pane/events_1.png",
-    txt: "Events",
-    link: "/events",
-  },
-  {
-    id: 11,
-    icon: "/Pane/press-release_1.png",
-    txt: "Press Release",
-    link: "/press-release",
   },
 ];
 

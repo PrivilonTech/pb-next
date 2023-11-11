@@ -38,8 +38,12 @@ function Pane({ path, setShowHamburg }) {
             gap: "1em",
           }}
         >
-          {list.map((res, id) => (
-            <NavDropDownContainer key={id} content={res} />
+          {list.map((res, index) => (
+            <NavDropDownContainer
+              key={res.id}
+              lastContainer={list.length - 1 === index}
+              content={res}
+            />
           ))}
         </Box>
       ) : (
