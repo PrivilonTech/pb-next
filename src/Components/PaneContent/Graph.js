@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import { Box } from "@mui/material";
 
-export default function Graph({ data, leftSpacing, onClick, small }) {
+export default function Graph({ data, leftSpacing, onClick, small, width }) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Graph({ data, leftSpacing, onClick, small }) {
       sx={{
         marginLeft: leftSpacing && { md: "1em" },
         height: small ? "40vh" : "60vh",
-        width: "100%",
+        width: width ?? "100%",
         display: "flex",
         justifyContent: "center",
 
