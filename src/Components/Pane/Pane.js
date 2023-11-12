@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
@@ -6,7 +6,6 @@ import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 
 import list from "../../menuLists/paneList";
-import DropDown from "../DropDown/DropDown";
 import NavDropDownContainer from "../DropDown/NavDropdown";
 
 function Pane({ path, setShowHamburg }) {
@@ -17,8 +16,8 @@ function Pane({ path, setShowHamburg }) {
   const [active, setActive] = useState("");
 
   useEffect(() => {
-    setActive(path);
-  }, [path]);
+    setActive(router.asPath);
+  }, [router.asPath]);
 
   const handleMobileRouteChange = (href) => {
     router.push(href);
@@ -60,10 +59,15 @@ function Pane({ path, setShowHamburg }) {
           }}
         >
           {list.map((res, id) => {
+            const href = res.link ? res.link : res.navItems[0].subItems[0].href;
+            const isActive = res.link
+              ? active === res.link
+              : active === res.navItems[0].subItems[0].href;
+
             return (
               <Box
                 key={id}
-                onClick={() => handleMobileRouteChange(`/${res.link}`)}
+                onClick={() => handleMobileRouteChange(href)}
                 sx={{
                   textDecoration: "none",
                   cursor: "pointer",
@@ -72,17 +76,15 @@ function Pane({ path, setShowHamburg }) {
                   width: { xs: "20%", sm: "25%" },
                   padding: { xs: ".5em .75em", sm: ".5em" },
                   lineHeight: "1px",
-                  border:
-                    active === res.link ? "1px solid red" : "2px solid #d5d9eb",
+                  border: isActive ? "1px solid red" : "2px solid #d5d9eb",
                   margin: "10px",
                   borderRadius: "20px",
                   display: "flex",
                   flexDirection: "column",
                   background: "white",
-                  boxShadow:
-                    active === res.link
-                      ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
-                      : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
+                  boxShadow: isActive
+                    ? "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+                    : "20px 20px 60px #bebebe -20px -20px 60px #ffffff",
                   "&:hover": {
                     boxShadow:
                       "rgba(0, 0, 0, 0.16) 0px 3px 20px, rgba(0, 0, 0, 0.23) 0px 3px 6px",

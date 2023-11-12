@@ -24,7 +24,7 @@ export default function NavDropDownContainer({ content, lastContainer }) {
       {content.navItems ? (
         <>
           <Box
-            onClick={() => router.push(content.link)}
+            onClick={() => content.link && router.push(content.link)}
             sx={{ display: "flex", gap: ".5em", alignItems: "center" }}
           >
             <Typography
@@ -66,7 +66,8 @@ export default function NavDropDownContainer({ content, lastContainer }) {
                 key={index}
                 item={item}
                 isDropDownOpen={isDropDownOpen}
-                href={`${content.link}/${item.slug}`}
+                setIsDropDownOpen={setIsDropDownOpen}
+                href={content.link && `${content.link}/${item.slug}`}
               />
             ))}
           </Box>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
@@ -69,15 +69,27 @@ export default function DropDownItem({
   );
 }
 
-export const NavDropDownItem = ({ item, href, isDropDownOpen }) => {
+export const NavDropDownItem = ({
+  item,
+  href,
+  isDropDownOpen,
+  setIsDropDownOpen,
+}) => {
   const router = useRouter();
+  const [isSubDropdownOpen, setIsSubDropdownOpen] = useState(false);
 
   if (!isDropDownOpen) return;
 
   return (
-    <motion.div initial={{ y: 0 }} animate={{ y: 20 }} exit={{ y: 0 }}>
+    <motion.div
+      initial={{ y: 0 }}
+      animate={{ y: 20 }}
+      exit={{ y: 0 }}
+      onMouseEnter={() => setIsSubDropdownOpen(true)}
+      onMouseLeave={() => setIsSubDropdownOpen(false)}
+    >
       <Box
-        onClick={() => router.push(href)}
+        onClick={() => href && router.push(href)}
         sx={{
           padding: ".5em 1em",
           borderTop: "1px solid #e3c0c0",
@@ -88,6 +100,69 @@ export const NavDropDownItem = ({ item, href, isDropDownOpen }) => {
         }}
       >
         <Typography>{item.section}</Typography>
+      </Box>
+      <Box
+        sx={{
+          minWidth: "180px",
+          position: "absolute",
+          borderRadius: "10px",
+          borderTopLeftRadius: "0px",
+          borderTopRightRadius: "0px",
+          zIndex: 99999,
+          left: -90,
+          top: "0px",
+        }}
+      >
+        {item.subItems &&
+          item.subItems.map((subItem) => (
+            <SubDropdownItem
+              key={subItem.id}
+              subItem={subItem}
+              isSubDropdownOpen={isSubDropdownOpen}
+              setIsSubDropdownOpen={setIsSubDropdownOpen}
+              setIsDropDownOpen={setIsDropDownOpen}
+            />
+          ))}
+      </Box>
+    </motion.div>
+  );
+};
+
+const SubDropdownItem = ({
+  subItem,
+  isSubDropdownOpen,
+  setIsSubDropdownOpen,
+  setIsDropDownOpen,
+}) => {
+  const router = useRouter();
+
+  if (!isSubDropdownOpen) return;
+
+  const handleRouting = () => {
+    router.push(subItem.href);
+    setIsSubDropdownOpen(false);
+    setIsDropDownOpen(false);
+  };
+
+  return (
+    <motion.div
+      initial={{ x: 0 }}
+      animate={{ x: -90 }}
+      exit={{ x: 0 }}
+      style={{ background: "#e5e5e5" }}
+    >
+      <Box
+        onClick={handleRouting}
+        sx={{
+          padding: ".5em 1em",
+          borderTop: "1px solid #e3c0c0",
+          "&:hover": {
+            color: "#d9232a",
+          },
+          transition: "color 150ms ease-in",
+        }}
+      >
+        <Typography>{subItem.section}</Typography>
       </Box>
     </motion.div>
   );

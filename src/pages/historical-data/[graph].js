@@ -54,13 +54,15 @@ export default function GraphData() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
+            flexWrap: { xs: "wrap", lg: "nowrap" },
+            flexDirection: { xs: "column", lg: "row" },
             gap: "2em",
             maxWidth: "100%",
+            marginLeft: { xs: "-1em", lg: "-1.75em" },
           }}
         >
-          <Graph data={data} leftSpacing />
-          <Graph data={secondaryData} leftSpacing />
+          <Graph data={data} width={{ xs: "100%", lg: "50%" }} />
+          <Graph data={secondaryData} width={{ xs: "100%", lg: "50%" }} />
         </Box>
       ) : (
         <Box

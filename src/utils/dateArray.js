@@ -13,10 +13,10 @@ export const monthsArray = [
   "Dec",
 ];
 
-export const yearArray = () => {
+export const yearArray = (tillThisYear) => {
   const currentYear = new Date().getFullYear();
 
-  const startYear = currentYear - 12;
+  const startYear = tillThisYear ? tillThisYear : currentYear - 12;
 
   const yearsArray = [];
 

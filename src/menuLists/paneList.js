@@ -1,8 +1,11 @@
+import { yearArray } from "@/utils/dateArray";
 import { crudeList } from "./crudeList";
 import futureTrendList from "./futureTrendList";
 import globalBazaarList from "./globalBazaarList";
 import { graphList } from "./graphList";
 import indianBazaarList from "./indianBazaarList";
+
+const yearList = yearArray(2015);
 
 const list = [
   {
@@ -60,8 +63,32 @@ const list = [
   },
   {
     id: 9,
+    icon: "/Pane/vip-delegation.png",
+    txt: "VIP Delegations",
+    navItems: yearList.map((year) => {
+      return {
+        id: year,
+        section: year,
+        subItems: [
+          {
+            id: 1,
+            section: "Japan",
+            href: `/vip-delegations/${year}/japan`,
+          },
+          {
+            id: 2,
+            section: "China",
+            href: `/vip-delegations/${year}/china`,
+          },
+        ],
+      };
+    }),
+  },
+  {
+    id: 10,
     icon: "/Pane/services.svg",
     txt: "Services",
+    link: "/services",
     navItems: [
       {
         id: 1,
@@ -79,7 +106,6 @@ const list = [
         slug: "whatsapp-chatbot",
       },
     ],
-    link: "/services",
   },
 ];
 
