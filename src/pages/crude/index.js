@@ -66,7 +66,7 @@ function index() {
               gap: "3rem",
             }}
           >
-            <Graph data={data} />
+            <Graph data={data} width="75%" />
             <Periodic
               periodicTime={periodicTime}
               setPeriodicTime={setPeriodicTime}

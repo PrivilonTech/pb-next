@@ -17,7 +17,7 @@ export default function Video() {
           fontSize: "1.25rem",
           textTransform: "uppercase",
           textAlign: "left",
-          borderBottom: "1px solid #E5322D",
+          borderBottom: "1px solid #dee2e6",
 
           fontWeight: "bold",
           fontFamily: "arial",

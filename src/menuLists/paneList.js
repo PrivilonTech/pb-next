@@ -73,6 +73,11 @@ const list = [
         section: "Press Release",
         slug: "press-release",
       },
+      {
+        id: 3,
+        section: "Whatsapp Chatbot",
+        slug: "whatsapp-chatbot",
+      },
     ],
     link: "/services",
   },
