@@ -120,7 +120,7 @@ export const getHistoricalData = async (
       : response.data.data?.[cities[0]]?.date,
     datasets: [
       {
-        label: cities[0],
+        label: getCityLabel(cities[0]),
         data: response.data.data?.[cities[0]]?.value,
         backgroundColor: (context) => {
           const bgColor = [
@@ -157,7 +157,7 @@ export const getHistoricalData = async (
       : response.data.data?.[cities[1]]?.date,
     datasets: [
       {
-        label: cities[1],
+        label: getCityLabel(cities[1]),
         data: response.data.data?.[cities[1]]?.value,
         backgroundColor: (context) => {
           const bgColor = [
@@ -241,4 +241,15 @@ export const sendMail = async (to, subject, content) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+const getCityLabel = (city) => {
+  if (!city) return;
+
+  const formattedCity = city.toLowerCase();
+
+  if (formattedCity === "mumbai") return "EX Mumbai, ( Rs/Kg - Incl.GST )";
+  if (formattedCity === "cif ns") return "CIF NS,Mumbai ( US$Mt)";
+
+  return city;
 };
