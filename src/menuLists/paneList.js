@@ -1,11 +1,9 @@
-import { yearArray } from "@/utils/dateArray";
 import { crudeList } from "./crudeList";
 import futureTrendList from "./futureTrendList";
 import globalBazaarList from "./globalBazaarList";
 import { graphList } from "./graphList";
 import indianBazaarList from "./indianBazaarList";
-
-const yearList = yearArray(2015);
+import { delegationList } from "./delegationList";
 
 const list = [
   {
@@ -65,24 +63,15 @@ const list = [
     id: 9,
     icon: "/Pane/vip-delegation.png",
     txt: "VIP Delegations",
-    navItems: yearList.map((year) => {
-      return {
-        id: year,
-        section: year,
-        subItems: [
-          {
-            id: 1,
-            section: "Japan",
-            href: `/vip-delegations/${year}/japan`,
-          },
-          {
-            id: 2,
-            section: "China",
-            href: `/vip-delegations/${year}/china`,
-          },
-        ],
-      };
-    }),
+    navItems: Object.keys(delegationList)
+      .reverse()
+      .map((year) => {
+        return {
+          id: year,
+          section: year,
+          subItems: delegationList[year],
+        };
+      }),
   },
   {
     id: 10,
