@@ -20,27 +20,32 @@ const globalBazaarList = [
     slug: "India",
   },
   {
+    id: 5,
+    section: "Asia - Iran",
+    slug: "Iran",
+  },
+  {
     id: 4,
     section: "Asia - Pakistan",
     slug: "Pakistan",
   },
   {
-    id: 5,
+    id: 6,
     section: "Other Asian Nation",
     slug: "AsianNation",
   },
   {
-    id: 6,
+    id: 7,
     section: "KSA",
     slug: "ksa",
   },
   {
-    id: 7,
+    id: 8,
     section: "Middle East",
     slug: "MiddleEast",
   },
   {
-    id: 8,
+    id: 9,
     section: "Turkey",
     slug: "Turkey",
   },
@@ -48,11 +53,6 @@ const globalBazaarList = [
     id: 10,
     section: "Africa - Egypt",
     slug: "Egypt",
-  },
-  {
-    id: 11,
-    section: "Africa - CFR West",
-    slug: "africaCfrWest",
   },
 ];
 

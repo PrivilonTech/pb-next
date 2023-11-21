@@ -1,11 +1,31 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { ClipLoader } from "react-spinners";
 import { Box, Typography } from "@mui/material";
+
+import { CovidImpactDelegation } from "@/Components/Delegations";
 
 export default function index() {
   const router = useRouter();
 
   const { year, country } = router.query;
+
+  if (!year || !country) {
+    return (
+      <Box
+        sx={{
+          display: "grid",
+          placeItems: "center",
+          width: "100%",
+          height: "50vh",
+        }}
+      >
+        <ClipLoader color="#C31815" size={30} />
+      </Box>
+    );
+  }
+
+  if (year === "2020" || year === "2021") return <CovidImpactDelegation />;
 
   return (
     <Box

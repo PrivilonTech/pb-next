@@ -62,7 +62,7 @@ function Header() {
             justifyContent: "space-between",
             background: "rgb(0,48,91)",
             background:
-              "linear-gradient(225deg, rgba(0,58,108,1) 43%, #c31815 43%, rgba(229,50,45,1) 44%, rgba(244,244,244,1) 44%)",
+              "linear-gradient(225deg, rgba(0,0,0,1) 43%, #c31815 43%, rgba(229,50,45,1) 44%, rgba(244,244,244,1) 44%)",
           }}
         >
           <Box

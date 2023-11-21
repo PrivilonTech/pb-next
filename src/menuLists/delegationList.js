@@ -13,6 +13,20 @@ export const delegationList = {
       href: "/vip-delegations/2022/taipei",
     },
   ],
+  2021: [
+    {
+      id: 1,
+      section: "COVID Impact",
+      href: "/vip-delegations/2021/covid",
+    },
+  ],
+  2020: [
+    {
+      id: 1,
+      section: "COVID Impact",
+      href: "/vip-delegations/2020/covid",
+    },
+  ],
   2019: [
     {
       id: 1,
