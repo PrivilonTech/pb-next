@@ -114,14 +114,17 @@ export const getHistoricalData = async (
 
   response.data.data = coreData;
 
+  const mumbai = cities[0] === "Mumbai" ? cities[0] : cities[1];
+  const cifNs = cities[0] === "CIF NS" ? cities[0] : cities[1];
+
   setData({
-    labels: response.data.data?.[cities[0]]?.date
-      ? formatDate_DD_MM(response.data.data[cities[0]]?.date)
-      : response.data.data?.[cities[0]]?.date,
+    labels: response.data.data?.[cifNs]?.date
+      ? formatDate_DD_MM(response.data.data[cifNs]?.date)
+      : response.data.data?.[cifNs]?.date,
     datasets: [
       {
-        label: getCityLabel(cities[0]),
-        data: response.data.data?.[cities[0]]?.value,
+        label: getCityLabel(cifNs),
+        data: response.data.data?.[cifNs]?.value,
         backgroundColor: (context) => {
           const bgColor = [
             "rgba(255, 99, 132, 0.2)",
@@ -152,13 +155,13 @@ export const getHistoricalData = async (
   });
 
   setSecondaryData({
-    labels: response.data.data?.[cities[1]]?.date
-      ? formatDate_DD_MM(response.data.data[cities[1]]?.date)
-      : response.data.data?.[cities[1]]?.date,
+    labels: response.data.data?.[mumbai]?.date
+      ? formatDate_DD_MM(response.data.data[mumbai]?.date)
+      : response.data.data?.[mumbai]?.date,
     datasets: [
       {
-        label: getCityLabel(cities[1]),
-        data: response.data.data?.[cities[1]]?.value,
+        label: getCityLabel(mumbai),
+        data: response.data.data?.[mumbai]?.value,
         backgroundColor: (context) => {
           const bgColor = [
             "rgba(255, 99, 132, 0.2)",
