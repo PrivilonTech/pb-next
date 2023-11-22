@@ -57,7 +57,7 @@ function Header() {
       {upMd ? (
         <Box
           sx={{
-            height: "15vh",
+            height: "13vh",
             display: "flex",
             justifyContent: "space-between",
             background: "rgb(0,48,91)",
@@ -69,7 +69,6 @@ function Header() {
             sx={{
               display: "flex",
               width: "45%",
-              paddingTop: 0,
               padding: { xs: ".5em 1em", md: ".5em 3em" },
             }}
           >
@@ -77,11 +76,7 @@ function Header() {
               onClick={() => router.push("/")}
               sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
             >
-              <img
-                src={"/Services/PolymerLogo.png"}
-                alt="Logo"
-                height={100}
-              ></img>
+              <img src={"/Services/PolymerLogo.png"} alt="Logo" height={85} />
             </Box>
           </Box>
           <Box
@@ -198,7 +193,7 @@ function Header() {
               <img
                 src={"/Services/PolymerLogo.png"}
                 alt="Logo"
-                height={75}
+                height={65}
               ></img>
             </Box>
           </Box>

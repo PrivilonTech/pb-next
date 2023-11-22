@@ -9,7 +9,7 @@ export default function PhoneBar() {
         background: "#d9232a",
         display: "flex",
         justifyContent: "space-around",
-        padding: "10px 0",
+        padding: "5px 0",
         flexDirection: { xs: "column", sm: "row" },
       }}
     >

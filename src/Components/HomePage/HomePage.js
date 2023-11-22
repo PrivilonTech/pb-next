@@ -50,7 +50,6 @@ function HomePage() {
       <Box sx={{ padding: "2em 0" }}>
         <Typography
           sx={{
-            mt: ".75em",
             textAlign: "center",
             fontSize: { xs: "2.5rem", md: "3rem" },
             fontWeight: "600",
@@ -85,7 +84,7 @@ function HomePage() {
         sx={{
           display: "flex",
           justifyContent: "space-evenly ",
-          margin: { xs: "1em 0", sm: "1em 0em", md: "2em 1em" },
+          margin: { xs: "1em 0", sm: "1em 0em", md: "1em 1em" },
           flexDirection: { xs: "column", lg: "row" },
           gap: { xs: "2em", md: "0" },
         }}

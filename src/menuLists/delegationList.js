@@ -5,6 +5,11 @@ export const delegationList = {
       section: "Ko Plas",
       href: "/vip-delegations/2023/ko-plas",
     },
+    {
+      id: 2,
+      section: "Plas Milan",
+      href: "/vip-delegations/2023/plas-milan",
+    },
   ],
   2022: [
     {

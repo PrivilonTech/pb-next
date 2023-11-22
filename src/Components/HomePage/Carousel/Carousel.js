@@ -109,8 +109,8 @@ export default function CarouselComponent({
               <>
                 <Box
                   sx={{
-                    padding: "1em",
-                    my: "1em",
+                    padding: "0.5em 1em",
+                    m: "1em",
                     borderRadius: "4px",
                     cursor: "pointer",
                     border: "2px solid #bebfc2",

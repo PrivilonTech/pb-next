@@ -182,7 +182,7 @@ export default function Footer() {
             }}
           >
             Please refer Terms & Conditions : M/S SAMYAK ENTERPRISE, Ahmedabad,
-            Gujarat, India. +91 93 745 24 365 All Copyright ©2007 - 2021
+            Gujarat, India. +91 93 745 24 365 All Copyright ©2007 - 2023
             reserved.
           </Typography>
         </Box>

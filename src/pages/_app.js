@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }) {
               <>
                 <PhoneBar />
                 <Header />
-                <Marquee />
+                {/* <Marquee /> UNCOMMENT THIS LATER */}
               </>
             )}
             {upMd && !showLayout && <Pane path={firstString} />}
