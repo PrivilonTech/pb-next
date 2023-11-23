@@ -48,16 +48,6 @@ function HomePage() {
       />
       <AdminCarouselUpload setDataChange={setDataChange} />
       <Box sx={{ padding: "2em 0" }}>
-        <Typography
-          sx={{
-            textAlign: "center",
-            fontSize: { xs: "2.5rem", md: "3rem" },
-            fontWeight: "600",
-            color: "#1e1e1e",
-          }}
-        >
-          Media Partners
-        </Typography>
         <CarouselComponent
           srcArray={[
             "/Homepage/carousel/image_1.jpg",
