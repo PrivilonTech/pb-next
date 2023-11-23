@@ -27,7 +27,7 @@ export default function DataDisplay() {
       >
         <GraphDisplay />
       </Box>
-      <Box
+      {/* <Box
         onClick={() => router.push("/indian-bazaar")}
         sx={{
           cursor: "pointer",
@@ -36,7 +36,7 @@ export default function DataDisplay() {
         }}
       >
         <PriceTable />
-      </Box>
+      </Box> UNCOMMENT THIS CODE */}
     </Box>
   );
 }

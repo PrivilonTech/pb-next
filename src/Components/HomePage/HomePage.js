@@ -48,6 +48,7 @@ function HomePage() {
       />
       <AdminCarouselUpload setDataChange={setDataChange} />
       <Box sx={{ padding: "2em 0" }}>
+        ``
         <CarouselComponent
           srcArray={[
             "/Homepage/carousel/image_1.jpg",
