@@ -3,7 +3,10 @@ import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 import { Box, Typography } from "@mui/material";
 
+import { getDelegationContent } from "@/utils/delegation";
 import { CovidImpactDelegation } from "@/Components/Delegations";
+import EmptyData from "@/Components/PaneContent/EmptyData";
+import Image from "next/image";
 
 export default function index() {
   const router = useRouter();
@@ -26,6 +29,23 @@ export default function index() {
   }
 
   if (year === "2020" || year === "2021") return <CovidImpactDelegation />;
+
+  const delegationContent = getDelegationContent(year, country);
+
+  if (!delegationContent) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "2em",
+          padding: "3em 2em",
+        }}
+      >
+        <EmptyData />
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -52,24 +72,29 @@ export default function index() {
             color: "#ef6b67",
           }}
         >
-          Content for {country} in {year}
+          {delegationContent.title}
         </Typography>
-        <Typography sx={{ width: "75%", textAlign: "center" }}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse sint
-          harum beatae officiis voluptas! Neque temporibus eaque labore optio
-          possimus, quam pariatur commodi, laudantium explicabo, quasi
-          consequuntur totam omnis repellendus in. Libero alias praesentium
-          molestias. Asperiores ipsam ratione rerum voluptates. Perspiciatis
-          quam vero harum totam dignissimos odio quisquam ad? Amet?
-        </Typography>
-      </Box>
 
-      <iframe
-        height={700}
-        src="https://www.youtube.com/embed/7b4SliEg4gE"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      />
+        <Box
+          sx={{
+            display: "flex",
+            gap: "2em",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {delegationContent.images.map((image, index) => (
+            <Image
+              key={index}
+              src={image}
+              style={{ borderRadius: "10px", objectFit: "cover" }}
+              width={300}
+              height={300}
+              alt="delegation image"
+            />
+          ))}
+        </Box>
+      </Box>
     </Box>
   );
 }
