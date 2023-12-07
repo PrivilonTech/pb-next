@@ -1,7 +1,8 @@
 import axios from "axios";
+import { cloneDeep } from "lodash";
+
 import { categorizeData, structureDataGlobal } from "./structureData";
 import { formatDate_DD_MM, formatGraphDataInAscendingOrder } from "./dateArray";
-import { cloneDeep } from "lodash";
 
 //crude
 export const getCrudeData = async (
@@ -16,11 +17,19 @@ export const getCrudeData = async (
     `https://polymerbazar-be.onrender.com/api/feedstock?name=${name}&country=${country}&type=${selectedOption}`
   );
 
+  let label;
+
+  if (name.toLowerCase() === "crude") {
+    label = `${selectedCountry} (USD/bbl)`;
+  } else {
+    label = `${selectedCountry} (US$/MT)`;
+  }
+
   setData({
     labels: formatDate_DD_MM(response.data.data.key),
     datasets: [
       {
-        label: selectedCountry,
+        label,
         data: response.data.data.value,
         backgroundColor: (context) => {
           const bgColor = [

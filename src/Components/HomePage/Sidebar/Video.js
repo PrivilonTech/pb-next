@@ -28,7 +28,7 @@ export default function Video() {
       </Typography>
       <iframe
         height={400}
-        src="https://www.youtube.com/embed/Q7oWElOK1hw"
+        src="https://www.youtube.com/embed/7b4SliEg4gE"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe>

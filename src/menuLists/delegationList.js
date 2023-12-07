@@ -2,6 +2,11 @@ export const delegationList = {
   2023: [
     {
       id: 1,
+      section: "IPF Japan",
+      href: "/vip-delegations/2023/ipf-japan",
+    },
+    {
+      id: 2,
       section: "Ko Plas",
       href: "/vip-delegations/2023/ko-plas",
     },
