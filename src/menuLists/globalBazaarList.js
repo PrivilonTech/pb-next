@@ -30,6 +30,21 @@ const globalBazaarList = [
     slug: "Pakistan",
   },
   {
+    id: 11,
+    section: "Asia - Nepal",
+    slug: "Nepal",
+  },
+  {
+    id: 12,
+    section: "Asia - Sri Lanka",
+    slug: "Srilanka",
+  },
+  {
+    id: 13,
+    section: "Asia - Bangladesh",
+    slug: "Bangladesh",
+  },
+  {
     id: 6,
     section: "Other Asian Nation",
     slug: "AsianNation",
