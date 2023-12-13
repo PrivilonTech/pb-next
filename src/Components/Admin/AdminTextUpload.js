@@ -15,7 +15,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
   const router = useRouter();
 
   const futureTrendPath = router.pathname.startsWith("/future-trend");
-  const pressReleasePath = router.pathname.startsWith("/press-release");
+  const pressReleasePath = router.pathname.startsWith("/services/press-release");
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");

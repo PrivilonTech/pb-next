@@ -225,7 +225,9 @@ export const getEventsData = async (setData) => {
     `https://polymerbazar-be.onrender.com/api/events`
   );
 
-  setData(response.data);
+  const reversedData = response.data.reverse();
+
+  setData(reversedData);
 };
 
 //images
