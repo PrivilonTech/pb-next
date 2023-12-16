@@ -21,6 +21,8 @@ export const getCrudeData = async (
 
   if (name.toLowerCase() === "crude") {
     label = `${selectedCountry} (USD/bbl)`;
+  } else if (name.toLowerCase() === "va") {
+    label = `${selectedCountry} (RMB/Mt)`;
   } else {
     label = `${selectedCountry} (US$/MT)`;
   }

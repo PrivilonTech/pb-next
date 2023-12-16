@@ -1,4 +1,5 @@
 export const delegationList = {
+  2024: [],
   2023: [
     {
       id: 1,
@@ -11,7 +12,7 @@ export const delegationList = {
       href: "/vip-delegations/2023/ko-plas",
     },
     {
-      id: 2,
+      id: 3,
       section: "Plas Milan",
       href: "/vip-delegations/2023/plas-milan",
     },

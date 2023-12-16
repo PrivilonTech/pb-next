@@ -16,9 +16,14 @@ const indianBazaarList = [
     slug: "companyPrice",
   },
   {
-    id: 4,
+    id: 5,
     section: "US$- INR Custom Exchange Rate",
     slug: "customExchangeRate",
+  },
+  {
+    id: 6,
+    section: "BOPP Fillm ( TT & NTT )",
+    slug: "boppFilm",
   },
 ];
 
