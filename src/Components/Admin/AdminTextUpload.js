@@ -15,7 +15,9 @@ export default function AdminTextUpload({ path, setDataChange }) {
   const router = useRouter();
 
   const futureTrendPath = router.pathname.startsWith("/future-trend");
-  const pressReleasePath = router.pathname.startsWith("/services/press-release");
+  const pressReleasePath = router.pathname.startsWith(
+    "/services/press-release"
+  );
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -139,6 +141,12 @@ export default function AdminTextUpload({ path, setDataChange }) {
       return toast.error("Please enter data in all fields");
     }
 
+    const bodyContentRegex = /<body[^>]*>[\s\S]*<\/body>/gi;
+
+    const bodyMatch = body.match(bodyContentRegex);
+
+    const extractedBody = bodyMatch ? bodyMatch[0] : body;
+
     const selectedDate = new Date(bodyDate);
     const formatedDate =
       selectedDate.toISOString().slice(0, 10) + "T00:00:00.000Z";
@@ -146,7 +154,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
     const bodyContent = {
       type: path,
       title: title,
-      blogContent: body,
+      blogContent: extractedBody,
       date: formatedDate,
       attachment: fileUrl,
     };
