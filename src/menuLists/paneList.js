@@ -63,6 +63,7 @@ const list = [
     id: 9,
     icon: "/Pane/vip-delegation.png",
     txt: "VIP Delegations",
+    link: "/vip-delegations/2023/ipf-japan",
     navItems: Object.keys(delegationList)
       .reverse()
       .map((year) => {

@@ -78,11 +78,12 @@ export default function index() {
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
             gap: "2em",
             width: "100%",
           }}
         >
-          <Box sx={{ width: "70%" }}>
+          <Box sx={{ width: { xs: "100%", md: "70%" } }}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "1em" }}>
               {delegationContent.description ? (
                 delegationContent.description.map((desc, index) => (
@@ -143,7 +144,7 @@ export default function index() {
               display: "flex",
               alignItems: "center",
               justifyContent: "start",
-              width: "30%",
+              width: { xs: "100%", md: "30%" },
               flexDirection: "column",
               gap: "2em",
             }}

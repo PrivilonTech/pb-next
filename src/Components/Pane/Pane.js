@@ -59,15 +59,12 @@ function Pane({ path, setShowHamburg }) {
           }}
         >
           {list.map((res, id) => {
-            const href = res.link ? res.link : res.navItems[0].subItems[0].href;
-            const isActive = res.link
-              ? active === res.link
-              : active === res.navItems[0].subItems[0].href;
+            const isActive = active === res.link;
 
             return (
               <Box
                 key={id}
-                onClick={() => handleMobileRouteChange(href)}
+                onClick={() => handleMobileRouteChange(res.link)}
                 sx={{
                   textDecoration: "none",
                   cursor: "pointer",

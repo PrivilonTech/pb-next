@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { Box, Typography } from "@mui/material";
@@ -66,7 +67,15 @@ function index() {
               gap: "1rem",
             }}
           >
-            <Graph data={data} width="75%" />
+            <Box sx={{ display: "flex" }}>
+              <Graph data={data} width="75%" />
+              <Image
+                src="/QR/image_1.png"
+                alt="qr code"
+                height={300}
+                width={300}
+              />
+            </Box>
             <Periodic
               periodicTime={periodicTime}
               setPeriodicTime={setPeriodicTime}
