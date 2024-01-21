@@ -67,7 +67,14 @@ function index() {
               gap: "1rem",
             }}
           >
-            <Box sx={{ display: "flex" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", lg: "row" },
+                gap: { xs: "1em", lg: "0" },
+                alignItems: "center",
+              }}
+            >
               <Graph data={data} width="75%" />
               <Image
                 src="/QR/image_1.png"

@@ -53,18 +53,14 @@ function HomePage() {
             "/Homepage/carousel/image_1.jpg",
             "/Homepage/carousel/image_2.jpg",
             "/Homepage/carousel/image_3.jpg",
-            "/Homepage/carousel/image_4.jpg",
-            "/Homepage/carousel/image_5.jpg",
           ]}
           linkArray={[
-            "https://www.plastexegypt.com/exhibition/book-a-stand/?utm_source=media-partner&utm_medium=web-banner&utm_campaign=BookAStand&utm_content=",
-            "https://www.plastivision.org/",
-            "https://plasteurasia.com/en/",
-            "https://www.ipfjapan.jp/english/",
+            "https://kplexexpo.com/",
             "https://www.plastfocus.org/",
+            "https://ruplastica.ru/",
           ]}
-          height={100}
-          numberOfImages={3}
+          height={150}
+          numberOfImages={2}
           objectFit="contain"
           padding="20px"
           setDataChange={setDataChange}
