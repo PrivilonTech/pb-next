@@ -196,11 +196,11 @@ export const isTrial = (user) => {
     //TODO: SUBSRIBTION END
   } else {
     // TRIAL PERIOD
-    const currentDate = new Date(); // Current date
-    const createdAtParts = user.createdAt.split("-"); // Split the date string
+    const currentDate = new Date();
+    const createdAtParts = user.createdAt.split("-");
     const createdAtDate = new Date(
       `${createdAtParts[2]}-${createdAtParts[1]}-${createdAtParts[0]}`
-    ); // Rearrange the date parts and create a new Date object
+    );
 
     currentDate.setHours(0, 0, 0, 0);
     createdAtDate.setHours(0, 0, 0, 0);

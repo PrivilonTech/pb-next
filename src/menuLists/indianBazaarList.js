@@ -22,8 +22,18 @@ const indianBazaarList = [
   },
   {
     id: 6,
-    section: "BOPP Fillm ( TT & NTT )",
+    section: "BOPP Film ( TT & NTT )",
     slug: "boppFilm",
+  },
+  {
+    id: 7,
+    section: "Import Calculation",
+    slug: "importCalculation",
+  },
+  {
+    id: 8,
+    section: "Indian Government Policies",
+    slug: "indianGovernmentPolicies",
   },
 ];
 

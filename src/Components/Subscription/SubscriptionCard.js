@@ -1,74 +1,122 @@
 import React from "react";
+import toast from "react-hot-toast";
+import DoneIcon from "@mui/icons-material/Done";
 import { Box, Typography } from "@mui/material";
 
-export default function SubscriptionCard({
-  data,
-  setAmount,
-  selected,
-  setSelected,
-}) {
-  const alreadySelected = selected.includes(data.id);
+import Button from "../Button/Button";
+import subscriptionList from "@/menuLists/subscriptionList";
 
-  const handleSetAmount = () => {
-    if (alreadySelected) {
-      setAmount((prev) => prev - data.subscriptionAmount);
-      setSelected(selected.filter((element) => element !== data.id));
-    } else {
-      setAmount((prev) => prev + data.subscriptionAmount);
-      setSelected((prev) => [...prev, data.id]);
-    }
+export default function SubscriptionCard({ tier }) {
+  const handleSubscribe = () => {
+    toast.success(`Subscribed to ${subscriptionList[tier].title}!`);
   };
 
   return (
     <Box
-      key={data.id}
-      onClick={handleSetAmount}
       sx={{
-        width: "100%",
-        borderRadius: "8px",
-        padding: "1.5em",
-        cursor: "pointer",
-        "&:hover": {
-          background: "#f5f2f2",
-        },
-        transition: "background 150ms ease-in",
-        border: alreadySelected ? "2.5px solid #adaaaa" : "2.5px solid white",
-
-        boxShadow: "rgba(0, 0, 0, 0.4) 0px 1px 4px",
-
+        border: "1px solid #ebebeb",
+        borderRadius: "20px",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        gap: "1em",
       }}
     >
-      <Box>
-        <Box
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.25em",
+          px: "1em",
+          pt: "1em",
+        }}
+      >
+        <Typography
           sx={{
-            display: "flex",
-            flexDirection: "column",
+            fontWeight: "500",
+            fontSize: "1.5em",
           }}
         >
-          {/* type and amount */}
+          {subscriptionList[tier].title}
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: "0.85em",
+            color: "gray",
+          }}
+        >
+          {subscriptionList[tier].description}
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          px: "1em",
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: "1.5em",
+            color: "#1e1e1e",
+            fontWeight: "500",
+          }}
+        >
+          ₹{subscriptionList[tier].price}
+        </Typography>
+        <Typography sx={{ color: "gray", fontSize: "0.8em" }}>
+          / year
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          px: "1em",
+        }}
+      >
+        <Button
+          label="Select Plan"
+          outline
+          noShadow
+          onClick={handleSubscribe}
+        />
+      </Box>
+      <Box
+        sx={{
+          borderTop: "1px solid #ebebeb",
+          px: "1.5em",
+          py: "1em",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.5em",
+        }}
+      >
+        {subscriptionList[tier].data.map((item, index) => (
           <Box
+            key={index}
             sx={{
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
               alignItems: "center",
+              gap: "10px",
             }}
           >
+            <DoneIcon
+              fontSize="10px"
+              sx={{
+                color: "#00b559",
+              }}
+            />
             <Typography
-              sx={{ fontSize: { xs: "1rem", sm: "1.25rem" }, color: "#28282b" }}
+              sx={{
+                fontSize: "0.85em",
+                color: "#333232",
+              }}
             >
-              {data.subscriptionType}
+              {item}
             </Typography>
-            <Box sx={{ display: "flex", gap: ".25em", alignItems: "center" }}>
-              <Typography sx={{ fontSize: { xs: "1rem", sm: "1.25rem" } }}>
-                ₹{data.subscriptionAmount}+
-              </Typography>
-            </Box>
           </Box>
-        </Box>
+        ))}
       </Box>
     </Box>
   );

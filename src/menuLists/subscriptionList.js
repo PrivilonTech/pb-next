@@ -1,36 +1,30 @@
-const subscriptionList = [
-  {
-    id: 1,
-    subscriptionType: "Mobile Application",
-    subscriptionAmount: 75_00,
+const subscriptionList = {
+  LIST_OF_TIERS: ["BASIC", "STANDARD", "PREMIUM", "PLATINUM"],
+  BASIC: {
+    title: "Basic",
+    description: "For individuals that just want to explore.",
+    price: "5,500",
+    data: ["Whatsapp"],
   },
-  {
-    id: 2,
-    subscriptionType: "Website Access",
-    subscriptionAmount: 15_000,
-    mostPopular: true,
+  STANDARD: {
+    title: "Standard",
+    description: "For small businesses that want to grow.",
+    price: "10,000",
+    data: ["Whatsapp", "Mobile App."],
   },
-  {
-    id: 3,
-    subscriptionType: "Normal Whatsapp",
-    subscriptionAmount: 55_00,
+  PREMIUM: {
+    title: "Premium",
+    description: "For businesses that want to grow exponentially.",
+    price: "15,000",
+    data: ["Whatsapp", "ChatBot", "Buy & Sale", "Website"],
   },
-  {
-    id: 4,
-    subscriptionType: "Auto Whatsapp",
-    subscriptionAmount: 65_00,
+  PLATINUM: {
+    title: "Platinum",
+    description: "For companies and teams that require robust features.",
+    price: "25,000",
+    data: ["Whatsapp", "ChatBot", "Buy & Sale", "Website", "VIP Delegation"],
   },
-  {
-    id: 5,
-    subscriptionType: "Sourcing & Delegation Service",
-    subscriptionAmount: 20_000,
-  },
-  {
-    id: 6,
-    subscriptionType: "Corporate packages",
-    subscriptionAmount: 25_000,
-  },
-];
+};
 
 export default subscriptionList;
 
