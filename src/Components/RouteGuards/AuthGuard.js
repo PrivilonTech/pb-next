@@ -51,13 +51,14 @@ export default function AuthGuard({ children }) {
         setLoading(true);
 
         router.push("/register");
-      } else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
-        if (!isTrial(userLoggedIn) && !userLoggedIn.subscribed) {
-          setLoading(true);
+      } 
+      // else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
+      //   if (!isTrial(userLoggedIn) && !userLoggedIn.subscribed) {
+      //     setLoading(true);
 
-          router.push("/subscription");
-        }
-      }
+      //     router.push("/subscription");
+      //   }
+      // }
     }
     if (path === "/register" || path === "/subscription") {
       setLoading(false);
