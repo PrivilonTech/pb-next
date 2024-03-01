@@ -64,6 +64,16 @@ const futureTrendList = [
     section: "PMMA",
     slug: "PMMA",
   },
+  {
+    id: 14,
+    section: "BOPP Film",
+    slug: "bopp",
+  },
+  {
+    id: 15,
+    section: "Polyester",
+    slug: "polyester",
+  },
 ];
 
 export default futureTrendList;
