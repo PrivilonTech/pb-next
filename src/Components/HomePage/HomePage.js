@@ -55,9 +55,9 @@ function HomePage() {
             "/Homepage/carousel/image_3.jpg",
           ]}
           linkArray={[
-            "https://kplexexpo.com/",
-            "https://www.plastfocus.org/",
-            "https://ruplastica.ru/",
+            "https://toplast.in/about/",
+            "https://www.plexconcil.org/plexconnect/",
+            "https://eliteplus.co.in/web/11th-vinyl_india/",
           ]}
           height={150}
           numberOfImages={2}
