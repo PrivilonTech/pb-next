@@ -53,11 +53,13 @@ function HomePage() {
             "/Homepage/carousel/image_1.jpg",
             "/Homepage/carousel/image_2.jpg",
             "/Homepage/carousel/image_3.jpg",
+            "/Homepage/carousel/image_4.jpg",
           ]}
           linkArray={[
-            "https://toplast.in/about/",
-            "https://www.plexconcil.org/plexconnect/",
-            "https://eliteplus.co.in/web/11th-vinyl_india/",
+            "https://www.iplas.in/",
+            "https://kplexexpo.com/",
+            "https://eliteplus.co.in/web/11th-speciality-films-flexible-packaging-global-summit/",
+            "https://eliteplus.co.in/web/9th-injection-blow-roto-pet-moulding-international-summit/",
           ]}
           height={150}
           numberOfImages={2}
