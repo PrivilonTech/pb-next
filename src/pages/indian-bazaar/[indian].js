@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { Box } from "@mui/material";
+import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
+import React, { useEffect, useState } from "react";
 
-import indianBazaarList from "@/menuLists/indianBazaarList";
-import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
-import DataContainer from "@/Components/PaneContent/DataContainer";
-import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
-import BlogContent from "@/Components/PaneContent/BlogContent";
 import EmptyData from "@/Components/PaneContent/EmptyData";
+import indianBazaarList from "@/menuLists/indianBazaarList";
 import PaneFooter from "@/Components/PaneContent/PaneFooter";
+import BlogContent from "@/Components/PaneContent/BlogContent";
+import AdminTextUpload from "@/Components/Admin/AdminTextUpload";
+import DataContainer from "@/Components/PaneContent/DataContainer";
+import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 
-import { getCityData, getIndianData, getTextData } from "@/utils/apiCalls";
 import { structureDataIndian } from "@/utils/structureData";
 import { monthsArray, yearArray } from "@/utils/dateArray";
+import { getCityData, getIndianData, getTextData } from "@/utils/apiCalls";
 
 export default function Indian() {
   const router = useRouter();
@@ -137,7 +137,7 @@ export default function Indian() {
         thirdSetSelectionOption={setYear}
       />
       <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
-        <PaneFooter />
+        <PaneFooter qrCode={path} />
       </Box>
     </>
   );

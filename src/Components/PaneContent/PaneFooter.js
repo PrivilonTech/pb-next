@@ -1,9 +1,14 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
+import { qrCodeObj } from "@/utils/qrCode";
 import WhatsappChatBotService from "./WhatsappChatBotService";
 
-export default function PaneFooter() {
+export default function PaneFooter({ qrCode }) {
+  if (!qrCode) return;
+
+  const qrCodeSrc = qrCodeObj[qrCode.toLowerCase()];
+
   return (
     <Box
       sx={{
@@ -24,17 +29,20 @@ export default function PaneFooter() {
           link="/"
           historicalDataCommand="VCM2122"
         />
-        <Box
-          sx={{
-            width: { xs: "100%", md: "30%" },
-            margin: { xs: ".75em 0", md: "0" },
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img src={"/Services/WhatsappScan.jpg"} alt="whatsapp-scan" />
-        </Box>
+
+        {qrCodeSrc && (
+          <Box
+            sx={{
+              width: { xs: "100%", md: "30%" },
+              margin: { xs: ".75em 0", md: "0" },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img src={qrCodeSrc} height={300} width={300} alt="whatsapp-scan" />
+          </Box>
+        )}
       </Box>
       <Box>
         <Typography sx={{ fontSize: ".9rem", maxWidth: { md: "70%" } }}>

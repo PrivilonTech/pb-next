@@ -9,8 +9,8 @@ import futureTrendList from "@/menuLists/futureTrendList";
 import EmptyData from "@/Components/PaneContent/EmptyData";
 import PaneFooter from "@/Components/PaneContent/PaneFooter";
 
-import { monthsArray, yearArray } from "@/utils/dateArray";
 import { getTextData } from "@/utils/apiCalls";
+import { monthsArray, yearArray } from "@/utils/dateArray";
 
 function index() {
   const [data, setData] = useState({});
@@ -81,7 +81,7 @@ function index() {
         secondarySetSelectedOption={setYear}
       />
       <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
-        <PaneFooter />
+        <PaneFooter qrCode="pp" />
       </Box>
     </>
   );

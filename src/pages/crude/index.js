@@ -125,7 +125,7 @@ function index() {
           margin: { xs: "1em 1.5em", md: "2em 5em" },
         }}
       >
-        <PaneFooter />
+        <PaneFooter qrCode="brent" />
       </Box>
     </>
   );

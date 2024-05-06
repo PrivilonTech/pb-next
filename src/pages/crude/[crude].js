@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
+import { Box, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
 
-import { crudeList, crudeStructure } from "@/menuLists/crudeList";
-import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
+import { getCrudeData } from "@/utils/apiCalls";
 import Graph from "@/Components/PaneContent/Graph";
 import Periodic from "@/Components/PaneContent/Periodic";
 import PaneFooter from "@/Components/PaneContent/PaneFooter";
-import { getCrudeData } from "@/utils/apiCalls";
 import { structureFeedstockData } from "@/utils/structureData";
+import { crudeList, crudeStructure } from "@/menuLists/crudeList";
+import PaneContentLayout from "@/Components/PaneContent/PaneContentLayout";
 
 function Crude() {
   const router = useRouter();
@@ -116,7 +116,7 @@ function Crude() {
         </Box>
       )}
       <Box sx={{ margin: { xs: "1em 1.5em", md: "2em 5em" } }}>
-        <PaneFooter />
+        <PaneFooter qrCode={path} />
       </Box>
     </>
   );

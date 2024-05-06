@@ -122,7 +122,7 @@ function index() {
           },
         }}
       >
-        <PaneFooter />
+        <PaneFooter qrCode="usa" />
       </Box>
     </>
   );
