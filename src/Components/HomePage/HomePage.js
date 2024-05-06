@@ -51,7 +51,6 @@ function HomePage() {
         <CarouselComponent
           srcArray={[
             "/Homepage/carousel/image_1.jpg",
-            "/Homepage/carousel/image_2.jpg",
             "/Homepage/carousel/image_3.jpg",
             "/Homepage/carousel/image_4.jpg",
             "/Homepage/carousel/image_5.jpg",
@@ -59,7 +58,6 @@ function HomePage() {
           ]}
           linkArray={[
             "https://www.iplas.in/",
-            "https://kplexexpo.com/",
             "https://eliteplus.co.in/web/11th-speciality-films-flexible-packaging-global-summit/",
             "https://eliteplus.co.in/web/9th-injection-blow-roto-pet-moulding-international-summit/",
             "https://toplast.in/about",
