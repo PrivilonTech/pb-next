@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
+import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 
-import EventBanner from "@/Components/HomePage/Banners/EventBanner/EventBanner";
 import UpcomingEvents from "@/Components/Events/UpcomingEvents";
+import EventBanner from "@/Components/HomePage/Banners/EventBanner/EventBanner";
 
-import { getEventsData } from "@/utils/apiCalls";
+import { getTextData } from "@/utils/apiCalls";
 
 export default function index() {
   const [data, setData] = useState([]);
   const [dataChange, setDataChange] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getEventsData(setData);
+    getTextData("events", 1, 2024, setData, setIsLoading);
   }, [dataChange]);
 
   return (
@@ -64,7 +66,12 @@ export default function index() {
         </Box>
       </Box>
       <EventBanner />
-      <UpcomingEvents data={data} setDataChange={setDataChange} />
+
+      <UpcomingEvents
+        data={data}
+        setDataChange={setDataChange}
+        isLoading={isLoading}
+      />
     </Box>
   );
 }

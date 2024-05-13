@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import Button from "../Button/Button";
 import Input from "../Register/Input";
 
-export default function AdminTextUpload({ path, setDataChange }) {
+export default function AdminTextUpload({ path, setDataChange, isEvent }) {
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
@@ -137,7 +137,7 @@ export default function AdminTextUpload({ path, setDataChange }) {
 
   //BLOG POST
   const handleSendData = async () => {
-    if (!title || !body || !bodyDate) {
+    if (!title || !body) {
       return toast.error("Please enter data in all fields");
     }
 
@@ -147,15 +147,23 @@ export default function AdminTextUpload({ path, setDataChange }) {
 
     const extractedBody = bodyMatch ? bodyMatch[0] : body;
 
-    const selectedDate = new Date(bodyDate);
-    const formatedDate =
-      selectedDate.toISOString().slice(0, 10) + "T00:00:00.000Z";
+    let formattedDate;
+
+    if (bodyDate && !isEvent) {
+      const selectedDate = new Date(bodyDate);
+      formattedDate =
+        selectedDate.toISOString().slice(0, 10) + "T00:00:00.000Z";
+    } else {
+      const selectedDate = new Date("2024-01-01");
+      formattedDate =
+        selectedDate.toISOString().slice(0, 10) + "T00:00:00.000Z";
+    }
 
     const bodyContent = {
       type: path,
       title: title,
       blogContent: extractedBody,
-      date: formatedDate,
+      date: formattedDate,
       attachment: fileUrl,
     };
     setIsLoading(true);
@@ -293,31 +301,33 @@ export default function AdminTextUpload({ path, setDataChange }) {
                     : "space-around",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: ".5em",
-                  width: futureTrendPath || pressReleasePath ? "50%" : "100%",
-                }}
-              >
-                <Typography sx={{ fontSize: "2rem" }}>Calendar</Typography>
-                <input
-                  type="date"
-                  value={bodyDate}
-                  style={{
-                    padding: ".75em",
-                    outline: "none",
-                    fontFamily: "Poppins",
-                    border: "2px solid #d7dbd8",
-                    color: "#2d333a",
-                    borderRadius: "7px",
-                    fontSize: ".9rem",
-                    width: "90%",
+              {!isEvent && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: ".5em",
+                    width: futureTrendPath || pressReleasePath ? "50%" : "100%",
                   }}
-                  onChange={(e) => setBodyDate(e.target.value)}
-                />
-              </Box>
+                >
+                  <Typography sx={{ fontSize: "2rem" }}>Calendar</Typography>
+                  <input
+                    type="date"
+                    value={bodyDate}
+                    style={{
+                      padding: ".75em",
+                      outline: "none",
+                      fontFamily: "Poppins",
+                      border: "2px solid #d7dbd8",
+                      color: "#2d333a",
+                      borderRadius: "7px",
+                      fontSize: ".9rem",
+                      width: "90%",
+                    }}
+                    onChange={(e) => setBodyDate(e.target.value)}
+                  />
+                </Box>
+              )}
               {(futureTrendPath || pressReleasePath) && (
                 <Box
                   sx={{
