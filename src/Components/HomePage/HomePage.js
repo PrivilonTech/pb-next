@@ -1,22 +1,23 @@
+import { Box } from "@mui/material";
 import { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
+import secureLocalStorage from "react-secure-storage";
 
 import Sidebar from "./Sidebar/Sidebar";
+import Connect from "./Banners/Connect/Connect";
 import CarouselComponent from "./Carousel/Carousel";
 import DataDisplay from "./DataDisplay/DataDisplay";
 import TwitterBlogs from "./DataDisplay/TwitterBlogs";
-import AskQuestions from "./Banners/AskQuestions/AskQuestions";
 import DownloadNow from "./Banners/DownloadNow/DownloadNow";
-import Connect from "./Banners/Connect/Connect";
+import AskQuestions from "./Banners/AskQuestions/AskQuestions";
 import AdminCarouselUpload from "../Admin/AdminCarouselUpload";
 
 import { getCarouselData } from "@/utils/apiCalls";
 
 function HomePage() {
-  const theme = useTheme();
-  const upMd = useMediaQuery(theme.breakpoints.up("md"));
+  const currentUser = secureLocalStorage.getItem("user");
+
+  console.log("currentUser", currentUser);
+  console.log("userId", currentUser?.uid);
 
   const [data, setData] = useState([]);
   const [dataChange, setDataChange] = useState(false);
@@ -61,7 +62,7 @@ function HomePage() {
             "https://eliteplus.co.in/web/11th-speciality-films-flexible-packaging-global-summit/",
             "https://eliteplus.co.in/web/9th-injection-blow-roto-pet-moulding-international-summit/",
             "https://toplast.in/about",
-            "https://www.plexconcil.org/plexconnect/"
+            "https://www.plexconcil.org/plexconnect/",
           ]}
           height={150}
           numberOfImages={2}

@@ -45,22 +45,42 @@ export default function AuthGuard({ children }) {
     }
   }, [currentUser]);
 
+  const lowPlanAuthRoutes = ["/", "/buy-sell"];
+
   useEffect(() => {
     if (!loading && path !== "/") {
       if (!currentUser && userNotFound) {
         setLoading(true);
 
         router.push("/register");
-      }
-      // else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
-      //   if (!isTrial(userLoggedIn) && !userLoggedIn.subscribed) {
-      //     setLoading(true);
+      } else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
+        if (!isTrial(userLoggedIn) && !userLoggedIn.subscribed) {
+          setLoading(true);
 
-      //     router.push("/subscription");
-      //   }
-      // }
+          router.push("/subscription");
+        } else if (
+          !isTrial(userLoggedIn) &&
+          userLoggedIn.subscribed &&
+          ["Basic", "Standard"].includes(userLoggedIn?.plan) &&
+          !lowPlanAuthRoutes.includes(path)
+        ) {
+          setLoading(true);
+
+          router.push("/");
+        }
+
+        if (
+          !isTrial(userLoggedIn) &&
+          userLoggedIn.subscribed &&
+          path === "/subscription"
+        ) {
+          setLoading(true);
+
+          router.push("/");
+        }
+      }
     }
-    if (path === "/register" || path === "/subscription") {
+    if (path === "/register" || path === "/subscription" || path === "/") {
       setLoading(false);
     }
   }, [path]);

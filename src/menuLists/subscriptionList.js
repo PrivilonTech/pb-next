@@ -3,25 +3,25 @@ const subscriptionList = {
   BASIC: {
     title: "Basic",
     description: "For individuals that just want to explore.",
-    price: "5,500",
+    price: 5_500,
     data: ["Whatsapp"],
   },
   STANDARD: {
     title: "Standard",
     description: "For small businesses that want to grow.",
-    price: "10,000",
+    price: 10_000,
     data: ["Whatsapp", "Mobile App."],
   },
   PREMIUM: {
     title: "Premium",
     description: "For businesses that want to grow exponentially.",
-    price: "15,000",
+    price: 15_000,
     data: ["Whatsapp", "ChatBot", "Buy & Sale", "Website"],
   },
   PLATINUM: {
     title: "Platinum",
     description: "For companies and teams that require robust features.",
-    price: "25,000",
+    price: 25_000,
     data: ["Whatsapp", "ChatBot", "Buy & Sale", "Website", "VIP Delegation"],
   },
 };

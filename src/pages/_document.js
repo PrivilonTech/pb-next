@@ -1,4 +1,3 @@
-import Script from "next/script";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -18,7 +17,6 @@ export default function Document() {
           <NextScript />
         </body>
       </Html>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
     </>
   );
 }

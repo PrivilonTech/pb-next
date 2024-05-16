@@ -1,14 +1,42 @@
-import React from "react";
-import toast from "react-hot-toast";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { ClipLoader } from "react-spinners";
 import DoneIcon from "@mui/icons-material/Done";
 import { Box, Typography } from "@mui/material";
+import secureLocalStorage from "react-secure-storage";
 
 import Button from "../Button/Button";
+import { makePayment } from "@/utils/apiCalls";
 import subscriptionList from "@/menuLists/subscriptionList";
 
 export default function SubscriptionCard({ tier }) {
-  const handleSubscribe = () => {
-    toast.success(`Subscribed to ${subscriptionList[tier].title}!`);
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
+  const currentUser = secureLocalStorage.getItem("user");
+
+  const handleRedirect = () => {
+    router.push("/");
+  };
+
+  const handleSubscribe = async () => {
+    const amount = subscriptionList[tier].price;
+
+    const name = currentUser?.displayName;
+    const email = currentUser?.email;
+
+    const plan = subscriptionList[tier].title;
+
+    const payload = { amount, name, email, plan };
+
+    try {
+      setLoading(true);
+      await makePayment(payload, setLoading, handleRedirect);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,7 +91,7 @@ export default function SubscriptionCard({ tier }) {
             fontWeight: "500",
           }}
         >
-          ₹{subscriptionList[tier].price}
+          ₹{subscriptionList[tier].price.toLocaleString()}
         </Typography>
         <Typography sx={{ color: "gray", fontSize: "0.8em" }}>
           / year
@@ -75,12 +103,24 @@ export default function SubscriptionCard({ tier }) {
           px: "1em",
         }}
       >
-        <Button
-          label="Select Plan"
-          outline
-          noShadow
-          onClick={handleSubscribe}
-        />
+        {loading ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ClipLoader color="#C31815" size={20} />
+          </Box>
+        ) : (
+          <Button
+            label="Select Plan"
+            outline
+            noShadow
+            onClick={handleSubscribe}
+          />
+        )}
       </Box>
       <Box
         sx={{

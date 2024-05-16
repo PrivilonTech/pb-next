@@ -1,8 +1,10 @@
 import axios from "axios";
 import { cloneDeep } from "lodash";
+import secureLocalStorage from "react-secure-storage";
 
 import { categorizeData, structureDataGlobal } from "./structureData";
 import { formatDate_DD_MM, formatGraphDataInAscendingOrder } from "./dateArray";
+import { updateUserInfoByEmail } from "./utilsUser";
 
 //crude
 export const getCrudeData = async (
@@ -257,6 +259,99 @@ export const sendMail = async (to, subject, content) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+const RAZOR_PAY_API_KEY = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+
+export const makePayment = async (payload, setLoading, handleRedirect) => {
+  try {
+    const currentUser = secureLocalStorage.getItem("user");
+
+    const { amount, name, email, plan } = payload;
+
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+
+    const response = await fetch("/api/makePayment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount,
+      }),
+    });
+
+    const data = await response.json();
+
+    const options = {
+      key: RAZOR_PAY_API_KEY,
+      name,
+      currency: data.currency,
+      amount: data.amount,
+      order_id: data.id, //change this
+      description: "Understanding RazorPay Integration",
+      handler: async function (response) {
+        console.log("RESPONSE", response);
+
+        const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+          response;
+
+        const additionalData = {
+          plan,
+          subscriptionAmount: amount,
+          paymentId: razorpay_payment_id,
+          orderId: razorpay_order_id,
+          signature: razorpay_signature,
+          subscribed: true,
+        };
+
+        await updateUserInfoByEmail(
+          email,
+          {
+            ...additionalData,
+          },
+          setLoading
+        );
+
+        secureLocalStorage.setItem("user", {
+          ...currentUser,
+          ...additionalData,
+        });
+
+        handleRedirect();
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+
+    paymentObject.on("payment.failed", function (response) {
+      alert("Payment failed. Please try again. Contact support for help");
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const initializeRazorpay = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+
+    document.body.appendChild(script);
+  });
 };
 
 const getCityLabel = (city) => {
