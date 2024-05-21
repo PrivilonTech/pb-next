@@ -61,11 +61,11 @@ export default function ProfileMenu({ setIsUserProfileModalOpen }) {
               overflow: "hidden",
             }}
           >
-            <ProfileItem
+            {/* <ProfileItem
               text="Profile"
               icon={AccountCircleIcon}
               onClick={() => router.push("/profile")}
-            />
+            /> */}
             <ProfileItem
               text="Logout"
               icon={LogoutIcon}

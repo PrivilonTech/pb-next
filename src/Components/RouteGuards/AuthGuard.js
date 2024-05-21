@@ -45,7 +45,11 @@ export default function AuthGuard({ children }) {
     }
   }, [currentUser]);
 
-  const lowPlanAuthRoutes = ["/", "/buy-sell"];
+  const lowPlanAuthRoutes = ["/", "/buy-sell", "/vip-delegations", "/services"];
+
+  function isPathIncluded(path) {
+    return lowPlanAuthRoutes.some((route) => path.includes(route));
+  }
 
   useEffect(() => {
     if (!loading && path !== "/") {
@@ -62,7 +66,7 @@ export default function AuthGuard({ children }) {
           !isTrial(userLoggedIn) &&
           userLoggedIn.subscribed &&
           ["Basic", "Standard"].includes(userLoggedIn?.plan) &&
-          !lowPlanAuthRoutes.includes(path)
+          !isPathIncluded(path)
         ) {
           setLoading(true);
 

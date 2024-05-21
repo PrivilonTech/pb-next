@@ -16,9 +16,6 @@ import { getCarouselData } from "@/utils/apiCalls";
 function HomePage() {
   const currentUser = secureLocalStorage.getItem("user");
 
-  console.log("currentUser", currentUser);
-  console.log("userId", currentUser?.uid);
-
   const [data, setData] = useState([]);
   const [dataChange, setDataChange] = useState(false);
 
