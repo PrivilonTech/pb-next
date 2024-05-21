@@ -15,11 +15,8 @@ export default async function handler(req, res) {
     const payment_capture = 1;
     const currency = "INR";
 
-    const dummyAmount = 1;
-
     const options = {
-      // amount: (amount * 100).toString(),
-      amount: (dummyAmount * 100).toString(),
+      amount: (amount * 100).toString(),
       currency,
       receipt: shortid.generate(),
       payment_capture,
