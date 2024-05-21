@@ -293,11 +293,9 @@ export const makePayment = async (payload, setLoading, handleRedirect) => {
       name,
       currency: data.currency,
       amount: data.amount,
-      order_id: data.id, //change this
+      order_id: data.id,
       description: "Understanding RazorPay Integration",
       handler: async function (response) {
-        console.log("RESPONSE", response);
-
         const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
           response;
 

@@ -8,6 +8,7 @@ import secureLocalStorage from "react-secure-storage";
 import Button from "../Button/Button";
 import { makePayment } from "@/utils/apiCalls";
 import subscriptionList from "@/menuLists/subscriptionList";
+import toast from "react-hot-toast";
 
 export default function SubscriptionCard({ tier }) {
   const router = useRouter();
@@ -20,23 +21,25 @@ export default function SubscriptionCard({ tier }) {
   };
 
   const handleSubscribe = async () => {
-    const amount = subscriptionList[tier].price;
+    toast.error("Payment gateway is disabled for now. Please try again later.");
 
-    const name = currentUser?.displayName;
-    const email = currentUser?.email;
+    // const amount = subscriptionList[tier].price;
 
-    const plan = subscriptionList[tier].title;
+    // const name = currentUser?.displayName;
+    // const email = currentUser?.email;
 
-    const payload = { amount, name, email, plan };
+    // const plan = subscriptionList[tier].title;
 
-    try {
-      setLoading(true);
-      await makePayment(payload, setLoading, handleRedirect);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+    // const payload = { amount, name, email, plan };
+
+    // try {
+    //   setLoading(true);
+    //   await makePayment(payload, setLoading, handleRedirect);
+    // } catch (error) {
+    //   console.log(error);
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (

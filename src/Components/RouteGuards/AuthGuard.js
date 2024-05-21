@@ -45,9 +45,11 @@ export default function AuthGuard({ children }) {
     }
   }, [currentUser]);
 
-  const lowPlanAuthRoutes = ["/", "/buy-sell", "/vip-delegations", "/services"];
+  const lowPlanAuthRoutes = ["/buy-sell", "/vip-delegations", "/services"];
 
-  function isPathIncluded(path) {
+  function isLowAuthPath(path) {
+    if (path === "/") return true;
+
     return lowPlanAuthRoutes.some((route) => path.includes(route));
   }
 
@@ -58,7 +60,11 @@ export default function AuthGuard({ children }) {
 
         router.push("/register");
       } else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
-        if (!isTrial(userLoggedIn) && !userLoggedIn.subscribed) {
+        if (
+          !isTrial(userLoggedIn) &&
+          !userLoggedIn.subscribed &&
+          !isLowAuthPath(path)
+        ) {
           setLoading(true);
 
           router.push("/subscription");
@@ -66,7 +72,7 @@ export default function AuthGuard({ children }) {
           !isTrial(userLoggedIn) &&
           userLoggedIn.subscribed &&
           ["Basic", "Standard"].includes(userLoggedIn?.plan) &&
-          !isPathIncluded(path)
+          !isLowAuthPath(path)
         ) {
           setLoading(true);
 
