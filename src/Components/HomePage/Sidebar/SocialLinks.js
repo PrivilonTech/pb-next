@@ -19,6 +19,7 @@ export default function SocialLinks() {
         <Link
           href={socialItem.href}
           key={socialItem.id}
+          target="_blank"
           sx={{
             background: "rgba(221, 221, 221, 0.2)",
             borderRadius: "50%",

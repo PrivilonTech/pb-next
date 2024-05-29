@@ -59,36 +59,37 @@ export default function AuthGuard({ children }) {
         setLoading(true);
 
         router.push("/register");
-      } else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
-        if (
-          !isTrial(userLoggedIn) &&
-          !userLoggedIn.subscribed &&
-          !isLowAuthPath(path)
-        ) {
-          setLoading(true);
-
-          router.push("/subscription");
-        } else if (
-          !isTrial(userLoggedIn) &&
-          userLoggedIn.subscribed &&
-          ["Basic", "Standard"].includes(userLoggedIn?.plan) &&
-          !isLowAuthPath(path)
-        ) {
-          setLoading(true);
-
-          router.push("/");
-        }
-
-        if (
-          !isTrial(userLoggedIn) &&
-          userLoggedIn.subscribed &&
-          path === "/subscription"
-        ) {
-          setLoading(true);
-
-          router.push("/");
-        }
       }
+      //  else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
+      //   if (
+      //     !isTrial(userLoggedIn) &&
+      //     !userLoggedIn.subscribed &&
+      //     !isLowAuthPath(path)
+      //   ) {
+      //     setLoading(true);
+
+      //     router.push("/subscription");
+      //   } else if (
+      //     !isTrial(userLoggedIn) &&
+      //     userLoggedIn.subscribed &&
+      //     ["Basic", "Standard"].includes(userLoggedIn?.plan) &&
+      //     !isLowAuthPath(path)
+      //   ) {
+      //     setLoading(true);
+
+      //     router.push("/");
+      //   }
+
+      //   if (
+      //     !isTrial(userLoggedIn) &&
+      //     userLoggedIn.subscribed &&
+      //     path === "/subscription"
+      //   ) {
+      //     setLoading(true);
+
+      //     router.push("/");
+      //   }
+      // }
     }
     if (path === "/register" || path === "/subscription" || path === "/") {
       setLoading(false);

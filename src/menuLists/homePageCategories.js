@@ -39,22 +39,27 @@ export const socialIcons = [
   },
   {
     id: 2,
-    href: "#",
+    href: "https://www.facebook.com/polymersbazar",
     icon: "/Homepage/socials/facebook.png",
   },
   {
     id: 3,
-    href: "#",
+    href: "https://x.com/polymerbazaar?s=11&t=qkh--LhjVK3vh6skmwMBcQ",
     icon: "/Homepage/socials/twitter.png",
   },
   {
     id: 4,
-    href: "#",
+    href: "https://www.linkedin.com/in/polymer-bazaar",
     icon: "/Homepage/socials/linkedin.png",
   },
   {
     id: 5,
-    href: "#",
-    icon: "/Homepage/socials/whatsapp.png",
+    href: "https://www.threads.net/@polymerbazaar",
+    icon: "/Homepage/socials/threads.png",
+  },
+  {
+    id: 6,
+    href: "https://www.instagram.com/polymerbazaar",
+    icon: "/Homepage/socials/instagram.png",
   },
 ];

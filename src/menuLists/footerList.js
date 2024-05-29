@@ -85,22 +85,12 @@ export const footerList = [
 export const footerLinks = [
   {
     id: 1,
-    label: "Terms",
-    href: "",
+    label: "Terms & Conditions",
+    href: "/terms",
   },
   {
     id: 2,
-    label: "About",
-    href: "",
-  },
-  {
-    id: 3,
-    label: "Cookie Policy",
-    href: "",
-  },
-  {
-    id: 4,
     label: "Privacy Policy",
-    href: "",
+    href: "/privacy",
   },
 ];

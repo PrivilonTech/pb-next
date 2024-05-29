@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 
-import { footerLinks, footerList } from "@/menuLists/footerList";
 import SocialLinks from "../HomePage/Sidebar/SocialLinks";
+import { footerLinks, footerList } from "@/menuLists/footerList";
 
 export default function Footer() {
   return (
@@ -164,6 +164,7 @@ export default function Footer() {
                   color: "#1e1e1e",
                   "&:hover": {
                     color: "#4c4c4c",
+                    textDecoration: "underline",
                   },
                   transition: "color 150ms ease-in",
                 }}

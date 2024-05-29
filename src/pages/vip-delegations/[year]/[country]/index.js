@@ -5,8 +5,8 @@ import { ClipLoader } from "react-spinners";
 import { Box, Typography } from "@mui/material";
 
 import { getDelegationContent } from "@/utils/delegation";
-import { CovidImpactDelegation } from "@/Components/Delegations";
 import EmptyData from "@/Components/PaneContent/EmptyData";
+import { CovidImpactDelegation } from "@/Components/Delegations";
 
 export default function index() {
   const router = useRouter();
