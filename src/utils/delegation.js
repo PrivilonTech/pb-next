@@ -17,15 +17,77 @@ const content = {
         "IPF Japan 2023 is a must-attend for those in the plastic industry worldwide. PolymerBazaar, as a media partner, strongly encourages your participation in this event. Gratitude is extended to the organizers, Team IPF, and Mr. Minoru Shibata for their valuable assistance and support.",
         "If you're unable to attend this edition, PolymerBazaar advises considering participation or attendance in the upcoming IPF Japan 2026.",
       ],
-      stallDetails: {
-        title: "Polymer Bazaar invites you to Visit Us at IPF 2023",
-        details: [
-          "Stall No: 50908",
-          "Dates: 28 Nov.- 2 Dec.’23",
-          "Venue: Makuhari Messe,Tokyo.",
-          "List Of Raw Material Suppliers & Other Exhibitors https://www.ipfjapan.jp/2023/search_en/",
-        ],
-      },
+      stallDetails: [
+        {
+          title: "Polymer Bazaar invites you to Visit Us at IPF 2023",
+          details: [
+            "Stall No: 50908",
+            "Dates: 28 Nov.- 2 Dec.’23",
+            "Venue: Makuhari Messe,Tokyo.",
+            "List Of Raw Material Suppliers & Other Exhibitors https://www.ipfjapan.jp/2023/search_en/",
+          ],
+        },
+      ],
+    },
+  },
+  2017: {
+    "iran-plast": {
+      title: "IRAN PLAST 2017 Post-Show Report",
+      description: [
+        "POLYMER BAZAAR is pleased to share the outcomes of our participation in IRAN PLAST 2017. This year’s event, held from September 24-27, 2017, at the Tehran International Permanent Fairground, was a significant step forward in our engagement with the Iranian bazaar.",
+      ],
+      stallDetails: [
+        {
+          title: "Event Highlights:",
+          details: [
+            "Exhibitors: Approximately 1,100",
+            "Visitors: Over 40,000 industry professionals",
+          ],
+        },
+        {
+          title: "Strategic Goals:",
+          details: [
+            "Strengthen existing relationships and forge new connections.",
+            "Expand our reach in the Iranian market.",
+            "Showcase our innovative products and services.",
+            "Gather detailed market intelligence to inform future strategies.",
+          ],
+        },
+        {
+          title: "Booth Activity:",
+          details: [
+            "Our booth was a hub of activity, with a 20% increase in engagement compared to the previous year. Visitors were particularly interested in our latest product innovations.",
+          ],
+        },
+        {
+          title: "Meetings and Networking:",
+          details: [
+            "Conducted 45 pre-scheduled strategic meetings.",
+            "Discussions on partnerships, distribution, and joint ventures were fruitful, resulting in numerous business leads.",
+          ],
+        },
+        {
+          title: "Educational Participation:",
+          details: [
+            "Actively involved in seminars and workshops, contributing to industry discussions.",
+            "Gained insights into emerging trends and technologies from industry experts.",
+          ],
+        },
+        {
+          title: "Networking Events:",
+          details: [
+            "Enhanced visibility and established new connections through participation in multiple networking events.",
+            "Explored potential cross-border collaborations with international delegates.",
+          ],
+        },
+        {
+          title: "Lead Generation:",
+          details: [
+            "Enhanced visibility and established new connections through participation in multiple networking events.",
+            "Explored potential cross-border collaborations with international delegates.",
+          ],
+        },
+      ],
     },
   },
   2016: {

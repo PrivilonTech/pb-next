@@ -1,4 +1,3 @@
-import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 
