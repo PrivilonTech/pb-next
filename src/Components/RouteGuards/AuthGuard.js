@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import React, { useEffect, useContext } from "react";
 import secureLocalStorage from "react-secure-storage";
 
+import Loading from "../Loading/Loading";
+import useCurrentUser from "@/hooks/useCurrentUser";
 import { ModalContext } from "../HomePage/ModalProvider";
 import { getUserByUID, isAdminCheck, isTrial } from "@/utils/utilsUser";
-import useCurrentUser from "@/hooks/useCurrentUser";
-import Loading from "../Loading/Loading";
 
 export default function AuthGuard({ children }) {
   const router = useRouter();
@@ -60,36 +60,36 @@ export default function AuthGuard({ children }) {
 
         router.push("/register");
       }
-      //  else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
-      //   if (
-      //     !isTrial(userLoggedIn) &&
-      //     !userLoggedIn.subscribed &&
-      //     !isLowAuthPath(path)
-      //   ) {
-      //     setLoading(true);
+       else if (userLoggedIn && !isAdminCheck(userLoggedIn)) {
+        if (
+          !isTrial(userLoggedIn) &&
+          !userLoggedIn.subscribed &&
+          !isLowAuthPath(path)
+        ) {
+          setLoading(true);
 
-      //     router.push("/subscription");
-      //   } else if (
-      //     !isTrial(userLoggedIn) &&
-      //     userLoggedIn.subscribed &&
-      //     ["Basic", "Standard"].includes(userLoggedIn?.plan) &&
-      //     !isLowAuthPath(path)
-      //   ) {
-      //     setLoading(true);
+          router.push("/subscription");
+        } else if (
+          !isTrial(userLoggedIn) &&
+          userLoggedIn.subscribed &&
+          ["Basic", "Standard"].includes(userLoggedIn?.plan) &&
+          !isLowAuthPath(path)
+        ) {
+          setLoading(true);
 
-      //     router.push("/");
-      //   }
+          router.push("/");
+        }
 
-      //   if (
-      //     !isTrial(userLoggedIn) &&
-      //     userLoggedIn.subscribed &&
-      //     path === "/subscription"
-      //   ) {
-      //     setLoading(true);
+        if (
+          !isTrial(userLoggedIn) &&
+          userLoggedIn.subscribed &&
+          path === "/subscription"
+        ) {
+          setLoading(true);
 
-      //     router.push("/");
-      //   }
-      // }
+          router.push("/");
+        }
+      }
     }
     if (path === "/register" || path === "/subscription" || path === "/") {
       setLoading(false);
