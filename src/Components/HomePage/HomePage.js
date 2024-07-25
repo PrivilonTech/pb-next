@@ -56,6 +56,7 @@ function HomePage() {
             "/Homepage/carousel/image_6.jpg",
             "/Homepage/carousel/image_7.jpg",
             "/Homepage/carousel/image_8.jpg",
+            "/Homepage/carousel/image_9.jpg",
           ]}
           linkArray={[
             "https://www.arabplast.info/",
@@ -66,6 +67,7 @@ function HomePage() {
             "http://www.gpca.org.ae",
             "http://www.gpca.org.ae",
             "https://indiachem.ficci.in/",
+            "https://www.plexpoindia.org/",
           ]}
           height={150}
           numberOfImages={2}
