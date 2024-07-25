@@ -49,15 +49,23 @@ function HomePage() {
         <CarouselComponent
           srcArray={[
             "/Homepage/carousel/image_1.jpg",
+            "/Homepage/carousel/image_2.jpg",
             "/Homepage/carousel/image_3.jpg",
             "/Homepage/carousel/image_4.jpg",
             "/Homepage/carousel/image_5.jpg",
+            "/Homepage/carousel/image_6.jpg",
+            "/Homepage/carousel/image_7.jpg",
+            "/Homepage/carousel/image_8.jpg",
           ]}
           linkArray={[
             "https://www.arabplast.info/",
+            "https://plastoapp.com/",
             "https://eliteplus.co.in/web/11th-speciality-films-flexible-packaging-global-summit/",
-            "https://eliteplus.co.in/web/9th-injection-blow-roto-pet-moulding-international-summit/",
+            "http://www.gpca.org.ae",
             "https://toplast.in/about",
+            "http://www.gpca.org.ae",
+            "http://www.gpca.org.ae",
+            "https://indiachem.ficci.in/",
           ]}
           height={150}
           numberOfImages={2}
