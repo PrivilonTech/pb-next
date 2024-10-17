@@ -53,7 +53,6 @@ function HomePage() {
             "/Homepage/carousel/image_4.jpg",
             "/Homepage/carousel/image_8.jpg",
             "/Homepage/carousel/image_9.jpg",
-            "/Homepage/carousel/image_10.jpg",
             "/Homepage/carousel/image_6.jpg",
             "/Homepage/carousel/image_7.jpg",
           ]}
@@ -64,6 +63,7 @@ function HomePage() {
             "https://indiachem.ficci.in/",
             "https://www.plexpoindia.org/",
             "https://www.taipeiplas.com.tw/zh-tw/index.html",
+            "/",
             "/",
             "/",
           ]}
