@@ -62,8 +62,8 @@ function HomePage() {
             "http://www.gpca.org.ae",
             "https://indiachem.ficci.in/",
             "https://www.plexpoindia.org/",
-            "https://www.taipeiplas.com.tw/zh-tw/index.html",
-            "/",
+            "https://odishaplast.com/",
+            "https://nepal5pexpo.com/",
             "/",
             "/",
           ]}
