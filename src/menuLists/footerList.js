@@ -144,3 +144,4 @@ export const footerLinks = [
     href: "/privacy",
   },
 ];
+// added some changes in footr
