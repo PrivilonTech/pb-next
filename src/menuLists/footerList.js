@@ -1,26 +1,51 @@
 export const footerList = [
   {
     id: 1,
-    columnTitle: "Markets",
+    columnTitle: "Bazaar",
     columnSection: [
       {
         id: 1,
-        title: "Asia Pacific",
+        title: "Countries",
         text: [
           {
             id: 1,
-            placeholder: "China",
-            href: "/global-bazaar/China",
+            placeholder: "USA",
+            href: "/global-bazaar/USA",
           },
           {
             id: 2,
+            placeholder: "Europe",
+            href: "/global-bazaar/Europe",
+          },
+          {
+            id: 3,
+            placeholder: "China",
+            href: "/global-bazaar/china",
+          },
+          {
+            id: 4,
             placeholder: "India",
             href: "/global-bazaar/India",
           },
           {
-            id: 3,
-            placeholder: "Turkey",
-            href: "/global-bazaar/Turkey",
+            id: 5,
+            placeholder: "Nepal",
+            href: "/global-bazaar/Nepal",
+          },
+          {
+            id: 6,
+            placeholder: "Sri Lanka",
+            href: "/global-bazaar/Srilanka",
+          },
+          {
+            id: 7,
+            placeholder: "Bangladesh",
+            href: "/global-bazaar/Bangladesh",
+          },
+          {
+            id: 8,
+            placeholder: "KSA",
+            href: "/global-bazaar/ksa",
           },
         ],
       },
@@ -36,18 +61,43 @@ export const footerList = [
         text: [
           {
             id: 1,
-            placeholder: "Polypropylene (PP)",
+            placeholder: " PP",
             href: "/future-trend/PP",
           },
           {
             id: 2,
-            placeholder: "Polyvinyl Chloride (PVC)",
-            href: "/future-trend/PVC",
+            placeholder: " PE",
+            href: "/future-trend/PE",
           },
           {
             id: 3,
-            placeholder: "Polyethylene (PE)",
-            href: "/future-trend/PE",
+            placeholder: " PVC",
+            href: "/future-trend/PVC",
+          },
+          {
+            id: 4,
+            placeholder: "PS",
+            href: "/future-trend/PS",
+          },
+          {
+            id: 5,
+            placeholder: "PET",
+            href: "/future-trend/PET",
+          },
+          {
+            id: 6,
+            placeholder: "EVA",
+            href: "/future-trend/EVA",
+          },
+          {
+            id: 7,
+            placeholder: "ABS",
+            href: "/future-trend/ABS",
+          },
+          {
+            id: 8,
+            placeholder: "SAN",
+            href: "/future-trend/SAN",
           },
         ],
       },
@@ -94,3 +144,4 @@ export const footerLinks = [
     href: "/privacy",
   },
 ];
+// added some changes in footr
