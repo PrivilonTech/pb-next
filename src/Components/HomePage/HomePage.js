@@ -55,6 +55,11 @@ function HomePage() {
             "/Homepage/carousel/image_9.jpg",
             "/Homepage/carousel/image_6.jpg",
             "/Homepage/carousel/image_7.jpg",
+            "/Homepage/carousel/image_3.jpg",
+            "/Homepage/carousel/image_5.jpg",
+            "/Homepage/carousel/image_10.jpg",
+            "/Homepage/carousel/image_11.jpg",
+
           ]}
           linkArray={[
             "https://www.arabplast.info/",
@@ -64,8 +69,10 @@ function HomePage() {
             "https://www.plexpoindia.org/",
             "https://odishaplast.com/",
             "https://nepal5pexpo.com/",
-            "/",
-            "/",
+            "https://www.plastindia.org/",
+            "https://indplas.in/",
+            "https://www.plastasia.in/",
+            "https://www.egypes.com/",
           ]}
           height={150}
           numberOfImages={2}
