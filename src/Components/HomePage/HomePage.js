@@ -59,7 +59,6 @@ function HomePage() {
             "/Homepage/carousel/image_5.jpg",
             "/Homepage/carousel/image_10.jpg",
             "/Homepage/carousel/image_11.jpg",
-
           ]}
           linkArray={[
             "https://www.arabplast.info/",
@@ -74,10 +73,10 @@ function HomePage() {
             "https://www.plastasia.in/",
             "https://www.egypes.com/",
           ]}
-          height={150}
-          numberOfImages={2}
+          height={100}
+          numberOfImages={4}
           objectFit="contain"
-          padding="20px"
+          padding="5px"
           setDataChange={setDataChange}
         />
       </Box>

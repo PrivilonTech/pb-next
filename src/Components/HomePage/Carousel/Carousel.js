@@ -35,11 +35,11 @@ export default function CarouselComponent({
 
   const settings = {
     infinite: true,
-    speed: 500,
+    speed: 2000,
     slidesToShow: numberOfImages,
     slidesToScroll: numberOfImages,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
     arrows: false,
     adaptiveHeight: true,
   };
