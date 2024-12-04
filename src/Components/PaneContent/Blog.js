@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import secureLocalStorage from "react-secure-storage";
 import Link from "next/link";
 import Image from "next/image";
-import he from "he";
+
 import Button from "../Button/Button";
 
 export default function Blog({ data, setDataChange }) {
@@ -32,8 +32,6 @@ export default function Blog({ data, setDataChange }) {
       console.log(error);
     }
   };
-
-  console.log(data.blogContent);
 
   return (
     <Box
@@ -106,9 +104,9 @@ export default function Blog({ data, setDataChange }) {
           )}
         </Box>
       </Box>
-      {/* <Box sx={{ padding: "1em 2em" }}>
+      <Box sx={{ padding: "1em 2em" }}>
         <MarkdownView markdown={data.blogContent} />
-      </Box> */}
+      </Box>
       {isImageFile && (
         <Box
           sx={{
