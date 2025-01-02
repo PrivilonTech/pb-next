@@ -52,26 +52,23 @@ function HomePage() {
             "/Homepage/carousel/image_2.jpg",
             "/Homepage/carousel/image_4.jpg",
             "/Homepage/carousel/image_8.jpg",
-            "/Homepage/carousel/image_9.jpg",
-            "/Homepage/carousel/image_6.jpg",
-            "/Homepage/carousel/image_7.jpg",
-            "/Homepage/carousel/image_3.jpg",
             "/Homepage/carousel/image_5.jpg",
             "/Homepage/carousel/image_10.jpg",
             "/Homepage/carousel/image_11.jpg",
+            "/Homepage/carousel/image_12.jpeg",
+            "/Homepage/carousel/image_13.jpeg",
           ]}
           linkArray={[
             "https://www.arabplast.info/",
             "https://plastoapp.com/",
             "http://www.gpca.org.ae",
             "https://indiachem.ficci.in/",
-            "https://www.plexpoindia.org/",
-            "https://odishaplast.com/",
-            "https://nepal5pexpo.com/",
-            "https://www.plastindia.org/",
+
             "https://indplas.in/",
             "https://www.plastasia.in/",
             "https://www.egypes.com/",
+            "https://ruplastica.ru/en/",
+            "https://www.plasticexhibition.com/",
           ]}
           height={100}
           numberOfImages={4}
