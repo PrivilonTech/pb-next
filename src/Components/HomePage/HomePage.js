@@ -57,6 +57,7 @@ function HomePage() {
             "/Homepage/carousel/image_11.jpg",
             "/Homepage/carousel/image_12.jpeg",
             "/Homepage/carousel/image_13.jpeg",
+            "/Homepage/carousel/image_14.gif",
           ]}
           linkArray={[
             "https://www.arabplast.info/",
@@ -69,6 +70,7 @@ function HomePage() {
             "https://www.egypes.com/",
             "https://ruplastica.ru/en/",
             "https://www.plasticexhibition.com/",
+            "https://www.chinaplasonline.com/",
           ]}
           height={100}
           numberOfImages={4}
