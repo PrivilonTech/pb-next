@@ -2,8 +2,23 @@ export const delegationList = {
   2025: [
     {
       id: 1,
-      section: "Mumbai",
-      href: "/vip-delegations/2025/mumbai",
+      section: "Koplas Korea",
+      href: "/vip-delegations/2025/koplas-korea",
+    },
+    {
+      id: 2,
+      section: "Taiwan B2B sourcing",
+      href: "/vip-delegations/2025/taiwan-b2b-sourcing",
+    },
+    {
+      id: 3,
+      section: "Central Plast ,Kazakhstan",
+      href: "/vip-delegations/2025/central-plast",
+    },
+    {
+      id: 4,
+      section: "Taipei Pack,Taiwan",
+      href: "/vip-delegations/2025/taipei-pack",
     },
   ],
 

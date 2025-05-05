@@ -103,7 +103,8 @@ export const NavDropDownItem = ({
       </Box>
       <Box
         sx={{
-          minWidth: "180px",
+          width: "180px",
+
           position: "absolute",
           borderRadius: "10px",
           borderTopLeftRadius: "0px",
@@ -154,7 +155,8 @@ const SubDropdownItem = ({
       <Box
         onClick={handleRouting}
         sx={{
-          padding: ".5em 1em",
+          width: "auto",
+          padding: "1em 1em",
           borderTop: "1px solid #e3c0c0",
           "&:hover": {
             color: "#d9232a",
