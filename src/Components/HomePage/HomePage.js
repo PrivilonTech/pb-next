@@ -51,12 +51,19 @@ function HomePage() {
             "/Homepage/carousel/image_1.jpeg",
             "/Homepage/carousel/image_2.jpeg",
             "/Homepage/carousel/image_3.jpeg",
+            "/Homepage/carousel/image_4.jpeg",
+            "/Homepage/carousel/image_5.jpeg",
+            "/Homepage/carousel/image_6.jpeg",
+            "/Homepage/carousel/image_7.gif",
           ]}
           linkArray={[
             "https://ruplastica.ru/en/",
-
             "https://gcprs.org/",
             "https://www.taipeipack.com.tw/en/index.html",
+            "https://www.egypes.com/",
+            "https://plastworld.kz/?lang=en",
+            "https://kplexkochi.com/",
+            "https://www.chinaplasonline.com/",
           ]}
           height={100}
           numberOfImages={4}

@@ -25,8 +25,13 @@ export const delegationList = {
   2024: [
     {
       id: 1,
-      section: "Mumbai",
-      href: "/vip-delegations/2023/mumbai",
+      section: "TaipeiPlas",
+      href: "/vip-delegations/2023/taipeiplas",
+    },
+    {
+      id: 2,
+      section: "Taiwan Petrochemical Souricng",
+      href: "/vip-delegations/2023/taiwan-petrochemical-sourcing",
     },
   ],
   2023: [
