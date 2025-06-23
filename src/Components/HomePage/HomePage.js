@@ -55,6 +55,7 @@ function HomePage() {
             "/Homepage/carousel/image_5.jpeg",
             "/Homepage/carousel/image_6.jpeg",
             "/Homepage/carousel/image_7.gif",
+            "/Homepage/carousel/image_8.jpeg",
           ]}
           linkArray={[
             "https://ruplastica.ru/en/",
@@ -64,6 +65,7 @@ function HomePage() {
             "https://plastworld.kz/?lang=en",
             "https://kplexkochi.com/",
             "https://www.chinaplasonline.com/",
+            "https://www.plastindia.org/",
           ]}
           height={100}
           numberOfImages={4}
