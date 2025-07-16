@@ -19,11 +19,7 @@ const globalBazaarList = [
     section: "Asia - India",
     slug: "India",
   },
-  {
-    id: 5,
-    section: "Asia - Iran",
-    slug: "Iran",
-  },
+
   {
     id: 4,
     section: "Asia - Pakistan",

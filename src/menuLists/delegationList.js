@@ -105,11 +105,11 @@ export const delegationList = {
       section: "Taipei Plas",
       href: "/vip-delegations/2018/taipei-plas",
     },
-    {
-      id: 3,
-      section: "Iran Plast",
-      href: "/vip-delegations/2018/iran-plast",
-    },
+    // {
+    //   id: 3,
+    //   section: "Iran Plast",
+    //   href: "/vip-delegations/2018/iran-plast",
+    // },
   ],
   2017: [
     {
@@ -117,17 +117,17 @@ export const delegationList = {
       section: "Plascom",
       href: "/vip-delegations/2017/plascom",
     },
-    {
-      id: 2,
-      section: "Iran Plast",
-      href: "/vip-delegations/2017/iran-plast",
-    },
+    // {
+    //   id: 2,
+    //   section: "Iran Plast",
+    //   href: "/vip-delegations/2017/iran-plast",
+    // },
   ],
-  2016: [
-    {
-      id: 1,
-      section: "Iran Plast",
-      href: "/vip-delegations/2016/iran-plast",
-    },
-  ],
+  // 2016: [
+  //   {
+  //     id: 1,
+  //     section: "Iran Plast",
+  //     href: "/vip-delegations/2016/iran-plast",
+  //   },
+  // ],
 };
