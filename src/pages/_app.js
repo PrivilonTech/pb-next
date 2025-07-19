@@ -49,5 +49,5 @@ export default function App({ Component, pageProps }) {
   }, [path]);
 
   //
-  return <h1>Service Under Maintenance</h1>;
+  return <h1>Service Unavailable</h1>;
 }
