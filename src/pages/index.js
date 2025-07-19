@@ -5,7 +5,7 @@ import HomePage from "@/Components/HomePage/HomePage";
 export default function Home() {
   return (
     <Box>
-      <HomePage />
+      <h1>Hello World</h1>
     </Box>
   );
 }
