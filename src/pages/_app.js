@@ -48,6 +48,30 @@ export default function App({ Component, pageProps }) {
     );
   }, [path]);
 
-  //
-  return <h1>Service Unavailable</h1>;
+  return (
+    <main className={font.className}>
+      <Head>
+        <title>Polymer Bazaar {title}</title>
+      </Head>
+      <ModalProvider>
+        <AuthGuard>
+          <ThemeProvider theme={fontTheme}>
+            <Toaster />
+            <ScrollTop />
+            {!showLayout && (
+              <>
+                <PhoneBar />
+                <Header />
+                {/* <Marquee /> UNCOMMENT THIS LATER */}
+              </>
+            )}
+            {upMd && !showLayout && <Pane path={firstString} />}
+
+            <Component {...pageProps} />
+            {!showLayout && <Footer />}
+          </ThemeProvider>
+        </AuthGuard>
+      </ModalProvider>
+    </main>
+  );
 }
