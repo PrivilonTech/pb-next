@@ -19,6 +19,7 @@ export default function CarouselComponent({
   objectFit,
   linkArray,
   setDataChange,
+  onDelete,
 }) {
   const userLoggedIn = secureLocalStorage.getItem("user");
   const [isAdmin, setIsAdmin] = useState(false);
@@ -50,13 +51,20 @@ export default function CarouselComponent({
     }
     try {
       setLoading(true);
-      await axios.delete(
-        `https://polymerbazar-be.onrender.com/api/carousels/${id}`
-      );
+
+      if (onDelete) {
+        await onDelete(id);
+      } else {
+        await axios.delete(
+          `https://polymerbazar-be.onrender.com/api/carousels/${id}`
+        );
+      }
 
       toast.success("Successfully deleted carousel");
       setModal(false);
-      setDataChange((prev) => !prev);
+      if (setDataChange) {
+        setDataChange((prev) => !prev);
+      }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -131,7 +139,7 @@ export default function CarouselComponent({
                 padding: padding ? padding : 0,
               }}
             >
-              {linkArray ? (
+              {linkArray && linkArray[index] ? (
                 <Link href={linkArray[index]}>
                   <img
                     src={src}

@@ -6,6 +6,7 @@ export default function Input({
   setState,
   largeHeight,
   outline,
+  value,
 }) {
   return (
     <input
@@ -22,6 +23,7 @@ export default function Input({
         height: largeHeight ? "100px" : "auto",
       }}
       onChange={(e) => setState(e.target.value)}
+      value={value !== undefined ? value : undefined}
     />
   );
 }
